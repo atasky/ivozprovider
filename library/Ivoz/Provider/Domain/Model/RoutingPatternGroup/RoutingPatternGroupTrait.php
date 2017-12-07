@@ -40,11 +40,11 @@ trait RoutingPatternGroupTrait
     }
 
     /**
-     * @return RoutingPatternGroupDTO
+     * @return RoutingPatternGroupDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new RoutingPatternGroupDTO();
+        return new RoutingPatternGroupDto();
     }
 
     /**
@@ -52,12 +52,12 @@ trait RoutingPatternGroupTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto RoutingPatternGroupDTO
+         * @var $dto RoutingPatternGroupDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
         if ($dto->getRelPatterns()) {
             $self->replaceRelPatterns($dto->getRelPatterns());
         }
@@ -77,12 +77,12 @@ trait RoutingPatternGroupTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto RoutingPatternGroupDTO
+         * @var $dto RoutingPatternGroupDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
         if ($dto->getRelPatterns()) {
             $this->replaceRelPatterns($dto->getRelPatterns());
         }
@@ -93,11 +93,11 @@ trait RoutingPatternGroupTrait
     }
 
     /**
-     * @return RoutingPatternGroupDTO
+     * @return RoutingPatternGroupDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

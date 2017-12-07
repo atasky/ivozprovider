@@ -122,11 +122,11 @@ abstract class TimezoneAbstract
     }
 
     /**
-     * @return TimezoneDTO
+     * @return TimezoneDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new TimezoneDTO();
+        return new TimezoneDto();
     }
 
     /**
@@ -134,12 +134,12 @@ abstract class TimezoneAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TimezoneDTO
+         * @var $dto TimezoneDto
          */
-        Assertion::isInstanceOf($dto, TimezoneDTO::class);
+        Assertion::isInstanceOf($dto, TimezoneDto::class);
 
         $label = new Label(
             $dto->getLabelEn(),
@@ -166,12 +166,12 @@ abstract class TimezoneAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TimezoneDTO
+         * @var $dto TimezoneDto
          */
-        Assertion::isInstanceOf($dto, TimezoneDTO::class);
+        Assertion::isInstanceOf($dto, TimezoneDto::class);
 
         $label = new Label(
             $dto->getLabelEn(),
@@ -191,16 +191,17 @@ abstract class TimezoneAbstract
     }
 
     /**
-     * @return TimezoneDTO
+     * @return TimezoneDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setTz($this->getTz())
             ->setComment($this->getComment())
             ->setLabelEn($this->getLabel()->getEn())
             ->setLabelEs($this->getLabel()->getEs())
-            ->setCountryId($this->getCountry() ? $this->getCountry()->getId() : null);
+            ->setCountryId($this->getCountry() ? $this->getCountry()->getId() : null)
+            ->setCountry($this->getCountry());
     }
 
     /**

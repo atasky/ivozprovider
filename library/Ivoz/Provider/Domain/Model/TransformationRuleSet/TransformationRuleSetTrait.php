@@ -34,11 +34,11 @@ trait TransformationRuleSetTrait
     }
 
     /**
-     * @return TransformationRuleSetDTO
+     * @return TransformationRuleSetDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new TransformationRuleSetDTO();
+        return new TransformationRuleSetDto();
     }
 
     /**
@@ -46,12 +46,12 @@ trait TransformationRuleSetTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TransformationRuleSetDTO
+         * @var $dto TransformationRuleSetDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
         if ($dto->getRules()) {
             $self->replaceRules($dto->getRules());
         }
@@ -67,12 +67,12 @@ trait TransformationRuleSetTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TransformationRuleSetDTO
+         * @var $dto TransformationRuleSetDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
         if ($dto->getRules()) {
             $this->replaceRules($dto->getRules());
         }
@@ -80,11 +80,11 @@ trait TransformationRuleSetTrait
     }
 
     /**
-     * @return TransformationRuleSetDTO
+     * @return TransformationRuleSetDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

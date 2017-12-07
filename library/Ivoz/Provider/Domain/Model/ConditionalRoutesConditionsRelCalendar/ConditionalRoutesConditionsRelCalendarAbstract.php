@@ -111,11 +111,11 @@ abstract class ConditionalRoutesConditionsRelCalendarAbstract
     }
 
     /**
-     * @return ConditionalRoutesConditionsRelCalendarDTO
+     * @return ConditionalRoutesConditionsRelCalendarDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ConditionalRoutesConditionsRelCalendarDTO();
+        return new ConditionalRoutesConditionsRelCalendarDto();
     }
 
     /**
@@ -123,12 +123,12 @@ abstract class ConditionalRoutesConditionsRelCalendarAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ConditionalRoutesConditionsRelCalendarDTO
+         * @var $dto ConditionalRoutesConditionsRelCalendarDto
          */
-        Assertion::isInstanceOf($dto, ConditionalRoutesConditionsRelCalendarDTO::class);
+        Assertion::isInstanceOf($dto, ConditionalRoutesConditionsRelCalendarDto::class);
 
         $self = new static();
 
@@ -147,12 +147,12 @@ abstract class ConditionalRoutesConditionsRelCalendarAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ConditionalRoutesConditionsRelCalendarDTO
+         * @var $dto ConditionalRoutesConditionsRelCalendarDto
          */
-        Assertion::isInstanceOf($dto, ConditionalRoutesConditionsRelCalendarDTO::class);
+        Assertion::isInstanceOf($dto, ConditionalRoutesConditionsRelCalendarDto::class);
 
         $this
             ->setCondition($dto->getCondition())
@@ -165,13 +165,15 @@ abstract class ConditionalRoutesConditionsRelCalendarAbstract
     }
 
     /**
-     * @return ConditionalRoutesConditionsRelCalendarDTO
+     * @return ConditionalRoutesConditionsRelCalendarDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setConditionId($this->getCondition() ? $this->getCondition()->getId() : null)
-            ->setCalendarId($this->getCalendar() ? $this->getCalendar()->getId() : null);
+            ->setCondition($this->getCondition())
+            ->setCalendarId($this->getCalendar() ? $this->getCalendar()->getId() : null)
+            ->setCalendar($this->getCalendar());
     }
 
     /**

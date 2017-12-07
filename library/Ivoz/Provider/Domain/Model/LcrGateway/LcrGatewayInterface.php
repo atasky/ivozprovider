@@ -13,6 +13,29 @@ interface LcrGatewayInterface extends LoggableEntityInterface
     public function getChangeSet();
 
     /**
+     * @return LcrGatewayDto
+     */
+    public static function createDto();
+
+    /**
+     * Factory method
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @return LcrGatewayDto
+     */
+    public function toDto();
+
+    /**
      * Set lcrId
      *
      * @param integer $lcrId

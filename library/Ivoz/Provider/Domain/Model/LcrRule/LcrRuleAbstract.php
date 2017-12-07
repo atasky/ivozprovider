@@ -12,7 +12,7 @@ use Ivoz\Core\Application\DataTransferObjectInterface;
 abstract class LcrRuleAbstract
 {
     /**
-     * @column lcr_id
+     * column: lcr_id
      * @var integer
      */
     protected $lcrId = '1';
@@ -23,13 +23,13 @@ abstract class LcrRuleAbstract
     protected $prefix;
 
     /**
-     * @column from_uri
+     * column: from_uri
      * @var string
      */
     protected $fromUri;
 
     /**
-     * @column request_uri
+     * column: request_uri
      * @var string
      */
     protected $requestUri;
@@ -163,11 +163,11 @@ abstract class LcrRuleAbstract
     }
 
     /**
-     * @return LcrRuleDTO
+     * @return LcrRuleDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new LcrRuleDTO();
+        return new LcrRuleDto();
     }
 
     /**
@@ -175,12 +175,12 @@ abstract class LcrRuleAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto LcrRuleDTO
+         * @var $dto LcrRuleDto
          */
-        Assertion::isInstanceOf($dto, LcrRuleDTO::class);
+        Assertion::isInstanceOf($dto, LcrRuleDto::class);
 
         $self = new static(
             $dto->getLcrId(),
@@ -207,12 +207,12 @@ abstract class LcrRuleAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto LcrRuleDTO
+         * @var $dto LcrRuleDto
          */
-        Assertion::isInstanceOf($dto, LcrRuleDTO::class);
+        Assertion::isInstanceOf($dto, LcrRuleDto::class);
 
         $this
             ->setLcrId($dto->getLcrId())
@@ -233,11 +233,11 @@ abstract class LcrRuleAbstract
     }
 
     /**
-     * @return LcrRuleDTO
+     * @return LcrRuleDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setLcrId($this->getLcrId())
             ->setPrefix($this->getPrefix())
             ->setFromUri($this->getFromUri())
@@ -247,7 +247,9 @@ abstract class LcrRuleAbstract
             ->setTag($this->getTag())
             ->setDescription($this->getDescription())
             ->setRoutingPatternId($this->getRoutingPattern() ? $this->getRoutingPattern()->getId() : null)
-            ->setOutgoingRoutingId($this->getOutgoingRouting() ? $this->getOutgoingRouting()->getId() : null);
+            ->setRoutingPattern($this->getRoutingPattern())
+            ->setOutgoingRoutingId($this->getOutgoingRouting() ? $this->getOutgoingRouting()->getId() : null)
+            ->setOutgoingRouting($this->getOutgoingRouting());
     }
 
     /**

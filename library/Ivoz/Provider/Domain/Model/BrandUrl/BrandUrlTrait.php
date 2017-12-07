@@ -26,11 +26,11 @@ trait BrandUrlTrait
     }
 
     /**
-     * @return BrandUrlDTO
+     * @return BrandUrlDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new BrandUrlDTO();
+        return new BrandUrlDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait BrandUrlTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto BrandUrlDTO
+         * @var $dto BrandUrlDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait BrandUrlTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto BrandUrlDTO
+         * @var $dto BrandUrlDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return BrandUrlDTO
+     * @return BrandUrlDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

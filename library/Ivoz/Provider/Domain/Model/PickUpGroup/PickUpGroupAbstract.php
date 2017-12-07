@@ -111,11 +111,11 @@ abstract class PickUpGroupAbstract
     }
 
     /**
-     * @return PickUpGroupDTO
+     * @return PickUpGroupDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new PickUpGroupDTO();
+        return new PickUpGroupDto();
     }
 
     /**
@@ -123,12 +123,12 @@ abstract class PickUpGroupAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PickUpGroupDTO
+         * @var $dto PickUpGroupDto
          */
-        Assertion::isInstanceOf($dto, PickUpGroupDTO::class);
+        Assertion::isInstanceOf($dto, PickUpGroupDto::class);
 
         $self = new static(
             $dto->getName());
@@ -147,12 +147,12 @@ abstract class PickUpGroupAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PickUpGroupDTO
+         * @var $dto PickUpGroupDto
          */
-        Assertion::isInstanceOf($dto, PickUpGroupDTO::class);
+        Assertion::isInstanceOf($dto, PickUpGroupDto::class);
 
         $this
             ->setName($dto->getName())
@@ -165,13 +165,14 @@ abstract class PickUpGroupAbstract
     }
 
     /**
-     * @return PickUpGroupDTO
+     * @return PickUpGroupDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null);
+            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany());
     }
 
     /**

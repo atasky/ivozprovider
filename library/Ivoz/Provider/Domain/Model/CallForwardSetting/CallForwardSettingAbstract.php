@@ -12,19 +12,19 @@ use Ivoz\Core\Application\DataTransferObjectInterface;
 abstract class CallForwardSettingAbstract
 {
     /**
-     * @comment enum:internal|external|both
+     * comment: enum:internal|external|both
      * @var string
      */
     protected $callTypeFilter;
 
     /**
-     * @comment enum:inconditional|noAnswer|busy|userNotRegistered
+     * comment: enum:inconditional|noAnswer|busy|userNotRegistered
      * @var string
      */
     protected $callForwardType;
 
     /**
-     * @comment enum:number|extension|voicemail
+     * comment: enum:number|extension|voicemail
      * @var string
      */
     protected $targetType;
@@ -156,11 +156,11 @@ abstract class CallForwardSettingAbstract
     }
 
     /**
-     * @return CallForwardSettingDTO
+     * @return CallForwardSettingDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new CallForwardSettingDTO();
+        return new CallForwardSettingDto();
     }
 
     /**
@@ -168,12 +168,12 @@ abstract class CallForwardSettingAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CallForwardSettingDTO
+         * @var $dto CallForwardSettingDto
          */
-        Assertion::isInstanceOf($dto, CallForwardSettingDTO::class);
+        Assertion::isInstanceOf($dto, CallForwardSettingDto::class);
 
         $self = new static(
             $dto->getCallTypeFilter(),
@@ -199,12 +199,12 @@ abstract class CallForwardSettingAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CallForwardSettingDTO
+         * @var $dto CallForwardSettingDto
          */
-        Assertion::isInstanceOf($dto, CallForwardSettingDTO::class);
+        Assertion::isInstanceOf($dto, CallForwardSettingDto::class);
 
         $this
             ->setCallTypeFilter($dto->getCallTypeFilter())
@@ -224,20 +224,24 @@ abstract class CallForwardSettingAbstract
     }
 
     /**
-     * @return CallForwardSettingDTO
+     * @return CallForwardSettingDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setCallTypeFilter($this->getCallTypeFilter())
             ->setCallForwardType($this->getCallForwardType())
             ->setTargetType($this->getTargetType())
             ->setNumberValue($this->getNumberValue())
             ->setNoAnswerTimeout($this->getNoAnswerTimeout())
             ->setUserId($this->getUser() ? $this->getUser()->getId() : null)
+            ->setUser($this->getUser())
             ->setExtensionId($this->getExtension() ? $this->getExtension()->getId() : null)
+            ->setExtension($this->getExtension())
             ->setVoiceMailUserId($this->getVoiceMailUser() ? $this->getVoiceMailUser()->getId() : null)
-            ->setNumberCountryId($this->getNumberCountry() ? $this->getNumberCountry()->getId() : null);
+            ->setVoiceMailUser($this->getVoiceMailUser())
+            ->setNumberCountryId($this->getNumberCountry() ? $this->getNumberCountry()->getId() : null)
+            ->setNumberCountry($this->getNumberCountry());
     }
 
     /**

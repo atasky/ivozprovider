@@ -17,7 +17,7 @@ abstract class CallAclRelMatchListAbstract
     protected $priority;
 
     /**
-     * @comment enum:allow|deny
+     * comment: enum:allow|deny
      * @var string
      */
     protected $policy;
@@ -123,11 +123,11 @@ abstract class CallAclRelMatchListAbstract
     }
 
     /**
-     * @return CallAclRelMatchListDTO
+     * @return CallAclRelMatchListDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new CallAclRelMatchListDTO();
+        return new CallAclRelMatchListDto();
     }
 
     /**
@@ -135,12 +135,12 @@ abstract class CallAclRelMatchListAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CallAclRelMatchListDTO
+         * @var $dto CallAclRelMatchListDto
          */
-        Assertion::isInstanceOf($dto, CallAclRelMatchListDTO::class);
+        Assertion::isInstanceOf($dto, CallAclRelMatchListDto::class);
 
         $self = new static(
             $dto->getPriority(),
@@ -161,12 +161,12 @@ abstract class CallAclRelMatchListAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CallAclRelMatchListDTO
+         * @var $dto CallAclRelMatchListDto
          */
-        Assertion::isInstanceOf($dto, CallAclRelMatchListDTO::class);
+        Assertion::isInstanceOf($dto, CallAclRelMatchListDto::class);
 
         $this
             ->setPriority($dto->getPriority())
@@ -181,15 +181,17 @@ abstract class CallAclRelMatchListAbstract
     }
 
     /**
-     * @return CallAclRelMatchListDTO
+     * @return CallAclRelMatchListDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setPriority($this->getPriority())
             ->setPolicy($this->getPolicy())
             ->setCallAclId($this->getCallAcl() ? $this->getCallAcl()->getId() : null)
-            ->setMatchListId($this->getMatchList() ? $this->getMatchList()->getId() : null);
+            ->setCallAcl($this->getCallAcl())
+            ->setMatchListId($this->getMatchList() ? $this->getMatchList()->getId() : null)
+            ->setMatchList($this->getMatchList());
     }
 
     /**

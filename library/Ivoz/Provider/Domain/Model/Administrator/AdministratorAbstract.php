@@ -17,7 +17,7 @@ abstract class AdministratorAbstract
     protected $username;
 
     /**
-     * @comment password
+     * comment: password
      * @var string
      */
     protected $pass;
@@ -150,11 +150,11 @@ abstract class AdministratorAbstract
     }
 
     /**
-     * @return AdministratorDTO
+     * @return AdministratorDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new AdministratorDTO();
+        return new AdministratorDto();
     }
 
     /**
@@ -162,12 +162,12 @@ abstract class AdministratorAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto AdministratorDTO
+         * @var $dto AdministratorDto
          */
-        Assertion::isInstanceOf($dto, AdministratorDTO::class);
+        Assertion::isInstanceOf($dto, AdministratorDto::class);
 
         $self = new static(
             $dto->getUsername(),
@@ -193,12 +193,12 @@ abstract class AdministratorAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto AdministratorDTO
+         * @var $dto AdministratorDto
          */
-        Assertion::isInstanceOf($dto, AdministratorDTO::class);
+        Assertion::isInstanceOf($dto, AdministratorDto::class);
 
         $this
             ->setUsername($dto->getUsername())
@@ -218,11 +218,11 @@ abstract class AdministratorAbstract
     }
 
     /**
-     * @return AdministratorDTO
+     * @return AdministratorDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setUsername($this->getUsername())
             ->setPass($this->getPass())
             ->setEmail($this->getEmail())
@@ -230,8 +230,11 @@ abstract class AdministratorAbstract
             ->setName($this->getName())
             ->setLastname($this->getLastname())
             ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
+            ->setBrand($this->getBrand())
             ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setTimezoneId($this->getTimezone() ? $this->getTimezone()->getId() : null);
+            ->setCompany($this->getCompany())
+            ->setTimezoneId($this->getTimezone() ? $this->getTimezone()->getId() : null)
+            ->setTimezone($this->getTimezone());
     }
 
     /**

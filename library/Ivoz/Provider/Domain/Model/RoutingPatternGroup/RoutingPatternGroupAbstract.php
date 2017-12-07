@@ -116,11 +116,11 @@ abstract class RoutingPatternGroupAbstract
     }
 
     /**
-     * @return RoutingPatternGroupDTO
+     * @return RoutingPatternGroupDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new RoutingPatternGroupDTO();
+        return new RoutingPatternGroupDto();
     }
 
     /**
@@ -128,12 +128,12 @@ abstract class RoutingPatternGroupAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto RoutingPatternGroupDTO
+         * @var $dto RoutingPatternGroupDto
          */
-        Assertion::isInstanceOf($dto, RoutingPatternGroupDTO::class);
+        Assertion::isInstanceOf($dto, RoutingPatternGroupDto::class);
 
         $self = new static(
             $dto->getName());
@@ -153,12 +153,12 @@ abstract class RoutingPatternGroupAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto RoutingPatternGroupDTO
+         * @var $dto RoutingPatternGroupDto
          */
-        Assertion::isInstanceOf($dto, RoutingPatternGroupDTO::class);
+        Assertion::isInstanceOf($dto, RoutingPatternGroupDto::class);
 
         $this
             ->setName($dto->getName())
@@ -172,14 +172,15 @@ abstract class RoutingPatternGroupAbstract
     }
 
     /**
-     * @return RoutingPatternGroupDTO
+     * @return RoutingPatternGroupDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setDescription($this->getDescription())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null);
+            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
+            ->setBrand($this->getBrand());
     }
 
     /**

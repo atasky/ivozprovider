@@ -34,11 +34,11 @@ trait ExtensionTrait
     }
 
     /**
-     * @return ExtensionDTO
+     * @return ExtensionDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ExtensionDTO();
+        return new ExtensionDto();
     }
 
     /**
@@ -46,12 +46,12 @@ trait ExtensionTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ExtensionDTO
+         * @var $dto ExtensionDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
         if ($dto->getUsers()) {
             $self->replaceUsers($dto->getUsers());
         }
@@ -67,12 +67,12 @@ trait ExtensionTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ExtensionDTO
+         * @var $dto ExtensionDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
         if ($dto->getUsers()) {
             $this->replaceUsers($dto->getUsers());
         }
@@ -80,11 +80,11 @@ trait ExtensionTrait
     }
 
     /**
-     * @return ExtensionDTO
+     * @return ExtensionDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

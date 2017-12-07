@@ -12,7 +12,7 @@ use Ivoz\Core\Application\DataTransferObjectInterface;
 abstract class CompanyAbstract
 {
     /**
-     * @comment enum:vpbx|retail
+     * comment: enum:vpbx|retail
      * @var string
      */
     protected $type = 'vpbx';
@@ -23,7 +23,7 @@ abstract class CompanyAbstract
     protected $name;
 
     /**
-     * @column domain_users
+     * column: domain_users
      * @var string
      */
     protected $domainUsers;
@@ -34,7 +34,7 @@ abstract class CompanyAbstract
     protected $nif;
 
     /**
-     * @comment enum:static|rr|hash
+     * comment: enum:static|rr|hash
      * @var string
      */
     protected $distributeMethod = 'hash';
@@ -65,7 +65,7 @@ abstract class CompanyAbstract
     protected $province;
 
     /**
-     * @column country
+     * column: country
      * @var string
      */
     protected $countryName;
@@ -259,11 +259,11 @@ abstract class CompanyAbstract
     }
 
     /**
-     * @return CompanyDTO
+     * @return CompanyDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new CompanyDTO();
+        return new CompanyDto();
     }
 
     /**
@@ -271,12 +271,12 @@ abstract class CompanyAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CompanyDTO
+         * @var $dto CompanyDto
          */
-        Assertion::isInstanceOf($dto, CompanyDTO::class);
+        Assertion::isInstanceOf($dto, CompanyDto::class);
 
         $self = new static(
             $dto->getType(),
@@ -320,12 +320,12 @@ abstract class CompanyAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CompanyDTO
+         * @var $dto CompanyDto
          */
-        Assertion::isInstanceOf($dto, CompanyDTO::class);
+        Assertion::isInstanceOf($dto, CompanyDto::class);
 
         $this
             ->setType($dto->getType())
@@ -363,11 +363,11 @@ abstract class CompanyAbstract
     }
 
     /**
-     * @return CompanyDTO
+     * @return CompanyDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setType($this->getType())
             ->setName($this->getName())
             ->setDomainUsers($this->getDomainUsers())
@@ -386,15 +386,25 @@ abstract class CompanyAbstract
             ->setRecordingsLimitMB($this->getRecordingsLimitMB())
             ->setRecordingsLimitEmail($this->getRecordingsLimitEmail())
             ->setLanguageId($this->getLanguage() ? $this->getLanguage()->getId() : null)
+            ->setLanguage($this->getLanguage())
             ->setMediaRelaySetsId($this->getMediaRelaySets() ? $this->getMediaRelaySets()->getId() : null)
+            ->setMediaRelaySets($this->getMediaRelaySets())
             ->setDefaultTimezoneId($this->getDefaultTimezone() ? $this->getDefaultTimezone()->getId() : null)
+            ->setDefaultTimezone($this->getDefaultTimezone())
             ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
+            ->setBrand($this->getBrand())
             ->setDomainId($this->getDomain() ? $this->getDomain()->getId() : null)
+            ->setDomain($this->getDomain())
             ->setApplicationServerId($this->getApplicationServer() ? $this->getApplicationServer()->getId() : null)
+            ->setApplicationServer($this->getApplicationServer())
             ->setCountryId($this->getCountry() ? $this->getCountry()->getId() : null)
+            ->setCountry($this->getCountry())
             ->setTransformationRuleSetId($this->getTransformationRuleSet() ? $this->getTransformationRuleSet()->getId() : null)
+            ->setTransformationRuleSet($this->getTransformationRuleSet())
             ->setOutgoingDdiId($this->getOutgoingDdi() ? $this->getOutgoingDdi()->getId() : null)
-            ->setOutgoingDdiRuleId($this->getOutgoingDdiRule() ? $this->getOutgoingDdiRule()->getId() : null);
+            ->setOutgoingDdi($this->getOutgoingDdi())
+            ->setOutgoingDdiRuleId($this->getOutgoingDdiRule() ? $this->getOutgoingDdiRule()->getId() : null)
+            ->setOutgoingDdiRule($this->getOutgoingDdiRule());
     }
 
     /**

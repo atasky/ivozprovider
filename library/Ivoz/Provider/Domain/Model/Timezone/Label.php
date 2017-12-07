@@ -11,13 +11,13 @@ use Assert\Assertion;
 class Label
 {
     /**
-     * @column timeZoneLabel_en
+     * column: timeZoneLabel_en
      * @var string
      */
     protected $en = '';
 
     /**
-     * @column timeZoneLabel_es
+     * column: timeZoneLabel_es
      * @var string
      */
     protected $es = '';

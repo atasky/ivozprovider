@@ -22,7 +22,7 @@ abstract class RetailAccountAbstract
     protected $description = '';
 
     /**
-     * @comment enum:udp|tcp|tls
+     * comment: enum:udp|tcp|tls
      * @var string
      */
     protected $transport;
@@ -38,7 +38,7 @@ abstract class RetailAccountAbstract
     protected $port;
 
     /**
-     * @column auth_needed
+     * column: auth_needed
      * @var string
      */
     protected $authNeeded = 'yes';
@@ -59,34 +59,34 @@ abstract class RetailAccountAbstract
     protected $allow = 'alaw';
 
     /**
-     * @column direct_media_method
-     * @comment enum:invite|update
+     * column: direct_media_method
+     * comment: enum:invite|update
      * @var string
      */
     protected $directMediaMethod = 'update';
 
     /**
-     * @column callerid_update_header
-     * @comment enum:pai|rpid
+     * column: callerid_update_header
+     * comment: enum:pai|rpid
      * @var string
      */
     protected $calleridUpdateHeader = 'pai';
 
     /**
-     * @column update_callerid
-     * @comment enum:yes|no
+     * column: update_callerid
+     * comment: enum:yes|no
      * @var string
      */
     protected $updateCallerid = 'yes';
 
     /**
-     * @column from_domain
+     * column: from_domain
      * @var string
      */
     protected $fromDomain;
 
     /**
-     * @comment enum:yes|no
+     * comment: enum:yes|no
      * @var string
      */
     protected $directConnectivity = 'yes';
@@ -230,11 +230,11 @@ abstract class RetailAccountAbstract
     }
 
     /**
-     * @return RetailAccountDTO
+     * @return RetailAccountDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new RetailAccountDTO();
+        return new RetailAccountDto();
     }
 
     /**
@@ -242,12 +242,12 @@ abstract class RetailAccountAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto RetailAccountDTO
+         * @var $dto RetailAccountDto
          */
-        Assertion::isInstanceOf($dto, RetailAccountDTO::class);
+        Assertion::isInstanceOf($dto, RetailAccountDto::class);
 
         $self = new static(
             $dto->getName(),
@@ -284,12 +284,12 @@ abstract class RetailAccountAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto RetailAccountDTO
+         * @var $dto RetailAccountDto
          */
-        Assertion::isInstanceOf($dto, RetailAccountDTO::class);
+        Assertion::isInstanceOf($dto, RetailAccountDto::class);
 
         $this
             ->setName($dto->getName())
@@ -320,11 +320,11 @@ abstract class RetailAccountAbstract
     }
 
     /**
-     * @return RetailAccountDTO
+     * @return RetailAccountDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setDescription($this->getDescription())
             ->setTransport($this->getTransport())
@@ -340,11 +340,17 @@ abstract class RetailAccountAbstract
             ->setFromDomain($this->getFromDomain())
             ->setDirectConnectivity($this->getDirectConnectivity())
             ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
+            ->setBrand($this->getBrand())
             ->setDomainId($this->getDomain() ? $this->getDomain()->getId() : null)
+            ->setDomain($this->getDomain())
             ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany())
             ->setTransformationRuleSetId($this->getTransformationRuleSet() ? $this->getTransformationRuleSet()->getId() : null)
+            ->setTransformationRuleSet($this->getTransformationRuleSet())
             ->setOutgoingDdiId($this->getOutgoingDdi() ? $this->getOutgoingDdi()->getId() : null)
-            ->setLanguageId($this->getLanguage() ? $this->getLanguage()->getId() : null);
+            ->setOutgoingDdi($this->getOutgoingDdi())
+            ->setLanguageId($this->getLanguage() ? $this->getLanguage()->getId() : null)
+            ->setLanguage($this->getLanguage());
     }
 
     /**

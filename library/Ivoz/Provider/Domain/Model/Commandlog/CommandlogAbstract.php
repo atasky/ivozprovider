@@ -138,11 +138,11 @@ abstract class CommandlogAbstract
     }
 
     /**
-     * @return CommandlogDTO
+     * @return CommandlogDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new CommandlogDTO();
+        return new CommandlogDto();
     }
 
     /**
@@ -150,12 +150,12 @@ abstract class CommandlogAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CommandlogDTO
+         * @var $dto CommandlogDto
          */
-        Assertion::isInstanceOf($dto, CommandlogDTO::class);
+        Assertion::isInstanceOf($dto, CommandlogDto::class);
 
         $self = new static(
             $dto->getRequestId(),
@@ -178,12 +178,12 @@ abstract class CommandlogAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CommandlogDTO
+         * @var $dto CommandlogDto
          */
-        Assertion::isInstanceOf($dto, CommandlogDTO::class);
+        Assertion::isInstanceOf($dto, CommandlogDto::class);
 
         $this
             ->setRequestId($dto->getRequestId())
@@ -200,11 +200,11 @@ abstract class CommandlogAbstract
     }
 
     /**
-     * @return CommandlogDTO
+     * @return CommandlogDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setRequestId($this->getRequestId())
             ->setClass($this->getClass())
             ->setMethod($this->getMethod())

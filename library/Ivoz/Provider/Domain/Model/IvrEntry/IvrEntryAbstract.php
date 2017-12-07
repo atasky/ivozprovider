@@ -17,7 +17,7 @@ abstract class IvrEntryAbstract
     protected $entry;
 
     /**
-     * @comment enum:number|extension|voicemail|conditional
+     * comment: enum:number|extension|voicemail|conditional
      * @var string
      */
     protected $routeType;
@@ -148,11 +148,11 @@ abstract class IvrEntryAbstract
     }
 
     /**
-     * @return IvrEntryDTO
+     * @return IvrEntryDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new IvrEntryDTO();
+        return new IvrEntryDto();
     }
 
     /**
@@ -160,12 +160,12 @@ abstract class IvrEntryAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto IvrEntryDTO
+         * @var $dto IvrEntryDto
          */
-        Assertion::isInstanceOf($dto, IvrEntryDTO::class);
+        Assertion::isInstanceOf($dto, IvrEntryDto::class);
 
         $self = new static(
             $dto->getEntry(),
@@ -191,12 +191,12 @@ abstract class IvrEntryAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto IvrEntryDTO
+         * @var $dto IvrEntryDto
          */
-        Assertion::isInstanceOf($dto, IvrEntryDTO::class);
+        Assertion::isInstanceOf($dto, IvrEntryDto::class);
 
         $this
             ->setEntry($dto->getEntry())
@@ -216,20 +216,26 @@ abstract class IvrEntryAbstract
     }
 
     /**
-     * @return IvrEntryDTO
+     * @return IvrEntryDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setEntry($this->getEntry())
             ->setRouteType($this->getRouteType())
             ->setNumberValue($this->getNumberValue())
             ->setIvrId($this->getIvr() ? $this->getIvr()->getId() : null)
+            ->setIvr($this->getIvr())
             ->setWelcomeLocutionId($this->getWelcomeLocution() ? $this->getWelcomeLocution()->getId() : null)
+            ->setWelcomeLocution($this->getWelcomeLocution())
             ->setExtensionId($this->getExtension() ? $this->getExtension()->getId() : null)
+            ->setExtension($this->getExtension())
             ->setVoiceMailUserId($this->getVoiceMailUser() ? $this->getVoiceMailUser()->getId() : null)
+            ->setVoiceMailUser($this->getVoiceMailUser())
             ->setConditionalRouteId($this->getConditionalRoute() ? $this->getConditionalRoute()->getId() : null)
-            ->setNumberCountryId($this->getNumberCountry() ? $this->getNumberCountry()->getId() : null);
+            ->setConditionalRoute($this->getConditionalRoute())
+            ->setNumberCountryId($this->getNumberCountry() ? $this->getNumberCountry()->getId() : null)
+            ->setNumberCountry($this->getNumberCountry());
     }
 
     /**

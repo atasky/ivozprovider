@@ -46,11 +46,11 @@ trait DomainTrait
     }
 
     /**
-     * @return DomainDTO
+     * @return DomainDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new DomainDTO();
+        return new DomainDto();
     }
 
     /**
@@ -58,12 +58,12 @@ trait DomainTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto DomainDTO
+         * @var $dto DomainDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
         if ($dto->getFriends()) {
             $self->replaceFriends($dto->getFriends());
         }
@@ -87,12 +87,12 @@ trait DomainTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto DomainDTO
+         * @var $dto DomainDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
         if ($dto->getFriends()) {
             $this->replaceFriends($dto->getFriends());
         }
@@ -106,11 +106,11 @@ trait DomainTrait
     }
 
     /**
-     * @return DomainDTO
+     * @return DomainDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

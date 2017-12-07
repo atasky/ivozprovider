@@ -54,6 +54,29 @@ interface BrandInterface extends LoggableEntityInterface
     public function hasFeature($featureId);
 
     /**
+     * @return BrandDto
+     */
+    public static function createDto();
+
+    /**
+     * Factory method
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @return BrandDto
+     */
+    public function toDto();
+
+    /**
      * Set name
      *
      * @param string $name

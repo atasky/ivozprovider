@@ -111,11 +111,11 @@ abstract class CalendarAbstract
     }
 
     /**
-     * @return CalendarDTO
+     * @return CalendarDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new CalendarDTO();
+        return new CalendarDto();
     }
 
     /**
@@ -123,12 +123,12 @@ abstract class CalendarAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CalendarDTO
+         * @var $dto CalendarDto
          */
-        Assertion::isInstanceOf($dto, CalendarDTO::class);
+        Assertion::isInstanceOf($dto, CalendarDto::class);
 
         $self = new static(
             $dto->getName());
@@ -147,12 +147,12 @@ abstract class CalendarAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CalendarDTO
+         * @var $dto CalendarDto
          */
-        Assertion::isInstanceOf($dto, CalendarDTO::class);
+        Assertion::isInstanceOf($dto, CalendarDto::class);
 
         $this
             ->setName($dto->getName())
@@ -165,13 +165,14 @@ abstract class CalendarAbstract
     }
 
     /**
-     * @return CalendarDTO
+     * @return CalendarDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null);
+            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany());
     }
 
     /**

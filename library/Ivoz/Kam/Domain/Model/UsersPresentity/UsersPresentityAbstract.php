@@ -37,7 +37,7 @@ abstract class UsersPresentityAbstract
     protected $expires;
 
     /**
-     * @column received_time
+     * column: received_time
      * @var integer
      */
     protected $receivedTime;
@@ -164,11 +164,11 @@ abstract class UsersPresentityAbstract
     }
 
     /**
-     * @return UsersPresentityDTO
+     * @return UsersPresentityDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new UsersPresentityDTO();
+        return new UsersPresentityDto();
     }
 
     /**
@@ -176,12 +176,12 @@ abstract class UsersPresentityAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersPresentityDTO
+         * @var $dto UsersPresentityDto
          */
-        Assertion::isInstanceOf($dto, UsersPresentityDTO::class);
+        Assertion::isInstanceOf($dto, UsersPresentityDto::class);
 
         $self = new static(
             $dto->getUsername(),
@@ -206,12 +206,12 @@ abstract class UsersPresentityAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersPresentityDTO
+         * @var $dto UsersPresentityDto
          */
-        Assertion::isInstanceOf($dto, UsersPresentityDTO::class);
+        Assertion::isInstanceOf($dto, UsersPresentityDto::class);
 
         $this
             ->setUsername($dto->getUsername())
@@ -231,11 +231,11 @@ abstract class UsersPresentityAbstract
     }
 
     /**
-     * @return UsersPresentityDTO
+     * @return UsersPresentityDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setUsername($this->getUsername())
             ->setDomain($this->getDomain())
             ->setEvent($this->getEvent())

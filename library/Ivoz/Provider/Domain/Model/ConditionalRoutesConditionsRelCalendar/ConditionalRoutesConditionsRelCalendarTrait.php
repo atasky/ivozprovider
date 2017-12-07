@@ -26,11 +26,11 @@ trait ConditionalRoutesConditionsRelCalendarTrait
     }
 
     /**
-     * @return ConditionalRoutesConditionsRelCalendarDTO
+     * @return ConditionalRoutesConditionsRelCalendarDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ConditionalRoutesConditionsRelCalendarDTO();
+        return new ConditionalRoutesConditionsRelCalendarDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait ConditionalRoutesConditionsRelCalendarTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ConditionalRoutesConditionsRelCalendarDTO
+         * @var $dto ConditionalRoutesConditionsRelCalendarDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait ConditionalRoutesConditionsRelCalendarTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ConditionalRoutesConditionsRelCalendarDTO
+         * @var $dto ConditionalRoutesConditionsRelCalendarDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return ConditionalRoutesConditionsRelCalendarDTO
+     * @return ConditionalRoutesConditionsRelCalendarDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

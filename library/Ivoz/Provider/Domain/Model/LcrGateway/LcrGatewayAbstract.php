@@ -12,13 +12,13 @@ use Ivoz\Core\Application\DataTransferObjectInterface;
 abstract class LcrGatewayAbstract
 {
     /**
-     * @column lcr_id
+     * column: lcr_id
      * @var integer
      */
     protected $lcrId = '1';
 
     /**
-     * @column gw_name
+     * column: gw_name
      * @var string
      */
     protected $gwName;
@@ -44,7 +44,7 @@ abstract class LcrGatewayAbstract
     protected $params;
 
     /**
-     * @column uri_scheme
+     * column: uri_scheme
      * @var boolean
      */
     protected $uriScheme;
@@ -176,11 +176,11 @@ abstract class LcrGatewayAbstract
     }
 
     /**
-     * @return LcrGatewayDTO
+     * @return LcrGatewayDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new LcrGatewayDTO();
+        return new LcrGatewayDto();
     }
 
     /**
@@ -188,12 +188,12 @@ abstract class LcrGatewayAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto LcrGatewayDTO
+         * @var $dto LcrGatewayDto
          */
-        Assertion::isInstanceOf($dto, LcrGatewayDTO::class);
+        Assertion::isInstanceOf($dto, LcrGatewayDto::class);
 
         $self = new static(
             $dto->getLcrId(),
@@ -224,12 +224,12 @@ abstract class LcrGatewayAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto LcrGatewayDTO
+         * @var $dto LcrGatewayDto
          */
-        Assertion::isInstanceOf($dto, LcrGatewayDTO::class);
+        Assertion::isInstanceOf($dto, LcrGatewayDto::class);
 
         $this
             ->setLcrId($dto->getLcrId())
@@ -254,11 +254,11 @@ abstract class LcrGatewayAbstract
     }
 
     /**
-     * @return LcrGatewayDTO
+     * @return LcrGatewayDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setLcrId($this->getLcrId())
             ->setGwName($this->getGwName())
             ->setIp($this->getIp())
@@ -272,7 +272,8 @@ abstract class LcrGatewayAbstract
             ->setTag($this->getTag())
             ->setFlags($this->getFlags())
             ->setDefunct($this->getDefunct())
-            ->setPeerServerId($this->getPeerServer() ? $this->getPeerServer()->getId() : null);
+            ->setPeerServerId($this->getPeerServer() ? $this->getPeerServer()->getId() : null)
+            ->setPeerServer($this->getPeerServer());
     }
 
     /**

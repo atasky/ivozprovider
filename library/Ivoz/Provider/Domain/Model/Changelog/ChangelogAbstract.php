@@ -138,11 +138,11 @@ abstract class ChangelogAbstract
     }
 
     /**
-     * @return ChangelogDTO
+     * @return ChangelogDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ChangelogDTO();
+        return new ChangelogDto();
     }
 
     /**
@@ -150,12 +150,12 @@ abstract class ChangelogAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ChangelogDTO
+         * @var $dto ChangelogDto
          */
-        Assertion::isInstanceOf($dto, ChangelogDTO::class);
+        Assertion::isInstanceOf($dto, ChangelogDto::class);
 
         $self = new static(
             $dto->getEntity(),
@@ -178,12 +178,12 @@ abstract class ChangelogAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ChangelogDTO
+         * @var $dto ChangelogDto
          */
-        Assertion::isInstanceOf($dto, ChangelogDTO::class);
+        Assertion::isInstanceOf($dto, ChangelogDto::class);
 
         $this
             ->setEntity($dto->getEntity())
@@ -200,17 +200,18 @@ abstract class ChangelogAbstract
     }
 
     /**
-     * @return ChangelogDTO
+     * @return ChangelogDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setEntity($this->getEntity())
             ->setEntityId($this->getEntityId())
             ->setData($this->getData())
             ->setCreatedOn($this->getCreatedOn())
             ->setMicrotime($this->getMicrotime())
-            ->setCommandId($this->getCommand() ? $this->getCommand()->getId() : null);
+            ->setCommandId($this->getCommand() ? $this->getCommand()->getId() : null)
+            ->setCommand($this->getCommand());
     }
 
     /**

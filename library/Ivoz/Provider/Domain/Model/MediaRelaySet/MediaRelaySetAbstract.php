@@ -111,11 +111,11 @@ abstract class MediaRelaySetAbstract
     }
 
     /**
-     * @return MediaRelaySetDTO
+     * @return MediaRelaySetDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new MediaRelaySetDTO();
+        return new MediaRelaySetDto();
     }
 
     /**
@@ -123,12 +123,12 @@ abstract class MediaRelaySetAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto MediaRelaySetDTO
+         * @var $dto MediaRelaySetDto
          */
-        Assertion::isInstanceOf($dto, MediaRelaySetDTO::class);
+        Assertion::isInstanceOf($dto, MediaRelaySetDto::class);
 
         $self = new static(
             $dto->getName());
@@ -147,12 +147,12 @@ abstract class MediaRelaySetAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto MediaRelaySetDTO
+         * @var $dto MediaRelaySetDto
          */
-        Assertion::isInstanceOf($dto, MediaRelaySetDTO::class);
+        Assertion::isInstanceOf($dto, MediaRelaySetDto::class);
 
         $this
             ->setName($dto->getName())
@@ -165,11 +165,11 @@ abstract class MediaRelaySetAbstract
     }
 
     /**
-     * @return MediaRelaySetDTO
+     * @return MediaRelaySetDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setDescription($this->getDescription());
     }

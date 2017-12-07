@@ -147,11 +147,11 @@ abstract class DispatcherAbstract
     }
 
     /**
-     * @return DispatcherDTO
+     * @return DispatcherDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new DispatcherDTO();
+        return new DispatcherDto();
     }
 
     /**
@@ -159,12 +159,12 @@ abstract class DispatcherAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto DispatcherDTO
+         * @var $dto DispatcherDto
          */
-        Assertion::isInstanceOf($dto, DispatcherDTO::class);
+        Assertion::isInstanceOf($dto, DispatcherDto::class);
 
         $self = new static(
             $dto->getSetid(),
@@ -188,12 +188,12 @@ abstract class DispatcherAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto DispatcherDTO
+         * @var $dto DispatcherDto
          */
-        Assertion::isInstanceOf($dto, DispatcherDTO::class);
+        Assertion::isInstanceOf($dto, DispatcherDto::class);
 
         $this
             ->setSetid($dto->getSetid())
@@ -211,11 +211,11 @@ abstract class DispatcherAbstract
     }
 
     /**
-     * @return DispatcherDTO
+     * @return DispatcherDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setSetid($this->getSetid())
             ->setDestination($this->getDestination())
             ->setFlags($this->getFlags())

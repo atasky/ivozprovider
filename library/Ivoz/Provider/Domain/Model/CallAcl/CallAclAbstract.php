@@ -17,7 +17,7 @@ abstract class CallAclAbstract
     protected $name;
 
     /**
-     * @comment enum:allow|deny
+     * comment: enum:allow|deny
      * @var string
      */
     protected $defaultPolicy;
@@ -118,11 +118,11 @@ abstract class CallAclAbstract
     }
 
     /**
-     * @return CallAclDTO
+     * @return CallAclDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new CallAclDTO();
+        return new CallAclDto();
     }
 
     /**
@@ -130,12 +130,12 @@ abstract class CallAclAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CallAclDTO
+         * @var $dto CallAclDto
          */
-        Assertion::isInstanceOf($dto, CallAclDTO::class);
+        Assertion::isInstanceOf($dto, CallAclDto::class);
 
         $self = new static(
             $dto->getName(),
@@ -155,12 +155,12 @@ abstract class CallAclAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CallAclDTO
+         * @var $dto CallAclDto
          */
-        Assertion::isInstanceOf($dto, CallAclDTO::class);
+        Assertion::isInstanceOf($dto, CallAclDto::class);
 
         $this
             ->setName($dto->getName())
@@ -174,14 +174,15 @@ abstract class CallAclAbstract
     }
 
     /**
-     * @return CallAclDTO
+     * @return CallAclDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setDefaultPolicy($this->getDefaultPolicy())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null);
+            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany());
     }
 
     /**

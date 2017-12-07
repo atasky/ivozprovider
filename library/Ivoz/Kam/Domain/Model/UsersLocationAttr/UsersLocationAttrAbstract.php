@@ -42,7 +42,7 @@ abstract class UsersLocationAttrAbstract
     protected $avalue = '';
 
     /**
-     * @column last_modified
+     * column: last_modified
      * @var \DateTime
      */
     protected $lastModified;
@@ -148,11 +148,11 @@ abstract class UsersLocationAttrAbstract
     }
 
     /**
-     * @return UsersLocationAttrDTO
+     * @return UsersLocationAttrDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new UsersLocationAttrDTO();
+        return new UsersLocationAttrDto();
     }
 
     /**
@@ -160,12 +160,12 @@ abstract class UsersLocationAttrAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersLocationAttrDTO
+         * @var $dto UsersLocationAttrDto
          */
-        Assertion::isInstanceOf($dto, UsersLocationAttrDTO::class);
+        Assertion::isInstanceOf($dto, UsersLocationAttrDto::class);
 
         $self = new static(
             $dto->getRuid(),
@@ -189,12 +189,12 @@ abstract class UsersLocationAttrAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersLocationAttrDTO
+         * @var $dto UsersLocationAttrDto
          */
-        Assertion::isInstanceOf($dto, UsersLocationAttrDTO::class);
+        Assertion::isInstanceOf($dto, UsersLocationAttrDto::class);
 
         $this
             ->setRuid($dto->getRuid())
@@ -212,11 +212,11 @@ abstract class UsersLocationAttrAbstract
     }
 
     /**
-     * @return UsersLocationAttrDTO
+     * @return UsersLocationAttrDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setRuid($this->getRuid())
             ->setUsername($this->getUsername())
             ->setDomain($this->getDomain())

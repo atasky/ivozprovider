@@ -121,11 +121,11 @@ abstract class FixedCostAbstract
     }
 
     /**
-     * @return FixedCostDTO
+     * @return FixedCostDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new FixedCostDTO();
+        return new FixedCostDto();
     }
 
     /**
@@ -133,12 +133,12 @@ abstract class FixedCostAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FixedCostDTO
+         * @var $dto FixedCostDto
          */
-        Assertion::isInstanceOf($dto, FixedCostDTO::class);
+        Assertion::isInstanceOf($dto, FixedCostDto::class);
 
         $self = new static(
             $dto->getName());
@@ -159,12 +159,12 @@ abstract class FixedCostAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FixedCostDTO
+         * @var $dto FixedCostDto
          */
-        Assertion::isInstanceOf($dto, FixedCostDTO::class);
+        Assertion::isInstanceOf($dto, FixedCostDto::class);
 
         $this
             ->setName($dto->getName())
@@ -179,15 +179,16 @@ abstract class FixedCostAbstract
     }
 
     /**
-     * @return FixedCostDTO
+     * @return FixedCostDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setDescription($this->getDescription())
             ->setCost($this->getCost())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null);
+            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
+            ->setBrand($this->getBrand());
     }
 
     /**

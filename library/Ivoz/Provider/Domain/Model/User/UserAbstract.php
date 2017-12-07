@@ -27,7 +27,7 @@ abstract class UserAbstract
     protected $email;
 
     /**
-     * @comment password
+     * comment: password
      * @var string
      */
     protected $pass;
@@ -53,7 +53,7 @@ abstract class UserAbstract
     protected $maxCalls = '0';
 
     /**
-     * @comment enum:0|1|2|3
+     * comment: enum:0|1|2|3
      * @var string
      */
     protected $externalIpCalls = '0';
@@ -254,11 +254,11 @@ abstract class UserAbstract
     }
 
     /**
-     * @return UserDTO
+     * @return UserDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new UserDTO();
+        return new UserDto();
     }
 
     /**
@@ -266,12 +266,12 @@ abstract class UserAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UserDTO
+         * @var $dto UserDto
          */
-        Assertion::isInstanceOf($dto, UserDTO::class);
+        Assertion::isInstanceOf($dto, UserDto::class);
 
         $self = new static(
             $dto->getName(),
@@ -314,12 +314,12 @@ abstract class UserAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UserDTO
+         * @var $dto UserDto
          */
-        Assertion::isInstanceOf($dto, UserDTO::class);
+        Assertion::isInstanceOf($dto, UserDto::class);
 
         $this
             ->setName($dto->getName())
@@ -356,11 +356,11 @@ abstract class UserAbstract
     }
 
     /**
-     * @return UserDTO
+     * @return UserDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setLastname($this->getLastname())
             ->setEmail($this->getEmail())
@@ -376,17 +376,29 @@ abstract class UserAbstract
             ->setTokenKey($this->getTokenKey())
             ->setGsQRCode($this->getGsQRCode())
             ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany())
             ->setCallAclId($this->getCallAcl() ? $this->getCallAcl()->getId() : null)
+            ->setCallAcl($this->getCallAcl())
             ->setBossAssistantId($this->getBossAssistant() ? $this->getBossAssistant()->getId() : null)
+            ->setBossAssistant($this->getBossAssistant())
             ->setBossAssistantWhiteListId($this->getBossAssistantWhiteList() ? $this->getBossAssistantWhiteList()->getId() : null)
+            ->setBossAssistantWhiteList($this->getBossAssistantWhiteList())
             ->setTransformationRuleSetId($this->getTransformationRuleSet() ? $this->getTransformationRuleSet()->getId() : null)
+            ->setTransformationRuleSet($this->getTransformationRuleSet())
             ->setLanguageId($this->getLanguage() ? $this->getLanguage()->getId() : null)
+            ->setLanguage($this->getLanguage())
             ->setTerminalId($this->getTerminal() ? $this->getTerminal()->getId() : null)
+            ->setTerminal($this->getTerminal())
             ->setExtensionId($this->getExtension() ? $this->getExtension()->getId() : null)
+            ->setExtension($this->getExtension())
             ->setTimezoneId($this->getTimezone() ? $this->getTimezone()->getId() : null)
+            ->setTimezone($this->getTimezone())
             ->setOutgoingDdiId($this->getOutgoingDdi() ? $this->getOutgoingDdi()->getId() : null)
+            ->setOutgoingDdi($this->getOutgoingDdi())
             ->setOutgoingDdiRuleId($this->getOutgoingDdiRule() ? $this->getOutgoingDdiRule()->getId() : null)
-            ->setVoicemailLocutionId($this->getVoicemailLocution() ? $this->getVoicemailLocution()->getId() : null);
+            ->setOutgoingDdiRule($this->getOutgoingDdiRule())
+            ->setVoicemailLocutionId($this->getVoicemailLocution() ? $this->getVoicemailLocution()->getId() : null)
+            ->setVoicemailLocution($this->getVoicemailLocution());
     }
 
     /**

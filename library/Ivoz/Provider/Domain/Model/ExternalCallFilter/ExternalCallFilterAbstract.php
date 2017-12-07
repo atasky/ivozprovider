@@ -17,7 +17,7 @@ abstract class ExternalCallFilterAbstract
     protected $name;
 
     /**
-     * @comment enum:number|extension|voicemail
+     * comment: enum:number|extension|voicemail
      * @var string
      */
     protected $holidayTargetType;
@@ -28,7 +28,7 @@ abstract class ExternalCallFilterAbstract
     protected $holidayNumberValue;
 
     /**
-     * @comment enum:number|extension|voicemail
+     * comment: enum:number|extension|voicemail
      * @var string
      */
     protected $outOfScheduleTargetType;
@@ -178,11 +178,11 @@ abstract class ExternalCallFilterAbstract
     }
 
     /**
-     * @return ExternalCallFilterDTO
+     * @return ExternalCallFilterDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ExternalCallFilterDTO();
+        return new ExternalCallFilterDto();
     }
 
     /**
@@ -190,12 +190,12 @@ abstract class ExternalCallFilterAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ExternalCallFilterDTO
+         * @var $dto ExternalCallFilterDto
          */
-        Assertion::isInstanceOf($dto, ExternalCallFilterDTO::class);
+        Assertion::isInstanceOf($dto, ExternalCallFilterDto::class);
 
         $self = new static(
             $dto->getName());
@@ -227,12 +227,12 @@ abstract class ExternalCallFilterAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ExternalCallFilterDTO
+         * @var $dto ExternalCallFilterDto
          */
-        Assertion::isInstanceOf($dto, ExternalCallFilterDTO::class);
+        Assertion::isInstanceOf($dto, ExternalCallFilterDto::class);
 
         $this
             ->setName($dto->getName())
@@ -258,26 +258,36 @@ abstract class ExternalCallFilterAbstract
     }
 
     /**
-     * @return ExternalCallFilterDTO
+     * @return ExternalCallFilterDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setHolidayTargetType($this->getHolidayTargetType())
             ->setHolidayNumberValue($this->getHolidayNumberValue())
             ->setOutOfScheduleTargetType($this->getOutOfScheduleTargetType())
             ->setOutOfScheduleNumberValue($this->getOutOfScheduleNumberValue())
             ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany())
             ->setWelcomeLocutionId($this->getWelcomeLocution() ? $this->getWelcomeLocution()->getId() : null)
+            ->setWelcomeLocution($this->getWelcomeLocution())
             ->setHolidayLocutionId($this->getHolidayLocution() ? $this->getHolidayLocution()->getId() : null)
+            ->setHolidayLocution($this->getHolidayLocution())
             ->setOutOfScheduleLocutionId($this->getOutOfScheduleLocution() ? $this->getOutOfScheduleLocution()->getId() : null)
+            ->setOutOfScheduleLocution($this->getOutOfScheduleLocution())
             ->setHolidayExtensionId($this->getHolidayExtension() ? $this->getHolidayExtension()->getId() : null)
+            ->setHolidayExtension($this->getHolidayExtension())
             ->setOutOfScheduleExtensionId($this->getOutOfScheduleExtension() ? $this->getOutOfScheduleExtension()->getId() : null)
+            ->setOutOfScheduleExtension($this->getOutOfScheduleExtension())
             ->setHolidayVoiceMailUserId($this->getHolidayVoiceMailUser() ? $this->getHolidayVoiceMailUser()->getId() : null)
+            ->setHolidayVoiceMailUser($this->getHolidayVoiceMailUser())
             ->setOutOfScheduleVoiceMailUserId($this->getOutOfScheduleVoiceMailUser() ? $this->getOutOfScheduleVoiceMailUser()->getId() : null)
+            ->setOutOfScheduleVoiceMailUser($this->getOutOfScheduleVoiceMailUser())
             ->setHolidayNumberCountryId($this->getHolidayNumberCountry() ? $this->getHolidayNumberCountry()->getId() : null)
-            ->setOutOfScheduleNumberCountryId($this->getOutOfScheduleNumberCountry() ? $this->getOutOfScheduleNumberCountry()->getId() : null);
+            ->setHolidayNumberCountry($this->getHolidayNumberCountry())
+            ->setOutOfScheduleNumberCountryId($this->getOutOfScheduleNumberCountry() ? $this->getOutOfScheduleNumberCountry()->getId() : null)
+            ->setOutOfScheduleNumberCountry($this->getOutOfScheduleNumberCountry());
     }
 
     /**

@@ -12,13 +12,13 @@ use Ivoz\Core\Application\DataTransferObjectInterface;
 abstract class PsEndpointAbstract
 {
     /**
-     * @column sorcery_id
+     * column: sorcery_id
      * @var string
      */
     protected $sorceryId;
 
     /**
-     * @column from_domain
+     * column: from_domain
      * @var string
      */
     protected $fromDomain;
@@ -49,14 +49,14 @@ abstract class PsEndpointAbstract
     protected $allow = 'all';
 
     /**
-     * @column direct_media
+     * column: direct_media
      * @var string
      */
     protected $directMedia = 'yes';
 
     /**
-     * @column direct_media_method
-     * @comment enum:update|invite|reinvite
+     * column: direct_media_method
+     * comment: enum:update|invite|reinvite
      * @var string
      */
     protected $directMediaMethod = 'update';
@@ -67,37 +67,37 @@ abstract class PsEndpointAbstract
     protected $mailboxes;
 
     /**
-     * @column named_pickup_group
+     * column: named_pickup_group
      * @var string
      */
     protected $namedPickupGroup;
 
     /**
-     * @column send_diversion
+     * column: send_diversion
      * @var string
      */
     protected $sendDiversion = 'yes';
 
     /**
-     * @column send_pai
+     * column: send_pai
      * @var string
      */
     protected $sendPai = 'yes';
 
     /**
-     * @column 100rel
+     * column: 100rel
      * @var string
      */
     protected $oneHundredRel = 'no';
 
     /**
-     * @column outbound_proxy
+     * column: outbound_proxy
      * @var string
      */
     protected $outboundProxy;
 
     /**
-     * @column trust_id_inbound
+     * column: trust_id_inbound
      * @var string
      */
     protected $trustIdInbound;
@@ -216,11 +216,11 @@ abstract class PsEndpointAbstract
     }
 
     /**
-     * @return PsEndpointDTO
+     * @return PsEndpointDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new PsEndpointDTO();
+        return new PsEndpointDto();
     }
 
     /**
@@ -228,12 +228,12 @@ abstract class PsEndpointAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PsEndpointDTO
+         * @var $dto PsEndpointDto
          */
-        Assertion::isInstanceOf($dto, PsEndpointDTO::class);
+        Assertion::isInstanceOf($dto, PsEndpointDto::class);
 
         $self = new static(
             $dto->getSorceryId(),
@@ -269,12 +269,12 @@ abstract class PsEndpointAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PsEndpointDTO
+         * @var $dto PsEndpointDto
          */
-        Assertion::isInstanceOf($dto, PsEndpointDTO::class);
+        Assertion::isInstanceOf($dto, PsEndpointDto::class);
 
         $this
             ->setSorceryId($dto->getSorceryId())
@@ -304,11 +304,11 @@ abstract class PsEndpointAbstract
     }
 
     /**
-     * @return PsEndpointDTO
+     * @return PsEndpointDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setSorceryId($this->getSorceryId())
             ->setFromDomain($this->getFromDomain())
             ->setAors($this->getAors())

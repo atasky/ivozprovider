@@ -26,11 +26,11 @@ trait UsersLocationAttrTrait
     }
 
     /**
-     * @return UsersLocationAttrDTO
+     * @return UsersLocationAttrDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new UsersLocationAttrDTO();
+        return new UsersLocationAttrDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait UsersLocationAttrTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersLocationAttrDTO
+         * @var $dto UsersLocationAttrDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait UsersLocationAttrTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersLocationAttrDTO
+         * @var $dto UsersLocationAttrDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return UsersLocationAttrDTO
+     * @return UsersLocationAttrDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

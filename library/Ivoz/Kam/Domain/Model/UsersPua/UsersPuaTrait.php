@@ -26,11 +26,11 @@ trait UsersPuaTrait
     }
 
     /**
-     * @return UsersPuaDTO
+     * @return UsersPuaDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new UsersPuaDTO();
+        return new UsersPuaDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait UsersPuaTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersPuaDTO
+         * @var $dto UsersPuaDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait UsersPuaTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersPuaDTO
+         * @var $dto UsersPuaDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return UsersPuaDTO
+     * @return UsersPuaDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

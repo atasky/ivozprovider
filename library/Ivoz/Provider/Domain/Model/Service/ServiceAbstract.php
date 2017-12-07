@@ -135,11 +135,11 @@ abstract class ServiceAbstract
     }
 
     /**
-     * @return ServiceDTO
+     * @return ServiceDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ServiceDTO();
+        return new ServiceDto();
     }
 
     /**
@@ -147,12 +147,12 @@ abstract class ServiceAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ServiceDTO
+         * @var $dto ServiceDto
          */
-        Assertion::isInstanceOf($dto, ServiceDTO::class);
+        Assertion::isInstanceOf($dto, ServiceDto::class);
 
         $name = new Name(
             $dto->getNameEn(),
@@ -184,12 +184,12 @@ abstract class ServiceAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ServiceDTO
+         * @var $dto ServiceDto
          */
-        Assertion::isInstanceOf($dto, ServiceDTO::class);
+        Assertion::isInstanceOf($dto, ServiceDto::class);
 
         $name = new Name(
             $dto->getNameEn(),
@@ -215,11 +215,11 @@ abstract class ServiceAbstract
     }
 
     /**
-     * @return ServiceDTO
+     * @return ServiceDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setIden($this->getIden())
             ->setDefaultCode($this->getDefaultCode())
             ->setExtraArgs($this->getExtraArgs())

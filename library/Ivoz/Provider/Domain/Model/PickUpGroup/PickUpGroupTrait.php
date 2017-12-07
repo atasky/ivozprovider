@@ -34,11 +34,11 @@ trait PickUpGroupTrait
     }
 
     /**
-     * @return PickUpGroupDTO
+     * @return PickUpGroupDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new PickUpGroupDTO();
+        return new PickUpGroupDto();
     }
 
     /**
@@ -46,12 +46,12 @@ trait PickUpGroupTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PickUpGroupDTO
+         * @var $dto PickUpGroupDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
         if ($dto->getRelUsers()) {
             $self->replaceRelUsers($dto->getRelUsers());
         }
@@ -67,12 +67,12 @@ trait PickUpGroupTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PickUpGroupDTO
+         * @var $dto PickUpGroupDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
         if ($dto->getRelUsers()) {
             $this->replaceRelUsers($dto->getRelUsers());
         }
@@ -80,11 +80,11 @@ trait PickUpGroupTrait
     }
 
     /**
-     * @return PickUpGroupDTO
+     * @return PickUpGroupDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

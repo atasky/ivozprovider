@@ -117,11 +117,11 @@ abstract class FriendsPatternAbstract
     }
 
     /**
-     * @return FriendsPatternDTO
+     * @return FriendsPatternDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new FriendsPatternDTO();
+        return new FriendsPatternDto();
     }
 
     /**
@@ -129,12 +129,12 @@ abstract class FriendsPatternAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FriendsPatternDTO
+         * @var $dto FriendsPatternDto
          */
-        Assertion::isInstanceOf($dto, FriendsPatternDTO::class);
+        Assertion::isInstanceOf($dto, FriendsPatternDto::class);
 
         $self = new static(
             $dto->getName(),
@@ -154,12 +154,12 @@ abstract class FriendsPatternAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FriendsPatternDTO
+         * @var $dto FriendsPatternDto
          */
-        Assertion::isInstanceOf($dto, FriendsPatternDTO::class);
+        Assertion::isInstanceOf($dto, FriendsPatternDto::class);
 
         $this
             ->setName($dto->getName())
@@ -173,14 +173,15 @@ abstract class FriendsPatternAbstract
     }
 
     /**
-     * @return FriendsPatternDTO
+     * @return FriendsPatternDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setRegExp($this->getRegExp())
-            ->setFriendId($this->getFriend() ? $this->getFriend()->getId() : null);
+            ->setFriendId($this->getFriend() ? $this->getFriend()->getId() : null)
+            ->setFriend($this->getFriend());
     }
 
     /**

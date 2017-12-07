@@ -111,11 +111,11 @@ abstract class RoutingPatternGroupsRelPatternAbstract
     }
 
     /**
-     * @return RoutingPatternGroupsRelPatternDTO
+     * @return RoutingPatternGroupsRelPatternDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new RoutingPatternGroupsRelPatternDTO();
+        return new RoutingPatternGroupsRelPatternDto();
     }
 
     /**
@@ -123,12 +123,12 @@ abstract class RoutingPatternGroupsRelPatternAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto RoutingPatternGroupsRelPatternDTO
+         * @var $dto RoutingPatternGroupsRelPatternDto
          */
-        Assertion::isInstanceOf($dto, RoutingPatternGroupsRelPatternDTO::class);
+        Assertion::isInstanceOf($dto, RoutingPatternGroupsRelPatternDto::class);
 
         $self = new static();
 
@@ -147,12 +147,12 @@ abstract class RoutingPatternGroupsRelPatternAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto RoutingPatternGroupsRelPatternDTO
+         * @var $dto RoutingPatternGroupsRelPatternDto
          */
-        Assertion::isInstanceOf($dto, RoutingPatternGroupsRelPatternDTO::class);
+        Assertion::isInstanceOf($dto, RoutingPatternGroupsRelPatternDto::class);
 
         $this
             ->setRoutingPattern($dto->getRoutingPattern())
@@ -165,13 +165,15 @@ abstract class RoutingPatternGroupsRelPatternAbstract
     }
 
     /**
-     * @return RoutingPatternGroupsRelPatternDTO
+     * @return RoutingPatternGroupsRelPatternDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setRoutingPatternId($this->getRoutingPattern() ? $this->getRoutingPattern()->getId() : null)
-            ->setRoutingPatternGroupId($this->getRoutingPatternGroup() ? $this->getRoutingPatternGroup()->getId() : null);
+            ->setRoutingPattern($this->getRoutingPattern())
+            ->setRoutingPatternGroupId($this->getRoutingPatternGroup() ? $this->getRoutingPatternGroup()->getId() : null)
+            ->setRoutingPatternGroup($this->getRoutingPatternGroup());
     }
 
     /**

@@ -42,7 +42,7 @@ interface CompanyInterface extends LoggableEntityInterface
     public function getLanguageCode();
 
     /**
-     * @brief Get musicclass for given company
+     * brief: Get musicclass for given company
      *
      * If no specific company music on hold is found, brand music will be used.
      * If no specific brand music  on hold is found, dafault music will be sued.
@@ -85,6 +85,29 @@ interface CompanyInterface extends LoggableEntityInterface
     public function getOnDemandRecordDTMFs();
 
     public function getFeatures();
+
+    /**
+     * @return CompanyDto
+     */
+    public static function createDto();
+
+    /**
+     * Factory method
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @return CompanyDto
+     */
+    public function toDto();
 
     /**
      * Set type

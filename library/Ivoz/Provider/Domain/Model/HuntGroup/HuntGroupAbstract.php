@@ -22,7 +22,7 @@ abstract class HuntGroupAbstract
     protected $description = '';
 
     /**
-     * @comment enum:ringAll|linear|roundRobin|random
+     * comment: enum:ringAll|linear|roundRobin|random
      * @var string
      */
     protected $strategy;
@@ -38,7 +38,7 @@ abstract class HuntGroupAbstract
     protected $nextUserPosition = '0';
 
     /**
-     * @comment enum:number|extension|voicemail
+     * comment: enum:number|extension|voicemail
      * @var string
      */
     protected $noAnswerTargetType;
@@ -165,11 +165,11 @@ abstract class HuntGroupAbstract
     }
 
     /**
-     * @return HuntGroupDTO
+     * @return HuntGroupDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new HuntGroupDTO();
+        return new HuntGroupDto();
     }
 
     /**
@@ -177,12 +177,12 @@ abstract class HuntGroupAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto HuntGroupDTO
+         * @var $dto HuntGroupDto
          */
-        Assertion::isInstanceOf($dto, HuntGroupDTO::class);
+        Assertion::isInstanceOf($dto, HuntGroupDto::class);
 
         $self = new static(
             $dto->getName(),
@@ -210,12 +210,12 @@ abstract class HuntGroupAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto HuntGroupDTO
+         * @var $dto HuntGroupDto
          */
-        Assertion::isInstanceOf($dto, HuntGroupDTO::class);
+        Assertion::isInstanceOf($dto, HuntGroupDto::class);
 
         $this
             ->setName($dto->getName())
@@ -237,11 +237,11 @@ abstract class HuntGroupAbstract
     }
 
     /**
-     * @return HuntGroupDTO
+     * @return HuntGroupDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setDescription($this->getDescription())
             ->setStrategy($this->getStrategy())
@@ -250,9 +250,13 @@ abstract class HuntGroupAbstract
             ->setNoAnswerTargetType($this->getNoAnswerTargetType())
             ->setNoAnswerNumberValue($this->getNoAnswerNumberValue())
             ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany())
             ->setNoAnswerLocutionId($this->getNoAnswerLocution() ? $this->getNoAnswerLocution()->getId() : null)
+            ->setNoAnswerLocution($this->getNoAnswerLocution())
             ->setNoAnswerExtensionId($this->getNoAnswerExtension() ? $this->getNoAnswerExtension()->getId() : null)
-            ->setNoAnswerVoiceMailUserId($this->getNoAnswerVoiceMailUser() ? $this->getNoAnswerVoiceMailUser()->getId() : null);
+            ->setNoAnswerExtension($this->getNoAnswerExtension())
+            ->setNoAnswerVoiceMailUserId($this->getNoAnswerVoiceMailUser() ? $this->getNoAnswerVoiceMailUser()->getId() : null)
+            ->setNoAnswerVoiceMailUser($this->getNoAnswerVoiceMailUser());
     }
 
     /**

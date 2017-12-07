@@ -12,13 +12,13 @@ use Ivoz\Core\Application\DataTransferObjectInterface;
 abstract class UsersAddressAbstract
 {
     /**
-     * @column source_address
+     * column: source_address
      * @var string
      */
     protected $sourceAddress;
 
     /**
-     * @column ip_addr
+     * column: ip_addr
      * @var string
      */
     protected $ipAddr;
@@ -140,11 +140,11 @@ abstract class UsersAddressAbstract
     }
 
     /**
-     * @return UsersAddressDTO
+     * @return UsersAddressDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new UsersAddressDTO();
+        return new UsersAddressDto();
     }
 
     /**
@@ -152,12 +152,12 @@ abstract class UsersAddressAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersAddressDTO
+         * @var $dto UsersAddressDto
          */
-        Assertion::isInstanceOf($dto, UsersAddressDTO::class);
+        Assertion::isInstanceOf($dto, UsersAddressDto::class);
 
         $self = new static(
             $dto->getSourceAddress(),
@@ -181,12 +181,12 @@ abstract class UsersAddressAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersAddressDTO
+         * @var $dto UsersAddressDto
          */
-        Assertion::isInstanceOf($dto, UsersAddressDTO::class);
+        Assertion::isInstanceOf($dto, UsersAddressDto::class);
 
         $this
             ->setSourceAddress($dto->getSourceAddress())
@@ -204,11 +204,11 @@ abstract class UsersAddressAbstract
     }
 
     /**
-     * @return UsersAddressDTO
+     * @return UsersAddressDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setSourceAddress($this->getSourceAddress())
             ->setIpAddr($this->getIpAddr())
             ->setMask($this->getMask())

@@ -27,7 +27,7 @@ abstract class FaxesInOutAbstract
     protected $dst;
 
     /**
-     * @comment enum:In|Out
+     * comment: enum:In|Out
      * @var string
      */
     protected $type = 'Out';
@@ -148,11 +148,11 @@ abstract class FaxesInOutAbstract
     }
 
     /**
-     * @return FaxesInOutDTO
+     * @return FaxesInOutDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new FaxesInOutDTO();
+        return new FaxesInOutDto();
     }
 
     /**
@@ -160,12 +160,12 @@ abstract class FaxesInOutAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FaxesInOutDTO
+         * @var $dto FaxesInOutDto
          */
-        Assertion::isInstanceOf($dto, FaxesInOutDTO::class);
+        Assertion::isInstanceOf($dto, FaxesInOutDto::class);
 
         $file = new File(
             $dto->getFileFileSize(),
@@ -198,12 +198,12 @@ abstract class FaxesInOutAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FaxesInOutDTO
+         * @var $dto FaxesInOutDto
          */
-        Assertion::isInstanceOf($dto, FaxesInOutDTO::class);
+        Assertion::isInstanceOf($dto, FaxesInOutDto::class);
 
         $file = new File(
             $dto->getFileFileSize(),
@@ -229,11 +229,11 @@ abstract class FaxesInOutAbstract
     }
 
     /**
-     * @return FaxesInOutDTO
+     * @return FaxesInOutDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setCalldate($this->getCalldate())
             ->setSrc($this->getSrc())
             ->setDst($this->getDst())
@@ -244,7 +244,9 @@ abstract class FaxesInOutAbstract
             ->setFileMimeType($this->getFile()->getMimeType())
             ->setFileBaseName($this->getFile()->getBaseName())
             ->setFaxId($this->getFax() ? $this->getFax()->getId() : null)
-            ->setDstCountryId($this->getDstCountry() ? $this->getDstCountry()->getId() : null);
+            ->setFax($this->getFax())
+            ->setDstCountryId($this->getDstCountry() ? $this->getDstCountry()->getId() : null)
+            ->setDstCountry($this->getDstCountry());
     }
 
     /**

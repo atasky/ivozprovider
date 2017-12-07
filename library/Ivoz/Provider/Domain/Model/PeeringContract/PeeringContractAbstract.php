@@ -127,11 +127,11 @@ abstract class PeeringContractAbstract
     }
 
     /**
-     * @return PeeringContractDTO
+     * @return PeeringContractDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new PeeringContractDTO();
+        return new PeeringContractDto();
     }
 
     /**
@@ -139,12 +139,12 @@ abstract class PeeringContractAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PeeringContractDTO
+         * @var $dto PeeringContractDto
          */
-        Assertion::isInstanceOf($dto, PeeringContractDTO::class);
+        Assertion::isInstanceOf($dto, PeeringContractDto::class);
 
         $self = new static(
             $dto->getDescription(),
@@ -166,12 +166,12 @@ abstract class PeeringContractAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PeeringContractDTO
+         * @var $dto PeeringContractDto
          */
-        Assertion::isInstanceOf($dto, PeeringContractDTO::class);
+        Assertion::isInstanceOf($dto, PeeringContractDto::class);
 
         $this
             ->setDescription($dto->getDescription())
@@ -187,16 +187,18 @@ abstract class PeeringContractAbstract
     }
 
     /**
-     * @return PeeringContractDTO
+     * @return PeeringContractDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setDescription($this->getDescription())
             ->setName($this->getName())
             ->setExternallyRated($this->getExternallyRated())
             ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setTransformationRuleSetId($this->getTransformationRuleSet() ? $this->getTransformationRuleSet()->getId() : null);
+            ->setBrand($this->getBrand())
+            ->setTransformationRuleSetId($this->getTransformationRuleSet() ? $this->getTransformationRuleSet()->getId() : null)
+            ->setTransformationRuleSet($this->getTransformationRuleSet());
     }
 
     /**

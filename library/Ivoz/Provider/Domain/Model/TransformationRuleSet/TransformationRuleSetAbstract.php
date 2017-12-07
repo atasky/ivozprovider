@@ -146,11 +146,11 @@ abstract class TransformationRuleSetAbstract
     }
 
     /**
-     * @return TransformationRuleSetDTO
+     * @return TransformationRuleSetDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new TransformationRuleSetDTO();
+        return new TransformationRuleSetDto();
     }
 
     /**
@@ -158,12 +158,12 @@ abstract class TransformationRuleSetAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TransformationRuleSetDTO
+         * @var $dto TransformationRuleSetDto
          */
-        Assertion::isInstanceOf($dto, TransformationRuleSetDTO::class);
+        Assertion::isInstanceOf($dto, TransformationRuleSetDto::class);
 
         $name = new Name(
             $dto->getNameEn(),
@@ -195,12 +195,12 @@ abstract class TransformationRuleSetAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TransformationRuleSetDTO
+         * @var $dto TransformationRuleSetDto
          */
-        Assertion::isInstanceOf($dto, TransformationRuleSetDTO::class);
+        Assertion::isInstanceOf($dto, TransformationRuleSetDto::class);
 
         $name = new Name(
             $dto->getNameEn(),
@@ -225,11 +225,11 @@ abstract class TransformationRuleSetAbstract
     }
 
     /**
-     * @return TransformationRuleSetDTO
+     * @return TransformationRuleSetDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setDescription($this->getDescription())
             ->setInternationalCode($this->getInternationalCode())
             ->setTrunkPrefix($this->getTrunkPrefix())
@@ -239,7 +239,9 @@ abstract class TransformationRuleSetAbstract
             ->setNameEn($this->getName()->getEn())
             ->setNameEs($this->getName()->getEs())
             ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setCountryId($this->getCountry() ? $this->getCountry()->getId() : null);
+            ->setBrand($this->getBrand())
+            ->setCountryId($this->getCountry() ? $this->getCountry()->getId() : null)
+            ->setCountry($this->getCountry());
     }
 
     /**

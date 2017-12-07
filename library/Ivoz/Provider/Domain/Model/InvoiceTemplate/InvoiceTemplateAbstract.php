@@ -132,11 +132,11 @@ abstract class InvoiceTemplateAbstract
     }
 
     /**
-     * @return InvoiceTemplateDTO
+     * @return InvoiceTemplateDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new InvoiceTemplateDTO();
+        return new InvoiceTemplateDto();
     }
 
     /**
@@ -144,12 +144,12 @@ abstract class InvoiceTemplateAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto InvoiceTemplateDTO
+         * @var $dto InvoiceTemplateDto
          */
-        Assertion::isInstanceOf($dto, InvoiceTemplateDTO::class);
+        Assertion::isInstanceOf($dto, InvoiceTemplateDto::class);
 
         $self = new static(
             $dto->getName(),
@@ -172,12 +172,12 @@ abstract class InvoiceTemplateAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto InvoiceTemplateDTO
+         * @var $dto InvoiceTemplateDto
          */
-        Assertion::isInstanceOf($dto, InvoiceTemplateDTO::class);
+        Assertion::isInstanceOf($dto, InvoiceTemplateDto::class);
 
         $this
             ->setName($dto->getName())
@@ -194,17 +194,18 @@ abstract class InvoiceTemplateAbstract
     }
 
     /**
-     * @return InvoiceTemplateDTO
+     * @return InvoiceTemplateDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setDescription($this->getDescription())
             ->setTemplate($this->getTemplate())
             ->setTemplateHeader($this->getTemplateHeader())
             ->setTemplateFooter($this->getTemplateFooter())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null);
+            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
+            ->setBrand($this->getBrand());
     }
 
     /**

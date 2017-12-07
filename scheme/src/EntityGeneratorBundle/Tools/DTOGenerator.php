@@ -74,7 +74,7 @@ public function <methodName>()
 
     protected function transformMetadata(ClassMetadataInfo $metadata)
     {
-        $metadata->name .= 'DTO';
+        $metadata->name .= 'Dto';
         $metadata->rootEntityName = $metadata->name;
         $metadata->customRepositoryClassName = null;
 
@@ -111,7 +111,6 @@ public function <methodName>()
         return str_replace('<spaces>', $this->spaces, $code);
     }
 
-
     /**
      * @param ClassMetadataInfo $metadata
      *
@@ -119,15 +118,7 @@ public function <methodName>()
      */
     protected function generateEntityBody(ClassMetadataInfo $metadata)
     {
-        $response = parent::generateEntityBody($metadata);
-
-        $className = $metadata->getName();
-        if (trait_exists($className . 'Trait')) {
-            $classnameSegments = explode('\\', $className);
-            $response = '<spaces>use ' . end($classnameSegments) . "Trait;\n" . $response;
-        }
-
-        return $response;
+       return '';
     }
 
     /**
@@ -137,12 +128,7 @@ public function <methodName>()
      */
     protected function generateEntityDocBlock(ClassMetadataInfo $metadata)
     {
-        $lines = array();
-        $lines[] = '/**';
-        $lines[] = ' * @codeCoverageIgnore';
-        $lines[] = ' */';
-
-        return implode("\n", $lines);
+        return '';
     }
 
     /**
@@ -188,11 +174,12 @@ public function <methodName>()
      */
     protected function generateEntityClassName(ClassMetadataInfo $metadata)
     {
-        $class = 'class '
+        $class =
+            'class '
             . $this->getClassName($metadata)
-            . ($this->extendsClass() ? ' extends ' . $this->getClassToExtendName() : null);
-
-        $class .= ' implements DataTransferObjectInterface';
+            . ' extends '
+            . $this->getClassName($metadata)
+            . 'Abstract';
 
         return $class;
     }

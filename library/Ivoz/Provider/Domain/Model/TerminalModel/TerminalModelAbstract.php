@@ -143,11 +143,11 @@ abstract class TerminalModelAbstract
     }
 
     /**
-     * @return TerminalModelDTO
+     * @return TerminalModelDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new TerminalModelDTO();
+        return new TerminalModelDto();
     }
 
     /**
@@ -155,12 +155,12 @@ abstract class TerminalModelAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TerminalModelDTO
+         * @var $dto TerminalModelDto
          */
-        Assertion::isInstanceOf($dto, TerminalModelDTO::class);
+        Assertion::isInstanceOf($dto, TerminalModelDto::class);
 
         $self = new static(
             $dto->getIden(),
@@ -185,12 +185,12 @@ abstract class TerminalModelAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TerminalModelDTO
+         * @var $dto TerminalModelDto
          */
-        Assertion::isInstanceOf($dto, TerminalModelDTO::class);
+        Assertion::isInstanceOf($dto, TerminalModelDto::class);
 
         $this
             ->setIden($dto->getIden())
@@ -209,11 +209,11 @@ abstract class TerminalModelAbstract
     }
 
     /**
-     * @return TerminalModelDTO
+     * @return TerminalModelDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setIden($this->getIden())
             ->setName($this->getName())
             ->setDescription($this->getDescription())
@@ -221,7 +221,8 @@ abstract class TerminalModelAbstract
             ->setSpecificTemplate($this->getSpecificTemplate())
             ->setGenericUrlPattern($this->getGenericUrlPattern())
             ->setSpecificUrlPattern($this->getSpecificUrlPattern())
-            ->setTerminalManufacturerId($this->getTerminalManufacturer() ? $this->getTerminalManufacturer()->getId() : null);
+            ->setTerminalManufacturerId($this->getTerminalManufacturer() ? $this->getTerminalManufacturer()->getId() : null)
+            ->setTerminalManufacturer($this->getTerminalManufacturer());
     }
 
     /**

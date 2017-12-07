@@ -26,11 +26,11 @@ trait ProxyTrunkTrait
     }
 
     /**
-     * @return ProxyTrunkDTO
+     * @return ProxyTrunkDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ProxyTrunkDTO();
+        return new ProxyTrunkDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait ProxyTrunkTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ProxyTrunkDTO
+         * @var $dto ProxyTrunkDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait ProxyTrunkTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ProxyTrunkDTO
+         * @var $dto ProxyTrunkDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return ProxyTrunkDTO
+     * @return ProxyTrunkDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

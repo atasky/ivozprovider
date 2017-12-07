@@ -26,11 +26,11 @@ trait TrunksAddresTrait
     }
 
     /**
-     * @return TrunksAddresDTO
+     * @return TrunksAddresDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new TrunksAddresDTO();
+        return new TrunksAddresDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait TrunksAddresTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TrunksAddresDTO
+         * @var $dto TrunksAddresDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait TrunksAddresTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TrunksAddresDTO
+         * @var $dto TrunksAddresDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return TrunksAddresDTO
+     * @return TrunksAddresDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

@@ -17,13 +17,25 @@ abstract class AccCdrAbstract
     protected $proxy;
 
     /**
-     * @column start_time
+     * column: start_time_utc
+     * @var \DateTime
+     */
+    protected $startTimeUtc;
+
+    /**
+     * column: end_time_utc
+     * @var \DateTime
+     */
+    protected $endTimeUtc;
+
+    /**
+     * column: start_time
      * @var \DateTime
      */
     protected $startTime;
 
     /**
-     * @column end_time
+     * column: end_time
      * @var \DateTime
      */
     protected $endTime;
@@ -179,11 +191,15 @@ abstract class AccCdrAbstract
      * Constructor
      */
     protected function __construct(
+        $startTimeUtc,
+        $endTimeUtc,
         $startTime,
         $endTime,
         $duration,
         $bounced
     ) {
+        $this->setStartTimeUtc($startTimeUtc);
+        $this->setEndTimeUtc($endTimeUtc);
         $this->setStartTime($startTime);
         $this->setEndTime($endTime);
         $this->setDuration($duration);
@@ -265,11 +281,11 @@ abstract class AccCdrAbstract
     }
 
     /**
-     * @return AccCdrDTO
+     * @return AccCdrDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new AccCdrDTO();
+        return new AccCdrDto();
     }
 
     /**
@@ -277,14 +293,16 @@ abstract class AccCdrAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto AccCdrDTO
+         * @var $dto AccCdrDto
          */
-        Assertion::isInstanceOf($dto, AccCdrDTO::class);
+        Assertion::isInstanceOf($dto, AccCdrDto::class);
 
         $self = new static(
+            $dto->getStartTimeUtc(),
+            $dto->getEndTimeUtc(),
             $dto->getStartTime(),
             $dto->getEndTime(),
             $dto->getDuration(),
@@ -330,15 +348,17 @@ abstract class AccCdrAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto AccCdrDTO
+         * @var $dto AccCdrDto
          */
-        Assertion::isInstanceOf($dto, AccCdrDTO::class);
+        Assertion::isInstanceOf($dto, AccCdrDto::class);
 
         $this
             ->setProxy($dto->getProxy())
+            ->setStartTimeUtc($dto->getStartTimeUtc())
+            ->setEndTimeUtc($dto->getEndTimeUtc())
             ->setStartTime($dto->getStartTime())
             ->setEndTime($dto->getEndTime())
             ->setDuration($dto->getDuration())
@@ -377,12 +397,14 @@ abstract class AccCdrAbstract
     }
 
     /**
-     * @return AccCdrDTO
+     * @return AccCdrDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setProxy($this->getProxy())
+            ->setStartTimeUtc($this->getStartTimeUtc())
+            ->setEndTimeUtc($this->getEndTimeUtc())
             ->setStartTime($this->getStartTime())
             ->setEndTime($this->getEndTime())
             ->setDuration($this->getDuration())
@@ -422,6 +444,8 @@ abstract class AccCdrAbstract
     {
         return [
             'proxy' => self::getProxy(),
+            'start_time_utc' => self::getStartTimeUtc(),
+            'end_time_utc' => self::getEndTimeUtc(),
             'start_time' => self::getStartTime(),
             'end_time' => self::getEndTime(),
             'duration' => self::getDuration(),
@@ -484,6 +508,66 @@ abstract class AccCdrAbstract
     public function getProxy()
     {
         return $this->proxy;
+    }
+
+    /**
+     * Set startTimeUtc
+     *
+     * @param \DateTime $startTimeUtc
+     *
+     * @return self
+     */
+    public function setStartTimeUtc($startTimeUtc)
+    {
+        Assertion::notNull($startTimeUtc, 'startTimeUtc value "%s" is null, but non null value was expected.');
+        $startTimeUtc = \Ivoz\Core\Domain\Model\Helper\DateTimeHelper::createOrFix(
+            $startTimeUtc,
+            '2000-01-01 00:00:00'
+        );
+
+        $this->startTimeUtc = $startTimeUtc;
+
+        return $this;
+    }
+
+    /**
+     * Get startTimeUtc
+     *
+     * @return \DateTime
+     */
+    public function getStartTimeUtc()
+    {
+        return $this->startTimeUtc;
+    }
+
+    /**
+     * Set endTimeUtc
+     *
+     * @param \DateTime $endTimeUtc
+     *
+     * @return self
+     */
+    public function setEndTimeUtc($endTimeUtc)
+    {
+        Assertion::notNull($endTimeUtc, 'endTimeUtc value "%s" is null, but non null value was expected.');
+        $endTimeUtc = \Ivoz\Core\Domain\Model\Helper\DateTimeHelper::createOrFix(
+            $endTimeUtc,
+            'CURRENT_TIMESTAMP'
+        );
+
+        $this->endTimeUtc = $endTimeUtc;
+
+        return $this;
+    }
+
+    /**
+     * Get endTimeUtc
+     *
+     * @return \DateTime
+     */
+    public function getEndTimeUtc()
+    {
+        return $this->endTimeUtc;
     }
 
     /**

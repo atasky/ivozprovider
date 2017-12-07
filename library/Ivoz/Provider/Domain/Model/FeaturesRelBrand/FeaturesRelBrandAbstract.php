@@ -111,11 +111,11 @@ abstract class FeaturesRelBrandAbstract
     }
 
     /**
-     * @return FeaturesRelBrandDTO
+     * @return FeaturesRelBrandDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new FeaturesRelBrandDTO();
+        return new FeaturesRelBrandDto();
     }
 
     /**
@@ -123,12 +123,12 @@ abstract class FeaturesRelBrandAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FeaturesRelBrandDTO
+         * @var $dto FeaturesRelBrandDto
          */
-        Assertion::isInstanceOf($dto, FeaturesRelBrandDTO::class);
+        Assertion::isInstanceOf($dto, FeaturesRelBrandDto::class);
 
         $self = new static();
 
@@ -147,12 +147,12 @@ abstract class FeaturesRelBrandAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FeaturesRelBrandDTO
+         * @var $dto FeaturesRelBrandDto
          */
-        Assertion::isInstanceOf($dto, FeaturesRelBrandDTO::class);
+        Assertion::isInstanceOf($dto, FeaturesRelBrandDto::class);
 
         $this
             ->setBrand($dto->getBrand())
@@ -165,13 +165,15 @@ abstract class FeaturesRelBrandAbstract
     }
 
     /**
-     * @return FeaturesRelBrandDTO
+     * @return FeaturesRelBrandDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setFeatureId($this->getFeature() ? $this->getFeature()->getId() : null);
+            ->setBrand($this->getBrand())
+            ->setFeatureId($this->getFeature() ? $this->getFeature()->getId() : null)
+            ->setFeature($this->getFeature());
     }
 
     /**

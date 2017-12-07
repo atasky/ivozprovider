@@ -17,7 +17,7 @@ abstract class LocutionAbstract
     protected $name;
 
     /**
-     * @comment enum:pending|encoding|ready|error
+     * comment: enum:pending|encoding|ready|error
      * @var string
      */
     protected $status;
@@ -132,11 +132,11 @@ abstract class LocutionAbstract
     }
 
     /**
-     * @return LocutionDTO
+     * @return LocutionDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new LocutionDTO();
+        return new LocutionDto();
     }
 
     /**
@@ -144,12 +144,12 @@ abstract class LocutionAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto LocutionDTO
+         * @var $dto LocutionDto
          */
-        Assertion::isInstanceOf($dto, LocutionDTO::class);
+        Assertion::isInstanceOf($dto, LocutionDto::class);
 
         $encodedFile = new EncodedFile(
             $dto->getEncodedFileFileSize(),
@@ -184,12 +184,12 @@ abstract class LocutionAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto LocutionDTO
+         * @var $dto LocutionDto
          */
-        Assertion::isInstanceOf($dto, LocutionDTO::class);
+        Assertion::isInstanceOf($dto, LocutionDto::class);
 
         $encodedFile = new EncodedFile(
             $dto->getEncodedFileFileSize(),
@@ -217,11 +217,11 @@ abstract class LocutionAbstract
     }
 
     /**
-     * @return LocutionDTO
+     * @return LocutionDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setStatus($this->getStatus())
             ->setEncodedFileFileSize($this->getEncodedFile()->getFileSize())
@@ -230,7 +230,8 @@ abstract class LocutionAbstract
             ->setOriginalFileFileSize($this->getOriginalFile()->getFileSize())
             ->setOriginalFileMimeType($this->getOriginalFile()->getMimeType())
             ->setOriginalFileBaseName($this->getOriginalFile()->getBaseName())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null);
+            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany());
     }
 
     /**

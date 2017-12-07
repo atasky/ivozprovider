@@ -26,11 +26,11 @@ trait CommandlogTrait
     }
 
     /**
-     * @return CommandlogDTO
+     * @return CommandlogDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new CommandlogDTO();
+        return new CommandlogDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait CommandlogTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CommandlogDTO
+         * @var $dto CommandlogDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait CommandlogTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CommandlogDTO
+         * @var $dto CommandlogDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return CommandlogDTO
+     * @return CommandlogDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

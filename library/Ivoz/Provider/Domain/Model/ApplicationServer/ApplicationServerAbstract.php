@@ -111,11 +111,11 @@ abstract class ApplicationServerAbstract
     }
 
     /**
-     * @return ApplicationServerDTO
+     * @return ApplicationServerDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ApplicationServerDTO();
+        return new ApplicationServerDto();
     }
 
     /**
@@ -123,12 +123,12 @@ abstract class ApplicationServerAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ApplicationServerDTO
+         * @var $dto ApplicationServerDto
          */
-        Assertion::isInstanceOf($dto, ApplicationServerDTO::class);
+        Assertion::isInstanceOf($dto, ApplicationServerDto::class);
 
         $self = new static(
             $dto->getIp());
@@ -147,12 +147,12 @@ abstract class ApplicationServerAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ApplicationServerDTO
+         * @var $dto ApplicationServerDto
          */
-        Assertion::isInstanceOf($dto, ApplicationServerDTO::class);
+        Assertion::isInstanceOf($dto, ApplicationServerDto::class);
 
         $this
             ->setIp($dto->getIp())
@@ -165,11 +165,11 @@ abstract class ApplicationServerAbstract
     }
 
     /**
-     * @return ApplicationServerDTO
+     * @return ApplicationServerDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setIp($this->getIp())
             ->setName($this->getName());
     }

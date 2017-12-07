@@ -17,7 +17,7 @@ abstract class MatchListPatternAbstract
     protected $description;
 
     /**
-     * @comment enum:number|regexp
+     * comment: enum:number|regexp
      * @var string
      */
     protected $type;
@@ -132,11 +132,11 @@ abstract class MatchListPatternAbstract
     }
 
     /**
-     * @return MatchListPatternDTO
+     * @return MatchListPatternDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new MatchListPatternDTO();
+        return new MatchListPatternDto();
     }
 
     /**
@@ -144,12 +144,12 @@ abstract class MatchListPatternAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto MatchListPatternDTO
+         * @var $dto MatchListPatternDto
          */
-        Assertion::isInstanceOf($dto, MatchListPatternDTO::class);
+        Assertion::isInstanceOf($dto, MatchListPatternDto::class);
 
         $self = new static(
             $dto->getType());
@@ -172,12 +172,12 @@ abstract class MatchListPatternAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto MatchListPatternDTO
+         * @var $dto MatchListPatternDto
          */
-        Assertion::isInstanceOf($dto, MatchListPatternDTO::class);
+        Assertion::isInstanceOf($dto, MatchListPatternDto::class);
 
         $this
             ->setDescription($dto->getDescription())
@@ -194,17 +194,19 @@ abstract class MatchListPatternAbstract
     }
 
     /**
-     * @return MatchListPatternDTO
+     * @return MatchListPatternDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setDescription($this->getDescription())
             ->setType($this->getType())
             ->setRegexp($this->getRegexp())
             ->setNumbervalue($this->getNumbervalue())
             ->setMatchListId($this->getMatchList() ? $this->getMatchList()->getId() : null)
-            ->setNumberCountryId($this->getNumberCountry() ? $this->getNumberCountry()->getId() : null);
+            ->setMatchList($this->getMatchList())
+            ->setNumberCountryId($this->getNumberCountry() ? $this->getNumberCountry()->getId() : null)
+            ->setNumberCountry($this->getNumberCountry());
     }
 
     /**

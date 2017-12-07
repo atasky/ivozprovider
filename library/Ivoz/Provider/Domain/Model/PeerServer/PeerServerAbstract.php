@@ -32,7 +32,7 @@ abstract class PeerServerAbstract
     protected $params;
 
     /**
-     * @column uri_scheme
+     * column: uri_scheme
      * @var boolean
      */
     protected $uriScheme;
@@ -63,43 +63,43 @@ abstract class PeerServerAbstract
     protected $sendRPID = 0;
 
     /**
-     * @column auth_needed
+     * column: auth_needed
      * @var string
      */
     protected $authNeeded = 'no';
 
     /**
-     * @column auth_user
+     * column: auth_user
      * @var string
      */
     protected $authUser;
 
     /**
-     * @column auth_password
+     * column: auth_password
      * @var string
      */
     protected $authPassword;
 
     /**
-     * @column sip_proxy
+     * column: sip_proxy
      * @var string
      */
     protected $sipProxy;
 
     /**
-     * @column outbound_proxy
+     * column: outbound_proxy
      * @var string
      */
     protected $outboundProxy;
 
     /**
-     * @column from_user
+     * column: from_user
      * @var string
      */
     protected $fromUser;
 
     /**
-     * @column from_domain
+     * column: from_domain
      * @var string
      */
     protected $fromDomain;
@@ -209,11 +209,11 @@ abstract class PeerServerAbstract
     }
 
     /**
-     * @return PeerServerDTO
+     * @return PeerServerDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new PeerServerDTO();
+        return new PeerServerDto();
     }
 
     /**
@@ -221,12 +221,12 @@ abstract class PeerServerAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PeerServerDTO
+         * @var $dto PeerServerDto
          */
-        Assertion::isInstanceOf($dto, PeerServerDTO::class);
+        Assertion::isInstanceOf($dto, PeerServerDto::class);
 
         $self = new static(
             $dto->getAuthNeeded());
@@ -263,12 +263,12 @@ abstract class PeerServerAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PeerServerDTO
+         * @var $dto PeerServerDto
          */
-        Assertion::isInstanceOf($dto, PeerServerDTO::class);
+        Assertion::isInstanceOf($dto, PeerServerDto::class);
 
         $this
             ->setIp($dto->getIp())
@@ -299,11 +299,11 @@ abstract class PeerServerAbstract
     }
 
     /**
-     * @return PeerServerDTO
+     * @return PeerServerDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setIp($this->getIp())
             ->setHostname($this->getHostname())
             ->setPort($this->getPort())
@@ -322,8 +322,11 @@ abstract class PeerServerAbstract
             ->setFromUser($this->getFromUser())
             ->setFromDomain($this->getFromDomain())
             ->setLcrGatewayId($this->getLcrGateway() ? $this->getLcrGateway()->getId() : null)
+            ->setLcrGateway($this->getLcrGateway())
             ->setPeeringContractId($this->getPeeringContract() ? $this->getPeeringContract()->getId() : null)
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null);
+            ->setPeeringContract($this->getPeeringContract())
+            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
+            ->setBrand($this->getBrand());
     }
 
     /**

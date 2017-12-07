@@ -34,11 +34,11 @@ trait CalendarTrait
     }
 
     /**
-     * @return CalendarDTO
+     * @return CalendarDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new CalendarDTO();
+        return new CalendarDto();
     }
 
     /**
@@ -46,12 +46,12 @@ trait CalendarTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CalendarDTO
+         * @var $dto CalendarDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
         if ($dto->getHolidayDates()) {
             $self->replaceHolidayDates($dto->getHolidayDates());
         }
@@ -67,12 +67,12 @@ trait CalendarTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CalendarDTO
+         * @var $dto CalendarDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
         if ($dto->getHolidayDates()) {
             $this->replaceHolidayDates($dto->getHolidayDates());
         }
@@ -80,11 +80,11 @@ trait CalendarTrait
     }
 
     /**
-     * @return CalendarDTO
+     * @return CalendarDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

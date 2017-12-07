@@ -26,11 +26,11 @@ trait FaxesInOutTrait
     }
 
     /**
-     * @return FaxesInOutDTO
+     * @return FaxesInOutDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new FaxesInOutDTO();
+        return new FaxesInOutDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait FaxesInOutTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FaxesInOutDTO
+         * @var $dto FaxesInOutDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait FaxesInOutTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FaxesInOutDTO
+         * @var $dto FaxesInOutDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return FaxesInOutDTO
+     * @return FaxesInOutDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

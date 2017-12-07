@@ -111,11 +111,11 @@ abstract class ExternalCallFilterRelCalendarAbstract
     }
 
     /**
-     * @return ExternalCallFilterRelCalendarDTO
+     * @return ExternalCallFilterRelCalendarDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ExternalCallFilterRelCalendarDTO();
+        return new ExternalCallFilterRelCalendarDto();
     }
 
     /**
@@ -123,12 +123,12 @@ abstract class ExternalCallFilterRelCalendarAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ExternalCallFilterRelCalendarDTO
+         * @var $dto ExternalCallFilterRelCalendarDto
          */
-        Assertion::isInstanceOf($dto, ExternalCallFilterRelCalendarDTO::class);
+        Assertion::isInstanceOf($dto, ExternalCallFilterRelCalendarDto::class);
 
         $self = new static();
 
@@ -147,12 +147,12 @@ abstract class ExternalCallFilterRelCalendarAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ExternalCallFilterRelCalendarDTO
+         * @var $dto ExternalCallFilterRelCalendarDto
          */
-        Assertion::isInstanceOf($dto, ExternalCallFilterRelCalendarDTO::class);
+        Assertion::isInstanceOf($dto, ExternalCallFilterRelCalendarDto::class);
 
         $this
             ->setFilter($dto->getFilter())
@@ -165,13 +165,15 @@ abstract class ExternalCallFilterRelCalendarAbstract
     }
 
     /**
-     * @return ExternalCallFilterRelCalendarDTO
+     * @return ExternalCallFilterRelCalendarDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setFilterId($this->getFilter() ? $this->getFilter()->getId() : null)
-            ->setCalendarId($this->getCalendar() ? $this->getCalendar()->getId() : null);
+            ->setFilter($this->getFilter())
+            ->setCalendarId($this->getCalendar() ? $this->getCalendar()->getId() : null)
+            ->setCalendar($this->getCalendar());
     }
 
     /**

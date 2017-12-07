@@ -127,11 +127,11 @@ abstract class FaxAbstract
     }
 
     /**
-     * @return FaxDTO
+     * @return FaxDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new FaxDTO();
+        return new FaxDto();
     }
 
     /**
@@ -139,12 +139,12 @@ abstract class FaxAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FaxDTO
+         * @var $dto FaxDto
          */
-        Assertion::isInstanceOf($dto, FaxDTO::class);
+        Assertion::isInstanceOf($dto, FaxDto::class);
 
         $self = new static(
             $dto->getName(),
@@ -166,12 +166,12 @@ abstract class FaxAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FaxDTO
+         * @var $dto FaxDto
          */
-        Assertion::isInstanceOf($dto, FaxDTO::class);
+        Assertion::isInstanceOf($dto, FaxDto::class);
 
         $this
             ->setName($dto->getName())
@@ -187,16 +187,18 @@ abstract class FaxAbstract
     }
 
     /**
-     * @return FaxDTO
+     * @return FaxDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setEmail($this->getEmail())
             ->setSendByEmail($this->getSendByEmail())
             ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setOutgoingDdiId($this->getOutgoingDdi() ? $this->getOutgoingDdi()->getId() : null);
+            ->setCompany($this->getCompany())
+            ->setOutgoingDdiId($this->getOutgoingDdi() ? $this->getOutgoingDdi()->getId() : null)
+            ->setOutgoingDdi($this->getOutgoingDdi());
     }
 
     /**

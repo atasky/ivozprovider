@@ -40,11 +40,11 @@ trait FriendTrait
     }
 
     /**
-     * @return FriendDTO
+     * @return FriendDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new FriendDTO();
+        return new FriendDto();
     }
 
     /**
@@ -52,12 +52,12 @@ trait FriendTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FriendDTO
+         * @var $dto FriendDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
         if ($dto->getPsEndpoints()) {
             $self->replacePsEndpoints($dto->getPsEndpoints());
         }
@@ -77,12 +77,12 @@ trait FriendTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FriendDTO
+         * @var $dto FriendDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
         if ($dto->getPsEndpoints()) {
             $this->replacePsEndpoints($dto->getPsEndpoints());
         }
@@ -93,11 +93,11 @@ trait FriendTrait
     }
 
     /**
-     * @return FriendDTO
+     * @return FriendDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

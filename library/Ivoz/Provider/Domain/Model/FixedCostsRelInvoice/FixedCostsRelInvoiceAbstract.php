@@ -121,11 +121,11 @@ abstract class FixedCostsRelInvoiceAbstract
     }
 
     /**
-     * @return FixedCostsRelInvoiceDTO
+     * @return FixedCostsRelInvoiceDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new FixedCostsRelInvoiceDTO();
+        return new FixedCostsRelInvoiceDto();
     }
 
     /**
@@ -133,12 +133,12 @@ abstract class FixedCostsRelInvoiceAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FixedCostsRelInvoiceDTO
+         * @var $dto FixedCostsRelInvoiceDto
          */
-        Assertion::isInstanceOf($dto, FixedCostsRelInvoiceDTO::class);
+        Assertion::isInstanceOf($dto, FixedCostsRelInvoiceDto::class);
 
         $self = new static();
 
@@ -159,12 +159,12 @@ abstract class FixedCostsRelInvoiceAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FixedCostsRelInvoiceDTO
+         * @var $dto FixedCostsRelInvoiceDto
          */
-        Assertion::isInstanceOf($dto, FixedCostsRelInvoiceDTO::class);
+        Assertion::isInstanceOf($dto, FixedCostsRelInvoiceDto::class);
 
         $this
             ->setQuantity($dto->getQuantity())
@@ -179,15 +179,18 @@ abstract class FixedCostsRelInvoiceAbstract
     }
 
     /**
-     * @return FixedCostsRelInvoiceDTO
+     * @return FixedCostsRelInvoiceDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setQuantity($this->getQuantity())
             ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
+            ->setBrand($this->getBrand())
             ->setFixedCostId($this->getFixedCost() ? $this->getFixedCost()->getId() : null)
-            ->setInvoiceId($this->getInvoice() ? $this->getInvoice()->getId() : null);
+            ->setFixedCost($this->getFixedCost())
+            ->setInvoiceId($this->getInvoice() ? $this->getInvoice()->getId() : null)
+            ->setInvoice($this->getInvoice());
     }
 
     /**

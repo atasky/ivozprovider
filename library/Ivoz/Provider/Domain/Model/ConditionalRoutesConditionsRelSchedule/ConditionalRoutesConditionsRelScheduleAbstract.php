@@ -111,11 +111,11 @@ abstract class ConditionalRoutesConditionsRelScheduleAbstract
     }
 
     /**
-     * @return ConditionalRoutesConditionsRelScheduleDTO
+     * @return ConditionalRoutesConditionsRelScheduleDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ConditionalRoutesConditionsRelScheduleDTO();
+        return new ConditionalRoutesConditionsRelScheduleDto();
     }
 
     /**
@@ -123,12 +123,12 @@ abstract class ConditionalRoutesConditionsRelScheduleAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ConditionalRoutesConditionsRelScheduleDTO
+         * @var $dto ConditionalRoutesConditionsRelScheduleDto
          */
-        Assertion::isInstanceOf($dto, ConditionalRoutesConditionsRelScheduleDTO::class);
+        Assertion::isInstanceOf($dto, ConditionalRoutesConditionsRelScheduleDto::class);
 
         $self = new static();
 
@@ -147,12 +147,12 @@ abstract class ConditionalRoutesConditionsRelScheduleAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ConditionalRoutesConditionsRelScheduleDTO
+         * @var $dto ConditionalRoutesConditionsRelScheduleDto
          */
-        Assertion::isInstanceOf($dto, ConditionalRoutesConditionsRelScheduleDTO::class);
+        Assertion::isInstanceOf($dto, ConditionalRoutesConditionsRelScheduleDto::class);
 
         $this
             ->setCondition($dto->getCondition())
@@ -165,13 +165,15 @@ abstract class ConditionalRoutesConditionsRelScheduleAbstract
     }
 
     /**
-     * @return ConditionalRoutesConditionsRelScheduleDTO
+     * @return ConditionalRoutesConditionsRelScheduleDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setConditionId($this->getCondition() ? $this->getCondition()->getId() : null)
-            ->setScheduleId($this->getSchedule() ? $this->getSchedule()->getId() : null);
+            ->setCondition($this->getCondition())
+            ->setScheduleId($this->getSchedule() ? $this->getSchedule()->getId() : null)
+            ->setSchedule($this->getSchedule());
     }
 
     /**

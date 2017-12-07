@@ -19,6 +19,29 @@ interface RoutingPatternGroupInterface extends LoggableEntityInterface
     public function getRoutingPatterns();
 
     /**
+     * @return RoutingPatternGroupDto
+     */
+    public static function createDto();
+
+    /**
+     * Factory method
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @return RoutingPatternGroupDto
+     */
+    public function toDto();
+
+    /**
      * Set name
      *
      * @param string $name

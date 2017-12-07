@@ -52,11 +52,11 @@ trait ExternalCallFilterTrait
     }
 
     /**
-     * @return ExternalCallFilterDTO
+     * @return ExternalCallFilterDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ExternalCallFilterDTO();
+        return new ExternalCallFilterDto();
     }
 
     /**
@@ -64,12 +64,12 @@ trait ExternalCallFilterTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ExternalCallFilterDTO
+         * @var $dto ExternalCallFilterDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
         if ($dto->getCalendars()) {
             $self->replaceCalendars($dto->getCalendars());
         }
@@ -97,12 +97,12 @@ trait ExternalCallFilterTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ExternalCallFilterDTO
+         * @var $dto ExternalCallFilterDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
         if ($dto->getCalendars()) {
             $this->replaceCalendars($dto->getCalendars());
         }
@@ -119,11 +119,11 @@ trait ExternalCallFilterTrait
     }
 
     /**
-     * @return ExternalCallFilterDTO
+     * @return ExternalCallFilterDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

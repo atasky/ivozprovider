@@ -7,6 +7,7 @@ do
     php ./bin/console provider:generate:traits -v Ivoz/$target && \
     php ./bin/console provider:generate:entities -v Ivoz/$target && \
     php ./bin/console provider:generate:interfaces -v Ivoz/$target && \
+    php ./bin/console provider:generate:dtos:abstract -v Ivoz/$target
     php ./bin/console provider:generate:dtos -v Ivoz/$target
 done
 

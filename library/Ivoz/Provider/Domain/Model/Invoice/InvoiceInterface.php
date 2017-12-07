@@ -23,6 +23,29 @@ interface InvoiceInterface extends LoggableEntityInterface
     public function setStatus($status = null);
 
     /**
+     * @return InvoiceDto
+     */
+    public static function createDto();
+
+    /**
+     * Factory method
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @return InvoiceDto
+     */
+    public function toDto();
+
+    /**
      * Set number
      *
      * @param string $number

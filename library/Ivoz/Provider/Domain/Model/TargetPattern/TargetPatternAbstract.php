@@ -126,11 +126,11 @@ abstract class TargetPatternAbstract
     }
 
     /**
-     * @return TargetPatternDTO
+     * @return TargetPatternDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new TargetPatternDTO();
+        return new TargetPatternDto();
     }
 
     /**
@@ -138,12 +138,12 @@ abstract class TargetPatternAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TargetPatternDTO
+         * @var $dto TargetPatternDto
          */
-        Assertion::isInstanceOf($dto, TargetPatternDTO::class);
+        Assertion::isInstanceOf($dto, TargetPatternDto::class);
 
         $name = new Name(
             $dto->getNameEn(),
@@ -175,12 +175,12 @@ abstract class TargetPatternAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TargetPatternDTO
+         * @var $dto TargetPatternDto
          */
-        Assertion::isInstanceOf($dto, TargetPatternDTO::class);
+        Assertion::isInstanceOf($dto, TargetPatternDto::class);
 
         $name = new Name(
             $dto->getNameEn(),
@@ -205,17 +205,18 @@ abstract class TargetPatternAbstract
     }
 
     /**
-     * @return TargetPatternDTO
+     * @return TargetPatternDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setRegExp($this->getRegExp())
             ->setNameEn($this->getName()->getEn())
             ->setNameEs($this->getName()->getEs())
             ->setDescriptionEn($this->getDescription()->getEn())
             ->setDescriptionEs($this->getDescription()->getEs())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null);
+            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
+            ->setBrand($this->getBrand());
     }
 
     /**

@@ -20,6 +20,29 @@ interface IvrEntryInterface extends LoggableEntityInterface
     public function getNumberValueE164();
 
     /**
+     * @return IvrEntryDto
+     */
+    public static function createDto();
+
+    /**
+     * Factory method
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @return IvrEntryDto
+     */
+    public function toDto();
+
+    /**
      * Set entry
      *
      * @param string $entry

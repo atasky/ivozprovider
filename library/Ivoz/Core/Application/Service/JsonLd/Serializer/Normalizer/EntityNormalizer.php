@@ -87,7 +87,32 @@ class EntityNormalizer implements NormalizerInterface, DenormalizerInterface
     private function normalizeEntity(EntityInterface $object, string $format, array $context)
     {
         $dto = $object->toDTO();
-        return $dto->__toArray();
+        $response = $dto->normalize($context['operation_type']);
+
+        if ($context['operation_type'] === 'embedded') {
+            return $response;
+        }
+
+        $embeddedContext = array_merge([], $context);
+        $embeddedContext['operation_type'] = 'embedded';
+
+        foreach ($response as $key => $value) {
+
+            if ($value instanceof EntityInterface) {
+
+                try {
+                    $response[$key] = $this->normalize(
+                        $value,
+                        $format,
+                        $embeddedContext
+                    );
+                } catch (\Exception $e) {
+                    unset($response[$key]);
+                }
+            }
+        }
+
+        return $response;
     }
 
     /**
@@ -95,8 +120,7 @@ class EntityNormalizer implements NormalizerInterface, DenormalizerInterface
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        throw new \Exception('To be implemented ');
-        return self::FORMAT === $format && false;
+        return self::FORMAT === $format && class_exists($type . 'DTO');
     }
 
     /**

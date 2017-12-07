@@ -17,7 +17,7 @@ abstract class OutgoingDdiRuleAbstract
     protected $name;
 
     /**
-     * @comment enum:keep|force
+     * comment: enum:keep|force
      * @var string
      */
     protected $defaultAction;
@@ -123,11 +123,11 @@ abstract class OutgoingDdiRuleAbstract
     }
 
     /**
-     * @return OutgoingDdiRuleDTO
+     * @return OutgoingDdiRuleDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new OutgoingDdiRuleDTO();
+        return new OutgoingDdiRuleDto();
     }
 
     /**
@@ -135,12 +135,12 @@ abstract class OutgoingDdiRuleAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto OutgoingDdiRuleDTO
+         * @var $dto OutgoingDdiRuleDto
          */
-        Assertion::isInstanceOf($dto, OutgoingDdiRuleDTO::class);
+        Assertion::isInstanceOf($dto, OutgoingDdiRuleDto::class);
 
         $self = new static(
             $dto->getName(),
@@ -161,12 +161,12 @@ abstract class OutgoingDdiRuleAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto OutgoingDdiRuleDTO
+         * @var $dto OutgoingDdiRuleDto
          */
-        Assertion::isInstanceOf($dto, OutgoingDdiRuleDTO::class);
+        Assertion::isInstanceOf($dto, OutgoingDdiRuleDto::class);
 
         $this
             ->setName($dto->getName())
@@ -181,15 +181,17 @@ abstract class OutgoingDdiRuleAbstract
     }
 
     /**
-     * @return OutgoingDdiRuleDTO
+     * @return OutgoingDdiRuleDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setDefaultAction($this->getDefaultAction())
             ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setForcedDdiId($this->getForcedDdi() ? $this->getForcedDdi()->getId() : null);
+            ->setCompany($this->getCompany())
+            ->setForcedDdiId($this->getForcedDdi() ? $this->getForcedDdi()->getId() : null)
+            ->setForcedDdi($this->getForcedDdi());
     }
 
     /**

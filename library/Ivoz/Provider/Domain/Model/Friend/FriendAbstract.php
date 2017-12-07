@@ -22,7 +22,7 @@ abstract class FriendAbstract
     protected $description = '';
 
     /**
-     * @comment enum:udp|tcp|tls
+     * comment: enum:udp|tcp|tls
      * @var string
      */
     protected $transport;
@@ -38,7 +38,7 @@ abstract class FriendAbstract
     protected $port;
 
     /**
-     * @column auth_needed
+     * column: auth_needed
      * @var string
      */
     protected $authNeeded = 'yes';
@@ -64,34 +64,34 @@ abstract class FriendAbstract
     protected $allow = 'alaw';
 
     /**
-     * @column direct_media_method
-     * @comment enum:invite|update
+     * column: direct_media_method
+     * comment: enum:invite|update
      * @var string
      */
     protected $directMediaMethod = 'update';
 
     /**
-     * @column callerid_update_header
-     * @comment enum:pai|rpid
+     * column: callerid_update_header
+     * comment: enum:pai|rpid
      * @var string
      */
     protected $calleridUpdateHeader = 'pai';
 
     /**
-     * @column update_callerid
-     * @comment enum:yes|no
+     * column: update_callerid
+     * comment: enum:yes|no
      * @var string
      */
     protected $updateCallerid = 'yes';
 
     /**
-     * @column from_domain
+     * column: from_domain
      * @var string
      */
     protected $fromDomain;
 
     /**
-     * @comment enum:yes|no
+     * comment: enum:yes|no
      * @var string
      */
     protected $directConnectivity = 'yes';
@@ -237,11 +237,11 @@ abstract class FriendAbstract
     }
 
     /**
-     * @return FriendDTO
+     * @return FriendDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new FriendDTO();
+        return new FriendDto();
     }
 
     /**
@@ -249,12 +249,12 @@ abstract class FriendAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FriendDTO
+         * @var $dto FriendDto
          */
-        Assertion::isInstanceOf($dto, FriendDTO::class);
+        Assertion::isInstanceOf($dto, FriendDto::class);
 
         $self = new static(
             $dto->getName(),
@@ -292,12 +292,12 @@ abstract class FriendAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FriendDTO
+         * @var $dto FriendDto
          */
-        Assertion::isInstanceOf($dto, FriendDTO::class);
+        Assertion::isInstanceOf($dto, FriendDto::class);
 
         $this
             ->setName($dto->getName())
@@ -329,11 +329,11 @@ abstract class FriendAbstract
     }
 
     /**
-     * @return FriendDTO
+     * @return FriendDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setDescription($this->getDescription())
             ->setTransport($this->getTransport())
@@ -350,11 +350,17 @@ abstract class FriendAbstract
             ->setFromDomain($this->getFromDomain())
             ->setDirectConnectivity($this->getDirectConnectivity())
             ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany())
             ->setDomainId($this->getDomain() ? $this->getDomain()->getId() : null)
+            ->setDomain($this->getDomain())
             ->setTransformationRuleSetId($this->getTransformationRuleSet() ? $this->getTransformationRuleSet()->getId() : null)
+            ->setTransformationRuleSet($this->getTransformationRuleSet())
             ->setCallAclId($this->getCallAcl() ? $this->getCallAcl()->getId() : null)
+            ->setCallAcl($this->getCallAcl())
             ->setOutgoingDdiId($this->getOutgoingDdi() ? $this->getOutgoingDdi()->getId() : null)
-            ->setLanguageId($this->getLanguage() ? $this->getLanguage()->getId() : null);
+            ->setOutgoingDdi($this->getOutgoingDdi())
+            ->setLanguageId($this->getLanguage() ? $this->getLanguage()->getId() : null)
+            ->setLanguage($this->getLanguage());
     }
 
     /**

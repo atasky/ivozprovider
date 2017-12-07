@@ -72,7 +72,7 @@ abstract class VoicemailAbstract
     protected $tz;
 
     /**
-     * @column deleteast_voicemail
+     * column: deleteast_voicemail
      * @var string
      */
     protected $deleteVoicemail;
@@ -83,7 +83,7 @@ abstract class VoicemailAbstract
     protected $saycid;
 
     /**
-     * @column sendast_voicemail
+     * column: sendast_voicemail
      * @var string
      */
     protected $sendVoicemail;
@@ -274,11 +274,11 @@ abstract class VoicemailAbstract
     }
 
     /**
-     * @return VoicemailDTO
+     * @return VoicemailDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new VoicemailDTO();
+        return new VoicemailDto();
     }
 
     /**
@@ -286,12 +286,12 @@ abstract class VoicemailAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto VoicemailDTO
+         * @var $dto VoicemailDto
          */
-        Assertion::isInstanceOf($dto, VoicemailDTO::class);
+        Assertion::isInstanceOf($dto, VoicemailDto::class);
 
         $self = new static(
             $dto->getContext(),
@@ -342,12 +342,12 @@ abstract class VoicemailAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto VoicemailDTO
+         * @var $dto VoicemailDto
          */
-        Assertion::isInstanceOf($dto, VoicemailDTO::class);
+        Assertion::isInstanceOf($dto, VoicemailDto::class);
 
         $this
             ->setContext($dto->getContext())
@@ -392,11 +392,11 @@ abstract class VoicemailAbstract
     }
 
     /**
-     * @return VoicemailDTO
+     * @return VoicemailDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setContext($this->getContext())
             ->setMailbox($this->getMailbox())
             ->setPassword($this->getPassword())

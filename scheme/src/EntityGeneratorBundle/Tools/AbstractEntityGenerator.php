@@ -126,7 +126,7 @@ protected function sanitizeValues()
 /**
  * @return <dtoClass>
  */
-public static function createDTO()
+public static function createDto()
 {
     return new <dtoClass>();
 }
@@ -136,7 +136,7 @@ public static function createDTO()
  * @param DataTransferObjectInterface $dto
  * @return self
  */
-public static function fromDTO(DataTransferObjectInterface $dto)
+public static function fromDto(DataTransferObjectInterface $dto)
 {
     /**
      * @var $dto <dtoClass>
@@ -157,7 +157,7 @@ public static function fromDTO(DataTransferObjectInterface $dto)
  * @param DataTransferObjectInterface $dto
  * @return self
  */
-public function updateFromDTO(DataTransferObjectInterface $dto)
+public function updateFromDto(DataTransferObjectInterface $dto)
 {
     /**
      * @var $dto <dtoClass>
@@ -173,9 +173,9 @@ public function updateFromDTO(DataTransferObjectInterface $dto)
 /**
  * @return <dtoClass>
  */
-public function toDTO()
+public function toDto()
 {
-    return self::createDTO()<toDTO>;
+    return self::createDto()<toDTO>;
 }
 
 /**
@@ -369,7 +369,6 @@ public function <methodName>(<criteriaArgument>)
         return str_replace('<spaces>', $this->spaces, $code);
     }
 
-
     /**
      * @param ClassMetadataInfo $metadata
      *
@@ -388,7 +387,6 @@ public function <methodName>(<criteriaArgument>)
 
         return $class;
     }
-
 
     protected function generateEntityRealUse(ClassMetadata $metadata)
     {
@@ -434,12 +432,12 @@ public function <methodName>(<criteriaArgument>)
         $lines[] = $this->spaces . '/**';
 
         if (strtolower($field->fieldName) !== strtolower($field->columnName)) {
-            $lines[] = $this->spaces . ' * @column ' . $field->columnName;
+            $lines[] = $this->spaces . ' * column: ' . $field->columnName;
         }
 
         if (isset($options->comment)) {
             $comment = substr($options->comment, 1, -1);
-            $lines[] = $this->spaces . ' * @comment ' . $comment;
+            $lines[] = $this->spaces . ' * comment: ' . $comment;
         }
 
         $lines[] = $this->spaces . ' * @var ' . $this->getType($fieldMapping['type']);
@@ -633,7 +631,7 @@ public function <methodName>(<criteriaArgument>)
         $response = str_replace('<requiredFieldsGetters>', $requiredFieldGetters, $response);
 
         $namespaceSegments = explode('\\', $metadata->namespace);
-        $namespace = end($namespaceSegments) . 'DTO';
+        $namespace = end($namespaceSegments) . 'Dto';
         $response = str_replace('<dtoClass>', $namespace, $response);
 
         $response = str_replace('<voContructor>', $voContructor, $response);
@@ -741,11 +739,12 @@ public function <methodName>(<criteriaArgument>)
                         continue;
                     }
 
-                    list($associationToArray, $associationGetterAs) = $response;
+                    list($associationToArray, $associationIdGetter, $associationGetter) = $response;
                     if (!is_null($associationToArray)) {
                         $toArray[] = $associationToArray;
                     }
-                    $getters[$attribute] = $associationGetterAs;
+                    $getters[$attribute . 'id'] = $associationIdGetter;
+                    $getters[$attribute] = $associationGetter;
                 }
 
                 continue;
@@ -986,6 +985,12 @@ public function <methodName>(<criteriaArgument>)
             . ' ? '
             . '$this->get' . Inflector::classify($fieldName) . '()->getId()'
             . ' : null'
+            . ')';
+
+
+        $response[] =
+            'set' . Inflector::classify($fieldName) . '('
+            . '$this->get' . Inflector::classify($fieldName) . '()'
             . ')';
 
         return $response;

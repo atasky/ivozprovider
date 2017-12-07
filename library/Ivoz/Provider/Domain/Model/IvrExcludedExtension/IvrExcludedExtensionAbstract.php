@@ -111,11 +111,11 @@ abstract class IvrExcludedExtensionAbstract
     }
 
     /**
-     * @return IvrExcludedExtensionDTO
+     * @return IvrExcludedExtensionDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new IvrExcludedExtensionDTO();
+        return new IvrExcludedExtensionDto();
     }
 
     /**
@@ -123,12 +123,12 @@ abstract class IvrExcludedExtensionAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto IvrExcludedExtensionDTO
+         * @var $dto IvrExcludedExtensionDto
          */
-        Assertion::isInstanceOf($dto, IvrExcludedExtensionDTO::class);
+        Assertion::isInstanceOf($dto, IvrExcludedExtensionDto::class);
 
         $self = new static();
 
@@ -147,12 +147,12 @@ abstract class IvrExcludedExtensionAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto IvrExcludedExtensionDTO
+         * @var $dto IvrExcludedExtensionDto
          */
-        Assertion::isInstanceOf($dto, IvrExcludedExtensionDTO::class);
+        Assertion::isInstanceOf($dto, IvrExcludedExtensionDto::class);
 
         $this
             ->setIvr($dto->getIvr())
@@ -165,13 +165,15 @@ abstract class IvrExcludedExtensionAbstract
     }
 
     /**
-     * @return IvrExcludedExtensionDTO
+     * @return IvrExcludedExtensionDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setIvrId($this->getIvr() ? $this->getIvr()->getId() : null)
-            ->setExtensionId($this->getExtension() ? $this->getExtension()->getId() : null);
+            ->setIvr($this->getIvr())
+            ->setExtensionId($this->getExtension() ? $this->getExtension()->getId() : null)
+            ->setExtension($this->getExtension());
     }
 
     /**

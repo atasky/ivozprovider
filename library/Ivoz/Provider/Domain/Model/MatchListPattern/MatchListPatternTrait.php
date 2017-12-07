@@ -26,11 +26,11 @@ trait MatchListPatternTrait
     }
 
     /**
-     * @return MatchListPatternDTO
+     * @return MatchListPatternDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new MatchListPatternDTO();
+        return new MatchListPatternDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait MatchListPatternTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto MatchListPatternDTO
+         * @var $dto MatchListPatternDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait MatchListPatternTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto MatchListPatternDTO
+         * @var $dto MatchListPatternDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return MatchListPatternDTO
+     * @return MatchListPatternDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

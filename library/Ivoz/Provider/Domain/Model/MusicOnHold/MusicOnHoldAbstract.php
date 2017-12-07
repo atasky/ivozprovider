@@ -17,7 +17,7 @@ abstract class MusicOnHoldAbstract
     protected $name;
 
     /**
-     * @comment enum:pending|encoding|ready|error
+     * comment: enum:pending|encoding|ready|error
      * @var string
      */
     protected $status;
@@ -137,11 +137,11 @@ abstract class MusicOnHoldAbstract
     }
 
     /**
-     * @return MusicOnHoldDTO
+     * @return MusicOnHoldDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new MusicOnHoldDTO();
+        return new MusicOnHoldDto();
     }
 
     /**
@@ -149,12 +149,12 @@ abstract class MusicOnHoldAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto MusicOnHoldDTO
+         * @var $dto MusicOnHoldDto
          */
-        Assertion::isInstanceOf($dto, MusicOnHoldDTO::class);
+        Assertion::isInstanceOf($dto, MusicOnHoldDto::class);
 
         $originalFile = new OriginalFile(
             $dto->getOriginalFileFileSize(),
@@ -190,12 +190,12 @@ abstract class MusicOnHoldAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto MusicOnHoldDTO
+         * @var $dto MusicOnHoldDto
          */
-        Assertion::isInstanceOf($dto, MusicOnHoldDTO::class);
+        Assertion::isInstanceOf($dto, MusicOnHoldDto::class);
 
         $originalFile = new OriginalFile(
             $dto->getOriginalFileFileSize(),
@@ -224,11 +224,11 @@ abstract class MusicOnHoldAbstract
     }
 
     /**
-     * @return MusicOnHoldDTO
+     * @return MusicOnHoldDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setStatus($this->getStatus())
             ->setOriginalFileFileSize($this->getOriginalFile()->getFileSize())
@@ -238,7 +238,9 @@ abstract class MusicOnHoldAbstract
             ->setEncodedFileMimeType($this->getEncodedFile()->getMimeType())
             ->setEncodedFileBaseName($this->getEncodedFile()->getBaseName())
             ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null);
+            ->setBrand($this->getBrand())
+            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany());
     }
 
     /**

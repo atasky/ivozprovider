@@ -42,7 +42,7 @@ abstract class InvoiceAbstract
     protected $totalWithTax;
 
     /**
-     * @comment enum:waiting|processing|created|error
+     * comment: enum:waiting|processing|created|error
      * @var string
      */
     protected $status;
@@ -158,11 +158,11 @@ abstract class InvoiceAbstract
     }
 
     /**
-     * @return InvoiceDTO
+     * @return InvoiceDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new InvoiceDTO();
+        return new InvoiceDto();
     }
 
     /**
@@ -170,12 +170,12 @@ abstract class InvoiceAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto InvoiceDTO
+         * @var $dto InvoiceDto
          */
-        Assertion::isInstanceOf($dto, InvoiceDTO::class);
+        Assertion::isInstanceOf($dto, InvoiceDto::class);
 
         $pdf = new Pdf(
             $dto->getPdfFileSize(),
@@ -210,12 +210,12 @@ abstract class InvoiceAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto InvoiceDTO
+         * @var $dto InvoiceDto
          */
-        Assertion::isInstanceOf($dto, InvoiceDTO::class);
+        Assertion::isInstanceOf($dto, InvoiceDto::class);
 
         $pdf = new Pdf(
             $dto->getPdfFileSize(),
@@ -243,11 +243,11 @@ abstract class InvoiceAbstract
     }
 
     /**
-     * @return InvoiceDTO
+     * @return InvoiceDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setNumber($this->getNumber())
             ->setInDate($this->getInDate())
             ->setOutDate($this->getOutDate())
@@ -259,8 +259,11 @@ abstract class InvoiceAbstract
             ->setPdfMimeType($this->getPdf()->getMimeType())
             ->setPdfBaseName($this->getPdf()->getBaseName())
             ->setInvoiceTemplateId($this->getInvoiceTemplate() ? $this->getInvoiceTemplate()->getId() : null)
+            ->setInvoiceTemplate($this->getInvoiceTemplate())
             ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null);
+            ->setBrand($this->getBrand())
+            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany());
     }
 
     /**

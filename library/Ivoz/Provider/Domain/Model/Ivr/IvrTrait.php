@@ -40,11 +40,11 @@ trait IvrTrait
     }
 
     /**
-     * @return IvrDTO
+     * @return IvrDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new IvrDTO();
+        return new IvrDto();
     }
 
     /**
@@ -52,12 +52,12 @@ trait IvrTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto IvrDTO
+         * @var $dto IvrDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
         if ($dto->getEntries()) {
             $self->replaceEntries($dto->getEntries());
         }
@@ -77,12 +77,12 @@ trait IvrTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto IvrDTO
+         * @var $dto IvrDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
         if ($dto->getEntries()) {
             $this->replaceEntries($dto->getEntries());
         }
@@ -93,11 +93,11 @@ trait IvrTrait
     }
 
     /**
-     * @return IvrDTO
+     * @return IvrDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

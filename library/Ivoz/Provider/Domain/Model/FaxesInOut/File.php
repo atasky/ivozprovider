@@ -11,20 +11,20 @@ use Assert\Assertion;
 class File
 {
     /**
-     * @column fileFileSize
-     * @comment FSO
+     * column: fileFileSize
+     * comment: FSO
      * @var integer
      */
     protected $fileSize;
 
     /**
-     * @column fileMimeType
+     * column: fileMimeType
      * @var string
      */
     protected $mimeType;
 
     /**
-     * @column fileBaseName
+     * column: fileBaseName
      * @var string
      */
     protected $baseName;

@@ -121,11 +121,11 @@ abstract class HuntGroupsRelUserAbstract
     }
 
     /**
-     * @return HuntGroupsRelUserDTO
+     * @return HuntGroupsRelUserDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new HuntGroupsRelUserDTO();
+        return new HuntGroupsRelUserDto();
     }
 
     /**
@@ -133,12 +133,12 @@ abstract class HuntGroupsRelUserAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto HuntGroupsRelUserDTO
+         * @var $dto HuntGroupsRelUserDto
          */
-        Assertion::isInstanceOf($dto, HuntGroupsRelUserDTO::class);
+        Assertion::isInstanceOf($dto, HuntGroupsRelUserDto::class);
 
         $self = new static();
 
@@ -159,12 +159,12 @@ abstract class HuntGroupsRelUserAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto HuntGroupsRelUserDTO
+         * @var $dto HuntGroupsRelUserDto
          */
-        Assertion::isInstanceOf($dto, HuntGroupsRelUserDTO::class);
+        Assertion::isInstanceOf($dto, HuntGroupsRelUserDto::class);
 
         $this
             ->setTimeoutTime($dto->getTimeoutTime())
@@ -179,15 +179,17 @@ abstract class HuntGroupsRelUserAbstract
     }
 
     /**
-     * @return HuntGroupsRelUserDTO
+     * @return HuntGroupsRelUserDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setTimeoutTime($this->getTimeoutTime())
             ->setPriority($this->getPriority())
             ->setHuntGroupId($this->getHuntGroup() ? $this->getHuntGroup()->getId() : null)
-            ->setUserId($this->getUser() ? $this->getUser()->getId() : null);
+            ->setHuntGroup($this->getHuntGroup())
+            ->setUserId($this->getUser() ? $this->getUser()->getId() : null)
+            ->setUser($this->getUser());
     }
 
     /**

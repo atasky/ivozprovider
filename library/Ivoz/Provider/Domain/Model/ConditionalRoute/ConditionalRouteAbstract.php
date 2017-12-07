@@ -17,7 +17,7 @@ abstract class ConditionalRouteAbstract
     protected $name;
 
     /**
-     * @comment enum:user|number|ivr|huntGroup|voicemail|friend|queue|conferenceRoom|extension
+     * comment: enum:user|number|ivr|huntGroup|voicemail|friend|queue|conferenceRoom|extension
      * @var string
      */
     protected $routetype;
@@ -172,11 +172,11 @@ abstract class ConditionalRouteAbstract
     }
 
     /**
-     * @return ConditionalRouteDTO
+     * @return ConditionalRouteDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ConditionalRouteDTO();
+        return new ConditionalRouteDto();
     }
 
     /**
@@ -184,12 +184,12 @@ abstract class ConditionalRouteAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ConditionalRouteDTO
+         * @var $dto ConditionalRouteDto
          */
-        Assertion::isInstanceOf($dto, ConditionalRouteDTO::class);
+        Assertion::isInstanceOf($dto, ConditionalRouteDto::class);
 
         $self = new static(
             $dto->getName());
@@ -220,12 +220,12 @@ abstract class ConditionalRouteAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ConditionalRouteDTO
+         * @var $dto ConditionalRouteDto
          */
-        Assertion::isInstanceOf($dto, ConditionalRouteDTO::class);
+        Assertion::isInstanceOf($dto, ConditionalRouteDto::class);
 
         $this
             ->setName($dto->getName())
@@ -250,25 +250,35 @@ abstract class ConditionalRouteAbstract
     }
 
     /**
-     * @return ConditionalRouteDTO
+     * @return ConditionalRouteDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setRoutetype($this->getRoutetype())
             ->setNumbervalue($this->getNumbervalue())
             ->setFriendvalue($this->getFriendvalue())
             ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany())
             ->setIvrId($this->getIvr() ? $this->getIvr()->getId() : null)
+            ->setIvr($this->getIvr())
             ->setHuntGroupId($this->getHuntGroup() ? $this->getHuntGroup()->getId() : null)
+            ->setHuntGroup($this->getHuntGroup())
             ->setVoicemailUserId($this->getVoicemailUser() ? $this->getVoicemailUser()->getId() : null)
+            ->setVoicemailUser($this->getVoicemailUser())
             ->setUserId($this->getUser() ? $this->getUser()->getId() : null)
+            ->setUser($this->getUser())
             ->setQueueId($this->getQueue() ? $this->getQueue()->getId() : null)
+            ->setQueue($this->getQueue())
             ->setLocutionId($this->getLocution() ? $this->getLocution()->getId() : null)
+            ->setLocution($this->getLocution())
             ->setConferenceRoomId($this->getConferenceRoom() ? $this->getConferenceRoom()->getId() : null)
+            ->setConferenceRoom($this->getConferenceRoom())
             ->setExtensionId($this->getExtension() ? $this->getExtension()->getId() : null)
-            ->setNumberCountryId($this->getNumberCountry() ? $this->getNumberCountry()->getId() : null);
+            ->setExtension($this->getExtension())
+            ->setNumberCountryId($this->getNumberCountry() ? $this->getNumberCountry()->getId() : null)
+            ->setNumberCountry($this->getNumberCountry());
     }
 
     /**

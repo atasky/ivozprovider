@@ -17,13 +17,13 @@ abstract class UsersMissedCallAbstract
     protected $method = '';
 
     /**
-     * @column from_tag
+     * column: from_tag
      * @var string
      */
     protected $fromTag = '';
 
     /**
-     * @column to_tag
+     * column: to_tag
      * @var string
      */
     protected $toTag = '';
@@ -34,43 +34,43 @@ abstract class UsersMissedCallAbstract
     protected $callid = '';
 
     /**
-     * @column sip_code
+     * column: sip_code
      * @var string
      */
     protected $sipCode = '';
 
     /**
-     * @column sip_reason
+     * column: sip_reason
      * @var string
      */
     protected $sipReason = '';
 
     /**
-     * @column src_ip
+     * column: src_ip
      * @var string
      */
     protected $srcIp;
 
     /**
-     * @column from_user
+     * column: from_user
      * @var string
      */
     protected $fromUser;
 
     /**
-     * @column from_domain
+     * column: from_domain
      * @var string
      */
     protected $fromDomain;
 
     /**
-     * @column ruri_user
+     * column: ruri_user
      * @var string
      */
     protected $ruriUser;
 
     /**
-     * @column ruri_domain
+     * column: ruri_domain
      * @var string
      */
     protected $ruriDomain;
@@ -193,11 +193,11 @@ abstract class UsersMissedCallAbstract
     }
 
     /**
-     * @return UsersMissedCallDTO
+     * @return UsersMissedCallDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new UsersMissedCallDTO();
+        return new UsersMissedCallDto();
     }
 
     /**
@@ -205,12 +205,12 @@ abstract class UsersMissedCallAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersMissedCallDTO
+         * @var $dto UsersMissedCallDto
          */
-        Assertion::isInstanceOf($dto, UsersMissedCallDTO::class);
+        Assertion::isInstanceOf($dto, UsersMissedCallDto::class);
 
         $self = new static(
             $dto->getMethod(),
@@ -241,12 +241,12 @@ abstract class UsersMissedCallAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersMissedCallDTO
+         * @var $dto UsersMissedCallDto
          */
-        Assertion::isInstanceOf($dto, UsersMissedCallDTO::class);
+        Assertion::isInstanceOf($dto, UsersMissedCallDto::class);
 
         $this
             ->setMethod($dto->getMethod())
@@ -271,11 +271,11 @@ abstract class UsersMissedCallAbstract
     }
 
     /**
-     * @return UsersMissedCallDTO
+     * @return UsersMissedCallDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setMethod($this->getMethod())
             ->setFromTag($this->getFromTag())
             ->setToTag($this->getToTag())

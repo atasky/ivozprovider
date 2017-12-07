@@ -26,11 +26,11 @@ trait FeaturesRelBrandTrait
     }
 
     /**
-     * @return FeaturesRelBrandDTO
+     * @return FeaturesRelBrandDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new FeaturesRelBrandDTO();
+        return new FeaturesRelBrandDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait FeaturesRelBrandTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FeaturesRelBrandDTO
+         * @var $dto FeaturesRelBrandDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait FeaturesRelBrandTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FeaturesRelBrandDTO
+         * @var $dto FeaturesRelBrandDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return FeaturesRelBrandDTO
+     * @return FeaturesRelBrandDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

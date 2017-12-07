@@ -26,11 +26,11 @@ trait CallForwardSettingTrait
     }
 
     /**
-     * @return CallForwardSettingDTO
+     * @return CallForwardSettingDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new CallForwardSettingDTO();
+        return new CallForwardSettingDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait CallForwardSettingTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CallForwardSettingDTO
+         * @var $dto CallForwardSettingDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait CallForwardSettingTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CallForwardSettingDTO
+         * @var $dto CallForwardSettingDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return CallForwardSettingDTO
+     * @return CallForwardSettingDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

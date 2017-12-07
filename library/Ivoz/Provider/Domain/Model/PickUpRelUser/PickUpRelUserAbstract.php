@@ -111,11 +111,11 @@ abstract class PickUpRelUserAbstract
     }
 
     /**
-     * @return PickUpRelUserDTO
+     * @return PickUpRelUserDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new PickUpRelUserDTO();
+        return new PickUpRelUserDto();
     }
 
     /**
@@ -123,12 +123,12 @@ abstract class PickUpRelUserAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PickUpRelUserDTO
+         * @var $dto PickUpRelUserDto
          */
-        Assertion::isInstanceOf($dto, PickUpRelUserDTO::class);
+        Assertion::isInstanceOf($dto, PickUpRelUserDto::class);
 
         $self = new static();
 
@@ -147,12 +147,12 @@ abstract class PickUpRelUserAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PickUpRelUserDTO
+         * @var $dto PickUpRelUserDto
          */
-        Assertion::isInstanceOf($dto, PickUpRelUserDTO::class);
+        Assertion::isInstanceOf($dto, PickUpRelUserDto::class);
 
         $this
             ->setPickUpGroup($dto->getPickUpGroup())
@@ -165,13 +165,15 @@ abstract class PickUpRelUserAbstract
     }
 
     /**
-     * @return PickUpRelUserDTO
+     * @return PickUpRelUserDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setPickUpGroupId($this->getPickUpGroup() ? $this->getPickUpGroup()->getId() : null)
-            ->setUserId($this->getUser() ? $this->getUser()->getId() : null);
+            ->setPickUpGroup($this->getPickUpGroup())
+            ->setUserId($this->getUser() ? $this->getUser()->getId() : null)
+            ->setUser($this->getUser());
     }
 
     /**

@@ -136,11 +136,11 @@ abstract class PricingPlansRelTargetPatternAbstract
     }
 
     /**
-     * @return PricingPlansRelTargetPatternDTO
+     * @return PricingPlansRelTargetPatternDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new PricingPlansRelTargetPatternDTO();
+        return new PricingPlansRelTargetPatternDto();
     }
 
     /**
@@ -148,12 +148,12 @@ abstract class PricingPlansRelTargetPatternAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PricingPlansRelTargetPatternDTO
+         * @var $dto PricingPlansRelTargetPatternDto
          */
-        Assertion::isInstanceOf($dto, PricingPlansRelTargetPatternDTO::class);
+        Assertion::isInstanceOf($dto, PricingPlansRelTargetPatternDto::class);
 
         $self = new static(
             $dto->getConnectionCharge(),
@@ -176,12 +176,12 @@ abstract class PricingPlansRelTargetPatternAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PricingPlansRelTargetPatternDTO
+         * @var $dto PricingPlansRelTargetPatternDto
          */
-        Assertion::isInstanceOf($dto, PricingPlansRelTargetPatternDTO::class);
+        Assertion::isInstanceOf($dto, PricingPlansRelTargetPatternDto::class);
 
         $this
             ->setConnectionCharge($dto->getConnectionCharge())
@@ -198,17 +198,20 @@ abstract class PricingPlansRelTargetPatternAbstract
     }
 
     /**
-     * @return PricingPlansRelTargetPatternDTO
+     * @return PricingPlansRelTargetPatternDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setConnectionCharge($this->getConnectionCharge())
             ->setPeriodTime($this->getPeriodTime())
             ->setPerPeriodCharge($this->getPerPeriodCharge())
             ->setPricingPlanId($this->getPricingPlan() ? $this->getPricingPlan()->getId() : null)
+            ->setPricingPlan($this->getPricingPlan())
             ->setTargetPatternId($this->getTargetPattern() ? $this->getTargetPattern()->getId() : null)
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null);
+            ->setTargetPattern($this->getTargetPattern())
+            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
+            ->setBrand($this->getBrand());
     }
 
     /**

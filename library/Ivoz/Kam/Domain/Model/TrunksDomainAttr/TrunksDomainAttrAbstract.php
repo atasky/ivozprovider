@@ -32,7 +32,7 @@ abstract class TrunksDomainAttrAbstract
     protected $value;
 
     /**
-     * @column last_modified
+     * column: last_modified
      * @var \DateTime
      */
     protected $lastModified;
@@ -136,11 +136,11 @@ abstract class TrunksDomainAttrAbstract
     }
 
     /**
-     * @return TrunksDomainAttrDTO
+     * @return TrunksDomainAttrDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new TrunksDomainAttrDTO();
+        return new TrunksDomainAttrDto();
     }
 
     /**
@@ -148,12 +148,12 @@ abstract class TrunksDomainAttrAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TrunksDomainAttrDTO
+         * @var $dto TrunksDomainAttrDto
          */
-        Assertion::isInstanceOf($dto, TrunksDomainAttrDTO::class);
+        Assertion::isInstanceOf($dto, TrunksDomainAttrDto::class);
 
         $self = new static(
             $dto->getDid(),
@@ -174,12 +174,12 @@ abstract class TrunksDomainAttrAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TrunksDomainAttrDTO
+         * @var $dto TrunksDomainAttrDto
          */
-        Assertion::isInstanceOf($dto, TrunksDomainAttrDTO::class);
+        Assertion::isInstanceOf($dto, TrunksDomainAttrDto::class);
 
         $this
             ->setDid($dto->getDid())
@@ -195,11 +195,11 @@ abstract class TrunksDomainAttrAbstract
     }
 
     /**
-     * @return TrunksDomainAttrDTO
+     * @return TrunksDomainAttrDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setDid($this->getDid())
             ->setName($this->getName())
             ->setType($this->getType())

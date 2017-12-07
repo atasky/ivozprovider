@@ -12,7 +12,7 @@ use Ivoz\Core\Application\DataTransferObjectInterface;
 abstract class OutgoingDdiRulesPatternAbstract
 {
     /**
-     * @comment enum:keep|force
+     * comment: enum:keep|force
      * @var string
      */
     protected $action;
@@ -128,11 +128,11 @@ abstract class OutgoingDdiRulesPatternAbstract
     }
 
     /**
-     * @return OutgoingDdiRulesPatternDTO
+     * @return OutgoingDdiRulesPatternDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new OutgoingDdiRulesPatternDTO();
+        return new OutgoingDdiRulesPatternDto();
     }
 
     /**
@@ -140,12 +140,12 @@ abstract class OutgoingDdiRulesPatternAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto OutgoingDdiRulesPatternDTO
+         * @var $dto OutgoingDdiRulesPatternDto
          */
-        Assertion::isInstanceOf($dto, OutgoingDdiRulesPatternDTO::class);
+        Assertion::isInstanceOf($dto, OutgoingDdiRulesPatternDto::class);
 
         $self = new static(
             $dto->getAction(),
@@ -167,12 +167,12 @@ abstract class OutgoingDdiRulesPatternAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto OutgoingDdiRulesPatternDTO
+         * @var $dto OutgoingDdiRulesPatternDto
          */
-        Assertion::isInstanceOf($dto, OutgoingDdiRulesPatternDTO::class);
+        Assertion::isInstanceOf($dto, OutgoingDdiRulesPatternDto::class);
 
         $this
             ->setAction($dto->getAction())
@@ -188,16 +188,19 @@ abstract class OutgoingDdiRulesPatternAbstract
     }
 
     /**
-     * @return OutgoingDdiRulesPatternDTO
+     * @return OutgoingDdiRulesPatternDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setAction($this->getAction())
             ->setPriority($this->getPriority())
             ->setOutgoingDdiRuleId($this->getOutgoingDdiRule() ? $this->getOutgoingDdiRule()->getId() : null)
+            ->setOutgoingDdiRule($this->getOutgoingDdiRule())
             ->setMatchListId($this->getMatchList() ? $this->getMatchList()->getId() : null)
-            ->setForcedDdiId($this->getForcedDdi() ? $this->getForcedDdi()->getId() : null);
+            ->setMatchList($this->getMatchList())
+            ->setForcedDdiId($this->getForcedDdi() ? $this->getForcedDdi()->getId() : null)
+            ->setForcedDdi($this->getForcedDdi());
     }
 
     /**

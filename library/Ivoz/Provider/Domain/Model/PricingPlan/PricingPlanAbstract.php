@@ -126,11 +126,11 @@ abstract class PricingPlanAbstract
     }
 
     /**
-     * @return PricingPlanDTO
+     * @return PricingPlanDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new PricingPlanDTO();
+        return new PricingPlanDto();
     }
 
     /**
@@ -138,12 +138,12 @@ abstract class PricingPlanAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PricingPlanDTO
+         * @var $dto PricingPlanDto
          */
-        Assertion::isInstanceOf($dto, PricingPlanDTO::class);
+        Assertion::isInstanceOf($dto, PricingPlanDto::class);
 
         $name = new Name(
             $dto->getNameEn(),
@@ -175,12 +175,12 @@ abstract class PricingPlanAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PricingPlanDTO
+         * @var $dto PricingPlanDto
          */
-        Assertion::isInstanceOf($dto, PricingPlanDTO::class);
+        Assertion::isInstanceOf($dto, PricingPlanDto::class);
 
         $name = new Name(
             $dto->getNameEn(),
@@ -205,17 +205,18 @@ abstract class PricingPlanAbstract
     }
 
     /**
-     * @return PricingPlanDTO
+     * @return PricingPlanDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setCreatedOn($this->getCreatedOn())
             ->setNameEn($this->getName()->getEn())
             ->setNameEs($this->getName()->getEs())
             ->setDescriptionEn($this->getDescription()->getEn())
             ->setDescriptionEs($this->getDescription()->getEs())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null);
+            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
+            ->setBrand($this->getBrand());
     }
 
     /**

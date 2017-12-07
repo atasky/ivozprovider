@@ -123,11 +123,11 @@ abstract class CountryAbstract
     }
 
     /**
-     * @return CountryDTO
+     * @return CountryDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new CountryDTO();
+        return new CountryDto();
     }
 
     /**
@@ -135,12 +135,12 @@ abstract class CountryAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CountryDTO
+         * @var $dto CountryDto
          */
-        Assertion::isInstanceOf($dto, CountryDTO::class);
+        Assertion::isInstanceOf($dto, CountryDto::class);
 
         $name = new Name(
             $dto->getNameEn(),
@@ -172,12 +172,12 @@ abstract class CountryAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CountryDTO
+         * @var $dto CountryDto
          */
-        Assertion::isInstanceOf($dto, CountryDTO::class);
+        Assertion::isInstanceOf($dto, CountryDto::class);
 
         $name = new Name(
             $dto->getNameEn(),
@@ -202,11 +202,11 @@ abstract class CountryAbstract
     }
 
     /**
-     * @return CountryDTO
+     * @return CountryDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setCode($this->getCode())
             ->setCountryCode($this->getCountryCode())
             ->setNameEn($this->getName()->getEn())

@@ -116,11 +116,11 @@ abstract class CompanyServiceAbstract
     }
 
     /**
-     * @return CompanyServiceDTO
+     * @return CompanyServiceDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new CompanyServiceDTO();
+        return new CompanyServiceDto();
     }
 
     /**
@@ -128,12 +128,12 @@ abstract class CompanyServiceAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CompanyServiceDTO
+         * @var $dto CompanyServiceDto
          */
-        Assertion::isInstanceOf($dto, CompanyServiceDTO::class);
+        Assertion::isInstanceOf($dto, CompanyServiceDto::class);
 
         $self = new static(
             $dto->getCode());
@@ -153,12 +153,12 @@ abstract class CompanyServiceAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CompanyServiceDTO
+         * @var $dto CompanyServiceDto
          */
-        Assertion::isInstanceOf($dto, CompanyServiceDTO::class);
+        Assertion::isInstanceOf($dto, CompanyServiceDto::class);
 
         $this
             ->setCode($dto->getCode())
@@ -172,14 +172,16 @@ abstract class CompanyServiceAbstract
     }
 
     /**
-     * @return CompanyServiceDTO
+     * @return CompanyServiceDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setCode($this->getCode())
             ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setServiceId($this->getService() ? $this->getService()->getId() : null);
+            ->setCompany($this->getCompany())
+            ->setServiceId($this->getService() ? $this->getService()->getId() : null)
+            ->setService($this->getService());
     }
 
     /**

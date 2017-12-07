@@ -7,6 +7,29 @@ use Ivoz\Core\Domain\Model\EntityInterface;
 interface EtagVersionInterface extends EntityInterface
 {
     /**
+     * @return EtagVersionDto
+     */
+    public static function createDto();
+
+    /**
+     * Factory method
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @return EtagVersionDto
+     */
+    public function toDto();
+
+    /**
      * Set table
      *
      * @param string $table

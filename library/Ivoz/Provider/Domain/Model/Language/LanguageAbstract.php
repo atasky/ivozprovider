@@ -112,11 +112,11 @@ abstract class LanguageAbstract
     }
 
     /**
-     * @return LanguageDTO
+     * @return LanguageDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new LanguageDTO();
+        return new LanguageDto();
     }
 
     /**
@@ -124,12 +124,12 @@ abstract class LanguageAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto LanguageDTO
+         * @var $dto LanguageDto
          */
-        Assertion::isInstanceOf($dto, LanguageDTO::class);
+        Assertion::isInstanceOf($dto, LanguageDto::class);
 
         $name = new Name(
             $dto->getNameEn(),
@@ -153,12 +153,12 @@ abstract class LanguageAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto LanguageDTO
+         * @var $dto LanguageDto
          */
-        Assertion::isInstanceOf($dto, LanguageDTO::class);
+        Assertion::isInstanceOf($dto, LanguageDto::class);
 
         $name = new Name(
             $dto->getNameEn(),
@@ -176,11 +176,11 @@ abstract class LanguageAbstract
     }
 
     /**
-     * @return LanguageDTO
+     * @return LanguageDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setIden($this->getIden())
             ->setNameEn($this->getName()->getEn())
             ->setNameEs($this->getName()->getEs());

@@ -62,7 +62,7 @@ abstract class UsersLocationAbstract
     protected $cseq = '1';
 
     /**
-     * @column last_modified
+     * column: last_modified
      * @var \DateTime
      */
     protected $lastModified;
@@ -78,7 +78,7 @@ abstract class UsersLocationAbstract
     protected $cflags = '0';
 
     /**
-     * @column user_agent
+     * column: user_agent
      * @var string
      */
     protected $userAgent = '';
@@ -99,19 +99,19 @@ abstract class UsersLocationAbstract
     protected $instance;
 
     /**
-     * @column reg_id
+     * column: reg_id
      * @var integer
      */
     protected $regId = '0';
 
     /**
-     * @column server_id
+     * column: server_id
      * @var integer
      */
     protected $serverId = '0';
 
     /**
-     * @column connection_id
+     * column: connection_id
      * @var integer
      */
     protected $connectionId = '0';
@@ -247,11 +247,11 @@ abstract class UsersLocationAbstract
     }
 
     /**
-     * @return UsersLocationDTO
+     * @return UsersLocationDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new UsersLocationDTO();
+        return new UsersLocationDto();
     }
 
     /**
@@ -259,12 +259,12 @@ abstract class UsersLocationAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersLocationDTO
+         * @var $dto UsersLocationDto
          */
-        Assertion::isInstanceOf($dto, UsersLocationDTO::class);
+        Assertion::isInstanceOf($dto, UsersLocationDto::class);
 
         $self = new static(
             $dto->getRuid(),
@@ -303,12 +303,12 @@ abstract class UsersLocationAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersLocationDTO
+         * @var $dto UsersLocationDto
          */
-        Assertion::isInstanceOf($dto, UsersLocationDTO::class);
+        Assertion::isInstanceOf($dto, UsersLocationDto::class);
 
         $this
             ->setRuid($dto->getRuid())
@@ -341,11 +341,11 @@ abstract class UsersLocationAbstract
     }
 
     /**
-     * @return UsersLocationDTO
+     * @return UsersLocationDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setRuid($this->getRuid())
             ->setUsername($this->getUsername())
             ->setDomain($this->getDomain())

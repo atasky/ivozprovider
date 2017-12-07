@@ -17,7 +17,7 @@ abstract class BrandAbstract
     protected $name;
 
     /**
-     * @column domain_users
+     * column: domain_users
      * @var string
      */
     protected $domainUsers;
@@ -159,11 +159,11 @@ abstract class BrandAbstract
     }
 
     /**
-     * @return BrandDTO
+     * @return BrandDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new BrandDTO();
+        return new BrandDto();
     }
 
     /**
@@ -171,12 +171,12 @@ abstract class BrandAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto BrandDTO
+         * @var $dto BrandDto
          */
-        Assertion::isInstanceOf($dto, BrandDTO::class);
+        Assertion::isInstanceOf($dto, BrandDto::class);
 
         $logo = new Logo(
             $dto->getLogoFileSize(),
@@ -221,12 +221,12 @@ abstract class BrandAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto BrandDTO
+         * @var $dto BrandDto
          */
-        Assertion::isInstanceOf($dto, BrandDTO::class);
+        Assertion::isInstanceOf($dto, BrandDto::class);
 
         $logo = new Logo(
             $dto->getLogoFileSize(),
@@ -264,11 +264,11 @@ abstract class BrandAbstract
     }
 
     /**
-     * @return BrandDTO
+     * @return BrandDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setDomainUsers($this->getDomainUsers())
             ->setFromName($this->getFromName())
@@ -286,8 +286,11 @@ abstract class BrandAbstract
             ->setInvoiceCountry($this->getInvoice()->getCountry())
             ->setInvoiceRegistryData($this->getInvoice()->getRegistryData())
             ->setDomainId($this->getDomain() ? $this->getDomain()->getId() : null)
+            ->setDomain($this->getDomain())
             ->setLanguageId($this->getLanguage() ? $this->getLanguage()->getId() : null)
-            ->setDefaultTimezoneId($this->getDefaultTimezone() ? $this->getDefaultTimezone()->getId() : null);
+            ->setLanguage($this->getLanguage())
+            ->setDefaultTimezoneId($this->getDefaultTimezone() ? $this->getDefaultTimezone()->getId() : null)
+            ->setDefaultTimezone($this->getDefaultTimezone());
     }
 
     /**

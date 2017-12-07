@@ -12,7 +12,7 @@ use Ivoz\Core\Application\DataTransferObjectInterface;
 abstract class LcrRuleTargetAbstract
 {
     /**
-     * @column lcr_id
+     * column: lcr_id
      * @var integer
      */
     protected $lcrId = '1';
@@ -134,11 +134,11 @@ abstract class LcrRuleTargetAbstract
     }
 
     /**
-     * @return LcrRuleTargetDTO
+     * @return LcrRuleTargetDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new LcrRuleTargetDTO();
+        return new LcrRuleTargetDto();
     }
 
     /**
@@ -146,12 +146,12 @@ abstract class LcrRuleTargetAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto LcrRuleTargetDTO
+         * @var $dto LcrRuleTargetDto
          */
-        Assertion::isInstanceOf($dto, LcrRuleTargetDTO::class);
+        Assertion::isInstanceOf($dto, LcrRuleTargetDto::class);
 
         $self = new static(
             $dto->getLcrId(),
@@ -174,12 +174,12 @@ abstract class LcrRuleTargetAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto LcrRuleTargetDTO
+         * @var $dto LcrRuleTargetDto
          */
-        Assertion::isInstanceOf($dto, LcrRuleTargetDTO::class);
+        Assertion::isInstanceOf($dto, LcrRuleTargetDto::class);
 
         $this
             ->setLcrId($dto->getLcrId())
@@ -196,17 +196,20 @@ abstract class LcrRuleTargetAbstract
     }
 
     /**
-     * @return LcrRuleTargetDTO
+     * @return LcrRuleTargetDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setLcrId($this->getLcrId())
             ->setPriority($this->getPriority())
             ->setWeight($this->getWeight())
             ->setRuleId($this->getRule() ? $this->getRule()->getId() : null)
+            ->setRule($this->getRule())
             ->setGwId($this->getGw() ? $this->getGw()->getId() : null)
-            ->setOutgoingRoutingId($this->getOutgoingRouting() ? $this->getOutgoingRouting()->getId() : null);
+            ->setGw($this->getGw())
+            ->setOutgoingRoutingId($this->getOutgoingRouting() ? $this->getOutgoingRouting()->getId() : null)
+            ->setOutgoingRouting($this->getOutgoingRouting());
     }
 
     /**

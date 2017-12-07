@@ -12,31 +12,31 @@ use Ivoz\Core\Application\DataTransferObjectInterface;
 abstract class TrunksUacregAbstract
 {
     /**
-     * @column l_uuid
+     * column: l_uuid
      * @var string
      */
     protected $lUuid = '';
 
     /**
-     * @column l_username
+     * column: l_username
      * @var string
      */
     protected $lUsername = 'unused';
 
     /**
-     * @column l_domain
+     * column: l_domain
      * @var string
      */
     protected $lDomain = 'unused';
 
     /**
-     * @column r_username
+     * column: r_username
      * @var string
      */
     protected $rUsername = '';
 
     /**
-     * @column r_domain
+     * column: r_domain
      * @var string
      */
     protected $rDomain = '';
@@ -47,19 +47,19 @@ abstract class TrunksUacregAbstract
     protected $realm = '';
 
     /**
-     * @column auth_username
+     * column: auth_username
      * @var string
      */
     protected $authUsername = '';
 
     /**
-     * @column auth_password
+     * column: auth_password
      * @var string
      */
     protected $authPassword = '';
 
     /**
-     * @column auth_proxy
+     * column: auth_proxy
      * @var string
      */
     protected $authProxy = '';
@@ -75,7 +75,7 @@ abstract class TrunksUacregAbstract
     protected $flags = '0';
 
     /**
-     * @column reg_delay
+     * column: reg_delay
      * @var integer
      */
     protected $regDelay = '0';
@@ -210,11 +210,11 @@ abstract class TrunksUacregAbstract
     }
 
     /**
-     * @return TrunksUacregDTO
+     * @return TrunksUacregDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new TrunksUacregDTO();
+        return new TrunksUacregDto();
     }
 
     /**
@@ -222,12 +222,12 @@ abstract class TrunksUacregAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TrunksUacregDTO
+         * @var $dto TrunksUacregDto
          */
-        Assertion::isInstanceOf($dto, TrunksUacregDTO::class);
+        Assertion::isInstanceOf($dto, TrunksUacregDto::class);
 
         $self = new static(
             $dto->getLUuid(),
@@ -259,12 +259,12 @@ abstract class TrunksUacregAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TrunksUacregDTO
+         * @var $dto TrunksUacregDto
          */
-        Assertion::isInstanceOf($dto, TrunksUacregDTO::class);
+        Assertion::isInstanceOf($dto, TrunksUacregDto::class);
 
         $this
             ->setLUuid($dto->getLUuid())
@@ -290,11 +290,11 @@ abstract class TrunksUacregAbstract
     }
 
     /**
-     * @return TrunksUacregDTO
+     * @return TrunksUacregDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setLUuid($this->getLUuid())
             ->setLUsername($this->getLUsername())
             ->setLDomain($this->getLDomain())

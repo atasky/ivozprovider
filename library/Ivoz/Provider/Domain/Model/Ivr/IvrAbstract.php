@@ -32,7 +32,7 @@ abstract class IvrAbstract
     protected $allowExtensions = '0';
 
     /**
-     * @comment enum:number|extension|voicemail
+     * comment: enum:number|extension|voicemail
      * @var string
      */
     protected $noInputRouteType;
@@ -43,7 +43,7 @@ abstract class IvrAbstract
     protected $noInputNumberValue;
 
     /**
-     * @comment enum:number|extension|voicemail
+     * comment: enum:number|extension|voicemail
      * @var string
      */
     protected $errorRouteType;
@@ -205,11 +205,11 @@ abstract class IvrAbstract
     }
 
     /**
-     * @return IvrDTO
+     * @return IvrDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new IvrDTO();
+        return new IvrDto();
     }
 
     /**
@@ -217,12 +217,12 @@ abstract class IvrAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto IvrDTO
+         * @var $dto IvrDto
          */
-        Assertion::isInstanceOf($dto, IvrDTO::class);
+        Assertion::isInstanceOf($dto, IvrDto::class);
 
         $self = new static(
             $dto->getName(),
@@ -258,12 +258,12 @@ abstract class IvrAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto IvrDTO
+         * @var $dto IvrDto
          */
-        Assertion::isInstanceOf($dto, IvrDTO::class);
+        Assertion::isInstanceOf($dto, IvrDto::class);
 
         $this
             ->setName($dto->getName())
@@ -293,11 +293,11 @@ abstract class IvrAbstract
     }
 
     /**
-     * @return IvrDTO
+     * @return IvrDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setTimeout($this->getTimeout())
             ->setMaxDigits($this->getMaxDigits())
@@ -307,16 +307,27 @@ abstract class IvrAbstract
             ->setErrorRouteType($this->getErrorRouteType())
             ->setErrorNumberValue($this->getErrorNumberValue())
             ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany())
             ->setWelcomeLocutionId($this->getWelcomeLocution() ? $this->getWelcomeLocution()->getId() : null)
+            ->setWelcomeLocution($this->getWelcomeLocution())
             ->setNoInputLocutionId($this->getNoInputLocution() ? $this->getNoInputLocution()->getId() : null)
+            ->setNoInputLocution($this->getNoInputLocution())
             ->setErrorLocutionId($this->getErrorLocution() ? $this->getErrorLocution()->getId() : null)
+            ->setErrorLocution($this->getErrorLocution())
             ->setSuccessLocutionId($this->getSuccessLocution() ? $this->getSuccessLocution()->getId() : null)
+            ->setSuccessLocution($this->getSuccessLocution())
             ->setNoInputExtensionId($this->getNoInputExtension() ? $this->getNoInputExtension()->getId() : null)
+            ->setNoInputExtension($this->getNoInputExtension())
             ->setErrorExtensionId($this->getErrorExtension() ? $this->getErrorExtension()->getId() : null)
+            ->setErrorExtension($this->getErrorExtension())
             ->setNoInputVoiceMailUserId($this->getNoInputVoiceMailUser() ? $this->getNoInputVoiceMailUser()->getId() : null)
+            ->setNoInputVoiceMailUser($this->getNoInputVoiceMailUser())
             ->setErrorVoiceMailUserId($this->getErrorVoiceMailUser() ? $this->getErrorVoiceMailUser()->getId() : null)
+            ->setErrorVoiceMailUser($this->getErrorVoiceMailUser())
             ->setNoInputNumberCountryId($this->getNoInputNumberCountry() ? $this->getNoInputNumberCountry()->getId() : null)
-            ->setErrorNumberCountryId($this->getErrorNumberCountry() ? $this->getErrorNumberCountry()->getId() : null);
+            ->setNoInputNumberCountry($this->getNoInputNumberCountry())
+            ->setErrorNumberCountryId($this->getErrorNumberCountry() ? $this->getErrorNumberCountry()->getId() : null)
+            ->setErrorNumberCountry($this->getErrorNumberCountry());
     }
 
     /**

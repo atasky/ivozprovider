@@ -26,11 +26,11 @@ trait OutgoingDdiRulesPatternTrait
     }
 
     /**
-     * @return OutgoingDdiRulesPatternDTO
+     * @return OutgoingDdiRulesPatternDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new OutgoingDdiRulesPatternDTO();
+        return new OutgoingDdiRulesPatternDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait OutgoingDdiRulesPatternTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto OutgoingDdiRulesPatternDTO
+         * @var $dto OutgoingDdiRulesPatternDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait OutgoingDdiRulesPatternTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto OutgoingDdiRulesPatternDTO
+         * @var $dto OutgoingDdiRulesPatternDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return OutgoingDdiRulesPatternDTO
+     * @return OutgoingDdiRulesPatternDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

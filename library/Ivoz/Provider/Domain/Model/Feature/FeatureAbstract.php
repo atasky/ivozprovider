@@ -112,11 +112,11 @@ abstract class FeatureAbstract
     }
 
     /**
-     * @return FeatureDTO
+     * @return FeatureDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new FeatureDTO();
+        return new FeatureDto();
     }
 
     /**
@@ -124,12 +124,12 @@ abstract class FeatureAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FeatureDTO
+         * @var $dto FeatureDto
          */
-        Assertion::isInstanceOf($dto, FeatureDTO::class);
+        Assertion::isInstanceOf($dto, FeatureDto::class);
 
         $name = new Name(
             $dto->getNameEn(),
@@ -153,12 +153,12 @@ abstract class FeatureAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FeatureDTO
+         * @var $dto FeatureDto
          */
-        Assertion::isInstanceOf($dto, FeatureDTO::class);
+        Assertion::isInstanceOf($dto, FeatureDto::class);
 
         $name = new Name(
             $dto->getNameEn(),
@@ -176,11 +176,11 @@ abstract class FeatureAbstract
     }
 
     /**
-     * @return FeatureDTO
+     * @return FeatureDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setIden($this->getIden())
             ->setNameEn($this->getName()->getEn())
             ->setNameEs($this->getName()->getEs());

@@ -111,11 +111,11 @@ abstract class ExternalCallFilterRelScheduleAbstract
     }
 
     /**
-     * @return ExternalCallFilterRelScheduleDTO
+     * @return ExternalCallFilterRelScheduleDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ExternalCallFilterRelScheduleDTO();
+        return new ExternalCallFilterRelScheduleDto();
     }
 
     /**
@@ -123,12 +123,12 @@ abstract class ExternalCallFilterRelScheduleAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ExternalCallFilterRelScheduleDTO
+         * @var $dto ExternalCallFilterRelScheduleDto
          */
-        Assertion::isInstanceOf($dto, ExternalCallFilterRelScheduleDTO::class);
+        Assertion::isInstanceOf($dto, ExternalCallFilterRelScheduleDto::class);
 
         $self = new static();
 
@@ -147,12 +147,12 @@ abstract class ExternalCallFilterRelScheduleAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ExternalCallFilterRelScheduleDTO
+         * @var $dto ExternalCallFilterRelScheduleDto
          */
-        Assertion::isInstanceOf($dto, ExternalCallFilterRelScheduleDTO::class);
+        Assertion::isInstanceOf($dto, ExternalCallFilterRelScheduleDto::class);
 
         $this
             ->setFilter($dto->getFilter())
@@ -165,13 +165,15 @@ abstract class ExternalCallFilterRelScheduleAbstract
     }
 
     /**
-     * @return ExternalCallFilterRelScheduleDTO
+     * @return ExternalCallFilterRelScheduleDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setFilterId($this->getFilter() ? $this->getFilter()->getId() : null)
-            ->setScheduleId($this->getSchedule() ? $this->getSchedule()->getId() : null);
+            ->setFilter($this->getFilter())
+            ->setScheduleId($this->getSchedule() ? $this->getSchedule()->getId() : null)
+            ->setSchedule($this->getSchedule());
     }
 
     /**

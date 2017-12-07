@@ -26,11 +26,11 @@ trait ScheduleTrait
     }
 
     /**
-     * @return ScheduleDTO
+     * @return ScheduleDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ScheduleDTO();
+        return new ScheduleDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait ScheduleTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ScheduleDTO
+         * @var $dto ScheduleDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait ScheduleTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ScheduleDTO
+         * @var $dto ScheduleDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return ScheduleDTO
+     * @return ScheduleDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

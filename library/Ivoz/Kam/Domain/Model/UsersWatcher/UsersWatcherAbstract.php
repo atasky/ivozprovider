@@ -12,19 +12,19 @@ use Ivoz\Core\Application\DataTransferObjectInterface;
 abstract class UsersWatcherAbstract
 {
     /**
-     * @column presentity_uri
+     * column: presentity_uri
      * @var string
      */
     protected $presentityUri;
 
     /**
-     * @column watcher_username
+     * column: watcher_username
      * @var string
      */
     protected $watcherUsername;
 
     /**
-     * @column watcher_domain
+     * column: watcher_domain
      * @var string
      */
     protected $watcherDomain;
@@ -45,7 +45,7 @@ abstract class UsersWatcherAbstract
     protected $reason;
 
     /**
-     * @column inserted_time
+     * column: inserted_time
      * @var integer
      */
     protected $insertedTime;
@@ -151,11 +151,11 @@ abstract class UsersWatcherAbstract
     }
 
     /**
-     * @return UsersWatcherDTO
+     * @return UsersWatcherDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new UsersWatcherDTO();
+        return new UsersWatcherDto();
     }
 
     /**
@@ -163,12 +163,12 @@ abstract class UsersWatcherAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersWatcherDTO
+         * @var $dto UsersWatcherDto
          */
-        Assertion::isInstanceOf($dto, UsersWatcherDTO::class);
+        Assertion::isInstanceOf($dto, UsersWatcherDto::class);
 
         $self = new static(
             $dto->getPresentityUri(),
@@ -192,12 +192,12 @@ abstract class UsersWatcherAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersWatcherDTO
+         * @var $dto UsersWatcherDto
          */
-        Assertion::isInstanceOf($dto, UsersWatcherDTO::class);
+        Assertion::isInstanceOf($dto, UsersWatcherDto::class);
 
         $this
             ->setPresentityUri($dto->getPresentityUri())
@@ -215,11 +215,11 @@ abstract class UsersWatcherAbstract
     }
 
     /**
-     * @return UsersWatcherDTO
+     * @return UsersWatcherDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setPresentityUri($this->getPresentityUri())
             ->setWatcherUsername($this->getWatcherUsername())
             ->setWatcherDomain($this->getWatcherDomain())

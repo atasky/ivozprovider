@@ -11,20 +11,20 @@ use Assert\Assertion;
 class Pdf
 {
     /**
-     * @column pdfFileFileSize
-     * @comment FSO
+     * column: pdfFileFileSize
+     * comment: FSO
      * @var integer
      */
     protected $fileSize;
 
     /**
-     * @column pdfFileMimeType
+     * column: pdfFileMimeType
      * @var string
      */
     protected $mimeType;
 
     /**
-     * @column pdfFileBaseName
+     * column: pdfFileBaseName
      * @var string
      */
     protected $baseName;

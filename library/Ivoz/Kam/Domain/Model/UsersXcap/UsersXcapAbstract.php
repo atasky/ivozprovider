@@ -27,7 +27,7 @@ abstract class UsersXcapAbstract
     protected $doc;
 
     /**
-     * @column doc_type
+     * column: doc_type
      * @var integer
      */
     protected $docType;
@@ -43,7 +43,7 @@ abstract class UsersXcapAbstract
     protected $source;
 
     /**
-     * @column doc_uri
+     * column: doc_uri
      * @var string
      */
     protected $docUri;
@@ -158,11 +158,11 @@ abstract class UsersXcapAbstract
     }
 
     /**
-     * @return UsersXcapDTO
+     * @return UsersXcapDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new UsersXcapDTO();
+        return new UsersXcapDto();
     }
 
     /**
@@ -170,12 +170,12 @@ abstract class UsersXcapAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersXcapDTO
+         * @var $dto UsersXcapDto
          */
-        Assertion::isInstanceOf($dto, UsersXcapDTO::class);
+        Assertion::isInstanceOf($dto, UsersXcapDto::class);
 
         $self = new static(
             $dto->getUsername(),
@@ -199,12 +199,12 @@ abstract class UsersXcapAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersXcapDTO
+         * @var $dto UsersXcapDto
          */
-        Assertion::isInstanceOf($dto, UsersXcapDTO::class);
+        Assertion::isInstanceOf($dto, UsersXcapDto::class);
 
         $this
             ->setUsername($dto->getUsername())
@@ -223,11 +223,11 @@ abstract class UsersXcapAbstract
     }
 
     /**
-     * @return UsersXcapDTO
+     * @return UsersXcapDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setUsername($this->getUsername())
             ->setDomain($this->getDomain())
             ->setDoc($this->getDoc())

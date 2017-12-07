@@ -12,10 +12,35 @@ interface FaxInterface extends LoggableEntityInterface
      */
     public function getChangeSet();
 
+    public function setSendByEmail($sendByEmail);
+
     /**
      * {@inheritDoc}
      */
     public function getOutgoingDdi();
+
+    /**
+     * @return FaxDto
+     */
+    public static function createDto();
+
+    /**
+     * Factory method
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @return FaxDto
+     */
+    public function toDto();
 
     /**
      * Set name
@@ -48,15 +73,6 @@ interface FaxInterface extends LoggableEntityInterface
      * @return string
      */
     public function getEmail();
-
-    /**
-     * Set sendByEmail
-     *
-     * @param boolean $sendByEmail
-     *
-     * @return self
-     */
-    public function setSendByEmail($sendByEmail);
 
     /**
      * Get sendByEmail

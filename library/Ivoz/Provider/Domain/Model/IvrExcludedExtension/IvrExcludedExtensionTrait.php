@@ -26,11 +26,11 @@ trait IvrExcludedExtensionTrait
     }
 
     /**
-     * @return IvrExcludedExtensionDTO
+     * @return IvrExcludedExtensionDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new IvrExcludedExtensionDTO();
+        return new IvrExcludedExtensionDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait IvrExcludedExtensionTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto IvrExcludedExtensionDTO
+         * @var $dto IvrExcludedExtensionDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait IvrExcludedExtensionTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto IvrExcludedExtensionDTO
+         * @var $dto IvrExcludedExtensionDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return IvrExcludedExtensionDTO
+     * @return IvrExcludedExtensionDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

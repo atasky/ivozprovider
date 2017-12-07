@@ -134,11 +134,11 @@ abstract class RtpproxyAbstract
     }
 
     /**
-     * @return RtpproxyDTO
+     * @return RtpproxyDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new RtpproxyDTO();
+        return new RtpproxyDto();
     }
 
     /**
@@ -146,12 +146,12 @@ abstract class RtpproxyAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto RtpproxyDTO
+         * @var $dto RtpproxyDto
          */
-        Assertion::isInstanceOf($dto, RtpproxyDTO::class);
+        Assertion::isInstanceOf($dto, RtpproxyDto::class);
 
         $self = new static(
             $dto->getSetid(),
@@ -174,12 +174,12 @@ abstract class RtpproxyAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto RtpproxyDTO
+         * @var $dto RtpproxyDto
          */
-        Assertion::isInstanceOf($dto, RtpproxyDTO::class);
+        Assertion::isInstanceOf($dto, RtpproxyDto::class);
 
         $this
             ->setSetid($dto->getSetid())
@@ -196,11 +196,11 @@ abstract class RtpproxyAbstract
     }
 
     /**
-     * @return RtpproxyDTO
+     * @return RtpproxyDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setSetid($this->getSetid())
             ->setUrl($this->getUrl())
             ->setFlags($this->getFlags())

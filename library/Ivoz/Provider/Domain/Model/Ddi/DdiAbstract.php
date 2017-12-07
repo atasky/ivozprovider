@@ -22,7 +22,7 @@ abstract class DdiAbstract
     protected $ddie164;
 
     /**
-     * @comment enum:none|all|inbound|outbound
+     * comment: enum:none|all|inbound|outbound
      * @var string
      */
     protected $recordCalls = 'none';
@@ -33,7 +33,7 @@ abstract class DdiAbstract
     protected $displayName;
 
     /**
-     * @comment enum:user|ivr|huntGroup|fax|conferenceRoom|friend|queue|retailAccount|conditional
+     * comment: enum:user|ivr|huntGroup|fax|conferenceRoom|friend|queue|retailAccount|conditional
      * @var string
      */
     protected $routeType;
@@ -210,11 +210,11 @@ abstract class DdiAbstract
     }
 
     /**
-     * @return DdiDTO
+     * @return DdiDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new DdiDTO();
+        return new DdiDto();
     }
 
     /**
@@ -222,12 +222,12 @@ abstract class DdiAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto DdiDTO
+         * @var $dto DdiDto
          */
-        Assertion::isInstanceOf($dto, DdiDTO::class);
+        Assertion::isInstanceOf($dto, DdiDto::class);
 
         $self = new static(
             $dto->getDdi(),
@@ -265,12 +265,12 @@ abstract class DdiAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto DdiDTO
+         * @var $dto DdiDto
          */
-        Assertion::isInstanceOf($dto, DdiDTO::class);
+        Assertion::isInstanceOf($dto, DdiDto::class);
 
         $this
             ->setDdi($dto->getDdi())
@@ -302,11 +302,11 @@ abstract class DdiAbstract
     }
 
     /**
-     * @return DdiDTO
+     * @return DdiDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setDdi($this->getDdi())
             ->setDdie164($this->getDdie164())
             ->setRecordCalls($this->getRecordCalls())
@@ -315,19 +315,33 @@ abstract class DdiAbstract
             ->setBillInboundCalls($this->getBillInboundCalls())
             ->setFriendValue($this->getFriendValue())
             ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany())
             ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
+            ->setBrand($this->getBrand())
             ->setConferenceRoomId($this->getConferenceRoom() ? $this->getConferenceRoom()->getId() : null)
+            ->setConferenceRoom($this->getConferenceRoom())
             ->setLanguageId($this->getLanguage() ? $this->getLanguage()->getId() : null)
+            ->setLanguage($this->getLanguage())
             ->setQueueId($this->getQueue() ? $this->getQueue()->getId() : null)
+            ->setQueue($this->getQueue())
             ->setExternalCallFilterId($this->getExternalCallFilter() ? $this->getExternalCallFilter()->getId() : null)
+            ->setExternalCallFilter($this->getExternalCallFilter())
             ->setUserId($this->getUser() ? $this->getUser()->getId() : null)
+            ->setUser($this->getUser())
             ->setIvrId($this->getIvr() ? $this->getIvr()->getId() : null)
+            ->setIvr($this->getIvr())
             ->setHuntGroupId($this->getHuntGroup() ? $this->getHuntGroup()->getId() : null)
+            ->setHuntGroup($this->getHuntGroup())
             ->setFaxId($this->getFax() ? $this->getFax()->getId() : null)
+            ->setFax($this->getFax())
             ->setPeeringContractId($this->getPeeringContract() ? $this->getPeeringContract()->getId() : null)
+            ->setPeeringContract($this->getPeeringContract())
             ->setCountryId($this->getCountry() ? $this->getCountry()->getId() : null)
+            ->setCountry($this->getCountry())
             ->setRetailAccountId($this->getRetailAccount() ? $this->getRetailAccount()->getId() : null)
-            ->setConditionalRouteId($this->getConditionalRoute() ? $this->getConditionalRoute()->getId() : null);
+            ->setRetailAccount($this->getRetailAccount())
+            ->setConditionalRouteId($this->getConditionalRoute() ? $this->getConditionalRoute()->getId() : null)
+            ->setConditionalRoute($this->getConditionalRoute());
     }
 
     /**

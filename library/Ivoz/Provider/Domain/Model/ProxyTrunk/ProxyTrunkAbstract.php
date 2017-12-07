@@ -111,11 +111,11 @@ abstract class ProxyTrunkAbstract
     }
 
     /**
-     * @return ProxyTrunkDTO
+     * @return ProxyTrunkDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ProxyTrunkDTO();
+        return new ProxyTrunkDto();
     }
 
     /**
@@ -123,12 +123,12 @@ abstract class ProxyTrunkAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ProxyTrunkDTO
+         * @var $dto ProxyTrunkDto
          */
-        Assertion::isInstanceOf($dto, ProxyTrunkDTO::class);
+        Assertion::isInstanceOf($dto, ProxyTrunkDto::class);
 
         $self = new static(
             $dto->getIp());
@@ -147,12 +147,12 @@ abstract class ProxyTrunkAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ProxyTrunkDTO
+         * @var $dto ProxyTrunkDto
          */
-        Assertion::isInstanceOf($dto, ProxyTrunkDTO::class);
+        Assertion::isInstanceOf($dto, ProxyTrunkDto::class);
 
         $this
             ->setName($dto->getName())
@@ -165,11 +165,11 @@ abstract class ProxyTrunkAbstract
     }
 
     /**
-     * @return ProxyTrunkDTO
+     * @return ProxyTrunkDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setIp($this->getIp());
     }

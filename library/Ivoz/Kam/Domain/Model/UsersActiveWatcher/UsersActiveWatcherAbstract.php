@@ -12,31 +12,31 @@ use Ivoz\Core\Application\DataTransferObjectInterface;
 abstract class UsersActiveWatcherAbstract
 {
     /**
-     * @column presentity_uri
+     * column: presentity_uri
      * @var string
      */
     protected $presentityUri;
 
     /**
-     * @column watcher_username
+     * column: watcher_username
      * @var string
      */
     protected $watcherUsername;
 
     /**
-     * @column watcher_domain
+     * column: watcher_domain
      * @var string
      */
     protected $watcherDomain;
 
     /**
-     * @column to_user
+     * column: to_user
      * @var string
      */
     protected $toUser;
 
     /**
-     * @column to_domain
+     * column: to_domain
      * @var string
      */
     protected $toDomain;
@@ -47,19 +47,19 @@ abstract class UsersActiveWatcherAbstract
     protected $event = 'presence';
 
     /**
-     * @column event_id
+     * column: event_id
      * @var string
      */
     protected $eventId;
 
     /**
-     * @column to_tag
+     * column: to_tag
      * @var string
      */
     protected $toTag;
 
     /**
-     * @column from_tag
+     * column: from_tag
      * @var string
      */
     protected $fromTag;
@@ -70,13 +70,13 @@ abstract class UsersActiveWatcherAbstract
     protected $callid;
 
     /**
-     * @column local_cseq
+     * column: local_cseq
      * @var integer
      */
     protected $localCseq;
 
     /**
-     * @column remote_cseq
+     * column: remote_cseq
      * @var integer
      */
     protected $remoteCseq;
@@ -87,7 +87,7 @@ abstract class UsersActiveWatcherAbstract
     protected $contact;
 
     /**
-     * @column record_route
+     * column: record_route
      * @var string
      */
     protected $recordRoute;
@@ -113,25 +113,25 @@ abstract class UsersActiveWatcherAbstract
     protected $version = '0';
 
     /**
-     * @column socket_info
+     * column: socket_info
      * @var string
      */
     protected $socketInfo;
 
     /**
-     * @column local_contact
+     * column: local_contact
      * @var string
      */
     protected $localContact;
 
     /**
-     * @column from_user
+     * column: from_user
      * @var string
      */
     protected $fromUser;
 
     /**
-     * @column from_domain
+     * column: from_domain
      * @var string
      */
     protected $fromDomain;
@@ -142,7 +142,7 @@ abstract class UsersActiveWatcherAbstract
     protected $updated;
 
     /**
-     * @column updated_winfo
+     * column: updated_winfo
      * @var integer
      */
     protected $updatedWinfo;
@@ -153,7 +153,7 @@ abstract class UsersActiveWatcherAbstract
     protected $flags = '0';
 
     /**
-     * @column user_agent
+     * column: user_agent
      * @var string
      */
     protected $userAgent = '';
@@ -295,11 +295,11 @@ abstract class UsersActiveWatcherAbstract
     }
 
     /**
-     * @return UsersActiveWatcherDTO
+     * @return UsersActiveWatcherDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new UsersActiveWatcherDTO();
+        return new UsersActiveWatcherDto();
     }
 
     /**
@@ -307,12 +307,12 @@ abstract class UsersActiveWatcherAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersActiveWatcherDTO
+         * @var $dto UsersActiveWatcherDto
          */
-        Assertion::isInstanceOf($dto, UsersActiveWatcherDTO::class);
+        Assertion::isInstanceOf($dto, UsersActiveWatcherDto::class);
 
         $self = new static(
             $dto->getPresentityUri(),
@@ -355,12 +355,12 @@ abstract class UsersActiveWatcherAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersActiveWatcherDTO
+         * @var $dto UsersActiveWatcherDto
          */
-        Assertion::isInstanceOf($dto, UsersActiveWatcherDTO::class);
+        Assertion::isInstanceOf($dto, UsersActiveWatcherDto::class);
 
         $this
             ->setPresentityUri($dto->getPresentityUri())
@@ -397,11 +397,11 @@ abstract class UsersActiveWatcherAbstract
     }
 
     /**
-     * @return UsersActiveWatcherDTO
+     * @return UsersActiveWatcherDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setPresentityUri($this->getPresentityUri())
             ->setWatcherUsername($this->getWatcherUsername())
             ->setWatcherDomain($this->getWatcherDomain())

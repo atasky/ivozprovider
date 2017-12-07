@@ -34,11 +34,11 @@ trait CallAclTrait
     }
 
     /**
-     * @return CallAclDTO
+     * @return CallAclDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new CallAclDTO();
+        return new CallAclDto();
     }
 
     /**
@@ -46,12 +46,12 @@ trait CallAclTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CallAclDTO
+         * @var $dto CallAclDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
         if ($dto->getRelMatchLists()) {
             $self->replaceRelMatchLists($dto->getRelMatchLists());
         }
@@ -67,12 +67,12 @@ trait CallAclTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto CallAclDTO
+         * @var $dto CallAclDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
         if ($dto->getRelMatchLists()) {
             $this->replaceRelMatchLists($dto->getRelMatchLists());
         }
@@ -80,11 +80,11 @@ trait CallAclTrait
     }
 
     /**
-     * @return CallAclDTO
+     * @return CallAclDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

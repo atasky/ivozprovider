@@ -8,6 +8,29 @@ use Doctrine\Common\Collections\Collection;
 interface RoutingPatternInterface extends EntityInterface
 {
     /**
+     * @return RoutingPatternDto
+     */
+    public static function createDto();
+
+    /**
+     * Factory method
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @return RoutingPatternDto
+     */
+    public function toDto();
+
+    /**
      * Set regExp
      *
      * @param string $regExp

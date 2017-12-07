@@ -1,14 +1,14 @@
 <?php
 
-namespace Ivoz\Kam\Domain\Model\UsersCdr;
+namespace Ivoz\Provider\Domain\Model\ParsedCdr;
 
 use Ivoz\Core\Application\DataTransferObjectInterface;
 
 /**
- * UsersCdrTrait
+ * ParsedCdrTrait
  * @codeCoverageIgnore
  */
-trait UsersCdrTrait
+trait ParsedCdrTrait
 {
     /**
      * @var integer
@@ -19,18 +19,18 @@ trait UsersCdrTrait
     /**
      * Constructor
      */
-    public function __construct()
+    protected function __construct()
     {
         parent::__construct(...func_get_args());
 
     }
 
     /**
-     * @return UsersCdrDTO
+     * @return ParsedCdrDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new UsersCdrDTO();
+        return new ParsedCdrDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait UsersCdrTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersCdrDTO
+         * @var $dto ParsedCdrDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait UsersCdrTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersCdrDTO
+         * @var $dto ParsedCdrDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return UsersCdrDTO
+     * @return ParsedCdrDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

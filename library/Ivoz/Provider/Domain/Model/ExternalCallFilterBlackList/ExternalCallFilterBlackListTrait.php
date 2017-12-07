@@ -26,11 +26,11 @@ trait ExternalCallFilterBlackListTrait
     }
 
     /**
-     * @return ExternalCallFilterBlackListDTO
+     * @return ExternalCallFilterBlackListDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ExternalCallFilterBlackListDTO();
+        return new ExternalCallFilterBlackListDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait ExternalCallFilterBlackListTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ExternalCallFilterBlackListDTO
+         * @var $dto ExternalCallFilterBlackListDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait ExternalCallFilterBlackListTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ExternalCallFilterBlackListDTO
+         * @var $dto ExternalCallFilterBlackListDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return ExternalCallFilterBlackListDTO
+     * @return ExternalCallFilterBlackListDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

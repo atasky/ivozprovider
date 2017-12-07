@@ -40,11 +40,11 @@ trait TerminalTrait
     }
 
     /**
-     * @return TerminalDTO
+     * @return TerminalDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new TerminalDTO();
+        return new TerminalDto();
     }
 
     /**
@@ -52,12 +52,12 @@ trait TerminalTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TerminalDTO
+         * @var $dto TerminalDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
         if ($dto->getAstPsEndpoints()) {
             $self->replaceAstPsEndpoints($dto->getAstPsEndpoints());
         }
@@ -77,12 +77,12 @@ trait TerminalTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TerminalDTO
+         * @var $dto TerminalDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
         if ($dto->getAstPsEndpoints()) {
             $this->replaceAstPsEndpoints($dto->getAstPsEndpoints());
         }
@@ -93,11 +93,11 @@ trait TerminalTrait
     }
 
     /**
-     * @return TerminalDTO
+     * @return TerminalDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

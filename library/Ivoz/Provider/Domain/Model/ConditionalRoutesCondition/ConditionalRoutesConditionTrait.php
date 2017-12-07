@@ -46,11 +46,11 @@ trait ConditionalRoutesConditionTrait
     }
 
     /**
-     * @return ConditionalRoutesConditionDTO
+     * @return ConditionalRoutesConditionDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ConditionalRoutesConditionDTO();
+        return new ConditionalRoutesConditionDto();
     }
 
     /**
@@ -58,12 +58,12 @@ trait ConditionalRoutesConditionTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ConditionalRoutesConditionDTO
+         * @var $dto ConditionalRoutesConditionDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
         if ($dto->getMatchlists()) {
             $self->replaceMatchlists($dto->getMatchlists());
         }
@@ -87,12 +87,12 @@ trait ConditionalRoutesConditionTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ConditionalRoutesConditionDTO
+         * @var $dto ConditionalRoutesConditionDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
         if ($dto->getMatchlists()) {
             $this->replaceMatchlists($dto->getMatchlists());
         }
@@ -106,11 +106,11 @@ trait ConditionalRoutesConditionTrait
     }
 
     /**
-     * @return ConditionalRoutesConditionDTO
+     * @return ConditionalRoutesConditionDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

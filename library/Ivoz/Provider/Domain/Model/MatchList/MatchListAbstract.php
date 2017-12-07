@@ -116,11 +116,11 @@ abstract class MatchListAbstract
     }
 
     /**
-     * @return MatchListDTO
+     * @return MatchListDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new MatchListDTO();
+        return new MatchListDto();
     }
 
     /**
@@ -128,12 +128,12 @@ abstract class MatchListAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto MatchListDTO
+         * @var $dto MatchListDto
          */
-        Assertion::isInstanceOf($dto, MatchListDTO::class);
+        Assertion::isInstanceOf($dto, MatchListDto::class);
 
         $self = new static(
             $dto->getName());
@@ -153,12 +153,12 @@ abstract class MatchListAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto MatchListDTO
+         * @var $dto MatchListDto
          */
-        Assertion::isInstanceOf($dto, MatchListDTO::class);
+        Assertion::isInstanceOf($dto, MatchListDto::class);
 
         $this
             ->setName($dto->getName())
@@ -172,14 +172,16 @@ abstract class MatchListAbstract
     }
 
     /**
-     * @return MatchListDTO
+     * @return MatchListDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null);
+            ->setBrand($this->getBrand())
+            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany());
     }
 
     /**

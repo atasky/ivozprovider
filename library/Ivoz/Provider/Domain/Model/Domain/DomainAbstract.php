@@ -117,11 +117,11 @@ abstract class DomainAbstract
     }
 
     /**
-     * @return DomainDTO
+     * @return DomainDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new DomainDTO();
+        return new DomainDto();
     }
 
     /**
@@ -129,12 +129,12 @@ abstract class DomainAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto DomainDTO
+         * @var $dto DomainDto
          */
-        Assertion::isInstanceOf($dto, DomainDTO::class);
+        Assertion::isInstanceOf($dto, DomainDto::class);
 
         $self = new static(
             $dto->getDomain(),
@@ -154,12 +154,12 @@ abstract class DomainAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto DomainDTO
+         * @var $dto DomainDto
          */
-        Assertion::isInstanceOf($dto, DomainDTO::class);
+        Assertion::isInstanceOf($dto, DomainDto::class);
 
         $this
             ->setDomain($dto->getDomain())
@@ -173,11 +173,11 @@ abstract class DomainAbstract
     }
 
     /**
-     * @return DomainDTO
+     * @return DomainDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setDomain($this->getDomain())
             ->setPointsTo($this->getPointsTo())
             ->setDescription($this->getDescription());

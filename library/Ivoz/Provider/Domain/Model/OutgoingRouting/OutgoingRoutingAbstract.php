@@ -142,11 +142,11 @@ abstract class OutgoingRoutingAbstract
     }
 
     /**
-     * @return OutgoingRoutingDTO
+     * @return OutgoingRoutingDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new OutgoingRoutingDTO();
+        return new OutgoingRoutingDto();
     }
 
     /**
@@ -154,12 +154,12 @@ abstract class OutgoingRoutingAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto OutgoingRoutingDTO
+         * @var $dto OutgoingRoutingDto
          */
-        Assertion::isInstanceOf($dto, OutgoingRoutingDTO::class);
+        Assertion::isInstanceOf($dto, OutgoingRoutingDto::class);
 
         $self = new static(
             $dto->getPriority(),
@@ -184,12 +184,12 @@ abstract class OutgoingRoutingAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto OutgoingRoutingDTO
+         * @var $dto OutgoingRoutingDto
          */
-        Assertion::isInstanceOf($dto, OutgoingRoutingDTO::class);
+        Assertion::isInstanceOf($dto, OutgoingRoutingDto::class);
 
         $this
             ->setType($dto->getType())
@@ -208,19 +208,24 @@ abstract class OutgoingRoutingAbstract
     }
 
     /**
-     * @return OutgoingRoutingDTO
+     * @return OutgoingRoutingDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setType($this->getType())
             ->setPriority($this->getPriority())
             ->setWeight($this->getWeight())
             ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
+            ->setBrand($this->getBrand())
             ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany())
             ->setPeeringContractId($this->getPeeringContract() ? $this->getPeeringContract()->getId() : null)
+            ->setPeeringContract($this->getPeeringContract())
             ->setRoutingPatternId($this->getRoutingPattern() ? $this->getRoutingPattern()->getId() : null)
-            ->setRoutingPatternGroupId($this->getRoutingPatternGroup() ? $this->getRoutingPatternGroup()->getId() : null);
+            ->setRoutingPattern($this->getRoutingPattern())
+            ->setRoutingPatternGroupId($this->getRoutingPatternGroup() ? $this->getRoutingPatternGroup()->getId() : null)
+            ->setRoutingPatternGroup($this->getRoutingPatternGroup());
     }
 
     /**
@@ -423,16 +428,6 @@ abstract class OutgoingRoutingAbstract
     }
 
     /**
-     * Get routingPatternGroup
-     *
-     * @return \Ivoz\Provider\Domain\Model\RoutingPatternGroup\RoutingPatternGroupInterface
-     */
-    public function getRoutingPatternGroup()
-    {
-        return $this->routingPatternGroup;
-    }
-
-    /**
      * Set routingPatternGroup
      *
      * @param \Ivoz\Provider\Domain\Model\RoutingPatternGroup\RoutingPatternGroupInterface $routingPatternGroup
@@ -444,6 +439,16 @@ abstract class OutgoingRoutingAbstract
         $this->routingPatternGroup = $routingPatternGroup;
 
         return $this;
+    }
+
+    /**
+     * Get routingPatternGroup
+     *
+     * @return \Ivoz\Provider\Domain\Model\RoutingPatternGroup\RoutingPatternGroupInterface
+     */
+    public function getRoutingPatternGroup()
+    {
+        return $this->routingPatternGroup;
     }
 
 

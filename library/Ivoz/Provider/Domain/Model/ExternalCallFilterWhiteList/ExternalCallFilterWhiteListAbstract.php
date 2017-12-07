@@ -111,11 +111,11 @@ abstract class ExternalCallFilterWhiteListAbstract
     }
 
     /**
-     * @return ExternalCallFilterWhiteListDTO
+     * @return ExternalCallFilterWhiteListDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ExternalCallFilterWhiteListDTO();
+        return new ExternalCallFilterWhiteListDto();
     }
 
     /**
@@ -123,12 +123,12 @@ abstract class ExternalCallFilterWhiteListAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ExternalCallFilterWhiteListDTO
+         * @var $dto ExternalCallFilterWhiteListDto
          */
-        Assertion::isInstanceOf($dto, ExternalCallFilterWhiteListDTO::class);
+        Assertion::isInstanceOf($dto, ExternalCallFilterWhiteListDto::class);
 
         $self = new static();
 
@@ -147,12 +147,12 @@ abstract class ExternalCallFilterWhiteListAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ExternalCallFilterWhiteListDTO
+         * @var $dto ExternalCallFilterWhiteListDto
          */
-        Assertion::isInstanceOf($dto, ExternalCallFilterWhiteListDTO::class);
+        Assertion::isInstanceOf($dto, ExternalCallFilterWhiteListDto::class);
 
         $this
             ->setFilter($dto->getFilter())
@@ -165,13 +165,15 @@ abstract class ExternalCallFilterWhiteListAbstract
     }
 
     /**
-     * @return ExternalCallFilterWhiteListDTO
+     * @return ExternalCallFilterWhiteListDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setFilterId($this->getFilter() ? $this->getFilter()->getId() : null)
-            ->setMatchlistId($this->getMatchlist() ? $this->getMatchlist()->getId() : null);
+            ->setFilter($this->getFilter())
+            ->setMatchlistId($this->getMatchlist() ? $this->getMatchlist()->getId() : null)
+            ->setMatchlist($this->getMatchlist());
     }
 
     /**

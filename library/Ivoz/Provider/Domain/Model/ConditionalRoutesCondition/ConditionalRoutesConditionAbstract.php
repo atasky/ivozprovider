@@ -17,7 +17,7 @@ abstract class ConditionalRoutesConditionAbstract
     protected $priority = '1';
 
     /**
-     * @comment enum:user|number|ivr|huntGroup|voicemail|friend|queue|conferenceRoom|extension
+     * comment: enum:user|number|ivr|huntGroup|voicemail|friend|queue|conferenceRoom|extension
      * @var string
      */
     protected $routeType;
@@ -172,11 +172,11 @@ abstract class ConditionalRoutesConditionAbstract
     }
 
     /**
-     * @return ConditionalRoutesConditionDTO
+     * @return ConditionalRoutesConditionDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ConditionalRoutesConditionDTO();
+        return new ConditionalRoutesConditionDto();
     }
 
     /**
@@ -184,12 +184,12 @@ abstract class ConditionalRoutesConditionAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ConditionalRoutesConditionDTO
+         * @var $dto ConditionalRoutesConditionDto
          */
-        Assertion::isInstanceOf($dto, ConditionalRoutesConditionDTO::class);
+        Assertion::isInstanceOf($dto, ConditionalRoutesConditionDto::class);
 
         $self = new static(
             $dto->getPriority());
@@ -220,12 +220,12 @@ abstract class ConditionalRoutesConditionAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ConditionalRoutesConditionDTO
+         * @var $dto ConditionalRoutesConditionDto
          */
-        Assertion::isInstanceOf($dto, ConditionalRoutesConditionDTO::class);
+        Assertion::isInstanceOf($dto, ConditionalRoutesConditionDto::class);
 
         $this
             ->setPriority($dto->getPriority())
@@ -250,25 +250,35 @@ abstract class ConditionalRoutesConditionAbstract
     }
 
     /**
-     * @return ConditionalRoutesConditionDTO
+     * @return ConditionalRoutesConditionDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setPriority($this->getPriority())
             ->setRouteType($this->getRouteType())
             ->setNumberValue($this->getNumberValue())
             ->setFriendValue($this->getFriendValue())
             ->setConditionalRouteId($this->getConditionalRoute() ? $this->getConditionalRoute()->getId() : null)
+            ->setConditionalRoute($this->getConditionalRoute())
             ->setIvrId($this->getIvr() ? $this->getIvr()->getId() : null)
+            ->setIvr($this->getIvr())
             ->setHuntGroupId($this->getHuntGroup() ? $this->getHuntGroup()->getId() : null)
+            ->setHuntGroup($this->getHuntGroup())
             ->setVoicemailUserId($this->getVoicemailUser() ? $this->getVoicemailUser()->getId() : null)
+            ->setVoicemailUser($this->getVoicemailUser())
             ->setUserId($this->getUser() ? $this->getUser()->getId() : null)
+            ->setUser($this->getUser())
             ->setQueueId($this->getQueue() ? $this->getQueue()->getId() : null)
+            ->setQueue($this->getQueue())
             ->setLocutionId($this->getLocution() ? $this->getLocution()->getId() : null)
+            ->setLocution($this->getLocution())
             ->setConferenceRoomId($this->getConferenceRoom() ? $this->getConferenceRoom()->getId() : null)
+            ->setConferenceRoom($this->getConferenceRoom())
             ->setExtensionId($this->getExtension() ? $this->getExtension()->getId() : null)
-            ->setNumberCountryId($this->getNumberCountry() ? $this->getNumberCountry()->getId() : null);
+            ->setExtension($this->getExtension())
+            ->setNumberCountryId($this->getNumberCountry() ? $this->getNumberCountry()->getId() : null)
+            ->setNumberCountry($this->getNumberCountry());
     }
 
     /**

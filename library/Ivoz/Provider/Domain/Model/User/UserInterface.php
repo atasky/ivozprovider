@@ -108,6 +108,31 @@ interface UserInterface extends LoggableEntityInterface
      */
     public function getLanguageCode();
 
+    public function setEmail($email = null);
+
+    /**
+     * @return UserDto
+     */
+    public static function createDto();
+
+    /**
+     * Factory method
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @return UserDto
+     */
+    public function toDto();
+
     /**
      * Set name
      *
@@ -139,15 +164,6 @@ interface UserInterface extends LoggableEntityInterface
      * @return string
      */
     public function getLastname();
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return self
-     */
-    public function setEmail($email = null);
 
     /**
      * Get email

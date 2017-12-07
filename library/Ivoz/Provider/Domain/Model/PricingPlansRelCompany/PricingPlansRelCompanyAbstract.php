@@ -133,11 +133,11 @@ abstract class PricingPlansRelCompanyAbstract
     }
 
     /**
-     * @return PricingPlansRelCompanyDTO
+     * @return PricingPlansRelCompanyDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new PricingPlansRelCompanyDTO();
+        return new PricingPlansRelCompanyDto();
     }
 
     /**
@@ -145,12 +145,12 @@ abstract class PricingPlansRelCompanyAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PricingPlansRelCompanyDTO
+         * @var $dto PricingPlansRelCompanyDto
          */
-        Assertion::isInstanceOf($dto, PricingPlansRelCompanyDTO::class);
+        Assertion::isInstanceOf($dto, PricingPlansRelCompanyDto::class);
 
         $self = new static(
             $dto->getValidFrom(),
@@ -173,12 +173,12 @@ abstract class PricingPlansRelCompanyAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PricingPlansRelCompanyDTO
+         * @var $dto PricingPlansRelCompanyDto
          */
-        Assertion::isInstanceOf($dto, PricingPlansRelCompanyDTO::class);
+        Assertion::isInstanceOf($dto, PricingPlansRelCompanyDto::class);
 
         $this
             ->setValidFrom($dto->getValidFrom())
@@ -195,17 +195,20 @@ abstract class PricingPlansRelCompanyAbstract
     }
 
     /**
-     * @return PricingPlansRelCompanyDTO
+     * @return PricingPlansRelCompanyDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setValidFrom($this->getValidFrom())
             ->setValidTo($this->getValidTo())
             ->setMetric($this->getMetric())
             ->setPricingPlanId($this->getPricingPlan() ? $this->getPricingPlan()->getId() : null)
+            ->setPricingPlan($this->getPricingPlan())
             ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null);
+            ->setCompany($this->getCompany())
+            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
+            ->setBrand($this->getBrand());
     }
 
     /**

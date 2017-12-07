@@ -26,11 +26,11 @@ trait RecordingTrait
     }
 
     /**
-     * @return RecordingDTO
+     * @return RecordingDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new RecordingDTO();
+        return new RecordingDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait RecordingTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto RecordingDTO
+         * @var $dto RecordingDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait RecordingTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto RecordingDTO
+         * @var $dto RecordingDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return RecordingDTO
+     * @return RecordingDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

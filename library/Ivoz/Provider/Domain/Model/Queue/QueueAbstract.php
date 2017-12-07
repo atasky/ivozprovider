@@ -22,7 +22,7 @@ abstract class QueueAbstract
     protected $maxWaitTime;
 
     /**
-     * @comment enum:number|extension|voicemail
+     * comment: enum:number|extension|voicemail
      * @var string
      */
     protected $timeoutTargetType;
@@ -38,7 +38,7 @@ abstract class QueueAbstract
     protected $maxlen;
 
     /**
-     * @comment enum:number|extension|voicemail
+     * comment: enum:number|extension|voicemail
      * @var string
      */
     protected $fullTargetType;
@@ -213,11 +213,11 @@ abstract class QueueAbstract
     }
 
     /**
-     * @return QueueDTO
+     * @return QueueDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new QueueDTO();
+        return new QueueDto();
     }
 
     /**
@@ -225,12 +225,12 @@ abstract class QueueAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto QueueDTO
+         * @var $dto QueueDto
          */
-        Assertion::isInstanceOf($dto, QueueDTO::class);
+        Assertion::isInstanceOf($dto, QueueDto::class);
 
         $self = new static();
 
@@ -269,12 +269,12 @@ abstract class QueueAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto QueueDTO
+         * @var $dto QueueDto
          */
-        Assertion::isInstanceOf($dto, QueueDTO::class);
+        Assertion::isInstanceOf($dto, QueueDto::class);
 
         $this
             ->setName($dto->getName())
@@ -307,11 +307,11 @@ abstract class QueueAbstract
     }
 
     /**
-     * @return QueueDTO
+     * @return QueueDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setMaxWaitTime($this->getMaxWaitTime())
             ->setTimeoutTargetType($this->getTimeoutTargetType())
@@ -325,15 +325,25 @@ abstract class QueueAbstract
             ->setStrategy($this->getStrategy())
             ->setWeight($this->getWeight())
             ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany())
             ->setPeriodicAnnounceLocutionId($this->getPeriodicAnnounceLocution() ? $this->getPeriodicAnnounceLocution()->getId() : null)
+            ->setPeriodicAnnounceLocution($this->getPeriodicAnnounceLocution())
             ->setTimeoutLocutionId($this->getTimeoutLocution() ? $this->getTimeoutLocution()->getId() : null)
+            ->setTimeoutLocution($this->getTimeoutLocution())
             ->setTimeoutExtensionId($this->getTimeoutExtension() ? $this->getTimeoutExtension()->getId() : null)
+            ->setTimeoutExtension($this->getTimeoutExtension())
             ->setTimeoutVoiceMailUserId($this->getTimeoutVoiceMailUser() ? $this->getTimeoutVoiceMailUser()->getId() : null)
+            ->setTimeoutVoiceMailUser($this->getTimeoutVoiceMailUser())
             ->setFullLocutionId($this->getFullLocution() ? $this->getFullLocution()->getId() : null)
+            ->setFullLocution($this->getFullLocution())
             ->setFullExtensionId($this->getFullExtension() ? $this->getFullExtension()->getId() : null)
+            ->setFullExtension($this->getFullExtension())
             ->setFullVoiceMailUserId($this->getFullVoiceMailUser() ? $this->getFullVoiceMailUser()->getId() : null)
+            ->setFullVoiceMailUser($this->getFullVoiceMailUser())
             ->setTimeoutNumberCountryId($this->getTimeoutNumberCountry() ? $this->getTimeoutNumberCountry()->getId() : null)
-            ->setFullNumberCountryId($this->getFullNumberCountry() ? $this->getFullNumberCountry()->getId() : null);
+            ->setTimeoutNumberCountry($this->getTimeoutNumberCountry())
+            ->setFullNumberCountryId($this->getFullNumberCountry() ? $this->getFullNumberCountry()->getId() : null)
+            ->setFullNumberCountry($this->getFullNumberCountry());
     }
 
     /**

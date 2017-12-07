@@ -26,11 +26,11 @@ trait LcrGatewayTrait
     }
 
     /**
-     * @return LcrGatewayDTO
+     * @return LcrGatewayDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new LcrGatewayDTO();
+        return new LcrGatewayDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait LcrGatewayTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto LcrGatewayDTO
+         * @var $dto LcrGatewayDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait LcrGatewayTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto LcrGatewayDTO
+         * @var $dto LcrGatewayDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return LcrGatewayDTO
+     * @return LcrGatewayDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

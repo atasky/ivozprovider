@@ -11,13 +11,13 @@ use Assert\Assertion;
 class Zone
 {
     /**
-     * @column zone_en
+     * column: zone_en
      * @var string
      */
     protected $en = '';
 
     /**
-     * @column zone_es
+     * column: zone_es
      * @var string
      */
     protected $es = '';

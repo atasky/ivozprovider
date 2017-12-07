@@ -116,11 +116,11 @@ abstract class QueueMemberAbstract
     }
 
     /**
-     * @return QueueMemberDTO
+     * @return QueueMemberDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new QueueMemberDTO();
+        return new QueueMemberDto();
     }
 
     /**
@@ -128,12 +128,12 @@ abstract class QueueMemberAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto QueueMemberDTO
+         * @var $dto QueueMemberDto
          */
-        Assertion::isInstanceOf($dto, QueueMemberDTO::class);
+        Assertion::isInstanceOf($dto, QueueMemberDto::class);
 
         $self = new static();
 
@@ -153,12 +153,12 @@ abstract class QueueMemberAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto QueueMemberDTO
+         * @var $dto QueueMemberDto
          */
-        Assertion::isInstanceOf($dto, QueueMemberDTO::class);
+        Assertion::isInstanceOf($dto, QueueMemberDto::class);
 
         $this
             ->setPenalty($dto->getPenalty())
@@ -172,14 +172,16 @@ abstract class QueueMemberAbstract
     }
 
     /**
-     * @return QueueMemberDTO
+     * @return QueueMemberDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setPenalty($this->getPenalty())
             ->setQueueId($this->getQueue() ? $this->getQueue()->getId() : null)
-            ->setUserId($this->getUser() ? $this->getUser()->getId() : null);
+            ->setQueue($this->getQueue())
+            ->setUserId($this->getUser() ? $this->getUser()->getId() : null)
+            ->setUser($this->getUser());
     }
 
     /**

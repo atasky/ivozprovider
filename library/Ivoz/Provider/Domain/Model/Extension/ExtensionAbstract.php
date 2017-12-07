@@ -17,7 +17,7 @@ abstract class ExtensionAbstract
     protected $number;
 
     /**
-     * @comment enum:user|number|ivr|huntGroup|conferenceRoom|friend|queue|retailAccount|conditional
+     * comment: enum:user|number|ivr|huntGroup|conferenceRoom|friend|queue|retailAccount|conditional
      * @var string
      */
     protected $routeType;
@@ -162,11 +162,11 @@ abstract class ExtensionAbstract
     }
 
     /**
-     * @return ExtensionDTO
+     * @return ExtensionDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ExtensionDTO();
+        return new ExtensionDto();
     }
 
     /**
@@ -174,12 +174,12 @@ abstract class ExtensionAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ExtensionDTO
+         * @var $dto ExtensionDto
          */
-        Assertion::isInstanceOf($dto, ExtensionDTO::class);
+        Assertion::isInstanceOf($dto, ExtensionDto::class);
 
         $self = new static(
             $dto->getNumber());
@@ -208,12 +208,12 @@ abstract class ExtensionAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ExtensionDTO
+         * @var $dto ExtensionDto
          */
-        Assertion::isInstanceOf($dto, ExtensionDTO::class);
+        Assertion::isInstanceOf($dto, ExtensionDto::class);
 
         $this
             ->setNumber($dto->getNumber())
@@ -236,23 +236,31 @@ abstract class ExtensionAbstract
     }
 
     /**
-     * @return ExtensionDTO
+     * @return ExtensionDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setNumber($this->getNumber())
             ->setRouteType($this->getRouteType())
             ->setNumberValue($this->getNumberValue())
             ->setFriendValue($this->getFriendValue())
             ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany())
             ->setIvrId($this->getIvr() ? $this->getIvr()->getId() : null)
+            ->setIvr($this->getIvr())
             ->setHuntGroupId($this->getHuntGroup() ? $this->getHuntGroup()->getId() : null)
+            ->setHuntGroup($this->getHuntGroup())
             ->setConferenceRoomId($this->getConferenceRoom() ? $this->getConferenceRoom()->getId() : null)
+            ->setConferenceRoom($this->getConferenceRoom())
             ->setUserId($this->getUser() ? $this->getUser()->getId() : null)
+            ->setUser($this->getUser())
             ->setQueueId($this->getQueue() ? $this->getQueue()->getId() : null)
+            ->setQueue($this->getQueue())
             ->setConditionalRouteId($this->getConditionalRoute() ? $this->getConditionalRoute()->getId() : null)
-            ->setNumberCountryId($this->getNumberCountry() ? $this->getNumberCountry()->getId() : null);
+            ->setConditionalRoute($this->getConditionalRoute())
+            ->setNumberCountryId($this->getNumberCountry() ? $this->getNumberCountry()->getId() : null)
+            ->setNumberCountry($this->getNumberCountry());
     }
 
     /**

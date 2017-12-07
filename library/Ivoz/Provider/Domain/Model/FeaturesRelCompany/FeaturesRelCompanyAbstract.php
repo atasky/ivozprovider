@@ -111,11 +111,11 @@ abstract class FeaturesRelCompanyAbstract
     }
 
     /**
-     * @return FeaturesRelCompanyDTO
+     * @return FeaturesRelCompanyDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new FeaturesRelCompanyDTO();
+        return new FeaturesRelCompanyDto();
     }
 
     /**
@@ -123,12 +123,12 @@ abstract class FeaturesRelCompanyAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FeaturesRelCompanyDTO
+         * @var $dto FeaturesRelCompanyDto
          */
-        Assertion::isInstanceOf($dto, FeaturesRelCompanyDTO::class);
+        Assertion::isInstanceOf($dto, FeaturesRelCompanyDto::class);
 
         $self = new static();
 
@@ -147,12 +147,12 @@ abstract class FeaturesRelCompanyAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto FeaturesRelCompanyDTO
+         * @var $dto FeaturesRelCompanyDto
          */
-        Assertion::isInstanceOf($dto, FeaturesRelCompanyDTO::class);
+        Assertion::isInstanceOf($dto, FeaturesRelCompanyDto::class);
 
         $this
             ->setCompany($dto->getCompany())
@@ -165,13 +165,15 @@ abstract class FeaturesRelCompanyAbstract
     }
 
     /**
-     * @return FeaturesRelCompanyDTO
+     * @return FeaturesRelCompanyDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setFeatureId($this->getFeature() ? $this->getFeature()->getId() : null);
+            ->setCompany($this->getCompany())
+            ->setFeatureId($this->getFeature() ? $this->getFeature()->getId() : null)
+            ->setFeature($this->getFeature());
     }
 
     /**

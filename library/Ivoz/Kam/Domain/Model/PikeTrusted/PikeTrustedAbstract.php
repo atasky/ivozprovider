@@ -12,7 +12,7 @@ use Ivoz\Core\Application\DataTransferObjectInterface;
 abstract class PikeTrustedAbstract
 {
     /**
-     * @column src_ip
+     * column: src_ip
      * @var string
      */
     protected $srcIp;
@@ -23,13 +23,13 @@ abstract class PikeTrustedAbstract
     protected $proto;
 
     /**
-     * @column from_pattern
+     * column: from_pattern
      * @var string
      */
     protected $fromPattern;
 
     /**
-     * @column ruri_pattern
+     * column: ruri_pattern
      * @var string
      */
     protected $ruriPattern;
@@ -134,11 +134,11 @@ abstract class PikeTrustedAbstract
     }
 
     /**
-     * @return PikeTrustedDTO
+     * @return PikeTrustedDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new PikeTrustedDTO();
+        return new PikeTrustedDto();
     }
 
     /**
@@ -146,12 +146,12 @@ abstract class PikeTrustedAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PikeTrustedDTO
+         * @var $dto PikeTrustedDto
          */
-        Assertion::isInstanceOf($dto, PikeTrustedDTO::class);
+        Assertion::isInstanceOf($dto, PikeTrustedDto::class);
 
         $self = new static(
             $dto->getPriority());
@@ -174,12 +174,12 @@ abstract class PikeTrustedAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto PikeTrustedDTO
+         * @var $dto PikeTrustedDto
          */
-        Assertion::isInstanceOf($dto, PikeTrustedDTO::class);
+        Assertion::isInstanceOf($dto, PikeTrustedDto::class);
 
         $this
             ->setSrcIp($dto->getSrcIp())
@@ -196,11 +196,11 @@ abstract class PikeTrustedAbstract
     }
 
     /**
-     * @return PikeTrustedDTO
+     * @return PikeTrustedDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setSrcIp($this->getSrcIp())
             ->setProto($this->getProto())
             ->setFromPattern($this->getFromPattern())

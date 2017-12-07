@@ -12,13 +12,13 @@ use Ivoz\Core\Application\DataTransferObjectInterface;
 abstract class UsersPuaAbstract
 {
     /**
-     * @column pres_uri
+     * column: pres_uri
      * @var string
      */
     protected $presUri;
 
     /**
-     * @column pres_id
+     * column: pres_id
      * @var string
      */
     protected $presId;
@@ -34,7 +34,7 @@ abstract class UsersPuaAbstract
     protected $expires;
 
     /**
-     * @column desired_expires
+     * column: desired_expires
      * @var integer
      */
     protected $desiredExpires;
@@ -50,31 +50,31 @@ abstract class UsersPuaAbstract
     protected $etag;
 
     /**
-     * @column tuple_id
+     * column: tuple_id
      * @var string
      */
     protected $tupleId;
 
     /**
-     * @column watcher_uri
+     * column: watcher_uri
      * @var string
      */
     protected $watcherUri;
 
     /**
-     * @column call_id
+     * column: call_id
      * @var string
      */
     protected $callId;
 
     /**
-     * @column to_tag
+     * column: to_tag
      * @var string
      */
     protected $toTag;
 
     /**
-     * @column from_tag
+     * column: from_tag
      * @var string
      */
     protected $fromTag;
@@ -85,7 +85,7 @@ abstract class UsersPuaAbstract
     protected $cseq;
 
     /**
-     * @column record_route
+     * column: record_route
      * @var string
      */
     protected $recordRoute;
@@ -96,7 +96,7 @@ abstract class UsersPuaAbstract
     protected $contact;
 
     /**
-     * @column remote_contact
+     * column: remote_contact
      * @var string
      */
     protected $remoteContact;
@@ -107,7 +107,7 @@ abstract class UsersPuaAbstract
     protected $version;
 
     /**
-     * @column extra_headers
+     * column: extra_headers
      * @var string
      */
     protected $extraHeaders;
@@ -233,11 +233,11 @@ abstract class UsersPuaAbstract
     }
 
     /**
-     * @return UsersPuaDTO
+     * @return UsersPuaDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new UsersPuaDTO();
+        return new UsersPuaDto();
     }
 
     /**
@@ -245,12 +245,12 @@ abstract class UsersPuaAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersPuaDTO
+         * @var $dto UsersPuaDto
          */
-        Assertion::isInstanceOf($dto, UsersPuaDTO::class);
+        Assertion::isInstanceOf($dto, UsersPuaDto::class);
 
         $self = new static(
             $dto->getPresUri(),
@@ -285,12 +285,12 @@ abstract class UsersPuaAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersPuaDTO
+         * @var $dto UsersPuaDto
          */
-        Assertion::isInstanceOf($dto, UsersPuaDTO::class);
+        Assertion::isInstanceOf($dto, UsersPuaDto::class);
 
         $this
             ->setPresUri($dto->getPresUri())
@@ -319,11 +319,11 @@ abstract class UsersPuaAbstract
     }
 
     /**
-     * @return UsersPuaDTO
+     * @return UsersPuaDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setPresUri($this->getPresUri())
             ->setPresId($this->getPresId())
             ->setEvent($this->getEvent())

@@ -17,13 +17,13 @@ abstract class QueueAbstract
     protected $name;
 
     /**
-     * @column periodic_announce
+     * column: periodic_announce
      * @var string
      */
     protected $periodicAnnounce;
 
     /**
-     * @column periodic_announce_frequency
+     * column: periodic_announce_frequency
      * @var integer
      */
     protected $periodicAnnounceFrequency;
@@ -160,11 +160,11 @@ abstract class QueueAbstract
     }
 
     /**
-     * @return QueueDTO
+     * @return QueueDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new QueueDTO();
+        return new QueueDto();
     }
 
     /**
@@ -172,12 +172,12 @@ abstract class QueueAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto QueueDTO
+         * @var $dto QueueDto
          */
-        Assertion::isInstanceOf($dto, QueueDTO::class);
+        Assertion::isInstanceOf($dto, QueueDto::class);
 
         $self = new static(
             $dto->getName(),
@@ -205,12 +205,12 @@ abstract class QueueAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto QueueDTO
+         * @var $dto QueueDto
          */
-        Assertion::isInstanceOf($dto, QueueDTO::class);
+        Assertion::isInstanceOf($dto, QueueDto::class);
 
         $this
             ->setName($dto->getName())
@@ -232,11 +232,11 @@ abstract class QueueAbstract
     }
 
     /**
-     * @return QueueDTO
+     * @return QueueDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setPeriodicAnnounce($this->getPeriodicAnnounce())
             ->setPeriodicAnnounceFrequency($this->getPeriodicAnnounceFrequency())

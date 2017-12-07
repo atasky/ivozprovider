@@ -26,11 +26,11 @@ trait TerminalManufacturerTrait
     }
 
     /**
-     * @return TerminalManufacturerDTO
+     * @return TerminalManufacturerDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new TerminalManufacturerDTO();
+        return new TerminalManufacturerDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait TerminalManufacturerTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TerminalManufacturerDTO
+         * @var $dto TerminalManufacturerDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait TerminalManufacturerTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TerminalManufacturerDTO
+         * @var $dto TerminalManufacturerDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return TerminalManufacturerDTO
+     * @return TerminalManufacturerDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

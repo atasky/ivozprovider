@@ -17,7 +17,7 @@ abstract class TrunksAddresAbstract
     protected $grp = '1';
 
     /**
-     * @column ip_addr
+     * column: ip_addr
      * @var string
      */
     protected $ipAddr;
@@ -129,11 +129,11 @@ abstract class TrunksAddresAbstract
     }
 
     /**
-     * @return TrunksAddresDTO
+     * @return TrunksAddresDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new TrunksAddresDTO();
+        return new TrunksAddresDto();
     }
 
     /**
@@ -141,12 +141,12 @@ abstract class TrunksAddresAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TrunksAddresDTO
+         * @var $dto TrunksAddresDto
          */
-        Assertion::isInstanceOf($dto, TrunksAddresDTO::class);
+        Assertion::isInstanceOf($dto, TrunksAddresDto::class);
 
         $self = new static(
             $dto->getGrp(),
@@ -168,12 +168,12 @@ abstract class TrunksAddresAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TrunksAddresDTO
+         * @var $dto TrunksAddresDto
          */
-        Assertion::isInstanceOf($dto, TrunksAddresDTO::class);
+        Assertion::isInstanceOf($dto, TrunksAddresDto::class);
 
         $this
             ->setGrp($dto->getGrp())
@@ -189,11 +189,11 @@ abstract class TrunksAddresAbstract
     }
 
     /**
-     * @return TrunksAddresDTO
+     * @return TrunksAddresDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setGrp($this->getGrp())
             ->setIpAddr($this->getIpAddr())
             ->setMask($this->getMask())

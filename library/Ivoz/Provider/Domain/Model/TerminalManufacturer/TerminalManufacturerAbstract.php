@@ -118,11 +118,11 @@ abstract class TerminalManufacturerAbstract
     }
 
     /**
-     * @return TerminalManufacturerDTO
+     * @return TerminalManufacturerDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new TerminalManufacturerDTO();
+        return new TerminalManufacturerDto();
     }
 
     /**
@@ -130,12 +130,12 @@ abstract class TerminalManufacturerAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TerminalManufacturerDTO
+         * @var $dto TerminalManufacturerDto
          */
-        Assertion::isInstanceOf($dto, TerminalManufacturerDTO::class);
+        Assertion::isInstanceOf($dto, TerminalManufacturerDto::class);
 
         $self = new static(
             $dto->getIden(),
@@ -154,12 +154,12 @@ abstract class TerminalManufacturerAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TerminalManufacturerDTO
+         * @var $dto TerminalManufacturerDto
          */
-        Assertion::isInstanceOf($dto, TerminalManufacturerDTO::class);
+        Assertion::isInstanceOf($dto, TerminalManufacturerDto::class);
 
         $this
             ->setIden($dto->getIden())
@@ -173,11 +173,11 @@ abstract class TerminalManufacturerAbstract
     }
 
     /**
-     * @return TerminalManufacturerDTO
+     * @return TerminalManufacturerDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setIden($this->getIden())
             ->setName($this->getName())
             ->setDescription($this->getDescription());

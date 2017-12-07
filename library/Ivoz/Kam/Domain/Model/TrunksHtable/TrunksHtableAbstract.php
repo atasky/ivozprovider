@@ -12,25 +12,25 @@ use Ivoz\Core\Application\DataTransferObjectInterface;
 abstract class TrunksHtableAbstract
 {
     /**
-     * @column key_name
+     * column: key_name
      * @var string
      */
     protected $keyName = '';
 
     /**
-     * @column key_type
+     * column: key_type
      * @var integer
      */
     protected $keyType = '0';
 
     /**
-     * @column value_type
+     * column: value_type
      * @var integer
      */
     protected $valueType = '0';
 
     /**
-     * @column key_value
+     * column: key_value
      * @var string
      */
     protected $keyValue = '';
@@ -139,11 +139,11 @@ abstract class TrunksHtableAbstract
     }
 
     /**
-     * @return TrunksHtableDTO
+     * @return TrunksHtableDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new TrunksHtableDTO();
+        return new TrunksHtableDto();
     }
 
     /**
@@ -151,12 +151,12 @@ abstract class TrunksHtableAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TrunksHtableDTO
+         * @var $dto TrunksHtableDto
          */
-        Assertion::isInstanceOf($dto, TrunksHtableDTO::class);
+        Assertion::isInstanceOf($dto, TrunksHtableDto::class);
 
         $self = new static(
             $dto->getKeyName(),
@@ -177,12 +177,12 @@ abstract class TrunksHtableAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TrunksHtableDTO
+         * @var $dto TrunksHtableDto
          */
-        Assertion::isInstanceOf($dto, TrunksHtableDTO::class);
+        Assertion::isInstanceOf($dto, TrunksHtableDto::class);
 
         $this
             ->setKeyName($dto->getKeyName())
@@ -198,11 +198,11 @@ abstract class TrunksHtableAbstract
     }
 
     /**
-     * @return TrunksHtableDTO
+     * @return TrunksHtableDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setKeyName($this->getKeyName())
             ->setKeyType($this->getKeyType())
             ->setValueType($this->getValueType())

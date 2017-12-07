@@ -18,6 +18,29 @@ interface LocutionInterface extends LoggableEntityInterface
     public function getFileObjects();
 
     /**
+     * @return LocutionDto
+     */
+    public static function createDto();
+
+    /**
+     * Factory method
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @return LocutionDto
+     */
+    public function toDto();
+
+    /**
      * Set name
      *
      * @param string $name

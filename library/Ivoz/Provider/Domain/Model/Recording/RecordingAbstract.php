@@ -22,7 +22,7 @@ abstract class RecordingAbstract
     protected $calldate;
 
     /**
-     * @comment enum:ondemand|ddi
+     * comment: enum:ondemand|ddi
      * @var string
      */
     protected $type = 'ddi';
@@ -154,11 +154,11 @@ abstract class RecordingAbstract
     }
 
     /**
-     * @return RecordingDTO
+     * @return RecordingDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new RecordingDTO();
+        return new RecordingDto();
     }
 
     /**
@@ -166,12 +166,12 @@ abstract class RecordingAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto RecordingDTO
+         * @var $dto RecordingDto
          */
-        Assertion::isInstanceOf($dto, RecordingDTO::class);
+        Assertion::isInstanceOf($dto, RecordingDto::class);
 
         $recordedFile = new RecordedFile(
             $dto->getRecordedFileFileSize(),
@@ -204,12 +204,12 @@ abstract class RecordingAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto RecordingDTO
+         * @var $dto RecordingDto
          */
-        Assertion::isInstanceOf($dto, RecordingDTO::class);
+        Assertion::isInstanceOf($dto, RecordingDto::class);
 
         $recordedFile = new RecordedFile(
             $dto->getRecordedFileFileSize(),
@@ -235,11 +235,11 @@ abstract class RecordingAbstract
     }
 
     /**
-     * @return RecordingDTO
+     * @return RecordingDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setCallid($this->getCallid())
             ->setCalldate($this->getCalldate())
             ->setType($this->getType())
@@ -250,7 +250,8 @@ abstract class RecordingAbstract
             ->setRecordedFileFileSize($this->getRecordedFile()->getFileSize())
             ->setRecordedFileMimeType($this->getRecordedFile()->getMimeType())
             ->setRecordedFileBaseName($this->getRecordedFile()->getBaseName())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null);
+            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany());
     }
 
     /**

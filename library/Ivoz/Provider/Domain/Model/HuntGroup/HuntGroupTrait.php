@@ -34,11 +34,11 @@ trait HuntGroupTrait
     }
 
     /**
-     * @return HuntGroupDTO
+     * @return HuntGroupDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new HuntGroupDTO();
+        return new HuntGroupDto();
     }
 
     /**
@@ -46,12 +46,12 @@ trait HuntGroupTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto HuntGroupDTO
+         * @var $dto HuntGroupDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
         if ($dto->getHuntGroupsRelUsers()) {
             $self->replaceHuntGroupsRelUsers($dto->getHuntGroupsRelUsers());
         }
@@ -67,12 +67,12 @@ trait HuntGroupTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto HuntGroupDTO
+         * @var $dto HuntGroupDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
         if ($dto->getHuntGroupsRelUsers()) {
             $this->replaceHuntGroupsRelUsers($dto->getHuntGroupsRelUsers());
         }
@@ -80,11 +80,11 @@ trait HuntGroupTrait
     }
 
     /**
-     * @return HuntGroupDTO
+     * @return HuntGroupDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

@@ -111,11 +111,11 @@ abstract class ConditionalRoutesConditionsRelMatchlistAbstract
     }
 
     /**
-     * @return ConditionalRoutesConditionsRelMatchlistDTO
+     * @return ConditionalRoutesConditionsRelMatchlistDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ConditionalRoutesConditionsRelMatchlistDTO();
+        return new ConditionalRoutesConditionsRelMatchlistDto();
     }
 
     /**
@@ -123,12 +123,12 @@ abstract class ConditionalRoutesConditionsRelMatchlistAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ConditionalRoutesConditionsRelMatchlistDTO
+         * @var $dto ConditionalRoutesConditionsRelMatchlistDto
          */
-        Assertion::isInstanceOf($dto, ConditionalRoutesConditionsRelMatchlistDTO::class);
+        Assertion::isInstanceOf($dto, ConditionalRoutesConditionsRelMatchlistDto::class);
 
         $self = new static();
 
@@ -147,12 +147,12 @@ abstract class ConditionalRoutesConditionsRelMatchlistAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ConditionalRoutesConditionsRelMatchlistDTO
+         * @var $dto ConditionalRoutesConditionsRelMatchlistDto
          */
-        Assertion::isInstanceOf($dto, ConditionalRoutesConditionsRelMatchlistDTO::class);
+        Assertion::isInstanceOf($dto, ConditionalRoutesConditionsRelMatchlistDto::class);
 
         $this
             ->setCondition($dto->getCondition())
@@ -165,13 +165,15 @@ abstract class ConditionalRoutesConditionsRelMatchlistAbstract
     }
 
     /**
-     * @return ConditionalRoutesConditionsRelMatchlistDTO
+     * @return ConditionalRoutesConditionsRelMatchlistDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setConditionId($this->getCondition() ? $this->getCondition()->getId() : null)
-            ->setMatchlistId($this->getMatchlist() ? $this->getMatchlist()->getId() : null);
+            ->setCondition($this->getCondition())
+            ->setMatchlistId($this->getMatchlist() ? $this->getMatchlist()->getId() : null)
+            ->setMatchlist($this->getMatchlist());
     }
 
     /**

@@ -49,7 +49,7 @@ protected function __construct(<requiredFields>)<lineBreak>{
 /**
  * @return <dtoClass>
  */
-public static function createDTO()
+public static function createDto()
 {
     return new <dtoClass>();
 }
@@ -59,12 +59,12 @@ public static function createDTO()
  * @param DataTransferObjectInterface $dto
  * @return self
  */
-public static function fromDTO(DataTransferObjectInterface $dto)
+public static function fromDto(DataTransferObjectInterface $dto)
 {
     /**
      * @var $dto <dtoClass>
      */
-    $self = parent::fromDTO($dto);
+    $self = parent::fromDto($dto);
 <fromDTO>
     if ($dto->getId()) {
         $self->id = $dto->getId();
@@ -78,12 +78,12 @@ public static function fromDTO(DataTransferObjectInterface $dto)
  * @param DataTransferObjectInterface $dto
  * @return self
  */
-public function updateFromDTO(DataTransferObjectInterface $dto)
+public function updateFromDto(DataTransferObjectInterface $dto)
 {
     /**
      * @var $dto <dtoClass>
      */
-    parent::updateFromDTO($dto);
+    parent::updateFromDto($dto);
 <updateFromDTO>
     return $this;
 }
@@ -91,9 +91,9 @@ public function updateFromDTO(DataTransferObjectInterface $dto)
 /**
  * @return <dtoClass>
  */
-public function toDTO()
+public function toDto()
 {
-    $dto = parent::toDTO();
+    $dto = parent::toDto();
     return $dto<toDTO>;
 }
 

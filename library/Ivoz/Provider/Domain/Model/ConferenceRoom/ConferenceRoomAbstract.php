@@ -128,11 +128,11 @@ abstract class ConferenceRoomAbstract
     }
 
     /**
-     * @return ConferenceRoomDTO
+     * @return ConferenceRoomDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ConferenceRoomDTO();
+        return new ConferenceRoomDto();
     }
 
     /**
@@ -140,12 +140,12 @@ abstract class ConferenceRoomAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ConferenceRoomDTO
+         * @var $dto ConferenceRoomDto
          */
-        Assertion::isInstanceOf($dto, ConferenceRoomDTO::class);
+        Assertion::isInstanceOf($dto, ConferenceRoomDto::class);
 
         $self = new static(
             $dto->getName(),
@@ -167,12 +167,12 @@ abstract class ConferenceRoomAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ConferenceRoomDTO
+         * @var $dto ConferenceRoomDto
          */
-        Assertion::isInstanceOf($dto, ConferenceRoomDTO::class);
+        Assertion::isInstanceOf($dto, ConferenceRoomDto::class);
 
         $this
             ->setName($dto->getName())
@@ -188,16 +188,17 @@ abstract class ConferenceRoomAbstract
     }
 
     /**
-     * @return ConferenceRoomDTO
+     * @return ConferenceRoomDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setPinProtected($this->getPinProtected())
             ->setPinCode($this->getPinCode())
             ->setMaxMembers($this->getMaxMembers())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null);
+            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany());
     }
 
     /**

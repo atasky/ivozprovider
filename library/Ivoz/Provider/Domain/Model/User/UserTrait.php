@@ -46,11 +46,11 @@ trait UserTrait
     }
 
     /**
-     * @return UserDTO
+     * @return UserDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new UserDTO();
+        return new UserDto();
     }
 
     /**
@@ -58,12 +58,12 @@ trait UserTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UserDTO
+         * @var $dto UserDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
         if ($dto->getPickUpRelUsers()) {
             $self->replacePickUpRelUsers($dto->getPickUpRelUsers());
         }
@@ -87,12 +87,12 @@ trait UserTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UserDTO
+         * @var $dto UserDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
         if ($dto->getPickUpRelUsers()) {
             $this->replacePickUpRelUsers($dto->getPickUpRelUsers());
         }
@@ -106,11 +106,11 @@ trait UserTrait
     }
 
     /**
-     * @return UserDTO
+     * @return UserDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

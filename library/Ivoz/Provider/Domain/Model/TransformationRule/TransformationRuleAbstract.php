@@ -12,7 +12,7 @@ use Ivoz\Core\Application\DataTransferObjectInterface;
 abstract class TransformationRuleAbstract
 {
     /**
-     * @comment enum:callerin|calleein|callerout|calleeout
+     * comment: enum:callerin|calleein|callerout|calleeout
      * @var string
      */
     protected $type;
@@ -133,11 +133,11 @@ abstract class TransformationRuleAbstract
     }
 
     /**
-     * @return TransformationRuleDTO
+     * @return TransformationRuleDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new TransformationRuleDTO();
+        return new TransformationRuleDto();
     }
 
     /**
@@ -145,12 +145,12 @@ abstract class TransformationRuleAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TransformationRuleDTO
+         * @var $dto TransformationRuleDto
          */
-        Assertion::isInstanceOf($dto, TransformationRuleDTO::class);
+        Assertion::isInstanceOf($dto, TransformationRuleDto::class);
 
         $self = new static(
             $dto->getType(),
@@ -173,12 +173,12 @@ abstract class TransformationRuleAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TransformationRuleDTO
+         * @var $dto TransformationRuleDto
          */
-        Assertion::isInstanceOf($dto, TransformationRuleDTO::class);
+        Assertion::isInstanceOf($dto, TransformationRuleDto::class);
 
         $this
             ->setType($dto->getType())
@@ -195,17 +195,18 @@ abstract class TransformationRuleAbstract
     }
 
     /**
-     * @return TransformationRuleDTO
+     * @return TransformationRuleDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setType($this->getType())
             ->setDescription($this->getDescription())
             ->setPriority($this->getPriority())
             ->setMatchExpr($this->getMatchExpr())
             ->setReplaceExpr($this->getReplaceExpr())
-            ->setTransformationRuleSetId($this->getTransformationRuleSet() ? $this->getTransformationRuleSet()->getId() : null);
+            ->setTransformationRuleSetId($this->getTransformationRuleSet() ? $this->getTransformationRuleSet()->getId() : null)
+            ->setTransformationRuleSet($this->getTransformationRuleSet());
     }
 
     /**

@@ -22,7 +22,7 @@ abstract class BrandUrlAbstract
     protected $klearTheme = '';
 
     /**
-     * @comment enum:god|brand|admin|user
+     * comment: enum:god|brand|admin|user
      * @var string
      */
     protected $urlType;
@@ -139,11 +139,11 @@ abstract class BrandUrlAbstract
     }
 
     /**
-     * @return BrandUrlDTO
+     * @return BrandUrlDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new BrandUrlDTO();
+        return new BrandUrlDto();
     }
 
     /**
@@ -151,12 +151,12 @@ abstract class BrandUrlAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto BrandUrlDTO
+         * @var $dto BrandUrlDto
          */
-        Assertion::isInstanceOf($dto, BrandUrlDTO::class);
+        Assertion::isInstanceOf($dto, BrandUrlDto::class);
 
         $logo = new Logo(
             $dto->getLogoFileSize(),
@@ -187,12 +187,12 @@ abstract class BrandUrlAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto BrandUrlDTO
+         * @var $dto BrandUrlDto
          */
-        Assertion::isInstanceOf($dto, BrandUrlDTO::class);
+        Assertion::isInstanceOf($dto, BrandUrlDto::class);
 
         $logo = new Logo(
             $dto->getLogoFileSize(),
@@ -216,11 +216,11 @@ abstract class BrandUrlAbstract
     }
 
     /**
-     * @return BrandUrlDTO
+     * @return BrandUrlDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setUrl($this->getUrl())
             ->setKlearTheme($this->getKlearTheme())
             ->setUrlType($this->getUrlType())
@@ -229,7 +229,8 @@ abstract class BrandUrlAbstract
             ->setLogoFileSize($this->getLogo()->getFileSize())
             ->setLogoMimeType($this->getLogo()->getMimeType())
             ->setLogoBaseName($this->getLogo()->getBaseName())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null);
+            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
+            ->setBrand($this->getBrand());
     }
 
     /**

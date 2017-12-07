@@ -26,11 +26,11 @@ trait ChangelogTrait
     }
 
     /**
-     * @return ChangelogDTO
+     * @return ChangelogDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ChangelogDTO();
+        return new ChangelogDto();
     }
 
     /**
@@ -38,12 +38,12 @@ trait ChangelogTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ChangelogDTO
+         * @var $dto ChangelogDto
          */
-        $self = parent::fromDTO($dto);
+        $self = parent::fromDto($dto);
 
         if ($dto->getId()) {
             $self->id = $dto->getId();
@@ -57,22 +57,22 @@ trait ChangelogTrait
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ChangelogDTO
+         * @var $dto ChangelogDto
          */
-        parent::updateFromDTO($dto);
+        parent::updateFromDto($dto);
 
         return $this;
     }
 
     /**
-     * @return ChangelogDTO
+     * @return ChangelogDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        $dto = parent::toDTO();
+        $dto = parent::toDto();
         return $dto
             ->setId($this->getId());
     }

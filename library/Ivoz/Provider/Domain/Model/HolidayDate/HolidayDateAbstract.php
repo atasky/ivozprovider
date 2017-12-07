@@ -122,11 +122,11 @@ abstract class HolidayDateAbstract
     }
 
     /**
-     * @return HolidayDateDTO
+     * @return HolidayDateDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new HolidayDateDTO();
+        return new HolidayDateDto();
     }
 
     /**
@@ -134,12 +134,12 @@ abstract class HolidayDateAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto HolidayDateDTO
+         * @var $dto HolidayDateDto
          */
-        Assertion::isInstanceOf($dto, HolidayDateDTO::class);
+        Assertion::isInstanceOf($dto, HolidayDateDto::class);
 
         $self = new static(
             $dto->getName(),
@@ -160,12 +160,12 @@ abstract class HolidayDateAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto HolidayDateDTO
+         * @var $dto HolidayDateDto
          */
-        Assertion::isInstanceOf($dto, HolidayDateDTO::class);
+        Assertion::isInstanceOf($dto, HolidayDateDto::class);
 
         $this
             ->setName($dto->getName())
@@ -180,15 +180,17 @@ abstract class HolidayDateAbstract
     }
 
     /**
-     * @return HolidayDateDTO
+     * @return HolidayDateDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setEventDate($this->getEventDate())
             ->setCalendarId($this->getCalendar() ? $this->getCalendar()->getId() : null)
-            ->setLocutionId($this->getLocution() ? $this->getLocution()->getId() : null);
+            ->setCalendar($this->getCalendar())
+            ->setLocutionId($this->getLocution() ? $this->getLocution()->getId() : null)
+            ->setLocution($this->getLocution());
     }
 
     /**

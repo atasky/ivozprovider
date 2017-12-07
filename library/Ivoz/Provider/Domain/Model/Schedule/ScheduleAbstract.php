@@ -158,11 +158,11 @@ abstract class ScheduleAbstract
     }
 
     /**
-     * @return ScheduleDTO
+     * @return ScheduleDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new ScheduleDTO();
+        return new ScheduleDto();
     }
 
     /**
@@ -170,12 +170,12 @@ abstract class ScheduleAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ScheduleDTO
+         * @var $dto ScheduleDto
          */
-        Assertion::isInstanceOf($dto, ScheduleDTO::class);
+        Assertion::isInstanceOf($dto, ScheduleDto::class);
 
         $self = new static(
             $dto->getName(),
@@ -203,12 +203,12 @@ abstract class ScheduleAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ScheduleDTO
+         * @var $dto ScheduleDto
          */
-        Assertion::isInstanceOf($dto, ScheduleDTO::class);
+        Assertion::isInstanceOf($dto, ScheduleDto::class);
 
         $this
             ->setName($dto->getName())
@@ -230,11 +230,11 @@ abstract class ScheduleAbstract
     }
 
     /**
-     * @return ScheduleDTO
+     * @return ScheduleDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setTimeIn($this->getTimeIn())
             ->setTimeout($this->getTimeout())
@@ -245,7 +245,8 @@ abstract class ScheduleAbstract
             ->setFriday($this->getFriday())
             ->setSaturday($this->getSaturday())
             ->setSunday($this->getSunday())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null);
+            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany());
     }
 
     /**

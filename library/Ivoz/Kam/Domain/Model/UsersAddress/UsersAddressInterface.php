@@ -12,6 +12,33 @@ interface UsersAddressInterface extends LoggableEntityInterface
      */
     public function getChangeSet();
 
+    public function setIpAddr($ipAddr = null);
+
+    public function setMask($mask = null);
+
+    /**
+     * @return UsersAddressDto
+     */
+    public static function createDto();
+
+    /**
+     * Factory method
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @param DataTransferObjectInterface $dto
+     * @return self
+     */
+    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
+
+    /**
+     * @return UsersAddressDto
+     */
+    public function toDto();
+
     /**
      * Set sourceAddress
      *
@@ -29,29 +56,11 @@ interface UsersAddressInterface extends LoggableEntityInterface
     public function getSourceAddress();
 
     /**
-     * Set ipAddr
-     *
-     * @param string $ipAddr
-     *
-     * @return self
-     */
-    public function setIpAddr($ipAddr = null);
-
-    /**
      * Get ipAddr
      *
      * @return string
      */
     public function getIpAddr();
-
-    /**
-     * Set mask
-     *
-     * @param integer $mask
-     *
-     * @return self
-     */
-    public function setMask($mask);
 
     /**
      * Get mask

@@ -116,11 +116,11 @@ abstract class EtagVersionAbstract
     }
 
     /**
-     * @return EtagVersionDTO
+     * @return EtagVersionDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new EtagVersionDTO();
+        return new EtagVersionDto();
     }
 
     /**
@@ -128,12 +128,12 @@ abstract class EtagVersionAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto EtagVersionDTO
+         * @var $dto EtagVersionDto
          */
-        Assertion::isInstanceOf($dto, EtagVersionDTO::class);
+        Assertion::isInstanceOf($dto, EtagVersionDto::class);
 
         $self = new static();
 
@@ -153,12 +153,12 @@ abstract class EtagVersionAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto EtagVersionDTO
+         * @var $dto EtagVersionDto
          */
-        Assertion::isInstanceOf($dto, EtagVersionDTO::class);
+        Assertion::isInstanceOf($dto, EtagVersionDto::class);
 
         $this
             ->setTable($dto->getTable())
@@ -172,11 +172,11 @@ abstract class EtagVersionAbstract
     }
 
     /**
-     * @return EtagVersionDTO
+     * @return EtagVersionDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setTable($this->getTable())
             ->setEtag($this->getEtag())
             ->setLastChange($this->getLastChange());

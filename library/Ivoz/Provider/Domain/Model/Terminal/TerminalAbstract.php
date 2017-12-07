@@ -22,26 +22,26 @@ abstract class TerminalAbstract
     protected $disallow = 'all';
 
     /**
-     * @column allow_audio
+     * column: allow_audio
      * @var string
      */
     protected $allowAudio = 'alaw';
 
     /**
-     * @column allow_video
+     * column: allow_video
      * @var string
      */
     protected $allowVideo;
 
     /**
-     * @column direct_media_method
-     * @comment enum:update|invite|reinvite
+     * column: direct_media_method
+     * comment: enum:update|invite|reinvite
      * @var string
      */
     protected $directMediaMethod = 'update';
 
     /**
-     * @comment password
+     * comment: password
      * @var string
      */
     protected $password = '';
@@ -168,11 +168,11 @@ abstract class TerminalAbstract
     }
 
     /**
-     * @return TerminalDTO
+     * @return TerminalDto
      */
-    public static function createDTO()
+    public static function createDto()
     {
-        return new TerminalDTO();
+        return new TerminalDto();
     }
 
     /**
@@ -180,12 +180,12 @@ abstract class TerminalAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TerminalDTO
+         * @var $dto TerminalDto
          */
-        Assertion::isInstanceOf($dto, TerminalDTO::class);
+        Assertion::isInstanceOf($dto, TerminalDto::class);
 
         $self = new static(
             $dto->getDisallow(),
@@ -213,12 +213,12 @@ abstract class TerminalAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto TerminalDTO
+         * @var $dto TerminalDto
          */
-        Assertion::isInstanceOf($dto, TerminalDTO::class);
+        Assertion::isInstanceOf($dto, TerminalDto::class);
 
         $this
             ->setName($dto->getName())
@@ -240,11 +240,11 @@ abstract class TerminalAbstract
     }
 
     /**
-     * @return TerminalDTO
+     * @return TerminalDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setName($this->getName())
             ->setDisallow($this->getDisallow())
             ->setAllowAudio($this->getAllowAudio())
@@ -254,8 +254,11 @@ abstract class TerminalAbstract
             ->setMac($this->getMac())
             ->setLastProvisionDate($this->getLastProvisionDate())
             ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
+            ->setCompany($this->getCompany())
             ->setDomainId($this->getDomain() ? $this->getDomain()->getId() : null)
-            ->setTerminalModelId($this->getTerminalModel() ? $this->getTerminalModel()->getId() : null);
+            ->setDomain($this->getDomain())
+            ->setTerminalModelId($this->getTerminalModel() ? $this->getTerminalModel()->getId() : null)
+            ->setTerminalModel($this->getTerminalModel());
     }
 
     /**

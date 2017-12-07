@@ -7,7 +7,12 @@ interface DataTransferObjectInterface
     /**
      * @return array
      */
-    public function __toArray();
+    public function normalize(string $context);
+
+    /**
+     * @return void
+     */
+    public function denormalize(array $data, string $context);
 
     /**
      * @param ForeignKeyTransformerInterface $transformer
