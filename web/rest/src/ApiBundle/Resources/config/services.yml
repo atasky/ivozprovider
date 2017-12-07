@@ -1,0 +1,14 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Ivoz\Core\Application\Service\JsonLd\Serializer\Normalizer\EntityNormalizer:
+    arguments:
+      $resourceMetadataFactory: "@api_platform.metadata.resource.metadata_factory"
+      $iriConverter: "@api_platform.iri_converter"
+      $resourceClassResolver: "@api_platform.resource_class_resolver"
+      $contextBuilder: "@api_platform.jsonld.context_builder"
+    tags:
+      -  { name: serializer.normalizer, priority: 10 }

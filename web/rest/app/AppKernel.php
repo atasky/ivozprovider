@@ -12,9 +12,14 @@ class AppKernel extends Kernel
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new \Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
+            new Symfony\Bundle\TwigBundle\TwigBundle(),
+            new ApiPlatform\Core\Bridge\Symfony\Bundle\ApiPlatformBundle(),
 
-            /* Core */
+            /* CoreBundle */
             new CoreBundle\CoreBundle(),
+
+            /* ApiBundle */
+            new ApiBundle\ApiBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
