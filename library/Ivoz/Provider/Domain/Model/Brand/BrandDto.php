@@ -26,6 +26,7 @@ class BrandDto extends BrandDtoAbstract
 
         return $this;
     }
+
     /**
      * @return string
      */
@@ -37,7 +38,7 @@ class BrandDto extends BrandDtoAbstract
     /**
      * @return array
      */
-    public static function getPropertyMap($context = 'Simple')
+    public static function getPropertyMap(string $context = 'Simple')
     {
         return parent::getPropertyMap($context);
     }
@@ -47,36 +48,7 @@ class BrandDto extends BrandDtoAbstract
      */
     public function normalize(string $context)
     {
-        if (!$context) {
-            return parent::normalize($context);
-        }
-
-        $response =  $this->filterByContext(
-            parent::normalize($context),
-            $context
-        );
-
-        return $response;
-    }
-
-    protected static function filterByContext($values, string $context)
-    {
-        $allowedValues = [];
-
-        switch ($context) {
-            case 'Simple':
-                array_push($allowedValues, ...[
-                    'id',
-                ]);
-        }
-
-        return array_filter(
-            $values,
-            function ($key) use ($allowedValues) {
-                return in_array($key, $allowedValues);
-            },
-            ARRAY_FILTER_USE_KEY
-        );
+        return parent::normalize($context);
     }
 
 }

@@ -86,25 +86,59 @@ abstract class UsersMissedCallDtoAbstract implements DataTransferObjectInterface
      */
     private $id;
 
-    /**
-     * @return array
-     */
-    public function normalize(string $context)
+
+    public function __constructor($id = null)
     {
-        return $this->__toArray();
+        $this->setId($id);
     }
 
     /**
-     * @return void
+     * @inheritdoc
+     */
+    public function normalize(string $context)
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * @inheritdoc
      */
     public function denormalize(array $data, string $context)
     {
     }
 
     /**
+     * @inheritdoc
+     */
+    public static function getPropertyMap(string $context = '')
+    {
+        if ($context === self::CONTEXT_SIMPLE) {
+            return ['id'];
+        }
+
+        return [
+            'method',
+            'fromTag',
+            'toTag',
+            'callid',
+            'sipCode',
+            'sipReason',
+            'srcIp',
+            'fromUser',
+            'fromDomain',
+            'ruriUser',
+            'ruriDomain',
+            'cseq',
+            'localtime',
+            'utctime',
+            'id'
+        ];
+    }
+
+    /**
      * @return array
      */
-    protected function __toArray()
+    public function toArray()
     {
         return [
             'method' => $this->getMethod(),
@@ -144,9 +178,9 @@ abstract class UsersMissedCallDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $method
      *
-     * @return UsersMissedCallDtoAbstract
+     * @return static
      */
-    public function setMethod($method)
+    public function setMethod($method = null)
     {
         $this->method = $method;
 
@@ -164,9 +198,9 @@ abstract class UsersMissedCallDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $fromTag
      *
-     * @return UsersMissedCallDtoAbstract
+     * @return static
      */
-    public function setFromTag($fromTag)
+    public function setFromTag($fromTag = null)
     {
         $this->fromTag = $fromTag;
 
@@ -184,9 +218,9 @@ abstract class UsersMissedCallDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $toTag
      *
-     * @return UsersMissedCallDtoAbstract
+     * @return static
      */
-    public function setToTag($toTag)
+    public function setToTag($toTag = null)
     {
         $this->toTag = $toTag;
 
@@ -204,9 +238,9 @@ abstract class UsersMissedCallDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $callid
      *
-     * @return UsersMissedCallDtoAbstract
+     * @return static
      */
-    public function setCallid($callid)
+    public function setCallid($callid = null)
     {
         $this->callid = $callid;
 
@@ -224,9 +258,9 @@ abstract class UsersMissedCallDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $sipCode
      *
-     * @return UsersMissedCallDtoAbstract
+     * @return static
      */
-    public function setSipCode($sipCode)
+    public function setSipCode($sipCode = null)
     {
         $this->sipCode = $sipCode;
 
@@ -244,9 +278,9 @@ abstract class UsersMissedCallDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $sipReason
      *
-     * @return UsersMissedCallDtoAbstract
+     * @return static
      */
-    public function setSipReason($sipReason)
+    public function setSipReason($sipReason = null)
     {
         $this->sipReason = $sipReason;
 
@@ -264,7 +298,7 @@ abstract class UsersMissedCallDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $srcIp
      *
-     * @return UsersMissedCallDtoAbstract
+     * @return static
      */
     public function setSrcIp($srcIp = null)
     {
@@ -284,7 +318,7 @@ abstract class UsersMissedCallDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $fromUser
      *
-     * @return UsersMissedCallDtoAbstract
+     * @return static
      */
     public function setFromUser($fromUser = null)
     {
@@ -304,7 +338,7 @@ abstract class UsersMissedCallDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $fromDomain
      *
-     * @return UsersMissedCallDtoAbstract
+     * @return static
      */
     public function setFromDomain($fromDomain = null)
     {
@@ -324,7 +358,7 @@ abstract class UsersMissedCallDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $ruriUser
      *
-     * @return UsersMissedCallDtoAbstract
+     * @return static
      */
     public function setRuriUser($ruriUser = null)
     {
@@ -344,7 +378,7 @@ abstract class UsersMissedCallDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $ruriDomain
      *
-     * @return UsersMissedCallDtoAbstract
+     * @return static
      */
     public function setRuriDomain($ruriDomain = null)
     {
@@ -364,7 +398,7 @@ abstract class UsersMissedCallDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $cseq
      *
-     * @return UsersMissedCallDtoAbstract
+     * @return static
      */
     public function setCseq($cseq = null)
     {
@@ -384,9 +418,9 @@ abstract class UsersMissedCallDtoAbstract implements DataTransferObjectInterface
     /**
      * @param \DateTime $localtime
      *
-     * @return UsersMissedCallDtoAbstract
+     * @return static
      */
-    public function setLocaltime($localtime)
+    public function setLocaltime($localtime = null)
     {
         $this->localtime = $localtime;
 
@@ -404,7 +438,7 @@ abstract class UsersMissedCallDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $utctime
      *
-     * @return UsersMissedCallDtoAbstract
+     * @return static
      */
     public function setUtctime($utctime = null)
     {
@@ -424,9 +458,9 @@ abstract class UsersMissedCallDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return UsersMissedCallDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 

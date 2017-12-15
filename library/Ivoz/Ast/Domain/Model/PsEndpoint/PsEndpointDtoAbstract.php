@@ -97,54 +97,78 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $terminalId;
-
-    /**
-     * @var mixed
-     */
-    private $friendId;
-
-    /**
-     * @var mixed
-     */
-    private $retailAccountId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Terminal\TerminalDto | null
      */
     private $terminal;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Friend\FriendDto | null
      */
     private $friend;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\RetailAccount\RetailAccountDto | null
      */
     private $retailAccount;
 
-    /**
-     * @return array
-     */
-    public function normalize(string $context)
+
+    public function __constructor($id = null)
     {
-        return $this->__toArray();
+        $this->setId($id);
     }
 
     /**
-     * @return void
+     * @inheritdoc
+     */
+    public function normalize(string $context)
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * @inheritdoc
      */
     public function denormalize(array $data, string $context)
     {
     }
 
     /**
+     * @inheritdoc
+     */
+    public static function getPropertyMap(string $context = '')
+    {
+        if ($context === self::CONTEXT_SIMPLE) {
+            return ['id'];
+        }
+
+        return [
+            'sorceryId',
+            'fromDomain',
+            'aors',
+            'callerid',
+            'context',
+            'disallow',
+            'allow',
+            'directMedia',
+            'directMediaMethod',
+            'mailboxes',
+            'namedPickupGroup',
+            'sendDiversion',
+            'sendPai',
+            'oneHundredRel',
+            'outboundProxy',
+            'trustIdInbound',
+            'id',
+            'terminal',
+            'friend',
+            'retailAccount'
+        ];
+    }
+
+    /**
      * @return array
      */
-    protected function __toArray()
+    public function toArray()
     {
         return [
             'sorceryId' => $this->getSorceryId(),
@@ -164,9 +188,9 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
             'outboundProxy' => $this->getOutboundProxy(),
             'trustIdInbound' => $this->getTrustIdInbound(),
             'id' => $this->getId(),
-            'terminalId' => $this->getTerminalId(),
-            'friendId' => $this->getFriendId(),
-            'retailAccountId' => $this->getRetailAccountId()
+            'terminal' => $this->getTerminal(),
+            'friend' => $this->getFriend(),
+            'retailAccount' => $this->getRetailAccount()
         ];
     }
 
@@ -191,9 +215,9 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $sorceryId
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
-    public function setSorceryId($sorceryId)
+    public function setSorceryId($sorceryId = null)
     {
         $this->sorceryId = $sorceryId;
 
@@ -211,7 +235,7 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $fromDomain
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
     public function setFromDomain($fromDomain = null)
     {
@@ -231,7 +255,7 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $aors
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
     public function setAors($aors = null)
     {
@@ -251,7 +275,7 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $callerid
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
     public function setCallerid($callerid = null)
     {
@@ -271,9 +295,9 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $context
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
-    public function setContext($context)
+    public function setContext($context = null)
     {
         $this->context = $context;
 
@@ -291,9 +315,9 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $disallow
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
-    public function setDisallow($disallow)
+    public function setDisallow($disallow = null)
     {
         $this->disallow = $disallow;
 
@@ -311,9 +335,9 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $allow
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
-    public function setAllow($allow)
+    public function setAllow($allow = null)
     {
         $this->allow = $allow;
 
@@ -331,7 +355,7 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $directMedia
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
     public function setDirectMedia($directMedia = null)
     {
@@ -351,7 +375,7 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $directMediaMethod
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
     public function setDirectMediaMethod($directMediaMethod = null)
     {
@@ -371,7 +395,7 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $mailboxes
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
     public function setMailboxes($mailboxes = null)
     {
@@ -391,7 +415,7 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $namedPickupGroup
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
     public function setNamedPickupGroup($namedPickupGroup = null)
     {
@@ -411,7 +435,7 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $sendDiversion
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
     public function setSendDiversion($sendDiversion = null)
     {
@@ -431,7 +455,7 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $sendPai
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
     public function setSendPai($sendPai = null)
     {
@@ -451,9 +475,9 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $oneHundredRel
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
-    public function setOneHundredRel($oneHundredRel)
+    public function setOneHundredRel($oneHundredRel = null)
     {
         $this->oneHundredRel = $oneHundredRel;
 
@@ -471,7 +495,7 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $outboundProxy
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
     public function setOutboundProxy($outboundProxy = null)
     {
@@ -491,7 +515,7 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $trustIdInbound
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
     public function setTrustIdInbound($trustIdInbound = null)
     {
@@ -511,9 +535,9 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -529,27 +553,19 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $terminalId
+     * @param \Ivoz\Provider\Domain\Model\Terminal\TerminalDto $terminal
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
-    public function setTerminalId($terminalId)
+    public function setTerminal(\Ivoz\Provider\Domain\Model\Terminal\TerminalDto $terminal = null)
     {
-        $this->terminalId = $terminalId;
+        $this->terminal = $terminal;
 
         return $this;
     }
 
     /**
-     * @return integer
-     */
-    public function getTerminalId()
-    {
-        return $this->terminalId;
-    }
-
-    /**
-     * @return \Ivoz\Provider\Domain\Model\Terminal\Terminal
+     * @return \Ivoz\Provider\Domain\Model\Terminal\TerminalDto
      */
     public function getTerminal()
     {
@@ -557,27 +573,19 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $friendId
+     * @param \Ivoz\Provider\Domain\Model\Friend\FriendDto $friend
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
-    public function setFriendId($friendId)
+    public function setFriend(\Ivoz\Provider\Domain\Model\Friend\FriendDto $friend = null)
     {
-        $this->friendId = $friendId;
+        $this->friend = $friend;
 
         return $this;
     }
 
     /**
-     * @return integer
-     */
-    public function getFriendId()
-    {
-        return $this->friendId;
-    }
-
-    /**
-     * @return \Ivoz\Provider\Domain\Model\Friend\Friend
+     * @return \Ivoz\Provider\Domain\Model\Friend\FriendDto
      */
     public function getFriend()
     {
@@ -585,27 +593,19 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $retailAccountId
+     * @param \Ivoz\Provider\Domain\Model\RetailAccount\RetailAccountDto $retailAccount
      *
-     * @return PsEndpointDtoAbstract
+     * @return static
      */
-    public function setRetailAccountId($retailAccountId)
+    public function setRetailAccount(\Ivoz\Provider\Domain\Model\RetailAccount\RetailAccountDto $retailAccount = null)
     {
-        $this->retailAccountId = $retailAccountId;
+        $this->retailAccount = $retailAccount;
 
         return $this;
     }
 
     /**
-     * @return integer
-     */
-    public function getRetailAccountId()
-    {
-        return $this->retailAccountId;
-    }
-
-    /**
-     * @return \Ivoz\Provider\Domain\Model\RetailAccount\RetailAccount
+     * @return \Ivoz\Provider\Domain\Model\RetailAccount\RetailAccountDto
      */
     public function getRetailAccount()
     {

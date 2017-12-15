@@ -47,34 +47,56 @@ abstract class UsersAddressDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $companyId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Company\CompanyDto | null
      */
     private $company;
 
-    /**
-     * @return array
-     */
-    public function normalize(string $context)
+
+    public function __constructor($id = null)
     {
-        return $this->__toArray();
+        $this->setId($id);
     }
 
     /**
-     * @return void
+     * @inheritdoc
+     */
+    public function normalize(string $context)
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * @inheritdoc
      */
     public function denormalize(array $data, string $context)
     {
     }
 
     /**
+     * @inheritdoc
+     */
+    public static function getPropertyMap(string $context = '')
+    {
+        if ($context === self::CONTEXT_SIMPLE) {
+            return ['id'];
+        }
+
+        return [
+            'sourceAddress',
+            'ipAddr',
+            'mask',
+            'port',
+            'tag',
+            'description',
+            'id',
+            'company'
+        ];
+    }
+
+    /**
      * @return array
      */
-    protected function __toArray()
+    public function toArray()
     {
         return [
             'sourceAddress' => $this->getSourceAddress(),
@@ -84,7 +106,7 @@ abstract class UsersAddressDtoAbstract implements DataTransferObjectInterface
             'tag' => $this->getTag(),
             'description' => $this->getDescription(),
             'id' => $this->getId(),
-            'companyId' => $this->getCompanyId()
+            'company' => $this->getCompany()
         ];
     }
 
@@ -107,9 +129,9 @@ abstract class UsersAddressDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $sourceAddress
      *
-     * @return UsersAddressDtoAbstract
+     * @return static
      */
-    public function setSourceAddress($sourceAddress)
+    public function setSourceAddress($sourceAddress = null)
     {
         $this->sourceAddress = $sourceAddress;
 
@@ -127,7 +149,7 @@ abstract class UsersAddressDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $ipAddr
      *
-     * @return UsersAddressDtoAbstract
+     * @return static
      */
     public function setIpAddr($ipAddr = null)
     {
@@ -147,9 +169,9 @@ abstract class UsersAddressDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $mask
      *
-     * @return UsersAddressDtoAbstract
+     * @return static
      */
-    public function setMask($mask)
+    public function setMask($mask = null)
     {
         $this->mask = $mask;
 
@@ -167,9 +189,9 @@ abstract class UsersAddressDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $port
      *
-     * @return UsersAddressDtoAbstract
+     * @return static
      */
-    public function setPort($port)
+    public function setPort($port = null)
     {
         $this->port = $port;
 
@@ -187,7 +209,7 @@ abstract class UsersAddressDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $tag
      *
-     * @return UsersAddressDtoAbstract
+     * @return static
      */
     public function setTag($tag = null)
     {
@@ -207,7 +229,7 @@ abstract class UsersAddressDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $description
      *
-     * @return UsersAddressDtoAbstract
+     * @return static
      */
     public function setDescription($description = null)
     {
@@ -227,9 +249,9 @@ abstract class UsersAddressDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return UsersAddressDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -245,27 +267,19 @@ abstract class UsersAddressDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $companyId
+     * @param \Ivoz\Provider\Domain\Model\Company\CompanyDto $company
      *
-     * @return UsersAddressDtoAbstract
+     * @return static
      */
-    public function setCompanyId($companyId)
+    public function setCompany(\Ivoz\Provider\Domain\Model\Company\CompanyDto $company = null)
     {
-        $this->companyId = $companyId;
+        $this->company = $company;
 
         return $this;
     }
 
     /**
-     * @return integer
-     */
-    public function getCompanyId()
-    {
-        return $this->companyId;
-    }
-
-    /**
-     * @return \Ivoz\Provider\Domain\Model\Company\Company
+     * @return \Ivoz\Provider\Domain\Model\Company\CompanyDto
      */
     public function getCompany()
     {

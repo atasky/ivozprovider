@@ -56,25 +56,53 @@ abstract class UsersXcapDtoAbstract implements DataTransferObjectInterface
      */
     private $id;
 
-    /**
-     * @return array
-     */
-    public function normalize(string $context)
+
+    public function __constructor($id = null)
     {
-        return $this->__toArray();
+        $this->setId($id);
     }
 
     /**
-     * @return void
+     * @inheritdoc
+     */
+    public function normalize(string $context)
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * @inheritdoc
      */
     public function denormalize(array $data, string $context)
     {
     }
 
     /**
+     * @inheritdoc
+     */
+    public static function getPropertyMap(string $context = '')
+    {
+        if ($context === self::CONTEXT_SIMPLE) {
+            return ['id'];
+        }
+
+        return [
+            'username',
+            'domain',
+            'doc',
+            'docType',
+            'etag',
+            'source',
+            'docUri',
+            'port',
+            'id'
+        ];
+    }
+
+    /**
      * @return array
      */
-    protected function __toArray()
+    public function toArray()
     {
         return [
             'username' => $this->getUsername(),
@@ -108,9 +136,9 @@ abstract class UsersXcapDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $username
      *
-     * @return UsersXcapDtoAbstract
+     * @return static
      */
-    public function setUsername($username)
+    public function setUsername($username = null)
     {
         $this->username = $username;
 
@@ -128,9 +156,9 @@ abstract class UsersXcapDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $domain
      *
-     * @return UsersXcapDtoAbstract
+     * @return static
      */
-    public function setDomain($domain)
+    public function setDomain($domain = null)
     {
         $this->domain = $domain;
 
@@ -148,9 +176,9 @@ abstract class UsersXcapDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $doc
      *
-     * @return UsersXcapDtoAbstract
+     * @return static
      */
-    public function setDoc($doc)
+    public function setDoc($doc = null)
     {
         $this->doc = $doc;
 
@@ -168,9 +196,9 @@ abstract class UsersXcapDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $docType
      *
-     * @return UsersXcapDtoAbstract
+     * @return static
      */
-    public function setDocType($docType)
+    public function setDocType($docType = null)
     {
         $this->docType = $docType;
 
@@ -188,9 +216,9 @@ abstract class UsersXcapDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $etag
      *
-     * @return UsersXcapDtoAbstract
+     * @return static
      */
-    public function setEtag($etag)
+    public function setEtag($etag = null)
     {
         $this->etag = $etag;
 
@@ -208,9 +236,9 @@ abstract class UsersXcapDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $source
      *
-     * @return UsersXcapDtoAbstract
+     * @return static
      */
-    public function setSource($source)
+    public function setSource($source = null)
     {
         $this->source = $source;
 
@@ -228,9 +256,9 @@ abstract class UsersXcapDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $docUri
      *
-     * @return UsersXcapDtoAbstract
+     * @return static
      */
-    public function setDocUri($docUri)
+    public function setDocUri($docUri = null)
     {
         $this->docUri = $docUri;
 
@@ -248,9 +276,9 @@ abstract class UsersXcapDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $port
      *
-     * @return UsersXcapDtoAbstract
+     * @return static
      */
-    public function setPort($port)
+    public function setPort($port = null)
     {
         $this->port = $port;
 
@@ -268,9 +296,9 @@ abstract class UsersXcapDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return UsersXcapDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 

@@ -4,6 +4,9 @@ namespace Ivoz\Core\Application;
 
 interface DataTransferObjectInterface
 {
+    const CONTEXT_SIMPLE = 'Simple';
+    const CONTEXT_DETAILED = 'Detailed';
+
     /**
      * @return array
      */
@@ -13,6 +16,11 @@ interface DataTransferObjectInterface
      * @return void
      */
     public function denormalize(array $data, string $context);
+
+    /**
+     * @return array
+     */
+    public static function getPropertyMap(string $context = '');
 
     /**
      * @param ForeignKeyTransformerInterface $transformer

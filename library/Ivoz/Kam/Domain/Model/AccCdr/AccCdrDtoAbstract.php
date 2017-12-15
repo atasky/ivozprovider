@@ -157,74 +157,102 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $pricingPlanId;
-
-    /**
-     * @var mixed
-     */
-    private $targetPatternId;
-
-    /**
-     * @var mixed
-     */
-    private $invoiceId;
-
-    /**
-     * @var mixed
-     */
-    private $brandId;
-
-    /**
-     * @var mixed
-     */
-    private $companyId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\PricingPlan\PricingPlanDto | null
      */
     private $pricingPlan;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\TargetPattern\TargetPatternDto | null
      */
     private $targetPattern;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Invoice\InvoiceDto | null
      */
     private $invoice;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Brand\BrandDto | null
      */
     private $brand;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Company\CompanyDto | null
      */
     private $company;
 
-    /**
-     * @return array
-     */
-    public function normalize(string $context)
+
+    public function __constructor($id = null)
     {
-        return $this->__toArray();
+        $this->setId($id);
     }
 
     /**
-     * @return void
+     * @inheritdoc
+     */
+    public function normalize(string $context)
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * @inheritdoc
      */
     public function denormalize(array $data, string $context)
     {
     }
 
     /**
+     * @inheritdoc
+     */
+    public static function getPropertyMap(string $context = '')
+    {
+        if ($context === self::CONTEXT_SIMPLE) {
+            return ['id'];
+        }
+
+        return [
+            'proxy',
+            'startTimeUtc',
+            'endTimeUtc',
+            'startTime',
+            'endTime',
+            'duration',
+            'caller',
+            'callee',
+            'referee',
+            'referrer',
+            'asiden',
+            'asaddress',
+            'callid',
+            'callidHash',
+            'xcallid',
+            'parsed',
+            'diversion',
+            'peeringContractId',
+            'bounced',
+            'externallyRated',
+            'metered',
+            'meteringDate',
+            'pricingPlanName',
+            'targetPatternName',
+            'price',
+            'pricingPlanDetails',
+            'direction',
+            'reMeteringDate',
+            'id',
+            'pricingPlan',
+            'targetPattern',
+            'invoice',
+            'brand',
+            'company'
+        ];
+    }
+
+    /**
      * @return array
      */
-    protected function __toArray()
+    public function toArray()
     {
         return [
             'proxy' => $this->getProxy(),
@@ -256,11 +284,11 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
             'direction' => $this->getDirection(),
             'reMeteringDate' => $this->getReMeteringDate(),
             'id' => $this->getId(),
-            'pricingPlanId' => $this->getPricingPlanId(),
-            'targetPatternId' => $this->getTargetPatternId(),
-            'invoiceId' => $this->getInvoiceId(),
-            'brandId' => $this->getBrandId(),
-            'companyId' => $this->getCompanyId()
+            'pricingPlan' => $this->getPricingPlan(),
+            'targetPattern' => $this->getTargetPattern(),
+            'invoice' => $this->getInvoice(),
+            'brand' => $this->getBrand(),
+            'company' => $this->getCompany()
         ];
     }
 
@@ -287,7 +315,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $proxy
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setProxy($proxy = null)
     {
@@ -307,9 +335,9 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param \DateTime $startTimeUtc
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
-    public function setStartTimeUtc($startTimeUtc)
+    public function setStartTimeUtc($startTimeUtc = null)
     {
         $this->startTimeUtc = $startTimeUtc;
 
@@ -327,9 +355,9 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param \DateTime $endTimeUtc
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
-    public function setEndTimeUtc($endTimeUtc)
+    public function setEndTimeUtc($endTimeUtc = null)
     {
         $this->endTimeUtc = $endTimeUtc;
 
@@ -347,9 +375,9 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param \DateTime $startTime
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
-    public function setStartTime($startTime)
+    public function setStartTime($startTime = null)
     {
         $this->startTime = $startTime;
 
@@ -367,9 +395,9 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param \DateTime $endTime
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
-    public function setEndTime($endTime)
+    public function setEndTime($endTime = null)
     {
         $this->endTime = $endTime;
 
@@ -387,9 +415,9 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param float $duration
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
-    public function setDuration($duration)
+    public function setDuration($duration = null)
     {
         $this->duration = $duration;
 
@@ -407,7 +435,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $caller
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setCaller($caller = null)
     {
@@ -427,7 +455,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $callee
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setCallee($callee = null)
     {
@@ -447,7 +475,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $referee
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setReferee($referee = null)
     {
@@ -467,7 +495,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $referrer
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setReferrer($referrer = null)
     {
@@ -487,7 +515,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $asiden
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setAsiden($asiden = null)
     {
@@ -507,7 +535,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $asaddress
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setAsaddress($asaddress = null)
     {
@@ -527,7 +555,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $callid
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setCallid($callid = null)
     {
@@ -547,7 +575,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $callidHash
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setCallidHash($callidHash = null)
     {
@@ -567,7 +595,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $xcallid
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setXcallid($xcallid = null)
     {
@@ -587,7 +615,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $parsed
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setParsed($parsed = null)
     {
@@ -607,7 +635,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $diversion
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setDiversion($diversion = null)
     {
@@ -627,7 +655,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $peeringContractId
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setPeeringContractId($peeringContractId = null)
     {
@@ -647,9 +675,9 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $bounced
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
-    public function setBounced($bounced)
+    public function setBounced($bounced = null)
     {
         $this->bounced = $bounced;
 
@@ -667,7 +695,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param boolean $externallyRated
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setExternallyRated($externallyRated = null)
     {
@@ -687,7 +715,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param boolean $metered
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setMetered($metered = null)
     {
@@ -707,7 +735,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param \DateTime $meteringDate
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setMeteringDate($meteringDate = null)
     {
@@ -727,7 +755,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $pricingPlanName
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setPricingPlanName($pricingPlanName = null)
     {
@@ -747,7 +775,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $targetPatternName
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setTargetPatternName($targetPatternName = null)
     {
@@ -767,7 +795,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $price
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setPrice($price = null)
     {
@@ -787,7 +815,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $pricingPlanDetails
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setPricingPlanDetails($pricingPlanDetails = null)
     {
@@ -807,7 +835,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $direction
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setDirection($direction = null)
     {
@@ -827,7 +855,7 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param \DateTime $reMeteringDate
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
     public function setReMeteringDate($reMeteringDate = null)
     {
@@ -847,9 +875,9 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -865,27 +893,19 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $pricingPlanId
+     * @param \Ivoz\Provider\Domain\Model\PricingPlan\PricingPlanDto $pricingPlan
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
-    public function setPricingPlanId($pricingPlanId)
+    public function setPricingPlan(\Ivoz\Provider\Domain\Model\PricingPlan\PricingPlanDto $pricingPlan = null)
     {
-        $this->pricingPlanId = $pricingPlanId;
+        $this->pricingPlan = $pricingPlan;
 
         return $this;
     }
 
     /**
-     * @return integer
-     */
-    public function getPricingPlanId()
-    {
-        return $this->pricingPlanId;
-    }
-
-    /**
-     * @return \Ivoz\Provider\Domain\Model\PricingPlan\PricingPlan
+     * @return \Ivoz\Provider\Domain\Model\PricingPlan\PricingPlanDto
      */
     public function getPricingPlan()
     {
@@ -893,27 +913,19 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $targetPatternId
+     * @param \Ivoz\Provider\Domain\Model\TargetPattern\TargetPatternDto $targetPattern
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
-    public function setTargetPatternId($targetPatternId)
+    public function setTargetPattern(\Ivoz\Provider\Domain\Model\TargetPattern\TargetPatternDto $targetPattern = null)
     {
-        $this->targetPatternId = $targetPatternId;
+        $this->targetPattern = $targetPattern;
 
         return $this;
     }
 
     /**
-     * @return integer
-     */
-    public function getTargetPatternId()
-    {
-        return $this->targetPatternId;
-    }
-
-    /**
-     * @return \Ivoz\Provider\Domain\Model\TargetPattern\TargetPattern
+     * @return \Ivoz\Provider\Domain\Model\TargetPattern\TargetPatternDto
      */
     public function getTargetPattern()
     {
@@ -921,27 +933,19 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $invoiceId
+     * @param \Ivoz\Provider\Domain\Model\Invoice\InvoiceDto $invoice
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
-    public function setInvoiceId($invoiceId)
+    public function setInvoice(\Ivoz\Provider\Domain\Model\Invoice\InvoiceDto $invoice = null)
     {
-        $this->invoiceId = $invoiceId;
+        $this->invoice = $invoice;
 
         return $this;
     }
 
     /**
-     * @return integer
-     */
-    public function getInvoiceId()
-    {
-        return $this->invoiceId;
-    }
-
-    /**
-     * @return \Ivoz\Provider\Domain\Model\Invoice\Invoice
+     * @return \Ivoz\Provider\Domain\Model\Invoice\InvoiceDto
      */
     public function getInvoice()
     {
@@ -949,27 +953,19 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $brandId
+     * @param \Ivoz\Provider\Domain\Model\Brand\BrandDto $brand
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
-    public function setBrandId($brandId)
+    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\BrandDto $brand = null)
     {
-        $this->brandId = $brandId;
+        $this->brand = $brand;
 
         return $this;
     }
 
     /**
-     * @return integer
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
-    }
-
-    /**
-     * @return \Ivoz\Provider\Domain\Model\Brand\Brand
+     * @return \Ivoz\Provider\Domain\Model\Brand\BrandDto
      */
     public function getBrand()
     {
@@ -977,27 +973,19 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $companyId
+     * @param \Ivoz\Provider\Domain\Model\Company\CompanyDto $company
      *
-     * @return AccCdrDtoAbstract
+     * @return static
      */
-    public function setCompanyId($companyId)
+    public function setCompany(\Ivoz\Provider\Domain\Model\Company\CompanyDto $company = null)
     {
-        $this->companyId = $companyId;
+        $this->company = $company;
 
         return $this;
     }
 
     /**
-     * @return integer
-     */
-    public function getCompanyId()
-    {
-        return $this->companyId;
-    }
-
-    /**
-     * @return \Ivoz\Provider\Domain\Model\Company\Company
+     * @return \Ivoz\Provider\Domain\Model\Company\CompanyDto
      */
     public function getCompany()
     {

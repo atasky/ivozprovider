@@ -42,34 +42,55 @@ abstract class RtpproxyDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $mediaRelaySetId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\MediaRelaySet\MediaRelaySetDto | null
      */
     private $mediaRelaySet;
 
-    /**
-     * @return array
-     */
-    public function normalize(string $context)
+
+    public function __constructor($id = null)
     {
-        return $this->__toArray();
+        $this->setId($id);
     }
 
     /**
-     * @return void
+     * @inheritdoc
+     */
+    public function normalize(string $context)
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * @inheritdoc
      */
     public function denormalize(array $data, string $context)
     {
     }
 
     /**
+     * @inheritdoc
+     */
+    public static function getPropertyMap(string $context = '')
+    {
+        if ($context === self::CONTEXT_SIMPLE) {
+            return ['id'];
+        }
+
+        return [
+            'setid',
+            'url',
+            'flags',
+            'weight',
+            'description',
+            'id',
+            'mediaRelaySet'
+        ];
+    }
+
+    /**
      * @return array
      */
-    protected function __toArray()
+    public function toArray()
     {
         return [
             'setid' => $this->getSetid(),
@@ -78,7 +99,7 @@ abstract class RtpproxyDtoAbstract implements DataTransferObjectInterface
             'weight' => $this->getWeight(),
             'description' => $this->getDescription(),
             'id' => $this->getId(),
-            'mediaRelaySetId' => $this->getMediaRelaySetId()
+            'mediaRelaySet' => $this->getMediaRelaySet()
         ];
     }
 
@@ -101,9 +122,9 @@ abstract class RtpproxyDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $setid
      *
-     * @return RtpproxyDtoAbstract
+     * @return static
      */
-    public function setSetid($setid)
+    public function setSetid($setid = null)
     {
         $this->setid = $setid;
 
@@ -121,9 +142,9 @@ abstract class RtpproxyDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $url
      *
-     * @return RtpproxyDtoAbstract
+     * @return static
      */
-    public function setUrl($url)
+    public function setUrl($url = null)
     {
         $this->url = $url;
 
@@ -141,9 +162,9 @@ abstract class RtpproxyDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $flags
      *
-     * @return RtpproxyDtoAbstract
+     * @return static
      */
-    public function setFlags($flags)
+    public function setFlags($flags = null)
     {
         $this->flags = $flags;
 
@@ -161,9 +182,9 @@ abstract class RtpproxyDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $weight
      *
-     * @return RtpproxyDtoAbstract
+     * @return static
      */
-    public function setWeight($weight)
+    public function setWeight($weight = null)
     {
         $this->weight = $weight;
 
@@ -181,7 +202,7 @@ abstract class RtpproxyDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $description
      *
-     * @return RtpproxyDtoAbstract
+     * @return static
      */
     public function setDescription($description = null)
     {
@@ -201,9 +222,9 @@ abstract class RtpproxyDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return RtpproxyDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -219,27 +240,19 @@ abstract class RtpproxyDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $mediaRelaySetId
+     * @param \Ivoz\Provider\Domain\Model\MediaRelaySet\MediaRelaySetDto $mediaRelaySet
      *
-     * @return RtpproxyDtoAbstract
+     * @return static
      */
-    public function setMediaRelaySetId($mediaRelaySetId)
+    public function setMediaRelaySet(\Ivoz\Provider\Domain\Model\MediaRelaySet\MediaRelaySetDto $mediaRelaySet = null)
     {
-        $this->mediaRelaySetId = $mediaRelaySetId;
+        $this->mediaRelaySet = $mediaRelaySet;
 
         return $this;
     }
 
     /**
-     * @return integer
-     */
-    public function getMediaRelaySetId()
-    {
-        return $this->mediaRelaySetId;
-    }
-
-    /**
-     * @return \Ivoz\Provider\Domain\Model\MediaRelaySet\MediaRelaySet
+     * @return \Ivoz\Provider\Domain\Model\MediaRelaySet\MediaRelaySetDto
      */
     public function getMediaRelaySet()
     {

@@ -46,25 +46,51 @@ abstract class PikeTrustedDtoAbstract implements DataTransferObjectInterface
      */
     private $id;
 
-    /**
-     * @return array
-     */
-    public function normalize(string $context)
+
+    public function __constructor($id = null)
     {
-        return $this->__toArray();
+        $this->setId($id);
     }
 
     /**
-     * @return void
+     * @inheritdoc
+     */
+    public function normalize(string $context)
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * @inheritdoc
      */
     public function denormalize(array $data, string $context)
     {
     }
 
     /**
+     * @inheritdoc
+     */
+    public static function getPropertyMap(string $context = '')
+    {
+        if ($context === self::CONTEXT_SIMPLE) {
+            return ['id'];
+        }
+
+        return [
+            'srcIp',
+            'proto',
+            'fromPattern',
+            'ruriPattern',
+            'tag',
+            'priority',
+            'id'
+        ];
+    }
+
+    /**
      * @return array
      */
-    protected function __toArray()
+    public function toArray()
     {
         return [
             'srcIp' => $this->getSrcIp(),
@@ -96,7 +122,7 @@ abstract class PikeTrustedDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $srcIp
      *
-     * @return PikeTrustedDtoAbstract
+     * @return static
      */
     public function setSrcIp($srcIp = null)
     {
@@ -116,7 +142,7 @@ abstract class PikeTrustedDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $proto
      *
-     * @return PikeTrustedDtoAbstract
+     * @return static
      */
     public function setProto($proto = null)
     {
@@ -136,7 +162,7 @@ abstract class PikeTrustedDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $fromPattern
      *
-     * @return PikeTrustedDtoAbstract
+     * @return static
      */
     public function setFromPattern($fromPattern = null)
     {
@@ -156,7 +182,7 @@ abstract class PikeTrustedDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $ruriPattern
      *
-     * @return PikeTrustedDtoAbstract
+     * @return static
      */
     public function setRuriPattern($ruriPattern = null)
     {
@@ -176,7 +202,7 @@ abstract class PikeTrustedDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $tag
      *
-     * @return PikeTrustedDtoAbstract
+     * @return static
      */
     public function setTag($tag = null)
     {
@@ -196,9 +222,9 @@ abstract class PikeTrustedDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $priority
      *
-     * @return PikeTrustedDtoAbstract
+     * @return static
      */
-    public function setPriority($priority)
+    public function setPriority($priority = null)
     {
         $this->priority = $priority;
 
@@ -216,9 +242,9 @@ abstract class PikeTrustedDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return PikeTrustedDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 

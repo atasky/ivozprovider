@@ -41,25 +41,50 @@ abstract class TrunksAddresDtoAbstract implements DataTransferObjectInterface
      */
     private $id;
 
-    /**
-     * @return array
-     */
-    public function normalize(string $context)
+
+    public function __constructor($id = null)
     {
-        return $this->__toArray();
+        $this->setId($id);
     }
 
     /**
-     * @return void
+     * @inheritdoc
+     */
+    public function normalize(string $context)
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * @inheritdoc
      */
     public function denormalize(array $data, string $context)
     {
     }
 
     /**
+     * @inheritdoc
+     */
+    public static function getPropertyMap(string $context = '')
+    {
+        if ($context === self::CONTEXT_SIMPLE) {
+            return ['id'];
+        }
+
+        return [
+            'grp',
+            'ipAddr',
+            'mask',
+            'port',
+            'tag',
+            'id'
+        ];
+    }
+
+    /**
      * @return array
      */
-    protected function __toArray()
+    public function toArray()
     {
         return [
             'grp' => $this->getGrp(),
@@ -90,9 +115,9 @@ abstract class TrunksAddresDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $grp
      *
-     * @return TrunksAddresDtoAbstract
+     * @return static
      */
-    public function setGrp($grp)
+    public function setGrp($grp = null)
     {
         $this->grp = $grp;
 
@@ -110,7 +135,7 @@ abstract class TrunksAddresDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $ipAddr
      *
-     * @return TrunksAddresDtoAbstract
+     * @return static
      */
     public function setIpAddr($ipAddr = null)
     {
@@ -130,9 +155,9 @@ abstract class TrunksAddresDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $mask
      *
-     * @return TrunksAddresDtoAbstract
+     * @return static
      */
-    public function setMask($mask)
+    public function setMask($mask = null)
     {
         $this->mask = $mask;
 
@@ -150,9 +175,9 @@ abstract class TrunksAddresDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $port
      *
-     * @return TrunksAddresDtoAbstract
+     * @return static
      */
-    public function setPort($port)
+    public function setPort($port = null)
     {
         $this->port = $port;
 
@@ -170,7 +195,7 @@ abstract class TrunksAddresDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $tag
      *
-     * @return TrunksAddresDtoAbstract
+     * @return static
      */
     public function setTag($tag = null)
     {
@@ -190,9 +215,9 @@ abstract class TrunksAddresDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return TrunksAddresDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 

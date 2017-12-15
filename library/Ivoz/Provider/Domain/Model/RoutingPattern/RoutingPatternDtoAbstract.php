@@ -58,7 +58,7 @@ abstract class RoutingPatternDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return array
+     * @inheritdoc
      */
     public function normalize(string $context)
     {
@@ -66,17 +66,21 @@ abstract class RoutingPatternDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return void
+     * @inheritdoc
      */
     public function denormalize(array $data, string $context)
     {
     }
 
     /**
-     * @return array
+     * @inheritdoc
      */
-    public static function getPropertyMap()
+    public static function getPropertyMap(string $context = '')
     {
+        if ($context === self::CONTEXT_SIMPLE) {
+            return ['id'];
+        }
+
         return [
             'regExp',
             'id',

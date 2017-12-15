@@ -106,25 +106,63 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
      */
     private $id;
 
-    /**
-     * @return array
-     */
-    public function normalize(string $context)
+
+    public function __constructor($id = null)
     {
-        return $this->__toArray();
+        $this->setId($id);
     }
 
     /**
-     * @return void
+     * @inheritdoc
+     */
+    public function normalize(string $context)
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * @inheritdoc
      */
     public function denormalize(array $data, string $context)
     {
     }
 
     /**
+     * @inheritdoc
+     */
+    public static function getPropertyMap(string $context = '')
+    {
+        if ($context === self::CONTEXT_SIMPLE) {
+            return ['id'];
+        }
+
+        return [
+            'presUri',
+            'presId',
+            'event',
+            'expires',
+            'desiredExpires',
+            'flag',
+            'etag',
+            'tupleId',
+            'watcherUri',
+            'callId',
+            'toTag',
+            'fromTag',
+            'cseq',
+            'recordRoute',
+            'contact',
+            'remoteContact',
+            'version',
+            'extraHeaders',
+            'id'
+        ];
+    }
+
+    /**
      * @return array
      */
-    protected function __toArray()
+    public function toArray()
     {
         return [
             'presUri' => $this->getPresUri(),
@@ -168,9 +206,9 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $presUri
      *
-     * @return UsersPuaDtoAbstract
+     * @return static
      */
-    public function setPresUri($presUri)
+    public function setPresUri($presUri = null)
     {
         $this->presUri = $presUri;
 
@@ -188,9 +226,9 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $presId
      *
-     * @return UsersPuaDtoAbstract
+     * @return static
      */
-    public function setPresId($presId)
+    public function setPresId($presId = null)
     {
         $this->presId = $presId;
 
@@ -208,9 +246,9 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $event
      *
-     * @return UsersPuaDtoAbstract
+     * @return static
      */
-    public function setEvent($event)
+    public function setEvent($event = null)
     {
         $this->event = $event;
 
@@ -228,9 +266,9 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $expires
      *
-     * @return UsersPuaDtoAbstract
+     * @return static
      */
-    public function setExpires($expires)
+    public function setExpires($expires = null)
     {
         $this->expires = $expires;
 
@@ -248,9 +286,9 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $desiredExpires
      *
-     * @return UsersPuaDtoAbstract
+     * @return static
      */
-    public function setDesiredExpires($desiredExpires)
+    public function setDesiredExpires($desiredExpires = null)
     {
         $this->desiredExpires = $desiredExpires;
 
@@ -268,9 +306,9 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $flag
      *
-     * @return UsersPuaDtoAbstract
+     * @return static
      */
-    public function setFlag($flag)
+    public function setFlag($flag = null)
     {
         $this->flag = $flag;
 
@@ -288,9 +326,9 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $etag
      *
-     * @return UsersPuaDtoAbstract
+     * @return static
      */
-    public function setEtag($etag)
+    public function setEtag($etag = null)
     {
         $this->etag = $etag;
 
@@ -308,7 +346,7 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $tupleId
      *
-     * @return UsersPuaDtoAbstract
+     * @return static
      */
     public function setTupleId($tupleId = null)
     {
@@ -328,9 +366,9 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $watcherUri
      *
-     * @return UsersPuaDtoAbstract
+     * @return static
      */
-    public function setWatcherUri($watcherUri)
+    public function setWatcherUri($watcherUri = null)
     {
         $this->watcherUri = $watcherUri;
 
@@ -348,9 +386,9 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $callId
      *
-     * @return UsersPuaDtoAbstract
+     * @return static
      */
-    public function setCallId($callId)
+    public function setCallId($callId = null)
     {
         $this->callId = $callId;
 
@@ -368,9 +406,9 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $toTag
      *
-     * @return UsersPuaDtoAbstract
+     * @return static
      */
-    public function setToTag($toTag)
+    public function setToTag($toTag = null)
     {
         $this->toTag = $toTag;
 
@@ -388,9 +426,9 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $fromTag
      *
-     * @return UsersPuaDtoAbstract
+     * @return static
      */
-    public function setFromTag($fromTag)
+    public function setFromTag($fromTag = null)
     {
         $this->fromTag = $fromTag;
 
@@ -408,9 +446,9 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $cseq
      *
-     * @return UsersPuaDtoAbstract
+     * @return static
      */
-    public function setCseq($cseq)
+    public function setCseq($cseq = null)
     {
         $this->cseq = $cseq;
 
@@ -428,7 +466,7 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $recordRoute
      *
-     * @return UsersPuaDtoAbstract
+     * @return static
      */
     public function setRecordRoute($recordRoute = null)
     {
@@ -448,9 +486,9 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $contact
      *
-     * @return UsersPuaDtoAbstract
+     * @return static
      */
-    public function setContact($contact)
+    public function setContact($contact = null)
     {
         $this->contact = $contact;
 
@@ -468,9 +506,9 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $remoteContact
      *
-     * @return UsersPuaDtoAbstract
+     * @return static
      */
-    public function setRemoteContact($remoteContact)
+    public function setRemoteContact($remoteContact = null)
     {
         $this->remoteContact = $remoteContact;
 
@@ -488,9 +526,9 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $version
      *
-     * @return UsersPuaDtoAbstract
+     * @return static
      */
-    public function setVersion($version)
+    public function setVersion($version = null)
     {
         $this->version = $version;
 
@@ -508,9 +546,9 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $extraHeaders
      *
-     * @return UsersPuaDtoAbstract
+     * @return static
      */
-    public function setExtraHeaders($extraHeaders)
+    public function setExtraHeaders($extraHeaders = null)
     {
         $this->extraHeaders = $extraHeaders;
 
@@ -528,9 +566,9 @@ abstract class UsersPuaDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return UsersPuaDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 

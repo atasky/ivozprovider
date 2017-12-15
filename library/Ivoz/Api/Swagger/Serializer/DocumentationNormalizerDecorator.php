@@ -91,7 +91,7 @@ class DocumentationNormalizerDecorator implements NormalizerInterface
         if ($isReference) {
 
             if ($this->isEntity($property['$ref'])) {
-                $property = $this->setContext($property, 'Simple', $context);
+                $property = $this->setContext($property, $context);
             }
 
             return $property;
@@ -102,13 +102,13 @@ class DocumentationNormalizerDecorator implements NormalizerInterface
         }
 
         if ($this->isEntity($property['items']['$ref'])) {
-            $property['items'] = $this->setContext($property['items'], 'Simple', $context);
+            $property['items'] = $this->setContext($property['items'],  $context);
         }
 
         return $property;
     }
 
-    private function setContext($property, $suffix, $context)
+    private function setContext($property, $context)
     {
         if ($context !== 'Detailed') {
             unset($property['$ref']);
@@ -117,8 +117,6 @@ class DocumentationNormalizerDecorator implements NormalizerInterface
         }
 
         $refSegments = explode('-', $property['$ref']);
-        $property['$ref'] = $refSegments[0] . '-' . $suffix;
-
-        return $property;
+        return $refSegments[0];
     }
 }

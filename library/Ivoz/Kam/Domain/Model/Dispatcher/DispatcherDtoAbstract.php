@@ -47,34 +47,56 @@ abstract class DispatcherDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $applicationServerId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\ApplicationServer\ApplicationServerDto | null
      */
     private $applicationServer;
 
-    /**
-     * @return array
-     */
-    public function normalize(string $context)
+
+    public function __constructor($id = null)
     {
-        return $this->__toArray();
+        $this->setId($id);
     }
 
     /**
-     * @return void
+     * @inheritdoc
+     */
+    public function normalize(string $context)
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * @inheritdoc
      */
     public function denormalize(array $data, string $context)
     {
     }
 
     /**
+     * @inheritdoc
+     */
+    public static function getPropertyMap(string $context = '')
+    {
+        if ($context === self::CONTEXT_SIMPLE) {
+            return ['id'];
+        }
+
+        return [
+            'setid',
+            'destination',
+            'flags',
+            'priority',
+            'attrs',
+            'description',
+            'id',
+            'applicationServer'
+        ];
+    }
+
+    /**
      * @return array
      */
-    protected function __toArray()
+    public function toArray()
     {
         return [
             'setid' => $this->getSetid(),
@@ -84,7 +106,7 @@ abstract class DispatcherDtoAbstract implements DataTransferObjectInterface
             'attrs' => $this->getAttrs(),
             'description' => $this->getDescription(),
             'id' => $this->getId(),
-            'applicationServerId' => $this->getApplicationServerId()
+            'applicationServer' => $this->getApplicationServer()
         ];
     }
 
@@ -107,9 +129,9 @@ abstract class DispatcherDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $setid
      *
-     * @return DispatcherDtoAbstract
+     * @return static
      */
-    public function setSetid($setid)
+    public function setSetid($setid = null)
     {
         $this->setid = $setid;
 
@@ -127,9 +149,9 @@ abstract class DispatcherDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $destination
      *
-     * @return DispatcherDtoAbstract
+     * @return static
      */
-    public function setDestination($destination)
+    public function setDestination($destination = null)
     {
         $this->destination = $destination;
 
@@ -147,9 +169,9 @@ abstract class DispatcherDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $flags
      *
-     * @return DispatcherDtoAbstract
+     * @return static
      */
-    public function setFlags($flags)
+    public function setFlags($flags = null)
     {
         $this->flags = $flags;
 
@@ -167,9 +189,9 @@ abstract class DispatcherDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $priority
      *
-     * @return DispatcherDtoAbstract
+     * @return static
      */
-    public function setPriority($priority)
+    public function setPriority($priority = null)
     {
         $this->priority = $priority;
 
@@ -187,9 +209,9 @@ abstract class DispatcherDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $attrs
      *
-     * @return DispatcherDtoAbstract
+     * @return static
      */
-    public function setAttrs($attrs)
+    public function setAttrs($attrs = null)
     {
         $this->attrs = $attrs;
 
@@ -207,9 +229,9 @@ abstract class DispatcherDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $description
      *
-     * @return DispatcherDtoAbstract
+     * @return static
      */
-    public function setDescription($description)
+    public function setDescription($description = null)
     {
         $this->description = $description;
 
@@ -227,9 +249,9 @@ abstract class DispatcherDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return DispatcherDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -245,27 +267,19 @@ abstract class DispatcherDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $applicationServerId
+     * @param \Ivoz\Provider\Domain\Model\ApplicationServer\ApplicationServerDto $applicationServer
      *
-     * @return DispatcherDtoAbstract
+     * @return static
      */
-    public function setApplicationServerId($applicationServerId)
+    public function setApplicationServer(\Ivoz\Provider\Domain\Model\ApplicationServer\ApplicationServerDto $applicationServer = null)
     {
-        $this->applicationServerId = $applicationServerId;
+        $this->applicationServer = $applicationServer;
 
         return $this;
     }
 
     /**
-     * @return integer
-     */
-    public function getApplicationServerId()
-    {
-        return $this->applicationServerId;
-    }
-
-    /**
-     * @return \Ivoz\Provider\Domain\Model\ApplicationServer\ApplicationServer
+     * @return \Ivoz\Provider\Domain\Model\ApplicationServer\ApplicationServerDto
      */
     public function getApplicationServer()
     {

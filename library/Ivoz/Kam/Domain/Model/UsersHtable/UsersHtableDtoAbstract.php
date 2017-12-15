@@ -41,25 +41,50 @@ abstract class UsersHtableDtoAbstract implements DataTransferObjectInterface
      */
     private $id;
 
-    /**
-     * @return array
-     */
-    public function normalize(string $context)
+
+    public function __constructor($id = null)
     {
-        return $this->__toArray();
+        $this->setId($id);
     }
 
     /**
-     * @return void
+     * @inheritdoc
+     */
+    public function normalize(string $context)
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * @inheritdoc
      */
     public function denormalize(array $data, string $context)
     {
     }
 
     /**
+     * @inheritdoc
+     */
+    public static function getPropertyMap(string $context = '')
+    {
+        if ($context === self::CONTEXT_SIMPLE) {
+            return ['id'];
+        }
+
+        return [
+            'keyName',
+            'keyType',
+            'valueType',
+            'keyValue',
+            'expires',
+            'id'
+        ];
+    }
+
+    /**
      * @return array
      */
-    protected function __toArray()
+    public function toArray()
     {
         return [
             'keyName' => $this->getKeyName(),
@@ -90,9 +115,9 @@ abstract class UsersHtableDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $keyName
      *
-     * @return UsersHtableDtoAbstract
+     * @return static
      */
-    public function setKeyName($keyName)
+    public function setKeyName($keyName = null)
     {
         $this->keyName = $keyName;
 
@@ -110,9 +135,9 @@ abstract class UsersHtableDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $keyType
      *
-     * @return UsersHtableDtoAbstract
+     * @return static
      */
-    public function setKeyType($keyType)
+    public function setKeyType($keyType = null)
     {
         $this->keyType = $keyType;
 
@@ -130,9 +155,9 @@ abstract class UsersHtableDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $valueType
      *
-     * @return UsersHtableDtoAbstract
+     * @return static
      */
-    public function setValueType($valueType)
+    public function setValueType($valueType = null)
     {
         $this->valueType = $valueType;
 
@@ -150,9 +175,9 @@ abstract class UsersHtableDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $keyValue
      *
-     * @return UsersHtableDtoAbstract
+     * @return static
      */
-    public function setKeyValue($keyValue)
+    public function setKeyValue($keyValue = null)
     {
         $this->keyValue = $keyValue;
 
@@ -170,9 +195,9 @@ abstract class UsersHtableDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $expires
      *
-     * @return UsersHtableDtoAbstract
+     * @return static
      */
-    public function setExpires($expires)
+    public function setExpires($expires = null)
     {
         $this->expires = $expires;
 
@@ -190,9 +215,9 @@ abstract class UsersHtableDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return UsersHtableDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 

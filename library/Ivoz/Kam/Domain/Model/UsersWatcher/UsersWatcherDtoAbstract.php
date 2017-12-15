@@ -51,25 +51,52 @@ abstract class UsersWatcherDtoAbstract implements DataTransferObjectInterface
      */
     private $id;
 
-    /**
-     * @return array
-     */
-    public function normalize(string $context)
+
+    public function __constructor($id = null)
     {
-        return $this->__toArray();
+        $this->setId($id);
     }
 
     /**
-     * @return void
+     * @inheritdoc
+     */
+    public function normalize(string $context)
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * @inheritdoc
      */
     public function denormalize(array $data, string $context)
     {
     }
 
     /**
+     * @inheritdoc
+     */
+    public static function getPropertyMap(string $context = '')
+    {
+        if ($context === self::CONTEXT_SIMPLE) {
+            return ['id'];
+        }
+
+        return [
+            'presentityUri',
+            'watcherUsername',
+            'watcherDomain',
+            'event',
+            'status',
+            'reason',
+            'insertedTime',
+            'id'
+        ];
+    }
+
+    /**
      * @return array
      */
-    protected function __toArray()
+    public function toArray()
     {
         return [
             'presentityUri' => $this->getPresentityUri(),
@@ -102,9 +129,9 @@ abstract class UsersWatcherDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $presentityUri
      *
-     * @return UsersWatcherDtoAbstract
+     * @return static
      */
-    public function setPresentityUri($presentityUri)
+    public function setPresentityUri($presentityUri = null)
     {
         $this->presentityUri = $presentityUri;
 
@@ -122,9 +149,9 @@ abstract class UsersWatcherDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $watcherUsername
      *
-     * @return UsersWatcherDtoAbstract
+     * @return static
      */
-    public function setWatcherUsername($watcherUsername)
+    public function setWatcherUsername($watcherUsername = null)
     {
         $this->watcherUsername = $watcherUsername;
 
@@ -142,9 +169,9 @@ abstract class UsersWatcherDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $watcherDomain
      *
-     * @return UsersWatcherDtoAbstract
+     * @return static
      */
-    public function setWatcherDomain($watcherDomain)
+    public function setWatcherDomain($watcherDomain = null)
     {
         $this->watcherDomain = $watcherDomain;
 
@@ -162,9 +189,9 @@ abstract class UsersWatcherDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $event
      *
-     * @return UsersWatcherDtoAbstract
+     * @return static
      */
-    public function setEvent($event)
+    public function setEvent($event = null)
     {
         $this->event = $event;
 
@@ -182,9 +209,9 @@ abstract class UsersWatcherDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $status
      *
-     * @return UsersWatcherDtoAbstract
+     * @return static
      */
-    public function setStatus($status)
+    public function setStatus($status = null)
     {
         $this->status = $status;
 
@@ -202,7 +229,7 @@ abstract class UsersWatcherDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $reason
      *
-     * @return UsersWatcherDtoAbstract
+     * @return static
      */
     public function setReason($reason = null)
     {
@@ -222,9 +249,9 @@ abstract class UsersWatcherDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $insertedTime
      *
-     * @return UsersWatcherDtoAbstract
+     * @return static
      */
-    public function setInsertedTime($insertedTime)
+    public function setInsertedTime($insertedTime = null)
     {
         $this->insertedTime = $insertedTime;
 
@@ -242,9 +269,9 @@ abstract class UsersWatcherDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return UsersWatcherDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 

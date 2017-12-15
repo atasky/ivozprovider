@@ -51,25 +51,52 @@ abstract class UsersLocationAttrDtoAbstract implements DataTransferObjectInterfa
      */
     private $id;
 
-    /**
-     * @return array
-     */
-    public function normalize(string $context)
+
+    public function __constructor($id = null)
     {
-        return $this->__toArray();
+        $this->setId($id);
     }
 
     /**
-     * @return void
+     * @inheritdoc
+     */
+    public function normalize(string $context)
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * @inheritdoc
      */
     public function denormalize(array $data, string $context)
     {
     }
 
     /**
+     * @inheritdoc
+     */
+    public static function getPropertyMap(string $context = '')
+    {
+        if ($context === self::CONTEXT_SIMPLE) {
+            return ['id'];
+        }
+
+        return [
+            'ruid',
+            'username',
+            'domain',
+            'aname',
+            'atype',
+            'avalue',
+            'lastModified',
+            'id'
+        ];
+    }
+
+    /**
      * @return array
      */
-    protected function __toArray()
+    public function toArray()
     {
         return [
             'ruid' => $this->getRuid(),
@@ -102,9 +129,9 @@ abstract class UsersLocationAttrDtoAbstract implements DataTransferObjectInterfa
     /**
      * @param string $ruid
      *
-     * @return UsersLocationAttrDtoAbstract
+     * @return static
      */
-    public function setRuid($ruid)
+    public function setRuid($ruid = null)
     {
         $this->ruid = $ruid;
 
@@ -122,9 +149,9 @@ abstract class UsersLocationAttrDtoAbstract implements DataTransferObjectInterfa
     /**
      * @param string $username
      *
-     * @return UsersLocationAttrDtoAbstract
+     * @return static
      */
-    public function setUsername($username)
+    public function setUsername($username = null)
     {
         $this->username = $username;
 
@@ -142,7 +169,7 @@ abstract class UsersLocationAttrDtoAbstract implements DataTransferObjectInterfa
     /**
      * @param string $domain
      *
-     * @return UsersLocationAttrDtoAbstract
+     * @return static
      */
     public function setDomain($domain = null)
     {
@@ -162,9 +189,9 @@ abstract class UsersLocationAttrDtoAbstract implements DataTransferObjectInterfa
     /**
      * @param string $aname
      *
-     * @return UsersLocationAttrDtoAbstract
+     * @return static
      */
-    public function setAname($aname)
+    public function setAname($aname = null)
     {
         $this->aname = $aname;
 
@@ -182,9 +209,9 @@ abstract class UsersLocationAttrDtoAbstract implements DataTransferObjectInterfa
     /**
      * @param integer $atype
      *
-     * @return UsersLocationAttrDtoAbstract
+     * @return static
      */
-    public function setAtype($atype)
+    public function setAtype($atype = null)
     {
         $this->atype = $atype;
 
@@ -202,9 +229,9 @@ abstract class UsersLocationAttrDtoAbstract implements DataTransferObjectInterfa
     /**
      * @param string $avalue
      *
-     * @return UsersLocationAttrDtoAbstract
+     * @return static
      */
-    public function setAvalue($avalue)
+    public function setAvalue($avalue = null)
     {
         $this->avalue = $avalue;
 
@@ -222,9 +249,9 @@ abstract class UsersLocationAttrDtoAbstract implements DataTransferObjectInterfa
     /**
      * @param \DateTime $lastModified
      *
-     * @return UsersLocationAttrDtoAbstract
+     * @return static
      */
-    public function setLastModified($lastModified)
+    public function setLastModified($lastModified = null)
     {
         $this->lastModified = $lastModified;
 
@@ -242,9 +269,9 @@ abstract class UsersLocationAttrDtoAbstract implements DataTransferObjectInterfa
     /**
      * @param integer $id
      *
-     * @return UsersLocationAttrDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 

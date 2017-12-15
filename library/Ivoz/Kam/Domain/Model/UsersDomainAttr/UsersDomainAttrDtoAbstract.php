@@ -41,25 +41,50 @@ abstract class UsersDomainAttrDtoAbstract implements DataTransferObjectInterface
      */
     private $id;
 
-    /**
-     * @return array
-     */
-    public function normalize(string $context)
+
+    public function __constructor($id = null)
     {
-        return $this->__toArray();
+        $this->setId($id);
     }
 
     /**
-     * @return void
+     * @inheritdoc
+     */
+    public function normalize(string $context)
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * @inheritdoc
      */
     public function denormalize(array $data, string $context)
     {
     }
 
     /**
+     * @inheritdoc
+     */
+    public static function getPropertyMap(string $context = '')
+    {
+        if ($context === self::CONTEXT_SIMPLE) {
+            return ['id'];
+        }
+
+        return [
+            'did',
+            'name',
+            'type',
+            'value',
+            'lastModified',
+            'id'
+        ];
+    }
+
+    /**
      * @return array
      */
-    protected function __toArray()
+    public function toArray()
     {
         return [
             'did' => $this->getDid(),
@@ -90,9 +115,9 @@ abstract class UsersDomainAttrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $did
      *
-     * @return UsersDomainAttrDtoAbstract
+     * @return static
      */
-    public function setDid($did)
+    public function setDid($did = null)
     {
         $this->did = $did;
 
@@ -110,9 +135,9 @@ abstract class UsersDomainAttrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $name
      *
-     * @return UsersDomainAttrDtoAbstract
+     * @return static
      */
-    public function setName($name)
+    public function setName($name = null)
     {
         $this->name = $name;
 
@@ -130,9 +155,9 @@ abstract class UsersDomainAttrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $type
      *
-     * @return UsersDomainAttrDtoAbstract
+     * @return static
      */
-    public function setType($type)
+    public function setType($type = null)
     {
         $this->type = $type;
 
@@ -150,9 +175,9 @@ abstract class UsersDomainAttrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $value
      *
-     * @return UsersDomainAttrDtoAbstract
+     * @return static
      */
-    public function setValue($value)
+    public function setValue($value = null)
     {
         $this->value = $value;
 
@@ -170,9 +195,9 @@ abstract class UsersDomainAttrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param \DateTime $lastModified
      *
-     * @return UsersDomainAttrDtoAbstract
+     * @return static
      */
-    public function setLastModified($lastModified)
+    public function setLastModified($lastModified = null)
     {
         $this->lastModified = $lastModified;
 
@@ -190,9 +215,9 @@ abstract class UsersDomainAttrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return UsersDomainAttrDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
