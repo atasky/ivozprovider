@@ -32,41 +32,32 @@ abstract class PricingPlansRelTargetPatternDtoAbstract implements DataTransferOb
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $pricingPlanId;
-
-    /**
-     * @var mixed
-     */
-    private $targetPatternId;
-
-    /**
-     * @var mixed
-     */
-    private $brandId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\PricingPlan\PricingPlanDto | null
      */
     private $pricingPlan;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\TargetPattern\TargetPatternDto | null
      */
     private $targetPattern;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Brand\BrandDto | null
      */
     private $brand;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -79,7 +70,23 @@ abstract class PricingPlansRelTargetPatternDtoAbstract implements DataTransferOb
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'connectionCharge',
+            'periodTime',
+            'perPeriodCharge',
+            'id',
+            'pricingPlan',
+            'targetPattern',
+            'brand'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'connectionCharge' => $this->getConnectionCharge(),
@@ -113,9 +120,9 @@ abstract class PricingPlansRelTargetPatternDtoAbstract implements DataTransferOb
     /**
      * @param string $connectionCharge
      *
-     * @return PricingPlansRelTargetPatternDtoAbstract
+     * @return static
      */
-    public function setConnectionCharge($connectionCharge)
+    public function setConnectionCharge($connectionCharge = null)
     {
         $this->connectionCharge = $connectionCharge;
 
@@ -133,9 +140,9 @@ abstract class PricingPlansRelTargetPatternDtoAbstract implements DataTransferOb
     /**
      * @param integer $periodTime
      *
-     * @return PricingPlansRelTargetPatternDtoAbstract
+     * @return static
      */
-    public function setPeriodTime($periodTime)
+    public function setPeriodTime($periodTime = null)
     {
         $this->periodTime = $periodTime;
 
@@ -153,9 +160,9 @@ abstract class PricingPlansRelTargetPatternDtoAbstract implements DataTransferOb
     /**
      * @param string $perPeriodCharge
      *
-     * @return PricingPlansRelTargetPatternDtoAbstract
+     * @return static
      */
-    public function setPerPeriodCharge($perPeriodCharge)
+    public function setPerPeriodCharge($perPeriodCharge = null)
     {
         $this->perPeriodCharge = $perPeriodCharge;
 
@@ -173,9 +180,9 @@ abstract class PricingPlansRelTargetPatternDtoAbstract implements DataTransferOb
     /**
      * @param integer $id
      *
-     * @return PricingPlansRelTargetPatternDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -191,31 +198,11 @@ abstract class PricingPlansRelTargetPatternDtoAbstract implements DataTransferOb
     }
 
     /**
-     * @param integer $pricingPlanId
+     * @param \Ivoz\Provider\Domain\Model\PricingPlan\PricingPlanDto $pricingPlan
      *
-     * @return PricingPlansRelTargetPatternDtoAbstract
+     * @return static
      */
-    public function setPricingPlanId($pricingPlanId)
-    {
-        $this->pricingPlanId = $pricingPlanId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getPricingPlanId()
-    {
-        return $this->pricingPlanId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\PricingPlan\PricingPlan $pricingPlan
-     *
-     * @return PricingPlansRelTargetPatternDtoAbstract
-     */
-    public function setPricingPlan(\Ivoz\Provider\Domain\Model\PricingPlan\PricingPlan $pricingPlan)
+    public function setPricingPlan(\Ivoz\Provider\Domain\Model\PricingPlan\PricingPlanDto $pricingPlan = null)
     {
         $this->pricingPlan = $pricingPlan;
 
@@ -223,7 +210,7 @@ abstract class PricingPlansRelTargetPatternDtoAbstract implements DataTransferOb
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\PricingPlan\PricingPlan
+     * @return \Ivoz\Provider\Domain\Model\PricingPlan\PricingPlanDto
      */
     public function getPricingPlan()
     {
@@ -231,31 +218,11 @@ abstract class PricingPlansRelTargetPatternDtoAbstract implements DataTransferOb
     }
 
     /**
-     * @param integer $targetPatternId
+     * @param \Ivoz\Provider\Domain\Model\TargetPattern\TargetPatternDto $targetPattern
      *
-     * @return PricingPlansRelTargetPatternDtoAbstract
+     * @return static
      */
-    public function setTargetPatternId($targetPatternId)
-    {
-        $this->targetPatternId = $targetPatternId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getTargetPatternId()
-    {
-        return $this->targetPatternId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\TargetPattern\TargetPattern $targetPattern
-     *
-     * @return PricingPlansRelTargetPatternDtoAbstract
-     */
-    public function setTargetPattern(\Ivoz\Provider\Domain\Model\TargetPattern\TargetPattern $targetPattern)
+    public function setTargetPattern(\Ivoz\Provider\Domain\Model\TargetPattern\TargetPatternDto $targetPattern = null)
     {
         $this->targetPattern = $targetPattern;
 
@@ -263,7 +230,7 @@ abstract class PricingPlansRelTargetPatternDtoAbstract implements DataTransferOb
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\TargetPattern\TargetPattern
+     * @return \Ivoz\Provider\Domain\Model\TargetPattern\TargetPatternDto
      */
     public function getTargetPattern()
     {
@@ -271,31 +238,11 @@ abstract class PricingPlansRelTargetPatternDtoAbstract implements DataTransferOb
     }
 
     /**
-     * @param integer $brandId
+     * @param \Ivoz\Provider\Domain\Model\Brand\BrandDto $brand
      *
-     * @return PricingPlansRelTargetPatternDtoAbstract
+     * @return static
      */
-    public function setBrandId($brandId)
-    {
-        $this->brandId = $brandId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Brand\Brand $brand
-     *
-     * @return PricingPlansRelTargetPatternDtoAbstract
-     */
-    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\Brand $brand)
+    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\BrandDto $brand = null)
     {
         $this->brand = $brand;
 
@@ -303,7 +250,7 @@ abstract class PricingPlansRelTargetPatternDtoAbstract implements DataTransferOb
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Brand\Brand
+     * @return \Ivoz\Provider\Domain\Model\Brand\BrandDto
      */
     public function getBrand()
     {

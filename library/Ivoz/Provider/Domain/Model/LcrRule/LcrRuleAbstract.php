@@ -246,10 +246,8 @@ abstract class LcrRuleAbstract
             ->setEnabled($this->getEnabled())
             ->setTag($this->getTag())
             ->setDescription($this->getDescription())
-            ->setRoutingPatternId($this->getRoutingPattern() ? $this->getRoutingPattern()->getId() : null)
-            ->setRoutingPattern($this->getRoutingPattern())
-            ->setOutgoingRoutingId($this->getOutgoingRouting() ? $this->getOutgoingRouting()->getId() : null)
-            ->setOutgoingRouting($this->getOutgoingRouting());
+            ->setRoutingPattern($this->getRoutingPattern() ? $this->getRoutingPattern()->toDto() : null)
+            ->setOutgoingRouting($this->getOutgoingRouting() ? $this->getOutgoingRouting()->toDto() : null);
     }
 
     /**

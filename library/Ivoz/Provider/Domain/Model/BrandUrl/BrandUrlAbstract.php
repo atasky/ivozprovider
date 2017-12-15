@@ -229,8 +229,7 @@ abstract class BrandUrlAbstract
             ->setLogoFileSize($this->getLogo()->getFileSize())
             ->setLogoMimeType($this->getLogo()->getMimeType())
             ->setLogoBaseName($this->getLogo()->getBaseName())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setBrand($this->getBrand());
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null);
     }
 
     /**

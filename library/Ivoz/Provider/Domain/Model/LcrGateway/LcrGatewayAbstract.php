@@ -272,8 +272,7 @@ abstract class LcrGatewayAbstract
             ->setTag($this->getTag())
             ->setFlags($this->getFlags())
             ->setDefunct($this->getDefunct())
-            ->setPeerServerId($this->getPeerServer() ? $this->getPeerServer()->getId() : null)
-            ->setPeerServer($this->getPeerServer());
+            ->setPeerServer($this->getPeerServer() ? $this->getPeerServer()->toDto() : null);
     }
 
     /**

@@ -245,22 +245,14 @@ abstract class ExtensionAbstract
             ->setRouteType($this->getRouteType())
             ->setNumberValue($this->getNumberValue())
             ->setFriendValue($this->getFriendValue())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany())
-            ->setIvrId($this->getIvr() ? $this->getIvr()->getId() : null)
-            ->setIvr($this->getIvr())
-            ->setHuntGroupId($this->getHuntGroup() ? $this->getHuntGroup()->getId() : null)
-            ->setHuntGroup($this->getHuntGroup())
-            ->setConferenceRoomId($this->getConferenceRoom() ? $this->getConferenceRoom()->getId() : null)
-            ->setConferenceRoom($this->getConferenceRoom())
-            ->setUserId($this->getUser() ? $this->getUser()->getId() : null)
-            ->setUser($this->getUser())
-            ->setQueueId($this->getQueue() ? $this->getQueue()->getId() : null)
-            ->setQueue($this->getQueue())
-            ->setConditionalRouteId($this->getConditionalRoute() ? $this->getConditionalRoute()->getId() : null)
-            ->setConditionalRoute($this->getConditionalRoute())
-            ->setNumberCountryId($this->getNumberCountry() ? $this->getNumberCountry()->getId() : null)
-            ->setNumberCountry($this->getNumberCountry());
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null)
+            ->setIvr($this->getIvr() ? $this->getIvr()->toDto() : null)
+            ->setHuntGroup($this->getHuntGroup() ? $this->getHuntGroup()->toDto() : null)
+            ->setConferenceRoom($this->getConferenceRoom() ? $this->getConferenceRoom()->toDto() : null)
+            ->setUser($this->getUser() ? $this->getUser()->toDto() : null)
+            ->setQueue($this->getQueue() ? $this->getQueue()->toDto() : null)
+            ->setConditionalRoute($this->getConditionalRoute() ? $this->getConditionalRoute()->toDto() : null)
+            ->setNumberCountry($this->getNumberCountry() ? $this->getNumberCountry()->toDto() : null);
     }
 
     /**

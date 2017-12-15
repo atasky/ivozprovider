@@ -22,36 +22,32 @@ abstract class MatchListDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $brandId;
-
-    /**
-     * @var mixed
-     */
-    private $companyId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Brand\BrandDto | null
      */
     private $brand;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Company\CompanyDto | null
      */
     private $company;
 
     /**
-     * @var array|null
+     * @var \Ivoz\Provider\Domain\Model\MatchListPattern\MatchListPatternDto[] | null
      */
     private $patterns = null;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -64,7 +60,21 @@ abstract class MatchListDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'name',
+            'id',
+            'brand',
+            'company',
+            'patterns'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'name' => $this->getName(),
@@ -109,9 +119,9 @@ abstract class MatchListDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $name
      *
-     * @return MatchListDtoAbstract
+     * @return static
      */
-    public function setName($name)
+    public function setName($name = null)
     {
         $this->name = $name;
 
@@ -129,9 +139,9 @@ abstract class MatchListDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return MatchListDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -147,31 +157,11 @@ abstract class MatchListDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $brandId
+     * @param \Ivoz\Provider\Domain\Model\Brand\BrandDto $brand
      *
-     * @return MatchListDtoAbstract
+     * @return static
      */
-    public function setBrandId($brandId)
-    {
-        $this->brandId = $brandId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Brand\Brand $brand
-     *
-     * @return MatchListDtoAbstract
-     */
-    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\Brand $brand)
+    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\BrandDto $brand = null)
     {
         $this->brand = $brand;
 
@@ -179,7 +169,7 @@ abstract class MatchListDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Brand\Brand
+     * @return \Ivoz\Provider\Domain\Model\Brand\BrandDto
      */
     public function getBrand()
     {
@@ -187,31 +177,11 @@ abstract class MatchListDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $companyId
+     * @param \Ivoz\Provider\Domain\Model\Company\CompanyDto $company
      *
-     * @return MatchListDtoAbstract
+     * @return static
      */
-    public function setCompanyId($companyId)
-    {
-        $this->companyId = $companyId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCompanyId()
-    {
-        return $this->companyId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Company\Company $company
-     *
-     * @return MatchListDtoAbstract
-     */
-    public function setCompany(\Ivoz\Provider\Domain\Model\Company\Company $company)
+    public function setCompany(\Ivoz\Provider\Domain\Model\Company\CompanyDto $company = null)
     {
         $this->company = $company;
 
@@ -219,7 +189,7 @@ abstract class MatchListDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Company\Company
+     * @return \Ivoz\Provider\Domain\Model\Company\CompanyDto
      */
     public function getCompany()
     {
@@ -229,9 +199,9 @@ abstract class MatchListDtoAbstract implements DataTransferObjectInterface
     /**
      * @param array $patterns
      *
-     * @return MatchListDtoAbstract
+     * @return static
      */
-    public function setPatterns($patterns)
+    public function setPatterns($patterns = null)
     {
         $this->patterns = $patterns;
 

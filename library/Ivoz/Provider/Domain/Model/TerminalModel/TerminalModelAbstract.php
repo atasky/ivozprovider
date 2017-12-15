@@ -221,8 +221,7 @@ abstract class TerminalModelAbstract
             ->setSpecificTemplate($this->getSpecificTemplate())
             ->setGenericUrlPattern($this->getGenericUrlPattern())
             ->setSpecificUrlPattern($this->getSpecificUrlPattern())
-            ->setTerminalManufacturerId($this->getTerminalManufacturer() ? $this->getTerminalManufacturer()->getId() : null)
-            ->setTerminalManufacturer($this->getTerminalManufacturer());
+            ->setTerminalManufacturer($this->getTerminalManufacturer() ? $this->getTerminalManufacturer()->toDto() : null);
     }
 
     /**

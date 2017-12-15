@@ -57,21 +57,22 @@ abstract class BrandUrlDtoAbstract implements DataTransferObjectInterface
     private $logoBaseName;
 
     /**
-     * @var mixed
-     */
-    private $brandId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Brand\BrandDto | null
      */
     private $brand;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -84,7 +85,24 @@ abstract class BrandUrlDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'url',
+            'klearTheme',
+            'urlType',
+            'name',
+            'userTheme',
+            'id',
+            'logo',
+            'brand'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'url' => $this->getUrl(),
@@ -121,9 +139,9 @@ abstract class BrandUrlDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $url
      *
-     * @return BrandUrlDtoAbstract
+     * @return static
      */
-    public function setUrl($url)
+    public function setUrl($url = null)
     {
         $this->url = $url;
 
@@ -141,7 +159,7 @@ abstract class BrandUrlDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $klearTheme
      *
-     * @return BrandUrlDtoAbstract
+     * @return static
      */
     public function setKlearTheme($klearTheme = null)
     {
@@ -161,9 +179,9 @@ abstract class BrandUrlDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $urlType
      *
-     * @return BrandUrlDtoAbstract
+     * @return static
      */
-    public function setUrlType($urlType)
+    public function setUrlType($urlType = null)
     {
         $this->urlType = $urlType;
 
@@ -181,7 +199,7 @@ abstract class BrandUrlDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $name
      *
-     * @return BrandUrlDtoAbstract
+     * @return static
      */
     public function setName($name = null)
     {
@@ -201,7 +219,7 @@ abstract class BrandUrlDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $userTheme
      *
-     * @return BrandUrlDtoAbstract
+     * @return static
      */
     public function setUserTheme($userTheme = null)
     {
@@ -221,9 +239,9 @@ abstract class BrandUrlDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return BrandUrlDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -241,9 +259,9 @@ abstract class BrandUrlDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $logoFileSize
      *
-     * @return BrandUrlDtoAbstract
+     * @return static
      */
-    public function setLogoFileSize($logoFileSize)
+    public function setLogoFileSize($logoFileSize = null)
     {
         $this->logoFileSize = $logoFileSize;
 
@@ -261,9 +279,9 @@ abstract class BrandUrlDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $logoMimeType
      *
-     * @return BrandUrlDtoAbstract
+     * @return static
      */
-    public function setLogoMimeType($logoMimeType)
+    public function setLogoMimeType($logoMimeType = null)
     {
         $this->logoMimeType = $logoMimeType;
 
@@ -281,9 +299,9 @@ abstract class BrandUrlDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $logoBaseName
      *
-     * @return BrandUrlDtoAbstract
+     * @return static
      */
-    public function setLogoBaseName($logoBaseName)
+    public function setLogoBaseName($logoBaseName = null)
     {
         $this->logoBaseName = $logoBaseName;
 
@@ -299,31 +317,11 @@ abstract class BrandUrlDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $brandId
+     * @param \Ivoz\Provider\Domain\Model\Brand\BrandDto $brand
      *
-     * @return BrandUrlDtoAbstract
+     * @return static
      */
-    public function setBrandId($brandId)
-    {
-        $this->brandId = $brandId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Brand\Brand $brand
-     *
-     * @return BrandUrlDtoAbstract
-     */
-    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\Brand $brand)
+    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\BrandDto $brand = null)
     {
         $this->brand = $brand;
 
@@ -331,7 +329,7 @@ abstract class BrandUrlDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Brand\Brand
+     * @return \Ivoz\Provider\Domain\Model\Brand\BrandDto
      */
     public function getBrand()
     {

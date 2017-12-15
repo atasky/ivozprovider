@@ -188,10 +188,8 @@ abstract class CallAclRelMatchListAbstract
         return self::createDto()
             ->setPriority($this->getPriority())
             ->setPolicy($this->getPolicy())
-            ->setCallAclId($this->getCallAcl() ? $this->getCallAcl()->getId() : null)
-            ->setCallAcl($this->getCallAcl())
-            ->setMatchListId($this->getMatchList() ? $this->getMatchList()->getId() : null)
-            ->setMatchList($this->getMatchList());
+            ->setCallAcl($this->getCallAcl() ? $this->getCallAcl()->toDto() : null)
+            ->setMatchList($this->getMatchList() ? $this->getMatchList()->toDto() : null);
     }
 
     /**

@@ -42,21 +42,22 @@ abstract class TargetPatternDtoAbstract implements DataTransferObjectInterface
     private $descriptionEs;
 
     /**
-     * @var mixed
-     */
-    private $brandId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Brand\BrandDto | null
      */
     private $brand;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -69,7 +70,21 @@ abstract class TargetPatternDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'regExp',
+            'id',
+            'name',
+            'description',
+            'brand'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'regExp' => $this->getRegExp(),
@@ -105,9 +120,9 @@ abstract class TargetPatternDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $regExp
      *
-     * @return TargetPatternDtoAbstract
+     * @return static
      */
-    public function setRegExp($regExp)
+    public function setRegExp($regExp = null)
     {
         $this->regExp = $regExp;
 
@@ -125,9 +140,9 @@ abstract class TargetPatternDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return TargetPatternDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -145,9 +160,9 @@ abstract class TargetPatternDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $nameEn
      *
-     * @return TargetPatternDtoAbstract
+     * @return static
      */
-    public function setNameEn($nameEn)
+    public function setNameEn($nameEn = null)
     {
         $this->nameEn = $nameEn;
 
@@ -165,9 +180,9 @@ abstract class TargetPatternDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $nameEs
      *
-     * @return TargetPatternDtoAbstract
+     * @return static
      */
-    public function setNameEs($nameEs)
+    public function setNameEs($nameEs = null)
     {
         $this->nameEs = $nameEs;
 
@@ -185,9 +200,9 @@ abstract class TargetPatternDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $descriptionEn
      *
-     * @return TargetPatternDtoAbstract
+     * @return static
      */
-    public function setDescriptionEn($descriptionEn)
+    public function setDescriptionEn($descriptionEn = null)
     {
         $this->descriptionEn = $descriptionEn;
 
@@ -205,9 +220,9 @@ abstract class TargetPatternDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $descriptionEs
      *
-     * @return TargetPatternDtoAbstract
+     * @return static
      */
-    public function setDescriptionEs($descriptionEs)
+    public function setDescriptionEs($descriptionEs = null)
     {
         $this->descriptionEs = $descriptionEs;
 
@@ -223,31 +238,11 @@ abstract class TargetPatternDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $brandId
+     * @param \Ivoz\Provider\Domain\Model\Brand\BrandDto $brand
      *
-     * @return TargetPatternDtoAbstract
+     * @return static
      */
-    public function setBrandId($brandId)
-    {
-        $this->brandId = $brandId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Brand\Brand $brand
-     *
-     * @return TargetPatternDtoAbstract
-     */
-    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\Brand $brand)
+    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\BrandDto $brand = null)
     {
         $this->brand = $brand;
 
@@ -255,7 +250,7 @@ abstract class TargetPatternDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Brand\Brand
+     * @return \Ivoz\Provider\Domain\Model\Brand\BrandDto
      */
     public function getBrand()
     {

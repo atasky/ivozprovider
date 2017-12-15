@@ -87,81 +87,57 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $brandId;
-
-    /**
-     * @var mixed
-     */
-    private $domainId;
-
-    /**
-     * @var mixed
-     */
-    private $companyId;
-
-    /**
-     * @var mixed
-     */
-    private $transformationRuleSetId;
-
-    /**
-     * @var mixed
-     */
-    private $outgoingDdiId;
-
-    /**
-     * @var mixed
-     */
-    private $languageId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Brand\BrandDto | null
      */
     private $brand;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Domain\DomainDto | null
      */
     private $domain;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Company\CompanyDto | null
      */
     private $company;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\TransformationRuleSet\TransformationRuleSetDto | null
      */
     private $transformationRuleSet;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Ddi\DdiDto | null
      */
     private $outgoingDdi;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Language\LanguageDto | null
      */
     private $language;
 
     /**
-     * @var array|null
+     * @var \Ivoz\Ast\Domain\Model\PsEndpoint\PsEndpointDto[] | null
      */
     private $psEndpoints = null;
 
     /**
-     * @var array|null
+     * @var \Ivoz\Provider\Domain\Model\Ddi\DdiDto[] | null
      */
     private $ddis = null;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -174,7 +150,39 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'name',
+            'description',
+            'transport',
+            'ip',
+            'port',
+            'authNeeded',
+            'password',
+            'disallow',
+            'allow',
+            'directMediaMethod',
+            'calleridUpdateHeader',
+            'updateCallerid',
+            'fromDomain',
+            'directConnectivity',
+            'id',
+            'brand',
+            'domain',
+            'company',
+            'transformationRuleSet',
+            'outgoingDdi',
+            'language',
+            'psEndpoints',
+            'ddis'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'name' => $this->getName(),
@@ -256,9 +264,9 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $name
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
-    public function setName($name)
+    public function setName($name = null)
     {
         $this->name = $name;
 
@@ -276,9 +284,9 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $description
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
-    public function setDescription($description)
+    public function setDescription($description = null)
     {
         $this->description = $description;
 
@@ -296,9 +304,9 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $transport
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
-    public function setTransport($transport)
+    public function setTransport($transport = null)
     {
         $this->transport = $transport;
 
@@ -316,7 +324,7 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $ip
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
     public function setIp($ip = null)
     {
@@ -336,7 +344,7 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $port
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
     public function setPort($port = null)
     {
@@ -356,9 +364,9 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $authNeeded
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
-    public function setAuthNeeded($authNeeded)
+    public function setAuthNeeded($authNeeded = null)
     {
         $this->authNeeded = $authNeeded;
 
@@ -376,7 +384,7 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $password
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
     public function setPassword($password = null)
     {
@@ -396,9 +404,9 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $disallow
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
-    public function setDisallow($disallow)
+    public function setDisallow($disallow = null)
     {
         $this->disallow = $disallow;
 
@@ -416,9 +424,9 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $allow
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
-    public function setAllow($allow)
+    public function setAllow($allow = null)
     {
         $this->allow = $allow;
 
@@ -436,9 +444,9 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $directMediaMethod
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
-    public function setDirectMediaMethod($directMediaMethod)
+    public function setDirectMediaMethod($directMediaMethod = null)
     {
         $this->directMediaMethod = $directMediaMethod;
 
@@ -456,9 +464,9 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $calleridUpdateHeader
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
-    public function setCalleridUpdateHeader($calleridUpdateHeader)
+    public function setCalleridUpdateHeader($calleridUpdateHeader = null)
     {
         $this->calleridUpdateHeader = $calleridUpdateHeader;
 
@@ -476,9 +484,9 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $updateCallerid
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
-    public function setUpdateCallerid($updateCallerid)
+    public function setUpdateCallerid($updateCallerid = null)
     {
         $this->updateCallerid = $updateCallerid;
 
@@ -496,7 +504,7 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $fromDomain
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
     public function setFromDomain($fromDomain = null)
     {
@@ -516,9 +524,9 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $directConnectivity
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
-    public function setDirectConnectivity($directConnectivity)
+    public function setDirectConnectivity($directConnectivity = null)
     {
         $this->directConnectivity = $directConnectivity;
 
@@ -536,9 +544,9 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -554,31 +562,11 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $brandId
+     * @param \Ivoz\Provider\Domain\Model\Brand\BrandDto $brand
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
-    public function setBrandId($brandId)
-    {
-        $this->brandId = $brandId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Brand\Brand $brand
-     *
-     * @return RetailAccountDtoAbstract
-     */
-    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\Brand $brand)
+    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\BrandDto $brand = null)
     {
         $this->brand = $brand;
 
@@ -586,7 +574,7 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Brand\Brand
+     * @return \Ivoz\Provider\Domain\Model\Brand\BrandDto
      */
     public function getBrand()
     {
@@ -594,31 +582,11 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $domainId
+     * @param \Ivoz\Provider\Domain\Model\Domain\DomainDto $domain
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
-    public function setDomainId($domainId)
-    {
-        $this->domainId = $domainId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getDomainId()
-    {
-        return $this->domainId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Domain\Domain $domain
-     *
-     * @return RetailAccountDtoAbstract
-     */
-    public function setDomain(\Ivoz\Provider\Domain\Model\Domain\Domain $domain)
+    public function setDomain(\Ivoz\Provider\Domain\Model\Domain\DomainDto $domain = null)
     {
         $this->domain = $domain;
 
@@ -626,7 +594,7 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Domain\Domain
+     * @return \Ivoz\Provider\Domain\Model\Domain\DomainDto
      */
     public function getDomain()
     {
@@ -634,31 +602,11 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $companyId
+     * @param \Ivoz\Provider\Domain\Model\Company\CompanyDto $company
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
-    public function setCompanyId($companyId)
-    {
-        $this->companyId = $companyId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCompanyId()
-    {
-        return $this->companyId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Company\Company $company
-     *
-     * @return RetailAccountDtoAbstract
-     */
-    public function setCompany(\Ivoz\Provider\Domain\Model\Company\Company $company)
+    public function setCompany(\Ivoz\Provider\Domain\Model\Company\CompanyDto $company = null)
     {
         $this->company = $company;
 
@@ -666,7 +614,7 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Company\Company
+     * @return \Ivoz\Provider\Domain\Model\Company\CompanyDto
      */
     public function getCompany()
     {
@@ -674,31 +622,11 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $transformationRuleSetId
+     * @param \Ivoz\Provider\Domain\Model\TransformationRuleSet\TransformationRuleSetDto $transformationRuleSet
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
-    public function setTransformationRuleSetId($transformationRuleSetId)
-    {
-        $this->transformationRuleSetId = $transformationRuleSetId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getTransformationRuleSetId()
-    {
-        return $this->transformationRuleSetId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\TransformationRuleSet\TransformationRuleSet $transformationRuleSet
-     *
-     * @return RetailAccountDtoAbstract
-     */
-    public function setTransformationRuleSet(\Ivoz\Provider\Domain\Model\TransformationRuleSet\TransformationRuleSet $transformationRuleSet)
+    public function setTransformationRuleSet(\Ivoz\Provider\Domain\Model\TransformationRuleSet\TransformationRuleSetDto $transformationRuleSet = null)
     {
         $this->transformationRuleSet = $transformationRuleSet;
 
@@ -706,7 +634,7 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\TransformationRuleSet\TransformationRuleSet
+     * @return \Ivoz\Provider\Domain\Model\TransformationRuleSet\TransformationRuleSetDto
      */
     public function getTransformationRuleSet()
     {
@@ -714,31 +642,11 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $outgoingDdiId
+     * @param \Ivoz\Provider\Domain\Model\Ddi\DdiDto $outgoingDdi
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
-    public function setOutgoingDdiId($outgoingDdiId)
-    {
-        $this->outgoingDdiId = $outgoingDdiId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getOutgoingDdiId()
-    {
-        return $this->outgoingDdiId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Ddi\Ddi $outgoingDdi
-     *
-     * @return RetailAccountDtoAbstract
-     */
-    public function setOutgoingDdi(\Ivoz\Provider\Domain\Model\Ddi\Ddi $outgoingDdi)
+    public function setOutgoingDdi(\Ivoz\Provider\Domain\Model\Ddi\DdiDto $outgoingDdi = null)
     {
         $this->outgoingDdi = $outgoingDdi;
 
@@ -746,7 +654,7 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Ddi\Ddi
+     * @return \Ivoz\Provider\Domain\Model\Ddi\DdiDto
      */
     public function getOutgoingDdi()
     {
@@ -754,31 +662,11 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $languageId
+     * @param \Ivoz\Provider\Domain\Model\Language\LanguageDto $language
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
-    public function setLanguageId($languageId)
-    {
-        $this->languageId = $languageId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getLanguageId()
-    {
-        return $this->languageId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Language\Language $language
-     *
-     * @return RetailAccountDtoAbstract
-     */
-    public function setLanguage(\Ivoz\Provider\Domain\Model\Language\Language $language)
+    public function setLanguage(\Ivoz\Provider\Domain\Model\Language\LanguageDto $language = null)
     {
         $this->language = $language;
 
@@ -786,7 +674,7 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Language\Language
+     * @return \Ivoz\Provider\Domain\Model\Language\LanguageDto
      */
     public function getLanguage()
     {
@@ -796,9 +684,9 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     /**
      * @param array $psEndpoints
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
-    public function setPsEndpoints($psEndpoints)
+    public function setPsEndpoints($psEndpoints = null)
     {
         $this->psEndpoints = $psEndpoints;
 
@@ -816,9 +704,9 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     /**
      * @param array $ddis
      *
-     * @return RetailAccountDtoAbstract
+     * @return static
      */
-    public function setDdis($ddis)
+    public function setDdis($ddis = null)
     {
         $this->ddis = $ddis;
 

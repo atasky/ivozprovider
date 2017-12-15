@@ -187,8 +187,7 @@ abstract class FixedCostAbstract
             ->setName($this->getName())
             ->setDescription($this->getDescription())
             ->setCost($this->getCost())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setBrand($this->getBrand());
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null);
     }
 
     /**

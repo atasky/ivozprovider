@@ -181,8 +181,7 @@ abstract class CallAclAbstract
         return self::createDto()
             ->setName($this->getName())
             ->setDefaultPolicy($this->getDefaultPolicy())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany());
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null);
     }
 
     /**

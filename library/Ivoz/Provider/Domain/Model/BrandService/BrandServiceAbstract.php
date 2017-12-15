@@ -178,10 +178,8 @@ abstract class BrandServiceAbstract
     {
         return self::createDto()
             ->setCode($this->getCode())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setBrand($this->getBrand())
-            ->setServiceId($this->getService() ? $this->getService()->getId() : null)
-            ->setService($this->getService());
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null)
+            ->setService($this->getService() ? $this->getService()->toDto() : null);
     }
 
     /**

@@ -205,8 +205,7 @@ abstract class TransformationRuleAbstract
             ->setPriority($this->getPriority())
             ->setMatchExpr($this->getMatchExpr())
             ->setReplaceExpr($this->getReplaceExpr())
-            ->setTransformationRuleSetId($this->getTransformationRuleSet() ? $this->getTransformationRuleSet()->getId() : null)
-            ->setTransformationRuleSet($this->getTransformationRuleSet());
+            ->setTransformationRuleSet($this->getTransformationRuleSet() ? $this->getTransformationRuleSet()->toDto() : null);
     }
 
     /**

@@ -158,7 +158,10 @@ public function <methodName>()
         } else {
 
             $oneToMany = $fieldMapping['type'] === ClassMetadataInfo::ONE_TO_MANY;
-            $type = $oneToMany ? 'array|null' : 'mixed';
+            $type = $this->getType($fieldMapping['type']) . 'Dto';
+            if ($oneToMany) {
+                $type .= '[]';
+            }
             $lines[] = $this->spaces . ' * @var ' . $type;
         }
 

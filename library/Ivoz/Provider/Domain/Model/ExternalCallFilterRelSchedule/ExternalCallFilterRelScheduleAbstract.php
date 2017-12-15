@@ -170,10 +170,8 @@ abstract class ExternalCallFilterRelScheduleAbstract
     public function toDto()
     {
         return self::createDto()
-            ->setFilterId($this->getFilter() ? $this->getFilter()->getId() : null)
-            ->setFilter($this->getFilter())
-            ->setScheduleId($this->getSchedule() ? $this->getSchedule()->getId() : null)
-            ->setSchedule($this->getSchedule());
+            ->setFilter($this->getFilter() ? $this->getFilter()->toDto() : null)
+            ->setSchedule($this->getSchedule() ? $this->getSchedule()->toDto() : null);
     }
 
     /**

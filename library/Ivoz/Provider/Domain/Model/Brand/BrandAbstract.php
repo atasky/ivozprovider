@@ -257,8 +257,6 @@ abstract class BrandAbstract
             ->setLanguage($dto->getLanguage())
             ->setDefaultTimezone($dto->getDefaultTimezone());
 
-
-
         $this->sanitizeValues();
         return $this;
     }
@@ -285,12 +283,9 @@ abstract class BrandAbstract
             ->setInvoiceProvince($this->getInvoice()->getProvince())
             ->setInvoiceCountry($this->getInvoice()->getCountry())
             ->setInvoiceRegistryData($this->getInvoice()->getRegistryData())
-            ->setDomainId($this->getDomain() ? $this->getDomain()->getId() : null)
-            ->setDomain($this->getDomain())
-            ->setLanguageId($this->getLanguage() ? $this->getLanguage()->getId() : null)
-            ->setLanguage($this->getLanguage())
-            ->setDefaultTimezoneId($this->getDefaultTimezone() ? $this->getDefaultTimezone()->getId() : null)
-            ->setDefaultTimezone($this->getDefaultTimezone());
+            ->setDomain($this->getDomain() ? $this->getDomain()->toDto() : null)
+            ->setLanguage($this->getLanguage() ? $this->getLanguage()->toDto() : null)
+            ->setDefaultTimezone($this->getDefaultTimezone() ? $this->getDefaultTimezone()->toDto() : null);
     }
 
     /**

@@ -102,41 +102,32 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $lcrGatewayId;
-
-    /**
-     * @var mixed
-     */
-    private $peeringContractId;
-
-    /**
-     * @var mixed
-     */
-    private $brandId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\LcrGateway\LcrGatewayDto | null
      */
     private $lcrGateway;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\PeeringContract\PeeringContractDto | null
      */
     private $peeringContract;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Brand\BrandDto | null
      */
     private $brand;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -149,7 +140,37 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'ip',
+            'hostname',
+            'port',
+            'params',
+            'uriScheme',
+            'transport',
+            'strip',
+            'prefix',
+            'sendPAI',
+            'sendRPID',
+            'authNeeded',
+            'authUser',
+            'authPassword',
+            'sipProxy',
+            'outboundProxy',
+            'fromUser',
+            'fromDomain',
+            'id',
+            'lcrGateway',
+            'peeringContract',
+            'brand'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'ip' => $this->getIp(),
@@ -197,7 +218,7 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $ip
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
     public function setIp($ip = null)
     {
@@ -217,7 +238,7 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $hostname
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
     public function setHostname($hostname = null)
     {
@@ -237,7 +258,7 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $port
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
     public function setPort($port = null)
     {
@@ -257,7 +278,7 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $params
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
     public function setParams($params = null)
     {
@@ -277,7 +298,7 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     /**
      * @param boolean $uriScheme
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
     public function setUriScheme($uriScheme = null)
     {
@@ -297,7 +318,7 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     /**
      * @param boolean $transport
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
     public function setTransport($transport = null)
     {
@@ -317,7 +338,7 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     /**
      * @param boolean $strip
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
     public function setStrip($strip = null)
     {
@@ -337,7 +358,7 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $prefix
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
     public function setPrefix($prefix = null)
     {
@@ -357,7 +378,7 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     /**
      * @param boolean $sendPAI
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
     public function setSendPAI($sendPAI = null)
     {
@@ -377,7 +398,7 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     /**
      * @param boolean $sendRPID
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
     public function setSendRPID($sendRPID = null)
     {
@@ -397,9 +418,9 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $authNeeded
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
-    public function setAuthNeeded($authNeeded)
+    public function setAuthNeeded($authNeeded = null)
     {
         $this->authNeeded = $authNeeded;
 
@@ -417,7 +438,7 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $authUser
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
     public function setAuthUser($authUser = null)
     {
@@ -437,7 +458,7 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $authPassword
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
     public function setAuthPassword($authPassword = null)
     {
@@ -457,7 +478,7 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $sipProxy
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
     public function setSipProxy($sipProxy = null)
     {
@@ -477,7 +498,7 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $outboundProxy
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
     public function setOutboundProxy($outboundProxy = null)
     {
@@ -497,7 +518,7 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $fromUser
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
     public function setFromUser($fromUser = null)
     {
@@ -517,7 +538,7 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $fromDomain
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
     public function setFromDomain($fromDomain = null)
     {
@@ -537,9 +558,9 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -555,31 +576,11 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $lcrGatewayId
+     * @param \Ivoz\Provider\Domain\Model\LcrGateway\LcrGatewayDto $lcrGateway
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
-    public function setLcrGatewayId($lcrGatewayId)
-    {
-        $this->lcrGatewayId = $lcrGatewayId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getLcrGatewayId()
-    {
-        return $this->lcrGatewayId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\LcrGateway\LcrGateway $lcrGateway
-     *
-     * @return PeerServerDtoAbstract
-     */
-    public function setLcrGateway(\Ivoz\Provider\Domain\Model\LcrGateway\LcrGateway $lcrGateway)
+    public function setLcrGateway(\Ivoz\Provider\Domain\Model\LcrGateway\LcrGatewayDto $lcrGateway = null)
     {
         $this->lcrGateway = $lcrGateway;
 
@@ -587,7 +588,7 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\LcrGateway\LcrGateway
+     * @return \Ivoz\Provider\Domain\Model\LcrGateway\LcrGatewayDto
      */
     public function getLcrGateway()
     {
@@ -595,31 +596,11 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $peeringContractId
+     * @param \Ivoz\Provider\Domain\Model\PeeringContract\PeeringContractDto $peeringContract
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
-    public function setPeeringContractId($peeringContractId)
-    {
-        $this->peeringContractId = $peeringContractId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getPeeringContractId()
-    {
-        return $this->peeringContractId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\PeeringContract\PeeringContract $peeringContract
-     *
-     * @return PeerServerDtoAbstract
-     */
-    public function setPeeringContract(\Ivoz\Provider\Domain\Model\PeeringContract\PeeringContract $peeringContract)
+    public function setPeeringContract(\Ivoz\Provider\Domain\Model\PeeringContract\PeeringContractDto $peeringContract = null)
     {
         $this->peeringContract = $peeringContract;
 
@@ -627,7 +608,7 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\PeeringContract\PeeringContract
+     * @return \Ivoz\Provider\Domain\Model\PeeringContract\PeeringContractDto
      */
     public function getPeeringContract()
     {
@@ -635,31 +616,11 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $brandId
+     * @param \Ivoz\Provider\Domain\Model\Brand\BrandDto $brand
      *
-     * @return PeerServerDtoAbstract
+     * @return static
      */
-    public function setBrandId($brandId)
-    {
-        $this->brandId = $brandId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Brand\Brand $brand
-     *
-     * @return PeerServerDtoAbstract
-     */
-    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\Brand $brand)
+    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\BrandDto $brand = null)
     {
         $this->brand = $brand;
 
@@ -667,7 +628,7 @@ abstract class PeerServerDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Brand\Brand
+     * @return \Ivoz\Provider\Domain\Model\Brand\BrandDto
      */
     public function getBrand()
     {

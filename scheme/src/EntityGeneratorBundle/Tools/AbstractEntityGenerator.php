@@ -539,6 +539,7 @@ public function <methodName>(<criteriaArgument>)
         $updateFromDTO = '';
         $toDTO = '';
         $toArrayGetters = '';
+        $propertyMap = '';
         $lineBreak = "\n";
 
         if (!empty($requiredSetters)) {
@@ -613,6 +614,7 @@ public function <methodName>(<criteriaArgument>)
 
         if (!empty($toArray)) {
             $toArrayGetters = "\n" . $spaces . implode(",\n" . $spaces, $toArray) . "\n" . $this->spaces;
+            $propertyMap = "'" . implode("',\n$spaces'" , array_keys($toArray)) . "'";
         }
 
         if (!empty($updateFrom)) {
@@ -642,6 +644,7 @@ public function <methodName>(<criteriaArgument>)
         $response = str_replace('<lineBreak>', $lineBreak, $response);
 
         $response = str_replace('<toArray>', $toArrayGetters, $response);
+        $response = str_replace('<propertyMap>', $propertyMap, $response);
 
         if (!empty($collections)) {
 
@@ -739,11 +742,10 @@ public function <methodName>(<criteriaArgument>)
                         continue;
                     }
 
-                    list($associationToArray, $associationIdGetter, $associationGetter) = $response;
+                    list($associationToArray, $associationGetter) = $response;
                     if (!is_null($associationToArray)) {
                         $toArray[] = $associationToArray;
                     }
-                    $getters[$attribute . 'id'] = $associationIdGetter;
                     $getters[$attribute] = $associationGetter;
                 }
 
@@ -980,17 +982,11 @@ public function <methodName>(<criteriaArgument>)
             . ' : null';
 
         $response[] =
-            'set' . Inflector::classify($fieldName) . 'Id('
-            . '$this->get' . Inflector::classify($fieldName) . '()'
-            . ' ? '
-            . '$this->get' . Inflector::classify($fieldName) . '()->getId()'
-            . ' : null'
-            . ')';
-
-
-        $response[] =
             'set' . Inflector::classify($fieldName) . '('
             . '$this->get' . Inflector::classify($fieldName) . '()'
+            . ' ? '
+            . '$this->get' . Inflector::classify($fieldName) . '()->toDto()'
+            . ' : null'
             . ')';
 
         return $response;

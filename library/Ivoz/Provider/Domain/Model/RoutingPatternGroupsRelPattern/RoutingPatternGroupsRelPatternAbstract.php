@@ -170,10 +170,8 @@ abstract class RoutingPatternGroupsRelPatternAbstract
     public function toDto()
     {
         return self::createDto()
-            ->setRoutingPatternId($this->getRoutingPattern() ? $this->getRoutingPattern()->getId() : null)
-            ->setRoutingPattern($this->getRoutingPattern())
-            ->setRoutingPatternGroupId($this->getRoutingPatternGroup() ? $this->getRoutingPatternGroup()->getId() : null)
-            ->setRoutingPatternGroup($this->getRoutingPatternGroup());
+            ->setRoutingPattern($this->getRoutingPattern() ? $this->getRoutingPattern()->toDto() : null)
+            ->setRoutingPatternGroup($this->getRoutingPatternGroup() ? $this->getRoutingPatternGroup()->toDto() : null);
     }
 
     /**

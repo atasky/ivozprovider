@@ -195,10 +195,8 @@ abstract class FaxAbstract
             ->setName($this->getName())
             ->setEmail($this->getEmail())
             ->setSendByEmail($this->getSendByEmail())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany())
-            ->setOutgoingDdiId($this->getOutgoingDdi() ? $this->getOutgoingDdi()->getId() : null)
-            ->setOutgoingDdi($this->getOutgoingDdi());
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null)
+            ->setOutgoingDdi($this->getOutgoingDdi() ? $this->getOutgoingDdi()->toDto() : null);
     }
 
     /**

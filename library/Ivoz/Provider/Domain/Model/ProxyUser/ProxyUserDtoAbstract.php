@@ -26,12 +26,18 @@ abstract class ProxyUserDtoAbstract implements DataTransferObjectInterface
      */
     private $id;
 
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
+
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -44,7 +50,19 @@ abstract class ProxyUserDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'name',
+            'ip',
+            'id'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'name' => $this->getName(),
@@ -72,7 +90,7 @@ abstract class ProxyUserDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $name
      *
-     * @return ProxyUserDtoAbstract
+     * @return static
      */
     public function setName($name = null)
     {
@@ -92,7 +110,7 @@ abstract class ProxyUserDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $ip
      *
-     * @return ProxyUserDtoAbstract
+     * @return static
      */
     public function setIp($ip = null)
     {
@@ -112,9 +130,9 @@ abstract class ProxyUserDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return ProxyUserDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 

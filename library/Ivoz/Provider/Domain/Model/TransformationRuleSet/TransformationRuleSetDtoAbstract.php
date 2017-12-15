@@ -57,36 +57,32 @@ abstract class TransformationRuleSetDtoAbstract implements DataTransferObjectInt
     private $nameEs;
 
     /**
-     * @var mixed
-     */
-    private $brandId;
-
-    /**
-     * @var mixed
-     */
-    private $countryId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Brand\BrandDto | null
      */
     private $brand;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Country\CountryDto | null
      */
     private $country;
 
     /**
-     * @var array|null
+     * @var \Ivoz\Provider\Domain\Model\TransformationRule\TransformationRuleDto[] | null
      */
     private $rules = null;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -99,7 +95,27 @@ abstract class TransformationRuleSetDtoAbstract implements DataTransferObjectInt
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'description',
+            'internationalCode',
+            'trunkPrefix',
+            'areaCode',
+            'nationalLen',
+            'generateRules',
+            'id',
+            'name',
+            'brand',
+            'country',
+            'rules'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'description' => $this->getDescription(),
@@ -153,7 +169,7 @@ abstract class TransformationRuleSetDtoAbstract implements DataTransferObjectInt
     /**
      * @param string $description
      *
-     * @return TransformationRuleSetDtoAbstract
+     * @return static
      */
     public function setDescription($description = null)
     {
@@ -173,7 +189,7 @@ abstract class TransformationRuleSetDtoAbstract implements DataTransferObjectInt
     /**
      * @param string $internationalCode
      *
-     * @return TransformationRuleSetDtoAbstract
+     * @return static
      */
     public function setInternationalCode($internationalCode = null)
     {
@@ -193,7 +209,7 @@ abstract class TransformationRuleSetDtoAbstract implements DataTransferObjectInt
     /**
      * @param string $trunkPrefix
      *
-     * @return TransformationRuleSetDtoAbstract
+     * @return static
      */
     public function setTrunkPrefix($trunkPrefix = null)
     {
@@ -213,7 +229,7 @@ abstract class TransformationRuleSetDtoAbstract implements DataTransferObjectInt
     /**
      * @param string $areaCode
      *
-     * @return TransformationRuleSetDtoAbstract
+     * @return static
      */
     public function setAreaCode($areaCode = null)
     {
@@ -233,7 +249,7 @@ abstract class TransformationRuleSetDtoAbstract implements DataTransferObjectInt
     /**
      * @param integer $nationalLen
      *
-     * @return TransformationRuleSetDtoAbstract
+     * @return static
      */
     public function setNationalLen($nationalLen = null)
     {
@@ -253,7 +269,7 @@ abstract class TransformationRuleSetDtoAbstract implements DataTransferObjectInt
     /**
      * @param boolean $generateRules
      *
-     * @return TransformationRuleSetDtoAbstract
+     * @return static
      */
     public function setGenerateRules($generateRules = null)
     {
@@ -273,9 +289,9 @@ abstract class TransformationRuleSetDtoAbstract implements DataTransferObjectInt
     /**
      * @param integer $id
      *
-     * @return TransformationRuleSetDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -293,9 +309,9 @@ abstract class TransformationRuleSetDtoAbstract implements DataTransferObjectInt
     /**
      * @param string $nameEn
      *
-     * @return TransformationRuleSetDtoAbstract
+     * @return static
      */
-    public function setNameEn($nameEn)
+    public function setNameEn($nameEn = null)
     {
         $this->nameEn = $nameEn;
 
@@ -313,9 +329,9 @@ abstract class TransformationRuleSetDtoAbstract implements DataTransferObjectInt
     /**
      * @param string $nameEs
      *
-     * @return TransformationRuleSetDtoAbstract
+     * @return static
      */
-    public function setNameEs($nameEs)
+    public function setNameEs($nameEs = null)
     {
         $this->nameEs = $nameEs;
 
@@ -331,31 +347,11 @@ abstract class TransformationRuleSetDtoAbstract implements DataTransferObjectInt
     }
 
     /**
-     * @param integer $brandId
+     * @param \Ivoz\Provider\Domain\Model\Brand\BrandDto $brand
      *
-     * @return TransformationRuleSetDtoAbstract
+     * @return static
      */
-    public function setBrandId($brandId)
-    {
-        $this->brandId = $brandId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Brand\Brand $brand
-     *
-     * @return TransformationRuleSetDtoAbstract
-     */
-    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\Brand $brand)
+    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\BrandDto $brand = null)
     {
         $this->brand = $brand;
 
@@ -363,7 +359,7 @@ abstract class TransformationRuleSetDtoAbstract implements DataTransferObjectInt
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Brand\Brand
+     * @return \Ivoz\Provider\Domain\Model\Brand\BrandDto
      */
     public function getBrand()
     {
@@ -371,31 +367,11 @@ abstract class TransformationRuleSetDtoAbstract implements DataTransferObjectInt
     }
 
     /**
-     * @param integer $countryId
+     * @param \Ivoz\Provider\Domain\Model\Country\CountryDto $country
      *
-     * @return TransformationRuleSetDtoAbstract
+     * @return static
      */
-    public function setCountryId($countryId)
-    {
-        $this->countryId = $countryId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCountryId()
-    {
-        return $this->countryId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Country\Country $country
-     *
-     * @return TransformationRuleSetDtoAbstract
-     */
-    public function setCountry(\Ivoz\Provider\Domain\Model\Country\Country $country)
+    public function setCountry(\Ivoz\Provider\Domain\Model\Country\CountryDto $country = null)
     {
         $this->country = $country;
 
@@ -403,7 +379,7 @@ abstract class TransformationRuleSetDtoAbstract implements DataTransferObjectInt
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Country\Country
+     * @return \Ivoz\Provider\Domain\Model\Country\CountryDto
      */
     public function getCountry()
     {
@@ -413,9 +389,9 @@ abstract class TransformationRuleSetDtoAbstract implements DataTransferObjectInt
     /**
      * @param array $rules
      *
-     * @return TransformationRuleSetDtoAbstract
+     * @return static
      */
-    public function setRules($rules)
+    public function setRules($rules = null)
     {
         $this->rules = $rules;
 

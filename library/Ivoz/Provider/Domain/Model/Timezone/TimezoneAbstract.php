@@ -200,8 +200,7 @@ abstract class TimezoneAbstract
             ->setComment($this->getComment())
             ->setLabelEn($this->getLabel()->getEn())
             ->setLabelEs($this->getLabel()->getEs())
-            ->setCountryId($this->getCountry() ? $this->getCountry()->getId() : null)
-            ->setCountry($this->getCountry());
+            ->setCountry($this->getCountry() ? $this->getCountry()->toDto() : null);
     }
 
     /**

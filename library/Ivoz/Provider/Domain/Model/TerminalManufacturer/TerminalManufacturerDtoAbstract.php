@@ -31,12 +31,18 @@ abstract class TerminalManufacturerDtoAbstract implements DataTransferObjectInte
      */
     private $id;
 
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
+
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -49,7 +55,20 @@ abstract class TerminalManufacturerDtoAbstract implements DataTransferObjectInte
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'iden',
+            'name',
+            'description',
+            'id'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'iden' => $this->getIden(),
@@ -78,9 +97,9 @@ abstract class TerminalManufacturerDtoAbstract implements DataTransferObjectInte
     /**
      * @param string $iden
      *
-     * @return TerminalManufacturerDtoAbstract
+     * @return static
      */
-    public function setIden($iden)
+    public function setIden($iden = null)
     {
         $this->iden = $iden;
 
@@ -98,9 +117,9 @@ abstract class TerminalManufacturerDtoAbstract implements DataTransferObjectInte
     /**
      * @param string $name
      *
-     * @return TerminalManufacturerDtoAbstract
+     * @return static
      */
-    public function setName($name)
+    public function setName($name = null)
     {
         $this->name = $name;
 
@@ -118,9 +137,9 @@ abstract class TerminalManufacturerDtoAbstract implements DataTransferObjectInte
     /**
      * @param string $description
      *
-     * @return TerminalManufacturerDtoAbstract
+     * @return static
      */
-    public function setDescription($description)
+    public function setDescription($description = null)
     {
         $this->description = $description;
 
@@ -138,9 +157,9 @@ abstract class TerminalManufacturerDtoAbstract implements DataTransferObjectInte
     /**
      * @param integer $id
      *
-     * @return TerminalManufacturerDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 

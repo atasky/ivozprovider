@@ -31,12 +31,18 @@ abstract class EtagVersionDtoAbstract implements DataTransferObjectInterface
      */
     private $id;
 
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
+
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -49,7 +55,20 @@ abstract class EtagVersionDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'table',
+            'etag',
+            'lastChange',
+            'id'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'table' => $this->getTable(),
@@ -78,7 +97,7 @@ abstract class EtagVersionDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $table
      *
-     * @return EtagVersionDtoAbstract
+     * @return static
      */
     public function setTable($table = null)
     {
@@ -98,7 +117,7 @@ abstract class EtagVersionDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $etag
      *
-     * @return EtagVersionDtoAbstract
+     * @return static
      */
     public function setEtag($etag = null)
     {
@@ -118,7 +137,7 @@ abstract class EtagVersionDtoAbstract implements DataTransferObjectInterface
     /**
      * @param \DateTime $lastChange
      *
-     * @return EtagVersionDtoAbstract
+     * @return static
      */
     public function setLastChange($lastChange = null)
     {
@@ -138,9 +157,9 @@ abstract class EtagVersionDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return EtagVersionDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 

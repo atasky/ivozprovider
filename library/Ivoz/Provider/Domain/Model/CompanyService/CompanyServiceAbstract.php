@@ -178,10 +178,8 @@ abstract class CompanyServiceAbstract
     {
         return self::createDto()
             ->setCode($this->getCode())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany())
-            ->setServiceId($this->getService() ? $this->getService()->getId() : null)
-            ->setService($this->getService());
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null)
+            ->setService($this->getService() ? $this->getService()->toDto() : null);
     }
 
     /**

@@ -249,14 +249,10 @@ abstract class HuntGroupAbstract
             ->setNextUserPosition($this->getNextUserPosition())
             ->setNoAnswerTargetType($this->getNoAnswerTargetType())
             ->setNoAnswerNumberValue($this->getNoAnswerNumberValue())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany())
-            ->setNoAnswerLocutionId($this->getNoAnswerLocution() ? $this->getNoAnswerLocution()->getId() : null)
-            ->setNoAnswerLocution($this->getNoAnswerLocution())
-            ->setNoAnswerExtensionId($this->getNoAnswerExtension() ? $this->getNoAnswerExtension()->getId() : null)
-            ->setNoAnswerExtension($this->getNoAnswerExtension())
-            ->setNoAnswerVoiceMailUserId($this->getNoAnswerVoiceMailUser() ? $this->getNoAnswerVoiceMailUser()->getId() : null)
-            ->setNoAnswerVoiceMailUser($this->getNoAnswerVoiceMailUser());
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null)
+            ->setNoAnswerLocution($this->getNoAnswerLocution() ? $this->getNoAnswerLocution()->toDto() : null)
+            ->setNoAnswerExtension($this->getNoAnswerExtension() ? $this->getNoAnswerExtension()->toDto() : null)
+            ->setNoAnswerVoiceMailUser($this->getNoAnswerVoiceMailUser() ? $this->getNoAnswerVoiceMailUser()->toDto() : null);
     }
 
     /**

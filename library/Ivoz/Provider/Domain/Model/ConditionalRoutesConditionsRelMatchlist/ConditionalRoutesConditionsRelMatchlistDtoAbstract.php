@@ -17,31 +17,27 @@ abstract class ConditionalRoutesConditionsRelMatchlistDtoAbstract implements Dat
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $conditionId;
-
-    /**
-     * @var mixed
-     */
-    private $matchlistId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesConditionDto | null
      */
     private $condition;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\MatchList\MatchListDto | null
      */
     private $matchlist;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -54,7 +50,19 @@ abstract class ConditionalRoutesConditionsRelMatchlistDtoAbstract implements Dat
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'id',
+            'condition',
+            'matchlist'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'id' => $this->getId(),
@@ -83,9 +91,9 @@ abstract class ConditionalRoutesConditionsRelMatchlistDtoAbstract implements Dat
     /**
      * @param integer $id
      *
-     * @return ConditionalRoutesConditionsRelMatchlistDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -101,31 +109,11 @@ abstract class ConditionalRoutesConditionsRelMatchlistDtoAbstract implements Dat
     }
 
     /**
-     * @param integer $conditionId
+     * @param \Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesConditionDto $condition
      *
-     * @return ConditionalRoutesConditionsRelMatchlistDtoAbstract
+     * @return static
      */
-    public function setConditionId($conditionId)
-    {
-        $this->conditionId = $conditionId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getConditionId()
-    {
-        return $this->conditionId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesCondition $condition
-     *
-     * @return ConditionalRoutesConditionsRelMatchlistDtoAbstract
-     */
-    public function setCondition(\Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesCondition $condition)
+    public function setCondition(\Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesConditionDto $condition = null)
     {
         $this->condition = $condition;
 
@@ -133,7 +121,7 @@ abstract class ConditionalRoutesConditionsRelMatchlistDtoAbstract implements Dat
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesCondition
+     * @return \Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesConditionDto
      */
     public function getCondition()
     {
@@ -141,31 +129,11 @@ abstract class ConditionalRoutesConditionsRelMatchlistDtoAbstract implements Dat
     }
 
     /**
-     * @param integer $matchlistId
+     * @param \Ivoz\Provider\Domain\Model\MatchList\MatchListDto $matchlist
      *
-     * @return ConditionalRoutesConditionsRelMatchlistDtoAbstract
+     * @return static
      */
-    public function setMatchlistId($matchlistId)
-    {
-        $this->matchlistId = $matchlistId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getMatchlistId()
-    {
-        return $this->matchlistId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\MatchList\MatchList $matchlist
-     *
-     * @return ConditionalRoutesConditionsRelMatchlistDtoAbstract
-     */
-    public function setMatchlist(\Ivoz\Provider\Domain\Model\MatchList\MatchList $matchlist)
+    public function setMatchlist(\Ivoz\Provider\Domain\Model\MatchList\MatchListDto $matchlist = null)
     {
         $this->matchlist = $matchlist;
 
@@ -173,7 +141,7 @@ abstract class ConditionalRoutesConditionsRelMatchlistDtoAbstract implements Dat
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\MatchList\MatchList
+     * @return \Ivoz\Provider\Domain\Model\MatchList\MatchListDto
      */
     public function getMatchlist()
     {

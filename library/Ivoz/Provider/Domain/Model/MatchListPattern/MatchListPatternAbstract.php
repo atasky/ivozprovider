@@ -203,10 +203,8 @@ abstract class MatchListPatternAbstract
             ->setType($this->getType())
             ->setRegexp($this->getRegexp())
             ->setNumbervalue($this->getNumbervalue())
-            ->setMatchListId($this->getMatchList() ? $this->getMatchList()->getId() : null)
-            ->setMatchList($this->getMatchList())
-            ->setNumberCountryId($this->getNumberCountry() ? $this->getNumberCountry()->getId() : null)
-            ->setNumberCountry($this->getNumberCountry());
+            ->setMatchList($this->getMatchList() ? $this->getMatchList()->toDto() : null)
+            ->setNumberCountry($this->getNumberCountry() ? $this->getNumberCountry()->toDto() : null);
     }
 
     /**

@@ -17,31 +17,27 @@ abstract class PickUpRelUserDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $pickUpGroupId;
-
-    /**
-     * @var mixed
-     */
-    private $userId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\PickUpGroup\PickUpGroupDto | null
      */
     private $pickUpGroup;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\User\UserDto | null
      */
     private $user;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -54,7 +50,19 @@ abstract class PickUpRelUserDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'id',
+            'pickUpGroup',
+            'user'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'id' => $this->getId(),
@@ -83,9 +91,9 @@ abstract class PickUpRelUserDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return PickUpRelUserDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -101,31 +109,11 @@ abstract class PickUpRelUserDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $pickUpGroupId
+     * @param \Ivoz\Provider\Domain\Model\PickUpGroup\PickUpGroupDto $pickUpGroup
      *
-     * @return PickUpRelUserDtoAbstract
+     * @return static
      */
-    public function setPickUpGroupId($pickUpGroupId)
-    {
-        $this->pickUpGroupId = $pickUpGroupId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getPickUpGroupId()
-    {
-        return $this->pickUpGroupId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\PickUpGroup\PickUpGroup $pickUpGroup
-     *
-     * @return PickUpRelUserDtoAbstract
-     */
-    public function setPickUpGroup(\Ivoz\Provider\Domain\Model\PickUpGroup\PickUpGroup $pickUpGroup)
+    public function setPickUpGroup(\Ivoz\Provider\Domain\Model\PickUpGroup\PickUpGroupDto $pickUpGroup = null)
     {
         $this->pickUpGroup = $pickUpGroup;
 
@@ -133,7 +121,7 @@ abstract class PickUpRelUserDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\PickUpGroup\PickUpGroup
+     * @return \Ivoz\Provider\Domain\Model\PickUpGroup\PickUpGroupDto
      */
     public function getPickUpGroup()
     {
@@ -141,31 +129,11 @@ abstract class PickUpRelUserDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $userId
+     * @param \Ivoz\Provider\Domain\Model\User\UserDto $user
      *
-     * @return PickUpRelUserDtoAbstract
+     * @return static
      */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\User\User $user
-     *
-     * @return PickUpRelUserDtoAbstract
-     */
-    public function setUser(\Ivoz\Provider\Domain\Model\User\User $user)
+    public function setUser(\Ivoz\Provider\Domain\Model\User\UserDto $user = null)
     {
         $this->user = $user;
 
@@ -173,7 +141,7 @@ abstract class PickUpRelUserDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\User\User
+     * @return \Ivoz\Provider\Domain\Model\User\UserDto
      */
     public function getUser()
     {

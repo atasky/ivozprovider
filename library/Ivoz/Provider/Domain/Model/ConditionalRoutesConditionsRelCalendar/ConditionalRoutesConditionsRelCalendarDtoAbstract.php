@@ -17,31 +17,27 @@ abstract class ConditionalRoutesConditionsRelCalendarDtoAbstract implements Data
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $conditionId;
-
-    /**
-     * @var mixed
-     */
-    private $calendarId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesConditionDto | null
      */
     private $condition;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Calendar\CalendarDto | null
      */
     private $calendar;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -54,7 +50,19 @@ abstract class ConditionalRoutesConditionsRelCalendarDtoAbstract implements Data
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'id',
+            'condition',
+            'calendar'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'id' => $this->getId(),
@@ -83,9 +91,9 @@ abstract class ConditionalRoutesConditionsRelCalendarDtoAbstract implements Data
     /**
      * @param integer $id
      *
-     * @return ConditionalRoutesConditionsRelCalendarDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -101,31 +109,11 @@ abstract class ConditionalRoutesConditionsRelCalendarDtoAbstract implements Data
     }
 
     /**
-     * @param integer $conditionId
+     * @param \Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesConditionDto $condition
      *
-     * @return ConditionalRoutesConditionsRelCalendarDtoAbstract
+     * @return static
      */
-    public function setConditionId($conditionId)
-    {
-        $this->conditionId = $conditionId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getConditionId()
-    {
-        return $this->conditionId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesCondition $condition
-     *
-     * @return ConditionalRoutesConditionsRelCalendarDtoAbstract
-     */
-    public function setCondition(\Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesCondition $condition)
+    public function setCondition(\Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesConditionDto $condition = null)
     {
         $this->condition = $condition;
 
@@ -133,7 +121,7 @@ abstract class ConditionalRoutesConditionsRelCalendarDtoAbstract implements Data
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesCondition
+     * @return \Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesConditionDto
      */
     public function getCondition()
     {
@@ -141,31 +129,11 @@ abstract class ConditionalRoutesConditionsRelCalendarDtoAbstract implements Data
     }
 
     /**
-     * @param integer $calendarId
+     * @param \Ivoz\Provider\Domain\Model\Calendar\CalendarDto $calendar
      *
-     * @return ConditionalRoutesConditionsRelCalendarDtoAbstract
+     * @return static
      */
-    public function setCalendarId($calendarId)
-    {
-        $this->calendarId = $calendarId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCalendarId()
-    {
-        return $this->calendarId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Calendar\Calendar $calendar
-     *
-     * @return ConditionalRoutesConditionsRelCalendarDtoAbstract
-     */
-    public function setCalendar(\Ivoz\Provider\Domain\Model\Calendar\Calendar $calendar)
+    public function setCalendar(\Ivoz\Provider\Domain\Model\Calendar\CalendarDto $calendar = null)
     {
         $this->calendar = $calendar;
 
@@ -173,7 +141,7 @@ abstract class ConditionalRoutesConditionsRelCalendarDtoAbstract implements Data
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Calendar\Calendar
+     * @return \Ivoz\Provider\Domain\Model\Calendar\CalendarDto
      */
     public function getCalendar()
     {

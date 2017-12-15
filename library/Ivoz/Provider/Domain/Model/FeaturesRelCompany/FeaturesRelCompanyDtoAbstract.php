@@ -17,31 +17,27 @@ abstract class FeaturesRelCompanyDtoAbstract implements DataTransferObjectInterf
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $companyId;
-
-    /**
-     * @var mixed
-     */
-    private $featureId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Company\CompanyDto | null
      */
     private $company;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Feature\FeatureDto | null
      */
     private $feature;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -54,7 +50,19 @@ abstract class FeaturesRelCompanyDtoAbstract implements DataTransferObjectInterf
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'id',
+            'company',
+            'feature'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'id' => $this->getId(),
@@ -83,9 +91,9 @@ abstract class FeaturesRelCompanyDtoAbstract implements DataTransferObjectInterf
     /**
      * @param integer $id
      *
-     * @return FeaturesRelCompanyDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -101,31 +109,11 @@ abstract class FeaturesRelCompanyDtoAbstract implements DataTransferObjectInterf
     }
 
     /**
-     * @param integer $companyId
+     * @param \Ivoz\Provider\Domain\Model\Company\CompanyDto $company
      *
-     * @return FeaturesRelCompanyDtoAbstract
+     * @return static
      */
-    public function setCompanyId($companyId)
-    {
-        $this->companyId = $companyId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCompanyId()
-    {
-        return $this->companyId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Company\Company $company
-     *
-     * @return FeaturesRelCompanyDtoAbstract
-     */
-    public function setCompany(\Ivoz\Provider\Domain\Model\Company\Company $company)
+    public function setCompany(\Ivoz\Provider\Domain\Model\Company\CompanyDto $company = null)
     {
         $this->company = $company;
 
@@ -133,7 +121,7 @@ abstract class FeaturesRelCompanyDtoAbstract implements DataTransferObjectInterf
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Company\Company
+     * @return \Ivoz\Provider\Domain\Model\Company\CompanyDto
      */
     public function getCompany()
     {
@@ -141,31 +129,11 @@ abstract class FeaturesRelCompanyDtoAbstract implements DataTransferObjectInterf
     }
 
     /**
-     * @param integer $featureId
+     * @param \Ivoz\Provider\Domain\Model\Feature\FeatureDto $feature
      *
-     * @return FeaturesRelCompanyDtoAbstract
+     * @return static
      */
-    public function setFeatureId($featureId)
-    {
-        $this->featureId = $featureId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getFeatureId()
-    {
-        return $this->featureId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Feature\Feature $feature
-     *
-     * @return FeaturesRelCompanyDtoAbstract
-     */
-    public function setFeature(\Ivoz\Provider\Domain\Model\Feature\Feature $feature)
+    public function setFeature(\Ivoz\Provider\Domain\Model\Feature\FeatureDto $feature = null)
     {
         $this->feature = $feature;
 
@@ -173,7 +141,7 @@ abstract class FeaturesRelCompanyDtoAbstract implements DataTransferObjectInterf
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Feature\Feature
+     * @return \Ivoz\Provider\Domain\Model\Feature\FeatureDto
      */
     public function getFeature()
     {

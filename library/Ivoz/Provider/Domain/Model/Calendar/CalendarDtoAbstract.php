@@ -22,26 +22,27 @@ abstract class CalendarDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $companyId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Company\CompanyDto | null
      */
     private $company;
 
     /**
-     * @var array|null
+     * @var \Ivoz\Provider\Domain\Model\HolidayDate\HolidayDateDto[] | null
      */
     private $holidayDates = null;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -54,7 +55,20 @@ abstract class CalendarDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'name',
+            'id',
+            'company',
+            'holidayDates'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'name' => $this->getName(),
@@ -97,9 +111,9 @@ abstract class CalendarDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $name
      *
-     * @return CalendarDtoAbstract
+     * @return static
      */
-    public function setName($name)
+    public function setName($name = null)
     {
         $this->name = $name;
 
@@ -117,9 +131,9 @@ abstract class CalendarDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return CalendarDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -135,31 +149,11 @@ abstract class CalendarDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $companyId
+     * @param \Ivoz\Provider\Domain\Model\Company\CompanyDto $company
      *
-     * @return CalendarDtoAbstract
+     * @return static
      */
-    public function setCompanyId($companyId)
-    {
-        $this->companyId = $companyId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCompanyId()
-    {
-        return $this->companyId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Company\Company $company
-     *
-     * @return CalendarDtoAbstract
-     */
-    public function setCompany(\Ivoz\Provider\Domain\Model\Company\Company $company)
+    public function setCompany(\Ivoz\Provider\Domain\Model\Company\CompanyDto $company = null)
     {
         $this->company = $company;
 
@@ -167,7 +161,7 @@ abstract class CalendarDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Company\Company
+     * @return \Ivoz\Provider\Domain\Model\Company\CompanyDto
      */
     public function getCompany()
     {
@@ -177,9 +171,9 @@ abstract class CalendarDtoAbstract implements DataTransferObjectInterface
     /**
      * @param array $holidayDates
      *
-     * @return CalendarDtoAbstract
+     * @return static
      */
-    public function setHolidayDates($holidayDates)
+    public function setHolidayDates($holidayDates = null)
     {
         $this->holidayDates = $holidayDates;
 

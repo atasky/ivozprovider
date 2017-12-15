@@ -57,21 +57,22 @@ abstract class LocutionDtoAbstract implements DataTransferObjectInterface
     private $originalFileBaseName;
 
     /**
-     * @var mixed
-     */
-    private $companyId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Company\CompanyDto | null
      */
     private $company;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -84,7 +85,22 @@ abstract class LocutionDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'name',
+            'status',
+            'id',
+            'encodedFile',
+            'originalFile',
+            'company'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'name' => $this->getName(),
@@ -123,9 +139,9 @@ abstract class LocutionDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $name
      *
-     * @return LocutionDtoAbstract
+     * @return static
      */
-    public function setName($name)
+    public function setName($name = null)
     {
         $this->name = $name;
 
@@ -143,7 +159,7 @@ abstract class LocutionDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $status
      *
-     * @return LocutionDtoAbstract
+     * @return static
      */
     public function setStatus($status = null)
     {
@@ -163,9 +179,9 @@ abstract class LocutionDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return LocutionDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -183,9 +199,9 @@ abstract class LocutionDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $encodedFileFileSize
      *
-     * @return LocutionDtoAbstract
+     * @return static
      */
-    public function setEncodedFileFileSize($encodedFileFileSize)
+    public function setEncodedFileFileSize($encodedFileFileSize = null)
     {
         $this->encodedFileFileSize = $encodedFileFileSize;
 
@@ -203,9 +219,9 @@ abstract class LocutionDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $encodedFileMimeType
      *
-     * @return LocutionDtoAbstract
+     * @return static
      */
-    public function setEncodedFileMimeType($encodedFileMimeType)
+    public function setEncodedFileMimeType($encodedFileMimeType = null)
     {
         $this->encodedFileMimeType = $encodedFileMimeType;
 
@@ -223,9 +239,9 @@ abstract class LocutionDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $encodedFileBaseName
      *
-     * @return LocutionDtoAbstract
+     * @return static
      */
-    public function setEncodedFileBaseName($encodedFileBaseName)
+    public function setEncodedFileBaseName($encodedFileBaseName = null)
     {
         $this->encodedFileBaseName = $encodedFileBaseName;
 
@@ -243,9 +259,9 @@ abstract class LocutionDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $originalFileFileSize
      *
-     * @return LocutionDtoAbstract
+     * @return static
      */
-    public function setOriginalFileFileSize($originalFileFileSize)
+    public function setOriginalFileFileSize($originalFileFileSize = null)
     {
         $this->originalFileFileSize = $originalFileFileSize;
 
@@ -263,9 +279,9 @@ abstract class LocutionDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $originalFileMimeType
      *
-     * @return LocutionDtoAbstract
+     * @return static
      */
-    public function setOriginalFileMimeType($originalFileMimeType)
+    public function setOriginalFileMimeType($originalFileMimeType = null)
     {
         $this->originalFileMimeType = $originalFileMimeType;
 
@@ -283,9 +299,9 @@ abstract class LocutionDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $originalFileBaseName
      *
-     * @return LocutionDtoAbstract
+     * @return static
      */
-    public function setOriginalFileBaseName($originalFileBaseName)
+    public function setOriginalFileBaseName($originalFileBaseName = null)
     {
         $this->originalFileBaseName = $originalFileBaseName;
 
@@ -301,31 +317,11 @@ abstract class LocutionDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $companyId
+     * @param \Ivoz\Provider\Domain\Model\Company\CompanyDto $company
      *
-     * @return LocutionDtoAbstract
+     * @return static
      */
-    public function setCompanyId($companyId)
-    {
-        $this->companyId = $companyId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCompanyId()
-    {
-        return $this->companyId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Company\Company $company
-     *
-     * @return LocutionDtoAbstract
-     */
-    public function setCompany(\Ivoz\Provider\Domain\Model\Company\Company $company)
+    public function setCompany(\Ivoz\Provider\Domain\Model\Company\CompanyDto $company = null)
     {
         $this->company = $company;
 
@@ -333,7 +329,7 @@ abstract class LocutionDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Company\Company
+     * @return \Ivoz\Provider\Domain\Model\Company\CompanyDto
      */
     public function getCompany()
     {

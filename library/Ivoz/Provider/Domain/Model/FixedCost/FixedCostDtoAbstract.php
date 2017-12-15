@@ -32,21 +32,22 @@ abstract class FixedCostDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $brandId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Brand\BrandDto | null
      */
     private $brand;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -59,7 +60,21 @@ abstract class FixedCostDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'name',
+            'description',
+            'cost',
+            'id',
+            'brand'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'name' => $this->getName(),
@@ -89,9 +104,9 @@ abstract class FixedCostDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $name
      *
-     * @return FixedCostDtoAbstract
+     * @return static
      */
-    public function setName($name)
+    public function setName($name = null)
     {
         $this->name = $name;
 
@@ -109,7 +124,7 @@ abstract class FixedCostDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $description
      *
-     * @return FixedCostDtoAbstract
+     * @return static
      */
     public function setDescription($description = null)
     {
@@ -129,7 +144,7 @@ abstract class FixedCostDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $cost
      *
-     * @return FixedCostDtoAbstract
+     * @return static
      */
     public function setCost($cost = null)
     {
@@ -149,9 +164,9 @@ abstract class FixedCostDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return FixedCostDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -167,31 +182,11 @@ abstract class FixedCostDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $brandId
+     * @param \Ivoz\Provider\Domain\Model\Brand\BrandDto $brand
      *
-     * @return FixedCostDtoAbstract
+     * @return static
      */
-    public function setBrandId($brandId)
-    {
-        $this->brandId = $brandId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Brand\Brand $brand
-     *
-     * @return FixedCostDtoAbstract
-     */
-    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\Brand $brand)
+    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\BrandDto $brand = null)
     {
         $this->brand = $brand;
 
@@ -199,7 +194,7 @@ abstract class FixedCostDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Brand\Brand
+     * @return \Ivoz\Provider\Domain\Model\Brand\BrandDto
      */
     public function getBrand()
     {

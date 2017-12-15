@@ -216,16 +216,11 @@ abstract class OutgoingRoutingAbstract
             ->setType($this->getType())
             ->setPriority($this->getPriority())
             ->setWeight($this->getWeight())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setBrand($this->getBrand())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany())
-            ->setPeeringContractId($this->getPeeringContract() ? $this->getPeeringContract()->getId() : null)
-            ->setPeeringContract($this->getPeeringContract())
-            ->setRoutingPatternId($this->getRoutingPattern() ? $this->getRoutingPattern()->getId() : null)
-            ->setRoutingPattern($this->getRoutingPattern())
-            ->setRoutingPatternGroupId($this->getRoutingPatternGroup() ? $this->getRoutingPatternGroup()->getId() : null)
-            ->setRoutingPatternGroup($this->getRoutingPatternGroup());
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null)
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null)
+            ->setPeeringContract($this->getPeeringContract() ? $this->getPeeringContract()->toDto() : null)
+            ->setRoutingPattern($this->getRoutingPattern() ? $this->getRoutingPattern()->toDto() : null)
+            ->setRoutingPatternGroup($this->getRoutingPatternGroup() ? $this->getRoutingPatternGroup()->toDto() : null);
     }
 
     /**

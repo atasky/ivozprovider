@@ -349,18 +349,12 @@ abstract class FriendAbstract
             ->setUpdateCallerid($this->getUpdateCallerid())
             ->setFromDomain($this->getFromDomain())
             ->setDirectConnectivity($this->getDirectConnectivity())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany())
-            ->setDomainId($this->getDomain() ? $this->getDomain()->getId() : null)
-            ->setDomain($this->getDomain())
-            ->setTransformationRuleSetId($this->getTransformationRuleSet() ? $this->getTransformationRuleSet()->getId() : null)
-            ->setTransformationRuleSet($this->getTransformationRuleSet())
-            ->setCallAclId($this->getCallAcl() ? $this->getCallAcl()->getId() : null)
-            ->setCallAcl($this->getCallAcl())
-            ->setOutgoingDdiId($this->getOutgoingDdi() ? $this->getOutgoingDdi()->getId() : null)
-            ->setOutgoingDdi($this->getOutgoingDdi())
-            ->setLanguageId($this->getLanguage() ? $this->getLanguage()->getId() : null)
-            ->setLanguage($this->getLanguage());
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null)
+            ->setDomain($this->getDomain() ? $this->getDomain()->toDto() : null)
+            ->setTransformationRuleSet($this->getTransformationRuleSet() ? $this->getTransformationRuleSet()->toDto() : null)
+            ->setCallAcl($this->getCallAcl() ? $this->getCallAcl()->toDto() : null)
+            ->setOutgoingDdi($this->getOutgoingDdi() ? $this->getOutgoingDdi()->toDto() : null)
+            ->setLanguage($this->getLanguage() ? $this->getLanguage()->toDto() : null);
     }
 
     /**

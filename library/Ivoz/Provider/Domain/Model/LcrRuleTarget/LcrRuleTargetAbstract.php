@@ -204,12 +204,9 @@ abstract class LcrRuleTargetAbstract
             ->setLcrId($this->getLcrId())
             ->setPriority($this->getPriority())
             ->setWeight($this->getWeight())
-            ->setRuleId($this->getRule() ? $this->getRule()->getId() : null)
-            ->setRule($this->getRule())
-            ->setGwId($this->getGw() ? $this->getGw()->getId() : null)
-            ->setGw($this->getGw())
-            ->setOutgoingRoutingId($this->getOutgoingRouting() ? $this->getOutgoingRouting()->getId() : null)
-            ->setOutgoingRouting($this->getOutgoingRouting());
+            ->setRule($this->getRule() ? $this->getRule()->toDto() : null)
+            ->setGw($this->getGw() ? $this->getGw()->toDto() : null)
+            ->setOutgoingRouting($this->getOutgoingRouting() ? $this->getOutgoingRouting()->toDto() : null);
     }
 
     /**

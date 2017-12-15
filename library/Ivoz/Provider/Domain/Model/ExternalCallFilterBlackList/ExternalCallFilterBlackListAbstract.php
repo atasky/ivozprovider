@@ -170,10 +170,8 @@ abstract class ExternalCallFilterBlackListAbstract
     public function toDto()
     {
         return self::createDto()
-            ->setFilterId($this->getFilter() ? $this->getFilter()->getId() : null)
-            ->setFilter($this->getFilter())
-            ->setMatchlistId($this->getMatchlist() ? $this->getMatchlist()->getId() : null)
-            ->setMatchlist($this->getMatchlist());
+            ->setFilter($this->getFilter() ? $this->getFilter()->toDto() : null)
+            ->setMatchlist($this->getMatchlist() ? $this->getMatchlist()->toDto() : null);
     }
 
     /**

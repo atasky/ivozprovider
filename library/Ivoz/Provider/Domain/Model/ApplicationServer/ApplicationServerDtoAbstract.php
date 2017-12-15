@@ -26,12 +26,18 @@ abstract class ApplicationServerDtoAbstract implements DataTransferObjectInterfa
      */
     private $id;
 
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
+
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -44,7 +50,19 @@ abstract class ApplicationServerDtoAbstract implements DataTransferObjectInterfa
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'ip',
+            'name',
+            'id'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'ip' => $this->getIp(),
@@ -72,9 +90,9 @@ abstract class ApplicationServerDtoAbstract implements DataTransferObjectInterfa
     /**
      * @param string $ip
      *
-     * @return ApplicationServerDtoAbstract
+     * @return static
      */
-    public function setIp($ip)
+    public function setIp($ip = null)
     {
         $this->ip = $ip;
 
@@ -92,7 +110,7 @@ abstract class ApplicationServerDtoAbstract implements DataTransferObjectInterfa
     /**
      * @param string $name
      *
-     * @return ApplicationServerDtoAbstract
+     * @return static
      */
     public function setName($name = null)
     {
@@ -112,9 +130,9 @@ abstract class ApplicationServerDtoAbstract implements DataTransferObjectInterfa
     /**
      * @param integer $id
      *
-     * @return ApplicationServerDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 

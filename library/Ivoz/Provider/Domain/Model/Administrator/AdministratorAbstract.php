@@ -229,12 +229,9 @@ abstract class AdministratorAbstract
             ->setActive($this->getActive())
             ->setName($this->getName())
             ->setLastname($this->getLastname())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setBrand($this->getBrand())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany())
-            ->setTimezoneId($this->getTimezone() ? $this->getTimezone()->getId() : null)
-            ->setTimezone($this->getTimezone());
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null)
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null)
+            ->setTimezone($this->getTimezone() ? $this->getTimezone()->toDto() : null);
     }
 
     /**

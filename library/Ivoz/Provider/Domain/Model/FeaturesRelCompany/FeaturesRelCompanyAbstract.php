@@ -170,10 +170,8 @@ abstract class FeaturesRelCompanyAbstract
     public function toDto()
     {
         return self::createDto()
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany())
-            ->setFeatureId($this->getFeature() ? $this->getFeature()->getId() : null)
-            ->setFeature($this->getFeature());
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null)
+            ->setFeature($this->getFeature() ? $this->getFeature()->toDto() : null);
     }
 
     /**

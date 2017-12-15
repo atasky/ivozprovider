@@ -339,18 +339,12 @@ abstract class RetailAccountAbstract
             ->setUpdateCallerid($this->getUpdateCallerid())
             ->setFromDomain($this->getFromDomain())
             ->setDirectConnectivity($this->getDirectConnectivity())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setBrand($this->getBrand())
-            ->setDomainId($this->getDomain() ? $this->getDomain()->getId() : null)
-            ->setDomain($this->getDomain())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany())
-            ->setTransformationRuleSetId($this->getTransformationRuleSet() ? $this->getTransformationRuleSet()->getId() : null)
-            ->setTransformationRuleSet($this->getTransformationRuleSet())
-            ->setOutgoingDdiId($this->getOutgoingDdi() ? $this->getOutgoingDdi()->getId() : null)
-            ->setOutgoingDdi($this->getOutgoingDdi())
-            ->setLanguageId($this->getLanguage() ? $this->getLanguage()->getId() : null)
-            ->setLanguage($this->getLanguage());
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null)
+            ->setDomain($this->getDomain() ? $this->getDomain()->toDto() : null)
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null)
+            ->setTransformationRuleSet($this->getTransformationRuleSet() ? $this->getTransformationRuleSet()->toDto() : null)
+            ->setOutgoingDdi($this->getOutgoingDdi() ? $this->getOutgoingDdi()->toDto() : null)
+            ->setLanguage($this->getLanguage() ? $this->getLanguage()->toDto() : null);
     }
 
     /**

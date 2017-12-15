@@ -1,13 +1,15 @@
 <?php
 
-namespace Ivoz\Core\Application\Service\JsonLd\Serializer\Normalizer;
+namespace Ivoz\Api\JsonLd\Serializer\Normalizer;
 
 use ApiPlatform\Core\Api\IriConverterInterface;
+use ApiPlatform\Core\Api\OperationType;
 use ApiPlatform\Core\Api\ResourceClassResolverInterface;
 use ApiPlatform\Core\Exception\InvalidArgumentException;
 use ApiPlatform\Core\JsonLd\ContextBuilderInterface;
 use ApiPlatform\Core\JsonLd\Serializer\JsonLdContextTrait;
 use ApiPlatform\Core\Metadata\Resource\Factory\ResourceMetadataFactoryInterface;
+use Ivoz\Core\Application\DataTransferObjectInterface;
 use Ivoz\Core\Domain\Model\EntityInterface;
 
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -65,54 +67,67 @@ class EntityNormalizer implements NormalizerInterface, DenormalizerInterface
      */
     public function normalize($object, $format = null, array $context = [])
     {
-        $resourceClass = $this->resourceClassResolver->getResourceClass($object, $context['resource_class'] ?? null, true);
+        if (!$object instanceof EntityInterface) {
+            Throw new \Exception('Object must implement EntityInterface');
+        }
+
+        $this->iriConverter->getIriFromItem($object);
+        return $this->normalizeDto($object->toDto(), $format, $context);
+    }
+
+    private function normalizeDto(DataTransferObjectInterface $dto, string $format, array $context, $isSubresource = false)
+    {
+        $resourceClass = substr(
+            get_class($dto),
+            0,
+            strlen('Dto') * -1
+        );
         $resourceMetadata = $this->resourceMetadataFactory->create($resourceClass);
         $data = $this->addJsonLdContext($this->contextBuilder, $resourceClass, $context);
 
         // Use resolved resource class instead of given resource class to support multiple inheritance child types
         $context['resource_class'] = $resourceClass;
-        $context['iri'] = $this->iriConverter->getIriFromItem($object);
+        $context['iri'] = $this
+            ->iriConverter
+            ->getItemIriFromResourceClass(
+                $resourceClass,
+                ['id' => $dto->getId()]
+            );
 
-        $rawData = $this->normalizeEntity($object, $format, $context);
-        if (!is_array($rawData)) {
-            return $rawData;
+        $rawData = $dto->normalize($context['operation_type']);
+
+        foreach ($rawData as $key => $value) {
+
+            if ($value instanceof DataTransferObjectInterface) {
+                if ($isSubresource) {
+                    unset($rawData[$key]);
+                    continue;
+                }
+
+                $embeddedContext = [
+                    'item_operation_name' => $context['item_operation_name'],
+                    'operation_type' => 'list',
+                    'request_uri' => $context['request_uri']
+                ];
+
+                try {
+                    $rawData[$key] = $this->normalizeDto(
+                        $value,
+                        'list',
+                        $embeddedContext,
+                        true
+                    );
+
+                } catch (\Exception $e) {
+                    unset($rawData[$key]);
+                }
+            }
         }
 
         $data['@id'] = $context['iri'];
         $data['@type'] = $resourceMetadata->getIri() ?: $resourceMetadata->getShortName();
 
         return $data + $rawData;
-    }
-
-    private function normalizeEntity(EntityInterface $object, string $format, array $context)
-    {
-        $dto = $object->toDTO();
-        $response = $dto->normalize($context['operation_type']);
-
-        if ($context['operation_type'] === 'embedded') {
-            return $response;
-        }
-
-        $embeddedContext = array_merge([], $context);
-        $embeddedContext['operation_type'] = 'embedded';
-
-        foreach ($response as $key => $value) {
-
-            if ($value instanceof EntityInterface) {
-
-                try {
-                    $response[$key] = $this->normalize(
-                        $value,
-                        $format,
-                        $embeddedContext
-                    );
-                } catch (\Exception $e) {
-                    unset($response[$key]);
-                }
-            }
-        }
-
-        return $response;
     }
 
     /**

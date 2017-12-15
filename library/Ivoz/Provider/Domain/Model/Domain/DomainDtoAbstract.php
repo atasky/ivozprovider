@@ -32,26 +32,32 @@ abstract class DomainDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var array|null
+     * @var \Ivoz\Provider\Domain\Model\Friend\FriendDto[] | null
      */
     private $friends = null;
 
     /**
-     * @var array|null
+     * @var \Ivoz\Provider\Domain\Model\RetailAccount\RetailAccountDto[] | null
      */
     private $retailAccounts = null;
 
     /**
-     * @var array|null
+     * @var \Ivoz\Provider\Domain\Model\Terminal\TerminalDto[] | null
      */
     private $terminals = null;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -64,7 +70,23 @@ abstract class DomainDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'domain',
+            'pointsTo',
+            'description',
+            'id',
+            'friends',
+            'retailAccounts',
+            'terminals'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'domain' => $this->getDomain(),
@@ -139,9 +161,9 @@ abstract class DomainDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $domain
      *
-     * @return DomainDtoAbstract
+     * @return static
      */
-    public function setDomain($domain)
+    public function setDomain($domain = null)
     {
         $this->domain = $domain;
 
@@ -159,9 +181,9 @@ abstract class DomainDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $pointsTo
      *
-     * @return DomainDtoAbstract
+     * @return static
      */
-    public function setPointsTo($pointsTo)
+    public function setPointsTo($pointsTo = null)
     {
         $this->pointsTo = $pointsTo;
 
@@ -179,7 +201,7 @@ abstract class DomainDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $description
      *
-     * @return DomainDtoAbstract
+     * @return static
      */
     public function setDescription($description = null)
     {
@@ -199,9 +221,9 @@ abstract class DomainDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return DomainDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -219,9 +241,9 @@ abstract class DomainDtoAbstract implements DataTransferObjectInterface
     /**
      * @param array $friends
      *
-     * @return DomainDtoAbstract
+     * @return static
      */
-    public function setFriends($friends)
+    public function setFriends($friends = null)
     {
         $this->friends = $friends;
 
@@ -239,9 +261,9 @@ abstract class DomainDtoAbstract implements DataTransferObjectInterface
     /**
      * @param array $retailAccounts
      *
-     * @return DomainDtoAbstract
+     * @return static
      */
-    public function setRetailAccounts($retailAccounts)
+    public function setRetailAccounts($retailAccounts = null)
     {
         $this->retailAccounts = $retailAccounts;
 
@@ -259,9 +281,9 @@ abstract class DomainDtoAbstract implements DataTransferObjectInterface
     /**
      * @param array $terminals
      *
-     * @return DomainDtoAbstract
+     * @return static
      */
-    public function setTerminals($terminals)
+    public function setTerminals($terminals = null)
     {
         $this->terminals = $terminals;
 

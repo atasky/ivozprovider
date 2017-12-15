@@ -197,8 +197,7 @@ abstract class ConferenceRoomAbstract
             ->setPinProtected($this->getPinProtected())
             ->setPinCode($this->getPinCode())
             ->setMaxMembers($this->getMaxMembers())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany());
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null);
     }
 
     /**

@@ -238,10 +238,8 @@ abstract class TransformationRuleSetAbstract
             ->setGenerateRules($this->getGenerateRules())
             ->setNameEn($this->getName()->getEn())
             ->setNameEs($this->getName()->getEs())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setBrand($this->getBrand())
-            ->setCountryId($this->getCountry() ? $this->getCountry()->getId() : null)
-            ->setCountry($this->getCountry());
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null)
+            ->setCountry($this->getCountry() ? $this->getCountry()->toDto() : null);
     }
 
     /**

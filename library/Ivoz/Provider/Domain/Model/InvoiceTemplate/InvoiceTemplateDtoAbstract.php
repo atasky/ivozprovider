@@ -42,21 +42,22 @@ abstract class InvoiceTemplateDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $brandId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Brand\BrandDto | null
      */
     private $brand;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -69,7 +70,23 @@ abstract class InvoiceTemplateDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'name',
+            'description',
+            'template',
+            'templateHeader',
+            'templateFooter',
+            'id',
+            'brand'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'name' => $this->getName(),
@@ -101,9 +118,9 @@ abstract class InvoiceTemplateDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $name
      *
-     * @return InvoiceTemplateDtoAbstract
+     * @return static
      */
-    public function setName($name)
+    public function setName($name = null)
     {
         $this->name = $name;
 
@@ -121,7 +138,7 @@ abstract class InvoiceTemplateDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $description
      *
-     * @return InvoiceTemplateDtoAbstract
+     * @return static
      */
     public function setDescription($description = null)
     {
@@ -141,9 +158,9 @@ abstract class InvoiceTemplateDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $template
      *
-     * @return InvoiceTemplateDtoAbstract
+     * @return static
      */
-    public function setTemplate($template)
+    public function setTemplate($template = null)
     {
         $this->template = $template;
 
@@ -161,7 +178,7 @@ abstract class InvoiceTemplateDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $templateHeader
      *
-     * @return InvoiceTemplateDtoAbstract
+     * @return static
      */
     public function setTemplateHeader($templateHeader = null)
     {
@@ -181,7 +198,7 @@ abstract class InvoiceTemplateDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $templateFooter
      *
-     * @return InvoiceTemplateDtoAbstract
+     * @return static
      */
     public function setTemplateFooter($templateFooter = null)
     {
@@ -201,9 +218,9 @@ abstract class InvoiceTemplateDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return InvoiceTemplateDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -219,31 +236,11 @@ abstract class InvoiceTemplateDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $brandId
+     * @param \Ivoz\Provider\Domain\Model\Brand\BrandDto $brand
      *
-     * @return InvoiceTemplateDtoAbstract
+     * @return static
      */
-    public function setBrandId($brandId)
-    {
-        $this->brandId = $brandId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Brand\Brand $brand
-     *
-     * @return InvoiceTemplateDtoAbstract
-     */
-    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\Brand $brand)
+    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\BrandDto $brand = null)
     {
         $this->brand = $brand;
 
@@ -251,7 +248,7 @@ abstract class InvoiceTemplateDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Brand\Brand
+     * @return \Ivoz\Provider\Domain\Model\Brand\BrandDto
      */
     public function getBrand()
     {

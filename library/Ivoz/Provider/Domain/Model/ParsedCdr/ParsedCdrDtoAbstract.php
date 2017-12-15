@@ -137,41 +137,32 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $brandId;
-
-    /**
-     * @var mixed
-     */
-    private $companyId;
-
-    /**
-     * @var mixed
-     */
-    private $peeringContractId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Brand\BrandDto | null
      */
     private $brand;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Company\CompanyDto | null
      */
     private $company;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\PeeringContract\PeeringContractDto | null
      */
     private $peeringContract;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -184,7 +175,44 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'statId',
+            'xstatId',
+            'statType',
+            'initialLeg',
+            'initialLegHash',
+            'cid',
+            'cidHash',
+            'xcid',
+            'xcidHash',
+            'proxies',
+            'type',
+            'subtype',
+            'calldate',
+            'duration',
+            'aParty',
+            'bParty',
+            'caller',
+            'callee',
+            'xCaller',
+            'xCallee',
+            'initialReferrer',
+            'referrer',
+            'referee',
+            'lastForwarder',
+            'id',
+            'brand',
+            'company',
+            'peeringContract'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'statId' => $this->getStatId(),
@@ -239,7 +267,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $statId
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setStatId($statId = null)
     {
@@ -259,7 +287,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $xstatId
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setXstatId($xstatId = null)
     {
@@ -279,7 +307,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $statType
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setStatType($statType = null)
     {
@@ -299,7 +327,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $initialLeg
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setInitialLeg($initialLeg = null)
     {
@@ -319,7 +347,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $initialLegHash
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setInitialLegHash($initialLegHash = null)
     {
@@ -339,7 +367,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $cid
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setCid($cid = null)
     {
@@ -359,7 +387,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $cidHash
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setCidHash($cidHash = null)
     {
@@ -379,7 +407,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $xcid
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setXcid($xcid = null)
     {
@@ -399,7 +427,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $xcidHash
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setXcidHash($xcidHash = null)
     {
@@ -419,7 +447,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $proxies
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setProxies($proxies = null)
     {
@@ -439,7 +467,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $type
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setType($type = null)
     {
@@ -459,7 +487,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $subtype
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setSubtype($subtype = null)
     {
@@ -479,9 +507,9 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param \DateTime $calldate
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
-    public function setCalldate($calldate)
+    public function setCalldate($calldate = null)
     {
         $this->calldate = $calldate;
 
@@ -499,7 +527,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $duration
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setDuration($duration = null)
     {
@@ -519,7 +547,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $aParty
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setAParty($aParty = null)
     {
@@ -539,7 +567,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $bParty
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setBParty($bParty = null)
     {
@@ -559,7 +587,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $caller
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setCaller($caller = null)
     {
@@ -579,7 +607,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $callee
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setCallee($callee = null)
     {
@@ -599,7 +627,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $xCaller
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setXCaller($xCaller = null)
     {
@@ -619,7 +647,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $xCallee
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setXCallee($xCallee = null)
     {
@@ -639,7 +667,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $initialReferrer
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setInitialReferrer($initialReferrer = null)
     {
@@ -659,7 +687,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $referrer
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setReferrer($referrer = null)
     {
@@ -679,7 +707,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $referee
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setReferee($referee = null)
     {
@@ -699,7 +727,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $lastForwarder
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
     public function setLastForwarder($lastForwarder = null)
     {
@@ -719,9 +747,9 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -737,31 +765,11 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $brandId
+     * @param \Ivoz\Provider\Domain\Model\Brand\BrandDto $brand
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
-    public function setBrandId($brandId)
-    {
-        $this->brandId = $brandId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Brand\Brand $brand
-     *
-     * @return ParsedCdrDtoAbstract
-     */
-    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\Brand $brand)
+    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\BrandDto $brand = null)
     {
         $this->brand = $brand;
 
@@ -769,7 +777,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Brand\Brand
+     * @return \Ivoz\Provider\Domain\Model\Brand\BrandDto
      */
     public function getBrand()
     {
@@ -777,31 +785,11 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $companyId
+     * @param \Ivoz\Provider\Domain\Model\Company\CompanyDto $company
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
-    public function setCompanyId($companyId)
-    {
-        $this->companyId = $companyId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCompanyId()
-    {
-        return $this->companyId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Company\Company $company
-     *
-     * @return ParsedCdrDtoAbstract
-     */
-    public function setCompany(\Ivoz\Provider\Domain\Model\Company\Company $company)
+    public function setCompany(\Ivoz\Provider\Domain\Model\Company\CompanyDto $company = null)
     {
         $this->company = $company;
 
@@ -809,7 +797,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Company\Company
+     * @return \Ivoz\Provider\Domain\Model\Company\CompanyDto
      */
     public function getCompany()
     {
@@ -817,31 +805,11 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $peeringContractId
+     * @param \Ivoz\Provider\Domain\Model\PeeringContract\PeeringContractDto $peeringContract
      *
-     * @return ParsedCdrDtoAbstract
+     * @return static
      */
-    public function setPeeringContractId($peeringContractId)
-    {
-        $this->peeringContractId = $peeringContractId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getPeeringContractId()
-    {
-        return $this->peeringContractId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\PeeringContract\PeeringContract $peeringContract
-     *
-     * @return ParsedCdrDtoAbstract
-     */
-    public function setPeeringContract(\Ivoz\Provider\Domain\Model\PeeringContract\PeeringContract $peeringContract)
+    public function setPeeringContract(\Ivoz\Provider\Domain\Model\PeeringContract\PeeringContractDto $peeringContract = null)
     {
         $this->peeringContract = $peeringContract;
 
@@ -849,7 +817,7 @@ abstract class ParsedCdrDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\PeeringContract\PeeringContract
+     * @return \Ivoz\Provider\Domain\Model\PeeringContract\PeeringContractDto
      */
     public function getPeeringContract()
     {

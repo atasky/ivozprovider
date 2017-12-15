@@ -17,31 +17,27 @@ abstract class ExternalCallFilterBlackListDtoAbstract implements DataTransferObj
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $filterId;
-
-    /**
-     * @var mixed
-     */
-    private $matchlistId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilterDto | null
      */
     private $filter;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\MatchList\MatchListDto | null
      */
     private $matchlist;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -54,7 +50,19 @@ abstract class ExternalCallFilterBlackListDtoAbstract implements DataTransferObj
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'id',
+            'filter',
+            'matchlist'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'id' => $this->getId(),
@@ -83,9 +91,9 @@ abstract class ExternalCallFilterBlackListDtoAbstract implements DataTransferObj
     /**
      * @param integer $id
      *
-     * @return ExternalCallFilterBlackListDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -101,31 +109,11 @@ abstract class ExternalCallFilterBlackListDtoAbstract implements DataTransferObj
     }
 
     /**
-     * @param integer $filterId
+     * @param \Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilterDto $filter
      *
-     * @return ExternalCallFilterBlackListDtoAbstract
+     * @return static
      */
-    public function setFilterId($filterId)
-    {
-        $this->filterId = $filterId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getFilterId()
-    {
-        return $this->filterId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilter $filter
-     *
-     * @return ExternalCallFilterBlackListDtoAbstract
-     */
-    public function setFilter(\Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilter $filter)
+    public function setFilter(\Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilterDto $filter = null)
     {
         $this->filter = $filter;
 
@@ -133,7 +121,7 @@ abstract class ExternalCallFilterBlackListDtoAbstract implements DataTransferObj
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilter
+     * @return \Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilterDto
      */
     public function getFilter()
     {
@@ -141,31 +129,11 @@ abstract class ExternalCallFilterBlackListDtoAbstract implements DataTransferObj
     }
 
     /**
-     * @param integer $matchlistId
+     * @param \Ivoz\Provider\Domain\Model\MatchList\MatchListDto $matchlist
      *
-     * @return ExternalCallFilterBlackListDtoAbstract
+     * @return static
      */
-    public function setMatchlistId($matchlistId)
-    {
-        $this->matchlistId = $matchlistId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getMatchlistId()
-    {
-        return $this->matchlistId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\MatchList\MatchList $matchlist
-     *
-     * @return ExternalCallFilterBlackListDtoAbstract
-     */
-    public function setMatchlist(\Ivoz\Provider\Domain\Model\MatchList\MatchList $matchlist)
+    public function setMatchlist(\Ivoz\Provider\Domain\Model\MatchList\MatchListDto $matchlist = null)
     {
         $this->matchlist = $matchlist;
 
@@ -173,7 +141,7 @@ abstract class ExternalCallFilterBlackListDtoAbstract implements DataTransferObj
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\MatchList\MatchList
+     * @return \Ivoz\Provider\Domain\Model\MatchList\MatchListDto
      */
     public function getMatchlist()
     {

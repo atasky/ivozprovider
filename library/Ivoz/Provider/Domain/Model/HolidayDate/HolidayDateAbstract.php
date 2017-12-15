@@ -187,10 +187,8 @@ abstract class HolidayDateAbstract
         return self::createDto()
             ->setName($this->getName())
             ->setEventDate($this->getEventDate())
-            ->setCalendarId($this->getCalendar() ? $this->getCalendar()->getId() : null)
-            ->setCalendar($this->getCalendar())
-            ->setLocutionId($this->getLocution() ? $this->getLocution()->getId() : null)
-            ->setLocution($this->getLocution());
+            ->setCalendar($this->getCalendar() ? $this->getCalendar()->toDto() : null)
+            ->setLocution($this->getLocution() ? $this->getLocution()->toDto() : null);
     }
 
     /**

@@ -31,12 +31,18 @@ abstract class FeatureDtoAbstract implements DataTransferObjectInterface
      */
     private $nameEs = '';
 
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
+
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -49,7 +55,19 @@ abstract class FeatureDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'iden',
+            'id',
+            'name'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'iden' => $this->getIden(),
@@ -80,9 +98,9 @@ abstract class FeatureDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $iden
      *
-     * @return FeatureDtoAbstract
+     * @return static
      */
-    public function setIden($iden)
+    public function setIden($iden = null)
     {
         $this->iden = $iden;
 
@@ -100,9 +118,9 @@ abstract class FeatureDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return FeatureDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -120,9 +138,9 @@ abstract class FeatureDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $nameEn
      *
-     * @return FeatureDtoAbstract
+     * @return static
      */
-    public function setNameEn($nameEn)
+    public function setNameEn($nameEn = null)
     {
         $this->nameEn = $nameEn;
 
@@ -140,9 +158,9 @@ abstract class FeatureDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $nameEs
      *
-     * @return FeatureDtoAbstract
+     * @return static
      */
-    public function setNameEs($nameEs)
+    public function setNameEs($nameEs = null)
     {
         $this->nameEs = $nameEs;
 

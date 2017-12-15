@@ -170,10 +170,8 @@ abstract class PickUpRelUserAbstract
     public function toDto()
     {
         return self::createDto()
-            ->setPickUpGroupId($this->getPickUpGroup() ? $this->getPickUpGroup()->getId() : null)
-            ->setPickUpGroup($this->getPickUpGroup())
-            ->setUserId($this->getUser() ? $this->getUser()->getId() : null)
-            ->setUser($this->getUser());
+            ->setPickUpGroup($this->getPickUpGroup() ? $this->getPickUpGroup()->toDto() : null)
+            ->setUser($this->getUser() ? $this->getUser()->toDto() : null);
     }
 
     /**

@@ -369,12 +369,9 @@ abstract class ParsedCdrAbstract
             ->setReferrer($this->getReferrer())
             ->setReferee($this->getReferee())
             ->setLastForwarder($this->getLastForwarder())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setBrand($this->getBrand())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany())
-            ->setPeeringContractId($this->getPeeringContract() ? $this->getPeeringContract()->getId() : null)
-            ->setPeeringContract($this->getPeeringContract());
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null)
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null)
+            ->setPeeringContract($this->getPeeringContract() ? $this->getPeeringContract()->toDto() : null);
     }
 
     /**

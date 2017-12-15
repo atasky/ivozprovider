@@ -17,31 +17,27 @@ abstract class FeaturesRelBrandDtoAbstract implements DataTransferObjectInterfac
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $brandId;
-
-    /**
-     * @var mixed
-     */
-    private $featureId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Brand\BrandDto | null
      */
     private $brand;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Feature\FeatureDto | null
      */
     private $feature;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -54,7 +50,19 @@ abstract class FeaturesRelBrandDtoAbstract implements DataTransferObjectInterfac
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'id',
+            'brand',
+            'feature'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'id' => $this->getId(),
@@ -83,9 +91,9 @@ abstract class FeaturesRelBrandDtoAbstract implements DataTransferObjectInterfac
     /**
      * @param integer $id
      *
-     * @return FeaturesRelBrandDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -101,31 +109,11 @@ abstract class FeaturesRelBrandDtoAbstract implements DataTransferObjectInterfac
     }
 
     /**
-     * @param integer $brandId
+     * @param \Ivoz\Provider\Domain\Model\Brand\BrandDto $brand
      *
-     * @return FeaturesRelBrandDtoAbstract
+     * @return static
      */
-    public function setBrandId($brandId)
-    {
-        $this->brandId = $brandId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Brand\Brand $brand
-     *
-     * @return FeaturesRelBrandDtoAbstract
-     */
-    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\Brand $brand)
+    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\BrandDto $brand = null)
     {
         $this->brand = $brand;
 
@@ -133,7 +121,7 @@ abstract class FeaturesRelBrandDtoAbstract implements DataTransferObjectInterfac
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Brand\Brand
+     * @return \Ivoz\Provider\Domain\Model\Brand\BrandDto
      */
     public function getBrand()
     {
@@ -141,31 +129,11 @@ abstract class FeaturesRelBrandDtoAbstract implements DataTransferObjectInterfac
     }
 
     /**
-     * @param integer $featureId
+     * @param \Ivoz\Provider\Domain\Model\Feature\FeatureDto $feature
      *
-     * @return FeaturesRelBrandDtoAbstract
+     * @return static
      */
-    public function setFeatureId($featureId)
-    {
-        $this->featureId = $featureId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getFeatureId()
-    {
-        return $this->featureId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Feature\Feature $feature
-     *
-     * @return FeaturesRelBrandDtoAbstract
-     */
-    public function setFeature(\Ivoz\Provider\Domain\Model\Feature\Feature $feature)
+    public function setFeature(\Ivoz\Provider\Domain\Model\Feature\FeatureDto $feature = null)
     {
         $this->feature = $feature;
 
@@ -173,7 +141,7 @@ abstract class FeaturesRelBrandDtoAbstract implements DataTransferObjectInterfac
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Feature\Feature
+     * @return \Ivoz\Provider\Domain\Model\Feature\FeatureDto
      */
     public function getFeature()
     {

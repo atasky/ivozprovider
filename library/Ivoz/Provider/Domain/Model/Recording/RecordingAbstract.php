@@ -250,8 +250,7 @@ abstract class RecordingAbstract
             ->setRecordedFileFileSize($this->getRecordedFile()->getFileSize())
             ->setRecordedFileMimeType($this->getRecordedFile()->getMimeType())
             ->setRecordedFileBaseName($this->getRecordedFile()->getBaseName())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany());
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null);
     }
 
     /**

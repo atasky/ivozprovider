@@ -179,8 +179,7 @@ abstract class RoutingPatternGroupAbstract
         return self::createDto()
             ->setName($this->getName())
             ->setDescription($this->getDescription())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setBrand($this->getBrand());
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null);
     }
 
     /**

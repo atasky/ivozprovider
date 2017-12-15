@@ -6,7 +6,6 @@ use Ivoz\Core\Application\DataTransferObjectInterface;
 use Ivoz\Core\Application\ForeignKeyTransformerInterface;
 use Ivoz\Core\Application\CollectionTransformerInterface;
 
-
 class BrandDto extends BrandDtoAbstract
 {
     private $logoPath;
@@ -35,45 +34,51 @@ class BrandDto extends BrandDtoAbstract
         return $this->logoPath;
     }
 
+    /**
+     * @return array
+     */
+    public static function getPropertyMap($context = 'Simple')
+    {
+        return parent::getPropertyMap($context);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        $values = $this->__toArray();
-        $allowedValues = [
-            'name',
-            'id',
-        ];
+        if (!$context) {
+            return parent::normalize($context);
+        }
+
+        $response =  $this->filterByContext(
+            parent::normalize($context),
+            $context
+        );
+
+        return $response;
+    }
+
+    protected static function filterByContext($values, string $context)
+    {
+        $allowedValues = [];
+
         switch ($context) {
-            case 'item':
+            case 'Simple':
                 array_push($allowedValues, ...[
-                    'logo',
-                    'invoice',
-                    'domain',
-                    'language',
-                    'defaultTimezone'
-                ]);
-            case 'list':
-                array_push($allowedValues, ...[
-                    'domainUsers',
-                    'fromName',
-                    'fromAddress',
-                    'recordingsLimitMB',
-                    'recordingsLimitEmail'
+                    'id',
                 ]);
         }
-        $filtered = array_filter(
+
+        return array_filter(
             $values,
             function ($key) use ($allowedValues) {
                 return in_array($key, $allowedValues);
             },
             ARRAY_FILTER_USE_KEY
         );
-
-        return $filtered;
     }
+
 }
 
 

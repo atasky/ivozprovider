@@ -17,31 +17,27 @@ abstract class ConditionalRoutesConditionsRelScheduleDtoAbstract implements Data
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $conditionId;
-
-    /**
-     * @var mixed
-     */
-    private $scheduleId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesConditionDto | null
      */
     private $condition;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Schedule\ScheduleDto | null
      */
     private $schedule;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -54,7 +50,19 @@ abstract class ConditionalRoutesConditionsRelScheduleDtoAbstract implements Data
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'id',
+            'condition',
+            'schedule'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'id' => $this->getId(),
@@ -83,9 +91,9 @@ abstract class ConditionalRoutesConditionsRelScheduleDtoAbstract implements Data
     /**
      * @param integer $id
      *
-     * @return ConditionalRoutesConditionsRelScheduleDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -101,31 +109,11 @@ abstract class ConditionalRoutesConditionsRelScheduleDtoAbstract implements Data
     }
 
     /**
-     * @param integer $conditionId
+     * @param \Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesConditionDto $condition
      *
-     * @return ConditionalRoutesConditionsRelScheduleDtoAbstract
+     * @return static
      */
-    public function setConditionId($conditionId)
-    {
-        $this->conditionId = $conditionId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getConditionId()
-    {
-        return $this->conditionId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesCondition $condition
-     *
-     * @return ConditionalRoutesConditionsRelScheduleDtoAbstract
-     */
-    public function setCondition(\Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesCondition $condition)
+    public function setCondition(\Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesConditionDto $condition = null)
     {
         $this->condition = $condition;
 
@@ -133,7 +121,7 @@ abstract class ConditionalRoutesConditionsRelScheduleDtoAbstract implements Data
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesCondition
+     * @return \Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesConditionDto
      */
     public function getCondition()
     {
@@ -141,31 +129,11 @@ abstract class ConditionalRoutesConditionsRelScheduleDtoAbstract implements Data
     }
 
     /**
-     * @param integer $scheduleId
+     * @param \Ivoz\Provider\Domain\Model\Schedule\ScheduleDto $schedule
      *
-     * @return ConditionalRoutesConditionsRelScheduleDtoAbstract
+     * @return static
      */
-    public function setScheduleId($scheduleId)
-    {
-        $this->scheduleId = $scheduleId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getScheduleId()
-    {
-        return $this->scheduleId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Schedule\Schedule $schedule
-     *
-     * @return ConditionalRoutesConditionsRelScheduleDtoAbstract
-     */
-    public function setSchedule(\Ivoz\Provider\Domain\Model\Schedule\Schedule $schedule)
+    public function setSchedule(\Ivoz\Provider\Domain\Model\Schedule\ScheduleDto $schedule = null)
     {
         $this->schedule = $schedule;
 
@@ -173,7 +141,7 @@ abstract class ConditionalRoutesConditionsRelScheduleDtoAbstract implements Data
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Schedule\Schedule
+     * @return \Ivoz\Provider\Domain\Model\Schedule\ScheduleDto
      */
     public function getSchedule()
     {

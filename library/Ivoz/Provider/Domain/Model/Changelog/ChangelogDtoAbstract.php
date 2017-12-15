@@ -42,21 +42,22 @@ abstract class ChangelogDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $commandId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Commandlog\CommandlogDto | null
      */
     private $command;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -69,7 +70,23 @@ abstract class ChangelogDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'entity',
+            'entityId',
+            'data',
+            'createdOn',
+            'microtime',
+            'id',
+            'command'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'entity' => $this->getEntity(),
@@ -101,9 +118,9 @@ abstract class ChangelogDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $entity
      *
-     * @return ChangelogDtoAbstract
+     * @return static
      */
-    public function setEntity($entity)
+    public function setEntity($entity = null)
     {
         $this->entity = $entity;
 
@@ -121,9 +138,9 @@ abstract class ChangelogDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $entityId
      *
-     * @return ChangelogDtoAbstract
+     * @return static
      */
-    public function setEntityId($entityId)
+    public function setEntityId($entityId = null)
     {
         $this->entityId = $entityId;
 
@@ -141,7 +158,7 @@ abstract class ChangelogDtoAbstract implements DataTransferObjectInterface
     /**
      * @param array $data
      *
-     * @return ChangelogDtoAbstract
+     * @return static
      */
     public function setData($data = null)
     {
@@ -161,9 +178,9 @@ abstract class ChangelogDtoAbstract implements DataTransferObjectInterface
     /**
      * @param \DateTime $createdOn
      *
-     * @return ChangelogDtoAbstract
+     * @return static
      */
-    public function setCreatedOn($createdOn)
+    public function setCreatedOn($createdOn = null)
     {
         $this->createdOn = $createdOn;
 
@@ -181,9 +198,9 @@ abstract class ChangelogDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $microtime
      *
-     * @return ChangelogDtoAbstract
+     * @return static
      */
-    public function setMicrotime($microtime)
+    public function setMicrotime($microtime = null)
     {
         $this->microtime = $microtime;
 
@@ -201,9 +218,9 @@ abstract class ChangelogDtoAbstract implements DataTransferObjectInterface
     /**
      * @param guid $id
      *
-     * @return ChangelogDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -219,31 +236,11 @@ abstract class ChangelogDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $commandId
+     * @param \Ivoz\Provider\Domain\Model\Commandlog\CommandlogDto $command
      *
-     * @return ChangelogDtoAbstract
+     * @return static
      */
-    public function setCommandId($commandId)
-    {
-        $this->commandId = $commandId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCommandId()
-    {
-        return $this->commandId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Commandlog\Commandlog $command
-     *
-     * @return ChangelogDtoAbstract
-     */
-    public function setCommand(\Ivoz\Provider\Domain\Model\Commandlog\Commandlog $command)
+    public function setCommand(\Ivoz\Provider\Domain\Model\Commandlog\CommandlogDto $command = null)
     {
         $this->command = $command;
 
@@ -251,7 +248,7 @@ abstract class ChangelogDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Commandlog\Commandlog
+     * @return \Ivoz\Provider\Domain\Model\Commandlog\CommandlogDto
      */
     public function getCommand()
     {

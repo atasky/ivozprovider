@@ -206,12 +206,9 @@ abstract class PricingPlansRelTargetPatternAbstract
             ->setConnectionCharge($this->getConnectionCharge())
             ->setPeriodTime($this->getPeriodTime())
             ->setPerPeriodCharge($this->getPerPeriodCharge())
-            ->setPricingPlanId($this->getPricingPlan() ? $this->getPricingPlan()->getId() : null)
-            ->setPricingPlan($this->getPricingPlan())
-            ->setTargetPatternId($this->getTargetPattern() ? $this->getTargetPattern()->getId() : null)
-            ->setTargetPattern($this->getTargetPattern())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setBrand($this->getBrand());
+            ->setPricingPlan($this->getPricingPlan() ? $this->getPricingPlan()->toDto() : null)
+            ->setTargetPattern($this->getTargetPattern() ? $this->getTargetPattern()->toDto() : null)
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null);
     }
 
     /**

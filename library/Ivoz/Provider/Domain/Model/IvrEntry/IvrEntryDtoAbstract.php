@@ -32,71 +32,47 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $ivrId;
-
-    /**
-     * @var mixed
-     */
-    private $welcomeLocutionId;
-
-    /**
-     * @var mixed
-     */
-    private $extensionId;
-
-    /**
-     * @var mixed
-     */
-    private $voiceMailUserId;
-
-    /**
-     * @var mixed
-     */
-    private $conditionalRouteId;
-
-    /**
-     * @var mixed
-     */
-    private $numberCountryId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Ivr\IvrDto | null
      */
     private $ivr;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Locution\LocutionDto | null
      */
     private $welcomeLocution;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Extension\ExtensionDto | null
      */
     private $extension;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\User\UserDto | null
      */
     private $voiceMailUser;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\ConditionalRoute\ConditionalRouteDto | null
      */
     private $conditionalRoute;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Country\CountryDto | null
      */
     private $numberCountry;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -109,7 +85,26 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'entry',
+            'routeType',
+            'numberValue',
+            'id',
+            'ivr',
+            'welcomeLocution',
+            'extension',
+            'voiceMailUser',
+            'conditionalRoute',
+            'numberCountry'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'entry' => $this->getEntry(),
@@ -149,9 +144,9 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $entry
      *
-     * @return IvrEntryDtoAbstract
+     * @return static
      */
-    public function setEntry($entry)
+    public function setEntry($entry = null)
     {
         $this->entry = $entry;
 
@@ -169,9 +164,9 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $routeType
      *
-     * @return IvrEntryDtoAbstract
+     * @return static
      */
-    public function setRouteType($routeType)
+    public function setRouteType($routeType = null)
     {
         $this->routeType = $routeType;
 
@@ -189,7 +184,7 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $numberValue
      *
-     * @return IvrEntryDtoAbstract
+     * @return static
      */
     public function setNumberValue($numberValue = null)
     {
@@ -209,9 +204,9 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return IvrEntryDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -227,31 +222,11 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $ivrId
+     * @param \Ivoz\Provider\Domain\Model\Ivr\IvrDto $ivr
      *
-     * @return IvrEntryDtoAbstract
+     * @return static
      */
-    public function setIvrId($ivrId)
-    {
-        $this->ivrId = $ivrId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getIvrId()
-    {
-        return $this->ivrId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Ivr\Ivr $ivr
-     *
-     * @return IvrEntryDtoAbstract
-     */
-    public function setIvr(\Ivoz\Provider\Domain\Model\Ivr\Ivr $ivr)
+    public function setIvr(\Ivoz\Provider\Domain\Model\Ivr\IvrDto $ivr = null)
     {
         $this->ivr = $ivr;
 
@@ -259,7 +234,7 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Ivr\Ivr
+     * @return \Ivoz\Provider\Domain\Model\Ivr\IvrDto
      */
     public function getIvr()
     {
@@ -267,31 +242,11 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $welcomeLocutionId
+     * @param \Ivoz\Provider\Domain\Model\Locution\LocutionDto $welcomeLocution
      *
-     * @return IvrEntryDtoAbstract
+     * @return static
      */
-    public function setWelcomeLocutionId($welcomeLocutionId)
-    {
-        $this->welcomeLocutionId = $welcomeLocutionId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getWelcomeLocutionId()
-    {
-        return $this->welcomeLocutionId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Locution\Locution $welcomeLocution
-     *
-     * @return IvrEntryDtoAbstract
-     */
-    public function setWelcomeLocution(\Ivoz\Provider\Domain\Model\Locution\Locution $welcomeLocution)
+    public function setWelcomeLocution(\Ivoz\Provider\Domain\Model\Locution\LocutionDto $welcomeLocution = null)
     {
         $this->welcomeLocution = $welcomeLocution;
 
@@ -299,7 +254,7 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Locution\Locution
+     * @return \Ivoz\Provider\Domain\Model\Locution\LocutionDto
      */
     public function getWelcomeLocution()
     {
@@ -307,31 +262,11 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $extensionId
+     * @param \Ivoz\Provider\Domain\Model\Extension\ExtensionDto $extension
      *
-     * @return IvrEntryDtoAbstract
+     * @return static
      */
-    public function setExtensionId($extensionId)
-    {
-        $this->extensionId = $extensionId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getExtensionId()
-    {
-        return $this->extensionId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Extension\Extension $extension
-     *
-     * @return IvrEntryDtoAbstract
-     */
-    public function setExtension(\Ivoz\Provider\Domain\Model\Extension\Extension $extension)
+    public function setExtension(\Ivoz\Provider\Domain\Model\Extension\ExtensionDto $extension = null)
     {
         $this->extension = $extension;
 
@@ -339,7 +274,7 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Extension\Extension
+     * @return \Ivoz\Provider\Domain\Model\Extension\ExtensionDto
      */
     public function getExtension()
     {
@@ -347,31 +282,11 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $voiceMailUserId
+     * @param \Ivoz\Provider\Domain\Model\User\UserDto $voiceMailUser
      *
-     * @return IvrEntryDtoAbstract
+     * @return static
      */
-    public function setVoiceMailUserId($voiceMailUserId)
-    {
-        $this->voiceMailUserId = $voiceMailUserId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getVoiceMailUserId()
-    {
-        return $this->voiceMailUserId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\User\User $voiceMailUser
-     *
-     * @return IvrEntryDtoAbstract
-     */
-    public function setVoiceMailUser(\Ivoz\Provider\Domain\Model\User\User $voiceMailUser)
+    public function setVoiceMailUser(\Ivoz\Provider\Domain\Model\User\UserDto $voiceMailUser = null)
     {
         $this->voiceMailUser = $voiceMailUser;
 
@@ -379,7 +294,7 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\User\User
+     * @return \Ivoz\Provider\Domain\Model\User\UserDto
      */
     public function getVoiceMailUser()
     {
@@ -387,31 +302,11 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $conditionalRouteId
+     * @param \Ivoz\Provider\Domain\Model\ConditionalRoute\ConditionalRouteDto $conditionalRoute
      *
-     * @return IvrEntryDtoAbstract
+     * @return static
      */
-    public function setConditionalRouteId($conditionalRouteId)
-    {
-        $this->conditionalRouteId = $conditionalRouteId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getConditionalRouteId()
-    {
-        return $this->conditionalRouteId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\ConditionalRoute\ConditionalRoute $conditionalRoute
-     *
-     * @return IvrEntryDtoAbstract
-     */
-    public function setConditionalRoute(\Ivoz\Provider\Domain\Model\ConditionalRoute\ConditionalRoute $conditionalRoute)
+    public function setConditionalRoute(\Ivoz\Provider\Domain\Model\ConditionalRoute\ConditionalRouteDto $conditionalRoute = null)
     {
         $this->conditionalRoute = $conditionalRoute;
 
@@ -419,7 +314,7 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\ConditionalRoute\ConditionalRoute
+     * @return \Ivoz\Provider\Domain\Model\ConditionalRoute\ConditionalRouteDto
      */
     public function getConditionalRoute()
     {
@@ -427,31 +322,11 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $numberCountryId
+     * @param \Ivoz\Provider\Domain\Model\Country\CountryDto $numberCountry
      *
-     * @return IvrEntryDtoAbstract
+     * @return static
      */
-    public function setNumberCountryId($numberCountryId)
-    {
-        $this->numberCountryId = $numberCountryId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getNumberCountryId()
-    {
-        return $this->numberCountryId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Country\Country $numberCountry
-     *
-     * @return IvrEntryDtoAbstract
-     */
-    public function setNumberCountry(\Ivoz\Provider\Domain\Model\Country\Country $numberCountry)
+    public function setNumberCountry(\Ivoz\Provider\Domain\Model\Country\CountryDto $numberCountry = null)
     {
         $this->numberCountry = $numberCountry;
 
@@ -459,7 +334,7 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Country\Country
+     * @return \Ivoz\Provider\Domain\Model\Country\CountryDto
      */
     public function getNumberCountry()
     {

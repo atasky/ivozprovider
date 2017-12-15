@@ -195,10 +195,8 @@ abstract class PeeringContractAbstract
             ->setDescription($this->getDescription())
             ->setName($this->getName())
             ->setExternallyRated($this->getExternallyRated())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setBrand($this->getBrand())
-            ->setTransformationRuleSetId($this->getTransformationRuleSet() ? $this->getTransformationRuleSet()->getId() : null)
-            ->setTransformationRuleSet($this->getTransformationRuleSet());
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null)
+            ->setTransformationRuleSet($this->getTransformationRuleSet() ? $this->getTransformationRuleSet()->toDto() : null);
     }
 
     /**

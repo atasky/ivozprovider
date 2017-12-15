@@ -22,31 +22,27 @@ abstract class BrandServiceDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $brandId;
-
-    /**
-     * @var mixed
-     */
-    private $serviceId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Brand\BrandDto | null
      */
     private $brand;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Service\ServiceDto | null
      */
     private $service;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -59,7 +55,20 @@ abstract class BrandServiceDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'code',
+            'id',
+            'brand',
+            'service'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'code' => $this->getCode(),
@@ -89,9 +98,9 @@ abstract class BrandServiceDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $code
      *
-     * @return BrandServiceDtoAbstract
+     * @return static
      */
-    public function setCode($code)
+    public function setCode($code = null)
     {
         $this->code = $code;
 
@@ -109,9 +118,9 @@ abstract class BrandServiceDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return BrandServiceDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -127,31 +136,11 @@ abstract class BrandServiceDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $brandId
+     * @param \Ivoz\Provider\Domain\Model\Brand\BrandDto $brand
      *
-     * @return BrandServiceDtoAbstract
+     * @return static
      */
-    public function setBrandId($brandId)
-    {
-        $this->brandId = $brandId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Brand\Brand $brand
-     *
-     * @return BrandServiceDtoAbstract
-     */
-    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\Brand $brand)
+    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\BrandDto $brand = null)
     {
         $this->brand = $brand;
 
@@ -159,7 +148,7 @@ abstract class BrandServiceDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Brand\Brand
+     * @return \Ivoz\Provider\Domain\Model\Brand\BrandDto
      */
     public function getBrand()
     {
@@ -167,31 +156,11 @@ abstract class BrandServiceDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $serviceId
+     * @param \Ivoz\Provider\Domain\Model\Service\ServiceDto $service
      *
-     * @return BrandServiceDtoAbstract
+     * @return static
      */
-    public function setServiceId($serviceId)
-    {
-        $this->serviceId = $serviceId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getServiceId()
-    {
-        return $this->serviceId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Service\Service $service
-     *
-     * @return BrandServiceDtoAbstract
-     */
-    public function setService(\Ivoz\Provider\Domain\Model\Service\Service $service)
+    public function setService(\Ivoz\Provider\Domain\Model\Service\ServiceDto $service = null)
     {
         $this->service = $service;
 
@@ -199,7 +168,7 @@ abstract class BrandServiceDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Service\Service
+     * @return \Ivoz\Provider\Domain\Model\Service\ServiceDto
      */
     public function getService()
     {

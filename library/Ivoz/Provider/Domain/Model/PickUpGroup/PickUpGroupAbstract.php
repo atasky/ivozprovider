@@ -171,8 +171,7 @@ abstract class PickUpGroupAbstract
     {
         return self::createDto()
             ->setName($this->getName())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany());
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null);
     }
 
     /**

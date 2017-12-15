@@ -258,12 +258,9 @@ abstract class InvoiceAbstract
             ->setPdfFileSize($this->getPdf()->getFileSize())
             ->setPdfMimeType($this->getPdf()->getMimeType())
             ->setPdfBaseName($this->getPdf()->getBaseName())
-            ->setInvoiceTemplateId($this->getInvoiceTemplate() ? $this->getInvoiceTemplate()->getId() : null)
-            ->setInvoiceTemplate($this->getInvoiceTemplate())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setBrand($this->getBrand())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany());
+            ->setInvoiceTemplate($this->getInvoiceTemplate() ? $this->getInvoiceTemplate()->toDto() : null)
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null)
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null);
     }
 
     /**

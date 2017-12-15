@@ -185,12 +185,9 @@ abstract class FixedCostsRelInvoiceAbstract
     {
         return self::createDto()
             ->setQuantity($this->getQuantity())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setBrand($this->getBrand())
-            ->setFixedCostId($this->getFixedCost() ? $this->getFixedCost()->getId() : null)
-            ->setFixedCost($this->getFixedCost())
-            ->setInvoiceId($this->getInvoice() ? $this->getInvoice()->getId() : null)
-            ->setInvoice($this->getInvoice());
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null)
+            ->setFixedCost($this->getFixedCost() ? $this->getFixedCost()->toDto() : null)
+            ->setInvoice($this->getInvoice() ? $this->getInvoice()->toDto() : null);
     }
 
     /**

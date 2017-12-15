@@ -32,41 +32,32 @@ abstract class PricingPlansRelCompanyDtoAbstract implements DataTransferObjectIn
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $pricingPlanId;
-
-    /**
-     * @var mixed
-     */
-    private $companyId;
-
-    /**
-     * @var mixed
-     */
-    private $brandId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\PricingPlan\PricingPlanDto | null
      */
     private $pricingPlan;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Company\CompanyDto | null
      */
     private $company;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Brand\BrandDto | null
      */
     private $brand;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -79,7 +70,23 @@ abstract class PricingPlansRelCompanyDtoAbstract implements DataTransferObjectIn
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'validFrom',
+            'validTo',
+            'metric',
+            'id',
+            'pricingPlan',
+            'company',
+            'brand'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'validFrom' => $this->getValidFrom(),
@@ -113,9 +120,9 @@ abstract class PricingPlansRelCompanyDtoAbstract implements DataTransferObjectIn
     /**
      * @param \DateTime $validFrom
      *
-     * @return PricingPlansRelCompanyDtoAbstract
+     * @return static
      */
-    public function setValidFrom($validFrom)
+    public function setValidFrom($validFrom = null)
     {
         $this->validFrom = $validFrom;
 
@@ -133,9 +140,9 @@ abstract class PricingPlansRelCompanyDtoAbstract implements DataTransferObjectIn
     /**
      * @param \DateTime $validTo
      *
-     * @return PricingPlansRelCompanyDtoAbstract
+     * @return static
      */
-    public function setValidTo($validTo)
+    public function setValidTo($validTo = null)
     {
         $this->validTo = $validTo;
 
@@ -153,9 +160,9 @@ abstract class PricingPlansRelCompanyDtoAbstract implements DataTransferObjectIn
     /**
      * @param integer $metric
      *
-     * @return PricingPlansRelCompanyDtoAbstract
+     * @return static
      */
-    public function setMetric($metric)
+    public function setMetric($metric = null)
     {
         $this->metric = $metric;
 
@@ -173,9 +180,9 @@ abstract class PricingPlansRelCompanyDtoAbstract implements DataTransferObjectIn
     /**
      * @param integer $id
      *
-     * @return PricingPlansRelCompanyDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -191,31 +198,11 @@ abstract class PricingPlansRelCompanyDtoAbstract implements DataTransferObjectIn
     }
 
     /**
-     * @param integer $pricingPlanId
+     * @param \Ivoz\Provider\Domain\Model\PricingPlan\PricingPlanDto $pricingPlan
      *
-     * @return PricingPlansRelCompanyDtoAbstract
+     * @return static
      */
-    public function setPricingPlanId($pricingPlanId)
-    {
-        $this->pricingPlanId = $pricingPlanId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getPricingPlanId()
-    {
-        return $this->pricingPlanId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\PricingPlan\PricingPlan $pricingPlan
-     *
-     * @return PricingPlansRelCompanyDtoAbstract
-     */
-    public function setPricingPlan(\Ivoz\Provider\Domain\Model\PricingPlan\PricingPlan $pricingPlan)
+    public function setPricingPlan(\Ivoz\Provider\Domain\Model\PricingPlan\PricingPlanDto $pricingPlan = null)
     {
         $this->pricingPlan = $pricingPlan;
 
@@ -223,7 +210,7 @@ abstract class PricingPlansRelCompanyDtoAbstract implements DataTransferObjectIn
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\PricingPlan\PricingPlan
+     * @return \Ivoz\Provider\Domain\Model\PricingPlan\PricingPlanDto
      */
     public function getPricingPlan()
     {
@@ -231,31 +218,11 @@ abstract class PricingPlansRelCompanyDtoAbstract implements DataTransferObjectIn
     }
 
     /**
-     * @param integer $companyId
+     * @param \Ivoz\Provider\Domain\Model\Company\CompanyDto $company
      *
-     * @return PricingPlansRelCompanyDtoAbstract
+     * @return static
      */
-    public function setCompanyId($companyId)
-    {
-        $this->companyId = $companyId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCompanyId()
-    {
-        return $this->companyId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Company\Company $company
-     *
-     * @return PricingPlansRelCompanyDtoAbstract
-     */
-    public function setCompany(\Ivoz\Provider\Domain\Model\Company\Company $company)
+    public function setCompany(\Ivoz\Provider\Domain\Model\Company\CompanyDto $company = null)
     {
         $this->company = $company;
 
@@ -263,7 +230,7 @@ abstract class PricingPlansRelCompanyDtoAbstract implements DataTransferObjectIn
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Company\Company
+     * @return \Ivoz\Provider\Domain\Model\Company\CompanyDto
      */
     public function getCompany()
     {
@@ -271,31 +238,11 @@ abstract class PricingPlansRelCompanyDtoAbstract implements DataTransferObjectIn
     }
 
     /**
-     * @param integer $brandId
+     * @param \Ivoz\Provider\Domain\Model\Brand\BrandDto $brand
      *
-     * @return PricingPlansRelCompanyDtoAbstract
+     * @return static
      */
-    public function setBrandId($brandId)
-    {
-        $this->brandId = $brandId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Brand\Brand $brand
-     *
-     * @return PricingPlansRelCompanyDtoAbstract
-     */
-    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\Brand $brand)
+    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\BrandDto $brand = null)
     {
         $this->brand = $brand;
 
@@ -303,7 +250,7 @@ abstract class PricingPlansRelCompanyDtoAbstract implements DataTransferObjectIn
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Brand\Brand
+     * @return \Ivoz\Provider\Domain\Model\Brand\BrandDto
      */
     public function getBrand()
     {

@@ -52,21 +52,22 @@ abstract class TerminalModelDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $terminalManufacturerId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\TerminalManufacturer\TerminalManufacturerDto | null
      */
     private $terminalManufacturer;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -79,7 +80,25 @@ abstract class TerminalModelDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'iden',
+            'name',
+            'description',
+            'genericTemplate',
+            'specificTemplate',
+            'genericUrlPattern',
+            'specificUrlPattern',
+            'id',
+            'terminalManufacturer'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'iden' => $this->getIden(),
@@ -113,9 +132,9 @@ abstract class TerminalModelDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $iden
      *
-     * @return TerminalModelDtoAbstract
+     * @return static
      */
-    public function setIden($iden)
+    public function setIden($iden = null)
     {
         $this->iden = $iden;
 
@@ -133,9 +152,9 @@ abstract class TerminalModelDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $name
      *
-     * @return TerminalModelDtoAbstract
+     * @return static
      */
-    public function setName($name)
+    public function setName($name = null)
     {
         $this->name = $name;
 
@@ -153,9 +172,9 @@ abstract class TerminalModelDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $description
      *
-     * @return TerminalModelDtoAbstract
+     * @return static
      */
-    public function setDescription($description)
+    public function setDescription($description = null)
     {
         $this->description = $description;
 
@@ -173,7 +192,7 @@ abstract class TerminalModelDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $genericTemplate
      *
-     * @return TerminalModelDtoAbstract
+     * @return static
      */
     public function setGenericTemplate($genericTemplate = null)
     {
@@ -193,7 +212,7 @@ abstract class TerminalModelDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $specificTemplate
      *
-     * @return TerminalModelDtoAbstract
+     * @return static
      */
     public function setSpecificTemplate($specificTemplate = null)
     {
@@ -213,7 +232,7 @@ abstract class TerminalModelDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $genericUrlPattern
      *
-     * @return TerminalModelDtoAbstract
+     * @return static
      */
     public function setGenericUrlPattern($genericUrlPattern = null)
     {
@@ -233,7 +252,7 @@ abstract class TerminalModelDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $specificUrlPattern
      *
-     * @return TerminalModelDtoAbstract
+     * @return static
      */
     public function setSpecificUrlPattern($specificUrlPattern = null)
     {
@@ -253,9 +272,9 @@ abstract class TerminalModelDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return TerminalModelDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -271,31 +290,11 @@ abstract class TerminalModelDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $terminalManufacturerId
+     * @param \Ivoz\Provider\Domain\Model\TerminalManufacturer\TerminalManufacturerDto $terminalManufacturer
      *
-     * @return TerminalModelDtoAbstract
+     * @return static
      */
-    public function setTerminalManufacturerId($terminalManufacturerId)
-    {
-        $this->terminalManufacturerId = $terminalManufacturerId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getTerminalManufacturerId()
-    {
-        return $this->terminalManufacturerId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\TerminalManufacturer\TerminalManufacturer $terminalManufacturer
-     *
-     * @return TerminalModelDtoAbstract
-     */
-    public function setTerminalManufacturer(\Ivoz\Provider\Domain\Model\TerminalManufacturer\TerminalManufacturer $terminalManufacturer)
+    public function setTerminalManufacturer(\Ivoz\Provider\Domain\Model\TerminalManufacturer\TerminalManufacturerDto $terminalManufacturer = null)
     {
         $this->terminalManufacturer = $terminalManufacturer;
 
@@ -303,7 +302,7 @@ abstract class TerminalModelDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\TerminalManufacturer\TerminalManufacturer
+     * @return \Ivoz\Provider\Domain\Model\TerminalManufacturer\TerminalManufacturerDto
      */
     public function getTerminalManufacturer()
     {

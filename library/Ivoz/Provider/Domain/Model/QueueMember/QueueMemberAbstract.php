@@ -178,10 +178,8 @@ abstract class QueueMemberAbstract
     {
         return self::createDto()
             ->setPenalty($this->getPenalty())
-            ->setQueueId($this->getQueue() ? $this->getQueue()->getId() : null)
-            ->setQueue($this->getQueue())
-            ->setUserId($this->getUser() ? $this->getUser()->getId() : null)
-            ->setUser($this->getUser());
+            ->setQueue($this->getQueue() ? $this->getQueue()->toDto() : null)
+            ->setUser($this->getUser() ? $this->getUser()->toDto() : null);
     }
 
     /**

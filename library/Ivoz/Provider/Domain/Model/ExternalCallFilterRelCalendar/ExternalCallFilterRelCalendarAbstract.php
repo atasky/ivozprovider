@@ -170,10 +170,8 @@ abstract class ExternalCallFilterRelCalendarAbstract
     public function toDto()
     {
         return self::createDto()
-            ->setFilterId($this->getFilter() ? $this->getFilter()->getId() : null)
-            ->setFilter($this->getFilter())
-            ->setCalendarId($this->getCalendar() ? $this->getCalendar()->getId() : null)
-            ->setCalendar($this->getCalendar());
+            ->setFilter($this->getFilter() ? $this->getFilter()->toDto() : null)
+            ->setCalendar($this->getCalendar() ? $this->getCalendar()->toDto() : null);
     }
 
     /**

@@ -32,41 +32,37 @@ abstract class PeeringContractDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $brandId;
-
-    /**
-     * @var mixed
-     */
-    private $transformationRuleSetId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Brand\BrandDto | null
      */
     private $brand;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\TransformationRuleSet\TransformationRuleSetDto | null
      */
     private $transformationRuleSet;
 
     /**
-     * @var array|null
+     * @var \Ivoz\Provider\Domain\Model\OutgoingRouting\OutgoingRoutingDto[] | null
      */
     private $outgoingRoutings = null;
 
     /**
-     * @var array|null
+     * @var \Ivoz\Provider\Domain\Model\PeerServer\PeerServerDto[] | null
      */
     private $peerServers = null;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -79,7 +75,24 @@ abstract class PeeringContractDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'description',
+            'name',
+            'externallyRated',
+            'id',
+            'brand',
+            'transformationRuleSet',
+            'outgoingRoutings',
+            'peerServers'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'description' => $this->getDescription(),
@@ -142,9 +155,9 @@ abstract class PeeringContractDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $description
      *
-     * @return PeeringContractDtoAbstract
+     * @return static
      */
-    public function setDescription($description)
+    public function setDescription($description = null)
     {
         $this->description = $description;
 
@@ -162,9 +175,9 @@ abstract class PeeringContractDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $name
      *
-     * @return PeeringContractDtoAbstract
+     * @return static
      */
-    public function setName($name)
+    public function setName($name = null)
     {
         $this->name = $name;
 
@@ -182,7 +195,7 @@ abstract class PeeringContractDtoAbstract implements DataTransferObjectInterface
     /**
      * @param boolean $externallyRated
      *
-     * @return PeeringContractDtoAbstract
+     * @return static
      */
     public function setExternallyRated($externallyRated = null)
     {
@@ -202,9 +215,9 @@ abstract class PeeringContractDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return PeeringContractDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -220,31 +233,11 @@ abstract class PeeringContractDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $brandId
+     * @param \Ivoz\Provider\Domain\Model\Brand\BrandDto $brand
      *
-     * @return PeeringContractDtoAbstract
+     * @return static
      */
-    public function setBrandId($brandId)
-    {
-        $this->brandId = $brandId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Brand\Brand $brand
-     *
-     * @return PeeringContractDtoAbstract
-     */
-    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\Brand $brand)
+    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\BrandDto $brand = null)
     {
         $this->brand = $brand;
 
@@ -252,7 +245,7 @@ abstract class PeeringContractDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Brand\Brand
+     * @return \Ivoz\Provider\Domain\Model\Brand\BrandDto
      */
     public function getBrand()
     {
@@ -260,31 +253,11 @@ abstract class PeeringContractDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $transformationRuleSetId
+     * @param \Ivoz\Provider\Domain\Model\TransformationRuleSet\TransformationRuleSetDto $transformationRuleSet
      *
-     * @return PeeringContractDtoAbstract
+     * @return static
      */
-    public function setTransformationRuleSetId($transformationRuleSetId)
-    {
-        $this->transformationRuleSetId = $transformationRuleSetId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getTransformationRuleSetId()
-    {
-        return $this->transformationRuleSetId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\TransformationRuleSet\TransformationRuleSet $transformationRuleSet
-     *
-     * @return PeeringContractDtoAbstract
-     */
-    public function setTransformationRuleSet(\Ivoz\Provider\Domain\Model\TransformationRuleSet\TransformationRuleSet $transformationRuleSet)
+    public function setTransformationRuleSet(\Ivoz\Provider\Domain\Model\TransformationRuleSet\TransformationRuleSetDto $transformationRuleSet = null)
     {
         $this->transformationRuleSet = $transformationRuleSet;
 
@@ -292,7 +265,7 @@ abstract class PeeringContractDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\TransformationRuleSet\TransformationRuleSet
+     * @return \Ivoz\Provider\Domain\Model\TransformationRuleSet\TransformationRuleSetDto
      */
     public function getTransformationRuleSet()
     {
@@ -302,9 +275,9 @@ abstract class PeeringContractDtoAbstract implements DataTransferObjectInterface
     /**
      * @param array $outgoingRoutings
      *
-     * @return PeeringContractDtoAbstract
+     * @return static
      */
-    public function setOutgoingRoutings($outgoingRoutings)
+    public function setOutgoingRoutings($outgoingRoutings = null)
     {
         $this->outgoingRoutings = $outgoingRoutings;
 
@@ -322,9 +295,9 @@ abstract class PeeringContractDtoAbstract implements DataTransferObjectInterface
     /**
      * @param array $peerServers
      *
-     * @return PeeringContractDtoAbstract
+     * @return static
      */
-    public function setPeerServers($peerServers)
+    public function setPeerServers($peerServers = null)
     {
         $this->peerServers = $peerServers;
 

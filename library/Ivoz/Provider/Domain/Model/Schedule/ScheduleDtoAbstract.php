@@ -67,21 +67,22 @@ abstract class ScheduleDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $companyId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Company\CompanyDto | null
      */
     private $company;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -94,7 +95,28 @@ abstract class ScheduleDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'name',
+            'timeIn',
+            'timeout',
+            'monday',
+            'tuesday',
+            'wednesday',
+            'thursday',
+            'friday',
+            'saturday',
+            'sunday',
+            'id',
+            'company'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'name' => $this->getName(),
@@ -131,9 +153,9 @@ abstract class ScheduleDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $name
      *
-     * @return ScheduleDtoAbstract
+     * @return static
      */
-    public function setName($name)
+    public function setName($name = null)
     {
         $this->name = $name;
 
@@ -151,9 +173,9 @@ abstract class ScheduleDtoAbstract implements DataTransferObjectInterface
     /**
      * @param \DateTime $timeIn
      *
-     * @return ScheduleDtoAbstract
+     * @return static
      */
-    public function setTimeIn($timeIn)
+    public function setTimeIn($timeIn = null)
     {
         $this->timeIn = $timeIn;
 
@@ -171,9 +193,9 @@ abstract class ScheduleDtoAbstract implements DataTransferObjectInterface
     /**
      * @param \DateTime $timeout
      *
-     * @return ScheduleDtoAbstract
+     * @return static
      */
-    public function setTimeout($timeout)
+    public function setTimeout($timeout = null)
     {
         $this->timeout = $timeout;
 
@@ -191,7 +213,7 @@ abstract class ScheduleDtoAbstract implements DataTransferObjectInterface
     /**
      * @param boolean $monday
      *
-     * @return ScheduleDtoAbstract
+     * @return static
      */
     public function setMonday($monday = null)
     {
@@ -211,7 +233,7 @@ abstract class ScheduleDtoAbstract implements DataTransferObjectInterface
     /**
      * @param boolean $tuesday
      *
-     * @return ScheduleDtoAbstract
+     * @return static
      */
     public function setTuesday($tuesday = null)
     {
@@ -231,7 +253,7 @@ abstract class ScheduleDtoAbstract implements DataTransferObjectInterface
     /**
      * @param boolean $wednesday
      *
-     * @return ScheduleDtoAbstract
+     * @return static
      */
     public function setWednesday($wednesday = null)
     {
@@ -251,7 +273,7 @@ abstract class ScheduleDtoAbstract implements DataTransferObjectInterface
     /**
      * @param boolean $thursday
      *
-     * @return ScheduleDtoAbstract
+     * @return static
      */
     public function setThursday($thursday = null)
     {
@@ -271,7 +293,7 @@ abstract class ScheduleDtoAbstract implements DataTransferObjectInterface
     /**
      * @param boolean $friday
      *
-     * @return ScheduleDtoAbstract
+     * @return static
      */
     public function setFriday($friday = null)
     {
@@ -291,7 +313,7 @@ abstract class ScheduleDtoAbstract implements DataTransferObjectInterface
     /**
      * @param boolean $saturday
      *
-     * @return ScheduleDtoAbstract
+     * @return static
      */
     public function setSaturday($saturday = null)
     {
@@ -311,7 +333,7 @@ abstract class ScheduleDtoAbstract implements DataTransferObjectInterface
     /**
      * @param boolean $sunday
      *
-     * @return ScheduleDtoAbstract
+     * @return static
      */
     public function setSunday($sunday = null)
     {
@@ -331,9 +353,9 @@ abstract class ScheduleDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return ScheduleDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -349,31 +371,11 @@ abstract class ScheduleDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $companyId
+     * @param \Ivoz\Provider\Domain\Model\Company\CompanyDto $company
      *
-     * @return ScheduleDtoAbstract
+     * @return static
      */
-    public function setCompanyId($companyId)
-    {
-        $this->companyId = $companyId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCompanyId()
-    {
-        return $this->companyId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Company\Company $company
-     *
-     * @return ScheduleDtoAbstract
-     */
-    public function setCompany(\Ivoz\Provider\Domain\Model\Company\Company $company)
+    public function setCompany(\Ivoz\Provider\Domain\Model\Company\CompanyDto $company = null)
     {
         $this->company = $company;
 
@@ -381,7 +383,7 @@ abstract class ScheduleDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Company\Company
+     * @return \Ivoz\Provider\Domain\Model\Company\CompanyDto
      */
     public function getCompany()
     {

@@ -22,31 +22,27 @@ abstract class QueueMemberDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $queueId;
-
-    /**
-     * @var mixed
-     */
-    private $userId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Queue\QueueDto | null
      */
     private $queue;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\User\UserDto | null
      */
     private $user;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -59,7 +55,20 @@ abstract class QueueMemberDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'penalty',
+            'id',
+            'queue',
+            'user'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'penalty' => $this->getPenalty(),
@@ -89,7 +98,7 @@ abstract class QueueMemberDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $penalty
      *
-     * @return QueueMemberDtoAbstract
+     * @return static
      */
     public function setPenalty($penalty = null)
     {
@@ -109,9 +118,9 @@ abstract class QueueMemberDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return QueueMemberDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -127,31 +136,11 @@ abstract class QueueMemberDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $queueId
+     * @param \Ivoz\Provider\Domain\Model\Queue\QueueDto $queue
      *
-     * @return QueueMemberDtoAbstract
+     * @return static
      */
-    public function setQueueId($queueId)
-    {
-        $this->queueId = $queueId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getQueueId()
-    {
-        return $this->queueId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Queue\Queue $queue
-     *
-     * @return QueueMemberDtoAbstract
-     */
-    public function setQueue(\Ivoz\Provider\Domain\Model\Queue\Queue $queue)
+    public function setQueue(\Ivoz\Provider\Domain\Model\Queue\QueueDto $queue = null)
     {
         $this->queue = $queue;
 
@@ -159,7 +148,7 @@ abstract class QueueMemberDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Queue\Queue
+     * @return \Ivoz\Provider\Domain\Model\Queue\QueueDto
      */
     public function getQueue()
     {
@@ -167,31 +156,11 @@ abstract class QueueMemberDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $userId
+     * @param \Ivoz\Provider\Domain\Model\User\UserDto $user
      *
-     * @return QueueMemberDtoAbstract
+     * @return static
      */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\User\User $user
-     *
-     * @return QueueMemberDtoAbstract
-     */
-    public function setUser(\Ivoz\Provider\Domain\Model\User\User $user)
+    public function setUser(\Ivoz\Provider\Domain\Model\User\UserDto $user = null)
     {
         $this->user = $user;
 
@@ -199,7 +168,7 @@ abstract class QueueMemberDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\User\User
+     * @return \Ivoz\Provider\Domain\Model\User\UserDto
      */
     public function getUser()
     {

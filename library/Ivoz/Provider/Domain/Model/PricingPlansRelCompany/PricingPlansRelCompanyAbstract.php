@@ -203,12 +203,9 @@ abstract class PricingPlansRelCompanyAbstract
             ->setValidFrom($this->getValidFrom())
             ->setValidTo($this->getValidTo())
             ->setMetric($this->getMetric())
-            ->setPricingPlanId($this->getPricingPlan() ? $this->getPricingPlan()->getId() : null)
-            ->setPricingPlan($this->getPricingPlan())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setBrand($this->getBrand());
+            ->setPricingPlan($this->getPricingPlan() ? $this->getPricingPlan()->toDto() : null)
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null)
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null);
     }
 
     /**

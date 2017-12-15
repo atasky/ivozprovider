@@ -321,12 +321,9 @@ abstract class PeerServerAbstract
             ->setOutboundProxy($this->getOutboundProxy())
             ->setFromUser($this->getFromUser())
             ->setFromDomain($this->getFromDomain())
-            ->setLcrGatewayId($this->getLcrGateway() ? $this->getLcrGateway()->getId() : null)
-            ->setLcrGateway($this->getLcrGateway())
-            ->setPeeringContractId($this->getPeeringContract() ? $this->getPeeringContract()->getId() : null)
-            ->setPeeringContract($this->getPeeringContract())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setBrand($this->getBrand());
+            ->setLcrGateway($this->getLcrGateway() ? $this->getLcrGateway()->toDto() : null)
+            ->setPeeringContract($this->getPeeringContract() ? $this->getPeeringContract()->toDto() : null)
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null);
     }
 
     /**

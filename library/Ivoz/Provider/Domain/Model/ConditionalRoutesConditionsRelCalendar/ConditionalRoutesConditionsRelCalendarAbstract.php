@@ -170,10 +170,8 @@ abstract class ConditionalRoutesConditionsRelCalendarAbstract
     public function toDto()
     {
         return self::createDto()
-            ->setConditionId($this->getCondition() ? $this->getCondition()->getId() : null)
-            ->setCondition($this->getCondition())
-            ->setCalendarId($this->getCalendar() ? $this->getCalendar()->getId() : null)
-            ->setCalendar($this->getCalendar());
+            ->setCondition($this->getCondition() ? $this->getCondition()->toDto() : null)
+            ->setCalendar($this->getCalendar() ? $this->getCalendar()->toDto() : null);
     }
 
     /**

@@ -32,31 +32,27 @@ abstract class FaxDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $companyId;
-
-    /**
-     * @var mixed
-     */
-    private $outgoingDdiId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Company\CompanyDto | null
      */
     private $company;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Ddi\DdiDto | null
      */
     private $outgoingDdi;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -69,7 +65,22 @@ abstract class FaxDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'name',
+            'email',
+            'sendByEmail',
+            'id',
+            'company',
+            'outgoingDdi'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'name' => $this->getName(),
@@ -101,9 +112,9 @@ abstract class FaxDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $name
      *
-     * @return FaxDtoAbstract
+     * @return static
      */
-    public function setName($name)
+    public function setName($name = null)
     {
         $this->name = $name;
 
@@ -121,7 +132,7 @@ abstract class FaxDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $email
      *
-     * @return FaxDtoAbstract
+     * @return static
      */
     public function setEmail($email = null)
     {
@@ -141,9 +152,9 @@ abstract class FaxDtoAbstract implements DataTransferObjectInterface
     /**
      * @param boolean $sendByEmail
      *
-     * @return FaxDtoAbstract
+     * @return static
      */
-    public function setSendByEmail($sendByEmail)
+    public function setSendByEmail($sendByEmail = null)
     {
         $this->sendByEmail = $sendByEmail;
 
@@ -161,9 +172,9 @@ abstract class FaxDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return FaxDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -179,31 +190,11 @@ abstract class FaxDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $companyId
+     * @param \Ivoz\Provider\Domain\Model\Company\CompanyDto $company
      *
-     * @return FaxDtoAbstract
+     * @return static
      */
-    public function setCompanyId($companyId)
-    {
-        $this->companyId = $companyId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCompanyId()
-    {
-        return $this->companyId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Company\Company $company
-     *
-     * @return FaxDtoAbstract
-     */
-    public function setCompany(\Ivoz\Provider\Domain\Model\Company\Company $company)
+    public function setCompany(\Ivoz\Provider\Domain\Model\Company\CompanyDto $company = null)
     {
         $this->company = $company;
 
@@ -211,7 +202,7 @@ abstract class FaxDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Company\Company
+     * @return \Ivoz\Provider\Domain\Model\Company\CompanyDto
      */
     public function getCompany()
     {
@@ -219,31 +210,11 @@ abstract class FaxDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $outgoingDdiId
+     * @param \Ivoz\Provider\Domain\Model\Ddi\DdiDto $outgoingDdi
      *
-     * @return FaxDtoAbstract
+     * @return static
      */
-    public function setOutgoingDdiId($outgoingDdiId)
-    {
-        $this->outgoingDdiId = $outgoingDdiId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getOutgoingDdiId()
-    {
-        return $this->outgoingDdiId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Ddi\Ddi $outgoingDdi
-     *
-     * @return FaxDtoAbstract
-     */
-    public function setOutgoingDdi(\Ivoz\Provider\Domain\Model\Ddi\Ddi $outgoingDdi)
+    public function setOutgoingDdi(\Ivoz\Provider\Domain\Model\Ddi\DdiDto $outgoingDdi = null)
     {
         $this->outgoingDdi = $outgoingDdi;
 
@@ -251,7 +222,7 @@ abstract class FaxDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Ddi\Ddi
+     * @return \Ivoz\Provider\Domain\Model\Ddi\DdiDto
      */
     public function getOutgoingDdi()
     {

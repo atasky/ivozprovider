@@ -51,12 +51,18 @@ abstract class ServiceDtoAbstract implements DataTransferObjectInterface
      */
     private $descriptionEs = '';
 
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
+
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -69,7 +75,22 @@ abstract class ServiceDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'iden',
+            'defaultCode',
+            'extraArgs',
+            'id',
+            'name',
+            'description'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'iden' => $this->getIden(),
@@ -106,9 +127,9 @@ abstract class ServiceDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $iden
      *
-     * @return ServiceDtoAbstract
+     * @return static
      */
-    public function setIden($iden)
+    public function setIden($iden = null)
     {
         $this->iden = $iden;
 
@@ -126,9 +147,9 @@ abstract class ServiceDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $defaultCode
      *
-     * @return ServiceDtoAbstract
+     * @return static
      */
-    public function setDefaultCode($defaultCode)
+    public function setDefaultCode($defaultCode = null)
     {
         $this->defaultCode = $defaultCode;
 
@@ -146,9 +167,9 @@ abstract class ServiceDtoAbstract implements DataTransferObjectInterface
     /**
      * @param boolean $extraArgs
      *
-     * @return ServiceDtoAbstract
+     * @return static
      */
-    public function setExtraArgs($extraArgs)
+    public function setExtraArgs($extraArgs = null)
     {
         $this->extraArgs = $extraArgs;
 
@@ -166,9 +187,9 @@ abstract class ServiceDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return ServiceDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -186,9 +207,9 @@ abstract class ServiceDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $nameEn
      *
-     * @return ServiceDtoAbstract
+     * @return static
      */
-    public function setNameEn($nameEn)
+    public function setNameEn($nameEn = null)
     {
         $this->nameEn = $nameEn;
 
@@ -206,9 +227,9 @@ abstract class ServiceDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $nameEs
      *
-     * @return ServiceDtoAbstract
+     * @return static
      */
-    public function setNameEs($nameEs)
+    public function setNameEs($nameEs = null)
     {
         $this->nameEs = $nameEs;
 
@@ -226,9 +247,9 @@ abstract class ServiceDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $descriptionEn
      *
-     * @return ServiceDtoAbstract
+     * @return static
      */
-    public function setDescriptionEn($descriptionEn)
+    public function setDescriptionEn($descriptionEn = null)
     {
         $this->descriptionEn = $descriptionEn;
 
@@ -246,9 +267,9 @@ abstract class ServiceDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $descriptionEs
      *
-     * @return ServiceDtoAbstract
+     * @return static
      */
-    public function setDescriptionEs($descriptionEs)
+    public function setDescriptionEs($descriptionEs = null)
     {
         $this->descriptionEs = $descriptionEs;
 

@@ -27,26 +27,27 @@ abstract class CallAclDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $companyId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Company\CompanyDto | null
      */
     private $company;
 
     /**
-     * @var array|null
+     * @var \Ivoz\Provider\Domain\Model\CallAclRelMatchList\CallAclRelMatchListDto[] | null
      */
     private $relMatchLists = null;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -59,7 +60,21 @@ abstract class CallAclDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'name',
+            'defaultPolicy',
+            'id',
+            'company',
+            'relMatchLists'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'name' => $this->getName(),
@@ -103,9 +118,9 @@ abstract class CallAclDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $name
      *
-     * @return CallAclDtoAbstract
+     * @return static
      */
-    public function setName($name)
+    public function setName($name = null)
     {
         $this->name = $name;
 
@@ -123,9 +138,9 @@ abstract class CallAclDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $defaultPolicy
      *
-     * @return CallAclDtoAbstract
+     * @return static
      */
-    public function setDefaultPolicy($defaultPolicy)
+    public function setDefaultPolicy($defaultPolicy = null)
     {
         $this->defaultPolicy = $defaultPolicy;
 
@@ -143,9 +158,9 @@ abstract class CallAclDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return CallAclDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -161,31 +176,11 @@ abstract class CallAclDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $companyId
+     * @param \Ivoz\Provider\Domain\Model\Company\CompanyDto $company
      *
-     * @return CallAclDtoAbstract
+     * @return static
      */
-    public function setCompanyId($companyId)
-    {
-        $this->companyId = $companyId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCompanyId()
-    {
-        return $this->companyId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Company\Company $company
-     *
-     * @return CallAclDtoAbstract
-     */
-    public function setCompany(\Ivoz\Provider\Domain\Model\Company\Company $company)
+    public function setCompany(\Ivoz\Provider\Domain\Model\Company\CompanyDto $company = null)
     {
         $this->company = $company;
 
@@ -193,7 +188,7 @@ abstract class CallAclDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Company\Company
+     * @return \Ivoz\Provider\Domain\Model\Company\CompanyDto
      */
     public function getCompany()
     {
@@ -203,9 +198,9 @@ abstract class CallAclDtoAbstract implements DataTransferObjectInterface
     /**
      * @param array $relMatchLists
      *
-     * @return CallAclDtoAbstract
+     * @return static
      */
-    public function setRelMatchLists($relMatchLists)
+    public function setRelMatchLists($relMatchLists = null)
     {
         $this->relMatchLists = $relMatchLists;
 

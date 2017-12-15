@@ -62,31 +62,27 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
     private $fileBaseName;
 
     /**
-     * @var mixed
-     */
-    private $faxId;
-
-    /**
-     * @var mixed
-     */
-    private $dstCountryId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Fax\FaxDto | null
      */
     private $fax;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Country\CountryDto | null
      */
     private $dstCountry;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -99,7 +95,26 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'calldate',
+            'src',
+            'dst',
+            'type',
+            'pages',
+            'status',
+            'id',
+            'file',
+            'fax',
+            'dstCountry'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'calldate' => $this->getCalldate(),
@@ -139,9 +154,9 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
     /**
      * @param \DateTime $calldate
      *
-     * @return FaxesInOutDtoAbstract
+     * @return static
      */
-    public function setCalldate($calldate)
+    public function setCalldate($calldate = null)
     {
         $this->calldate = $calldate;
 
@@ -159,7 +174,7 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $src
      *
-     * @return FaxesInOutDtoAbstract
+     * @return static
      */
     public function setSrc($src = null)
     {
@@ -179,7 +194,7 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $dst
      *
-     * @return FaxesInOutDtoAbstract
+     * @return static
      */
     public function setDst($dst = null)
     {
@@ -199,7 +214,7 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $type
      *
-     * @return FaxesInOutDtoAbstract
+     * @return static
      */
     public function setType($type = null)
     {
@@ -219,7 +234,7 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $pages
      *
-     * @return FaxesInOutDtoAbstract
+     * @return static
      */
     public function setPages($pages = null)
     {
@@ -239,7 +254,7 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $status
      *
-     * @return FaxesInOutDtoAbstract
+     * @return static
      */
     public function setStatus($status = null)
     {
@@ -259,9 +274,9 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return FaxesInOutDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -279,9 +294,9 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $fileFileSize
      *
-     * @return FaxesInOutDtoAbstract
+     * @return static
      */
-    public function setFileFileSize($fileFileSize)
+    public function setFileFileSize($fileFileSize = null)
     {
         $this->fileFileSize = $fileFileSize;
 
@@ -299,9 +314,9 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $fileMimeType
      *
-     * @return FaxesInOutDtoAbstract
+     * @return static
      */
-    public function setFileMimeType($fileMimeType)
+    public function setFileMimeType($fileMimeType = null)
     {
         $this->fileMimeType = $fileMimeType;
 
@@ -319,9 +334,9 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $fileBaseName
      *
-     * @return FaxesInOutDtoAbstract
+     * @return static
      */
-    public function setFileBaseName($fileBaseName)
+    public function setFileBaseName($fileBaseName = null)
     {
         $this->fileBaseName = $fileBaseName;
 
@@ -337,31 +352,11 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $faxId
+     * @param \Ivoz\Provider\Domain\Model\Fax\FaxDto $fax
      *
-     * @return FaxesInOutDtoAbstract
+     * @return static
      */
-    public function setFaxId($faxId)
-    {
-        $this->faxId = $faxId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getFaxId()
-    {
-        return $this->faxId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Fax\Fax $fax
-     *
-     * @return FaxesInOutDtoAbstract
-     */
-    public function setFax(\Ivoz\Provider\Domain\Model\Fax\Fax $fax)
+    public function setFax(\Ivoz\Provider\Domain\Model\Fax\FaxDto $fax = null)
     {
         $this->fax = $fax;
 
@@ -369,7 +364,7 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Fax\Fax
+     * @return \Ivoz\Provider\Domain\Model\Fax\FaxDto
      */
     public function getFax()
     {
@@ -377,31 +372,11 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $dstCountryId
+     * @param \Ivoz\Provider\Domain\Model\Country\CountryDto $dstCountry
      *
-     * @return FaxesInOutDtoAbstract
+     * @return static
      */
-    public function setDstCountryId($dstCountryId)
-    {
-        $this->dstCountryId = $dstCountryId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getDstCountryId()
-    {
-        return $this->dstCountryId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Country\Country $dstCountry
-     *
-     * @return FaxesInOutDtoAbstract
-     */
-    public function setDstCountry(\Ivoz\Provider\Domain\Model\Country\Country $dstCountry)
+    public function setDstCountry(\Ivoz\Provider\Domain\Model\Country\CountryDto $dstCountry = null)
     {
         $this->dstCountry = $dstCountry;
 
@@ -409,7 +384,7 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Country\Country
+     * @return \Ivoz\Provider\Domain\Model\Country\CountryDto
      */
     public function getDstCountry()
     {

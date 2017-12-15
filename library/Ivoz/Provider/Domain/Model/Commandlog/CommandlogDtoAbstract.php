@@ -46,12 +46,18 @@ abstract class CommandlogDtoAbstract implements DataTransferObjectInterface
      */
     private $id;
 
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
+
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -64,7 +70,23 @@ abstract class CommandlogDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'requestId',
+            'class',
+            'method',
+            'arguments',
+            'createdOn',
+            'microtime',
+            'id'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'requestId' => $this->getRequestId(),
@@ -96,9 +118,9 @@ abstract class CommandlogDtoAbstract implements DataTransferObjectInterface
     /**
      * @param guid $requestId
      *
-     * @return CommandlogDtoAbstract
+     * @return static
      */
-    public function setRequestId($requestId)
+    public function setRequestId($requestId = null)
     {
         $this->requestId = $requestId;
 
@@ -116,9 +138,9 @@ abstract class CommandlogDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $class
      *
-     * @return CommandlogDtoAbstract
+     * @return static
      */
-    public function setClass($class)
+    public function setClass($class = null)
     {
         $this->class = $class;
 
@@ -136,7 +158,7 @@ abstract class CommandlogDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $method
      *
-     * @return CommandlogDtoAbstract
+     * @return static
      */
     public function setMethod($method = null)
     {
@@ -156,7 +178,7 @@ abstract class CommandlogDtoAbstract implements DataTransferObjectInterface
     /**
      * @param array $arguments
      *
-     * @return CommandlogDtoAbstract
+     * @return static
      */
     public function setArguments($arguments = null)
     {
@@ -176,9 +198,9 @@ abstract class CommandlogDtoAbstract implements DataTransferObjectInterface
     /**
      * @param \DateTime $createdOn
      *
-     * @return CommandlogDtoAbstract
+     * @return static
      */
-    public function setCreatedOn($createdOn)
+    public function setCreatedOn($createdOn = null)
     {
         $this->createdOn = $createdOn;
 
@@ -196,9 +218,9 @@ abstract class CommandlogDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $microtime
      *
-     * @return CommandlogDtoAbstract
+     * @return static
      */
-    public function setMicrotime($microtime)
+    public function setMicrotime($microtime = null)
     {
         $this->microtime = $microtime;
 
@@ -216,9 +238,9 @@ abstract class CommandlogDtoAbstract implements DataTransferObjectInterface
     /**
      * @param guid $id
      *
-     * @return CommandlogDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 

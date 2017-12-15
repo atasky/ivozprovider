@@ -188,10 +188,8 @@ abstract class OutgoingDdiRuleAbstract
         return self::createDto()
             ->setName($this->getName())
             ->setDefaultAction($this->getDefaultAction())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany())
-            ->setForcedDdiId($this->getForcedDdi() ? $this->getForcedDdi()->getId() : null)
-            ->setForcedDdi($this->getForcedDdi());
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null)
+            ->setForcedDdi($this->getForcedDdi() ? $this->getForcedDdi()->toDto() : null);
     }
 
     /**

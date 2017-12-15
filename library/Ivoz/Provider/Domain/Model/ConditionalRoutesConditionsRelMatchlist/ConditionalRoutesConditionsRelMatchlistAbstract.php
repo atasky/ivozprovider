@@ -170,10 +170,8 @@ abstract class ConditionalRoutesConditionsRelMatchlistAbstract
     public function toDto()
     {
         return self::createDto()
-            ->setConditionId($this->getCondition() ? $this->getCondition()->getId() : null)
-            ->setCondition($this->getCondition())
-            ->setMatchlistId($this->getMatchlist() ? $this->getMatchlist()->getId() : null)
-            ->setMatchlist($this->getMatchlist());
+            ->setCondition($this->getCondition() ? $this->getCondition()->toDto() : null)
+            ->setMatchlist($this->getMatchlist() ? $this->getMatchlist()->toDto() : null);
     }
 
     /**

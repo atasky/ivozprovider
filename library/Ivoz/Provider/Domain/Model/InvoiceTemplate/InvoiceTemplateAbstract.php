@@ -204,8 +204,7 @@ abstract class InvoiceTemplateAbstract
             ->setTemplate($this->getTemplate())
             ->setTemplateHeader($this->getTemplateHeader())
             ->setTemplateFooter($this->getTemplateFooter())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setBrand($this->getBrand());
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null);
     }
 
     /**

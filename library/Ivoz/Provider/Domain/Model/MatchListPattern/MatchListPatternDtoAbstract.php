@@ -37,31 +37,27 @@ abstract class MatchListPatternDtoAbstract implements DataTransferObjectInterfac
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $matchListId;
-
-    /**
-     * @var mixed
-     */
-    private $numberCountryId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\MatchList\MatchListDto | null
      */
     private $matchList;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Country\CountryDto | null
      */
     private $numberCountry;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -74,7 +70,23 @@ abstract class MatchListPatternDtoAbstract implements DataTransferObjectInterfac
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'description',
+            'type',
+            'regexp',
+            'numbervalue',
+            'id',
+            'matchList',
+            'numberCountry'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'description' => $this->getDescription(),
@@ -107,7 +119,7 @@ abstract class MatchListPatternDtoAbstract implements DataTransferObjectInterfac
     /**
      * @param string $description
      *
-     * @return MatchListPatternDtoAbstract
+     * @return static
      */
     public function setDescription($description = null)
     {
@@ -127,9 +139,9 @@ abstract class MatchListPatternDtoAbstract implements DataTransferObjectInterfac
     /**
      * @param string $type
      *
-     * @return MatchListPatternDtoAbstract
+     * @return static
      */
-    public function setType($type)
+    public function setType($type = null)
     {
         $this->type = $type;
 
@@ -147,7 +159,7 @@ abstract class MatchListPatternDtoAbstract implements DataTransferObjectInterfac
     /**
      * @param string $regexp
      *
-     * @return MatchListPatternDtoAbstract
+     * @return static
      */
     public function setRegexp($regexp = null)
     {
@@ -167,7 +179,7 @@ abstract class MatchListPatternDtoAbstract implements DataTransferObjectInterfac
     /**
      * @param string $numbervalue
      *
-     * @return MatchListPatternDtoAbstract
+     * @return static
      */
     public function setNumbervalue($numbervalue = null)
     {
@@ -187,9 +199,9 @@ abstract class MatchListPatternDtoAbstract implements DataTransferObjectInterfac
     /**
      * @param integer $id
      *
-     * @return MatchListPatternDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -205,31 +217,11 @@ abstract class MatchListPatternDtoAbstract implements DataTransferObjectInterfac
     }
 
     /**
-     * @param integer $matchListId
+     * @param \Ivoz\Provider\Domain\Model\MatchList\MatchListDto $matchList
      *
-     * @return MatchListPatternDtoAbstract
+     * @return static
      */
-    public function setMatchListId($matchListId)
-    {
-        $this->matchListId = $matchListId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getMatchListId()
-    {
-        return $this->matchListId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\MatchList\MatchList $matchList
-     *
-     * @return MatchListPatternDtoAbstract
-     */
-    public function setMatchList(\Ivoz\Provider\Domain\Model\MatchList\MatchList $matchList)
+    public function setMatchList(\Ivoz\Provider\Domain\Model\MatchList\MatchListDto $matchList = null)
     {
         $this->matchList = $matchList;
 
@@ -237,7 +229,7 @@ abstract class MatchListPatternDtoAbstract implements DataTransferObjectInterfac
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\MatchList\MatchList
+     * @return \Ivoz\Provider\Domain\Model\MatchList\MatchListDto
      */
     public function getMatchList()
     {
@@ -245,31 +237,11 @@ abstract class MatchListPatternDtoAbstract implements DataTransferObjectInterfac
     }
 
     /**
-     * @param integer $numberCountryId
+     * @param \Ivoz\Provider\Domain\Model\Country\CountryDto $numberCountry
      *
-     * @return MatchListPatternDtoAbstract
+     * @return static
      */
-    public function setNumberCountryId($numberCountryId)
-    {
-        $this->numberCountryId = $numberCountryId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getNumberCountryId()
-    {
-        return $this->numberCountryId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Country\Country $numberCountry
-     *
-     * @return MatchListPatternDtoAbstract
-     */
-    public function setNumberCountry(\Ivoz\Provider\Domain\Model\Country\Country $numberCountry)
+    public function setNumberCountry(\Ivoz\Provider\Domain\Model\Country\CountryDto $numberCountry = null)
     {
         $this->numberCountry = $numberCountry;
 
@@ -277,7 +249,7 @@ abstract class MatchListPatternDtoAbstract implements DataTransferObjectInterfac
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Country\Country
+     * @return \Ivoz\Provider\Domain\Model\Country\CountryDto
      */
     public function getNumberCountry()
     {

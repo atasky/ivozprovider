@@ -170,10 +170,8 @@ abstract class FeaturesRelBrandAbstract
     public function toDto()
     {
         return self::createDto()
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setBrand($this->getBrand())
-            ->setFeatureId($this->getFeature() ? $this->getFeature()->getId() : null)
-            ->setFeature($this->getFeature());
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null)
+            ->setFeature($this->getFeature() ? $this->getFeature()->toDto() : null);
     }
 
     /**

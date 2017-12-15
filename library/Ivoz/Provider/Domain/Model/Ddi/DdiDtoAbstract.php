@@ -52,151 +52,87 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $companyId;
-
-    /**
-     * @var mixed
-     */
-    private $brandId;
-
-    /**
-     * @var mixed
-     */
-    private $conferenceRoomId;
-
-    /**
-     * @var mixed
-     */
-    private $languageId;
-
-    /**
-     * @var mixed
-     */
-    private $queueId;
-
-    /**
-     * @var mixed
-     */
-    private $externalCallFilterId;
-
-    /**
-     * @var mixed
-     */
-    private $userId;
-
-    /**
-     * @var mixed
-     */
-    private $ivrId;
-
-    /**
-     * @var mixed
-     */
-    private $huntGroupId;
-
-    /**
-     * @var mixed
-     */
-    private $faxId;
-
-    /**
-     * @var mixed
-     */
-    private $peeringContractId;
-
-    /**
-     * @var mixed
-     */
-    private $countryId;
-
-    /**
-     * @var mixed
-     */
-    private $retailAccountId;
-
-    /**
-     * @var mixed
-     */
-    private $conditionalRouteId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Company\CompanyDto | null
      */
     private $company;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Brand\BrandDto | null
      */
     private $brand;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\ConferenceRoom\ConferenceRoomDto | null
      */
     private $conferenceRoom;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Language\LanguageDto | null
      */
     private $language;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Queue\QueueDto | null
      */
     private $queue;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilterDto | null
      */
     private $externalCallFilter;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\User\UserDto | null
      */
     private $user;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Ivr\IvrDto | null
      */
     private $ivr;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\HuntGroup\HuntGroupDto | null
      */
     private $huntGroup;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Fax\FaxDto | null
      */
     private $fax;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\PeeringContract\PeeringContractDto | null
      */
     private $peeringContract;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Country\CountryDto | null
      */
     private $country;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\RetailAccount\RetailAccountDto | null
      */
     private $retailAccount;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\ConditionalRoute\ConditionalRouteDto | null
      */
     private $conditionalRoute;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -209,7 +145,38 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'ddi',
+            'ddie164',
+            'recordCalls',
+            'displayName',
+            'routeType',
+            'billInboundCalls',
+            'friendValue',
+            'id',
+            'company',
+            'brand',
+            'conferenceRoom',
+            'language',
+            'queue',
+            'externalCallFilter',
+            'user',
+            'ivr',
+            'huntGroup',
+            'fax',
+            'peeringContract',
+            'country',
+            'retailAccount',
+            'conditionalRoute'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'ddi' => $this->getDdi(),
@@ -269,9 +236,9 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $ddi
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
-    public function setDdi($ddi)
+    public function setDdi($ddi = null)
     {
         $this->ddi = $ddi;
 
@@ -289,7 +256,7 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $ddie164
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
     public function setDdie164($ddie164 = null)
     {
@@ -309,9 +276,9 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $recordCalls
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
-    public function setRecordCalls($recordCalls)
+    public function setRecordCalls($recordCalls = null)
     {
         $this->recordCalls = $recordCalls;
 
@@ -329,7 +296,7 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $displayName
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
     public function setDisplayName($displayName = null)
     {
@@ -349,7 +316,7 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $routeType
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
     public function setRouteType($routeType = null)
     {
@@ -369,9 +336,9 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     /**
      * @param boolean $billInboundCalls
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
-    public function setBillInboundCalls($billInboundCalls)
+    public function setBillInboundCalls($billInboundCalls = null)
     {
         $this->billInboundCalls = $billInboundCalls;
 
@@ -389,7 +356,7 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $friendValue
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
     public function setFriendValue($friendValue = null)
     {
@@ -409,9 +376,9 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -427,31 +394,11 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $companyId
+     * @param \Ivoz\Provider\Domain\Model\Company\CompanyDto $company
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
-    public function setCompanyId($companyId)
-    {
-        $this->companyId = $companyId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCompanyId()
-    {
-        return $this->companyId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Company\Company $company
-     *
-     * @return DdiDtoAbstract
-     */
-    public function setCompany(\Ivoz\Provider\Domain\Model\Company\Company $company)
+    public function setCompany(\Ivoz\Provider\Domain\Model\Company\CompanyDto $company = null)
     {
         $this->company = $company;
 
@@ -459,7 +406,7 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Company\Company
+     * @return \Ivoz\Provider\Domain\Model\Company\CompanyDto
      */
     public function getCompany()
     {
@@ -467,31 +414,11 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $brandId
+     * @param \Ivoz\Provider\Domain\Model\Brand\BrandDto $brand
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
-    public function setBrandId($brandId)
-    {
-        $this->brandId = $brandId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Brand\Brand $brand
-     *
-     * @return DdiDtoAbstract
-     */
-    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\Brand $brand)
+    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\BrandDto $brand = null)
     {
         $this->brand = $brand;
 
@@ -499,7 +426,7 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Brand\Brand
+     * @return \Ivoz\Provider\Domain\Model\Brand\BrandDto
      */
     public function getBrand()
     {
@@ -507,31 +434,11 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $conferenceRoomId
+     * @param \Ivoz\Provider\Domain\Model\ConferenceRoom\ConferenceRoomDto $conferenceRoom
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
-    public function setConferenceRoomId($conferenceRoomId)
-    {
-        $this->conferenceRoomId = $conferenceRoomId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getConferenceRoomId()
-    {
-        return $this->conferenceRoomId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\ConferenceRoom\ConferenceRoom $conferenceRoom
-     *
-     * @return DdiDtoAbstract
-     */
-    public function setConferenceRoom(\Ivoz\Provider\Domain\Model\ConferenceRoom\ConferenceRoom $conferenceRoom)
+    public function setConferenceRoom(\Ivoz\Provider\Domain\Model\ConferenceRoom\ConferenceRoomDto $conferenceRoom = null)
     {
         $this->conferenceRoom = $conferenceRoom;
 
@@ -539,7 +446,7 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\ConferenceRoom\ConferenceRoom
+     * @return \Ivoz\Provider\Domain\Model\ConferenceRoom\ConferenceRoomDto
      */
     public function getConferenceRoom()
     {
@@ -547,31 +454,11 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $languageId
+     * @param \Ivoz\Provider\Domain\Model\Language\LanguageDto $language
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
-    public function setLanguageId($languageId)
-    {
-        $this->languageId = $languageId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getLanguageId()
-    {
-        return $this->languageId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Language\Language $language
-     *
-     * @return DdiDtoAbstract
-     */
-    public function setLanguage(\Ivoz\Provider\Domain\Model\Language\Language $language)
+    public function setLanguage(\Ivoz\Provider\Domain\Model\Language\LanguageDto $language = null)
     {
         $this->language = $language;
 
@@ -579,7 +466,7 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Language\Language
+     * @return \Ivoz\Provider\Domain\Model\Language\LanguageDto
      */
     public function getLanguage()
     {
@@ -587,31 +474,11 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $queueId
+     * @param \Ivoz\Provider\Domain\Model\Queue\QueueDto $queue
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
-    public function setQueueId($queueId)
-    {
-        $this->queueId = $queueId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getQueueId()
-    {
-        return $this->queueId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Queue\Queue $queue
-     *
-     * @return DdiDtoAbstract
-     */
-    public function setQueue(\Ivoz\Provider\Domain\Model\Queue\Queue $queue)
+    public function setQueue(\Ivoz\Provider\Domain\Model\Queue\QueueDto $queue = null)
     {
         $this->queue = $queue;
 
@@ -619,7 +486,7 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Queue\Queue
+     * @return \Ivoz\Provider\Domain\Model\Queue\QueueDto
      */
     public function getQueue()
     {
@@ -627,31 +494,11 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $externalCallFilterId
+     * @param \Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilterDto $externalCallFilter
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
-    public function setExternalCallFilterId($externalCallFilterId)
-    {
-        $this->externalCallFilterId = $externalCallFilterId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getExternalCallFilterId()
-    {
-        return $this->externalCallFilterId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilter $externalCallFilter
-     *
-     * @return DdiDtoAbstract
-     */
-    public function setExternalCallFilter(\Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilter $externalCallFilter)
+    public function setExternalCallFilter(\Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilterDto $externalCallFilter = null)
     {
         $this->externalCallFilter = $externalCallFilter;
 
@@ -659,7 +506,7 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilter
+     * @return \Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilterDto
      */
     public function getExternalCallFilter()
     {
@@ -667,31 +514,11 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $userId
+     * @param \Ivoz\Provider\Domain\Model\User\UserDto $user
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\User\User $user
-     *
-     * @return DdiDtoAbstract
-     */
-    public function setUser(\Ivoz\Provider\Domain\Model\User\User $user)
+    public function setUser(\Ivoz\Provider\Domain\Model\User\UserDto $user = null)
     {
         $this->user = $user;
 
@@ -699,7 +526,7 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\User\User
+     * @return \Ivoz\Provider\Domain\Model\User\UserDto
      */
     public function getUser()
     {
@@ -707,31 +534,11 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $ivrId
+     * @param \Ivoz\Provider\Domain\Model\Ivr\IvrDto $ivr
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
-    public function setIvrId($ivrId)
-    {
-        $this->ivrId = $ivrId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getIvrId()
-    {
-        return $this->ivrId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Ivr\Ivr $ivr
-     *
-     * @return DdiDtoAbstract
-     */
-    public function setIvr(\Ivoz\Provider\Domain\Model\Ivr\Ivr $ivr)
+    public function setIvr(\Ivoz\Provider\Domain\Model\Ivr\IvrDto $ivr = null)
     {
         $this->ivr = $ivr;
 
@@ -739,7 +546,7 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Ivr\Ivr
+     * @return \Ivoz\Provider\Domain\Model\Ivr\IvrDto
      */
     public function getIvr()
     {
@@ -747,31 +554,11 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $huntGroupId
+     * @param \Ivoz\Provider\Domain\Model\HuntGroup\HuntGroupDto $huntGroup
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
-    public function setHuntGroupId($huntGroupId)
-    {
-        $this->huntGroupId = $huntGroupId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getHuntGroupId()
-    {
-        return $this->huntGroupId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\HuntGroup\HuntGroup $huntGroup
-     *
-     * @return DdiDtoAbstract
-     */
-    public function setHuntGroup(\Ivoz\Provider\Domain\Model\HuntGroup\HuntGroup $huntGroup)
+    public function setHuntGroup(\Ivoz\Provider\Domain\Model\HuntGroup\HuntGroupDto $huntGroup = null)
     {
         $this->huntGroup = $huntGroup;
 
@@ -779,7 +566,7 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\HuntGroup\HuntGroup
+     * @return \Ivoz\Provider\Domain\Model\HuntGroup\HuntGroupDto
      */
     public function getHuntGroup()
     {
@@ -787,31 +574,11 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $faxId
+     * @param \Ivoz\Provider\Domain\Model\Fax\FaxDto $fax
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
-    public function setFaxId($faxId)
-    {
-        $this->faxId = $faxId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getFaxId()
-    {
-        return $this->faxId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Fax\Fax $fax
-     *
-     * @return DdiDtoAbstract
-     */
-    public function setFax(\Ivoz\Provider\Domain\Model\Fax\Fax $fax)
+    public function setFax(\Ivoz\Provider\Domain\Model\Fax\FaxDto $fax = null)
     {
         $this->fax = $fax;
 
@@ -819,7 +586,7 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Fax\Fax
+     * @return \Ivoz\Provider\Domain\Model\Fax\FaxDto
      */
     public function getFax()
     {
@@ -827,31 +594,11 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $peeringContractId
+     * @param \Ivoz\Provider\Domain\Model\PeeringContract\PeeringContractDto $peeringContract
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
-    public function setPeeringContractId($peeringContractId)
-    {
-        $this->peeringContractId = $peeringContractId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getPeeringContractId()
-    {
-        return $this->peeringContractId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\PeeringContract\PeeringContract $peeringContract
-     *
-     * @return DdiDtoAbstract
-     */
-    public function setPeeringContract(\Ivoz\Provider\Domain\Model\PeeringContract\PeeringContract $peeringContract)
+    public function setPeeringContract(\Ivoz\Provider\Domain\Model\PeeringContract\PeeringContractDto $peeringContract = null)
     {
         $this->peeringContract = $peeringContract;
 
@@ -859,7 +606,7 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\PeeringContract\PeeringContract
+     * @return \Ivoz\Provider\Domain\Model\PeeringContract\PeeringContractDto
      */
     public function getPeeringContract()
     {
@@ -867,31 +614,11 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $countryId
+     * @param \Ivoz\Provider\Domain\Model\Country\CountryDto $country
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
-    public function setCountryId($countryId)
-    {
-        $this->countryId = $countryId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCountryId()
-    {
-        return $this->countryId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Country\Country $country
-     *
-     * @return DdiDtoAbstract
-     */
-    public function setCountry(\Ivoz\Provider\Domain\Model\Country\Country $country)
+    public function setCountry(\Ivoz\Provider\Domain\Model\Country\CountryDto $country = null)
     {
         $this->country = $country;
 
@@ -899,7 +626,7 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Country\Country
+     * @return \Ivoz\Provider\Domain\Model\Country\CountryDto
      */
     public function getCountry()
     {
@@ -907,31 +634,11 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $retailAccountId
+     * @param \Ivoz\Provider\Domain\Model\RetailAccount\RetailAccountDto $retailAccount
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
-    public function setRetailAccountId($retailAccountId)
-    {
-        $this->retailAccountId = $retailAccountId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getRetailAccountId()
-    {
-        return $this->retailAccountId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\RetailAccount\RetailAccount $retailAccount
-     *
-     * @return DdiDtoAbstract
-     */
-    public function setRetailAccount(\Ivoz\Provider\Domain\Model\RetailAccount\RetailAccount $retailAccount)
+    public function setRetailAccount(\Ivoz\Provider\Domain\Model\RetailAccount\RetailAccountDto $retailAccount = null)
     {
         $this->retailAccount = $retailAccount;
 
@@ -939,7 +646,7 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\RetailAccount\RetailAccount
+     * @return \Ivoz\Provider\Domain\Model\RetailAccount\RetailAccountDto
      */
     public function getRetailAccount()
     {
@@ -947,31 +654,11 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $conditionalRouteId
+     * @param \Ivoz\Provider\Domain\Model\ConditionalRoute\ConditionalRouteDto $conditionalRoute
      *
-     * @return DdiDtoAbstract
+     * @return static
      */
-    public function setConditionalRouteId($conditionalRouteId)
-    {
-        $this->conditionalRouteId = $conditionalRouteId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getConditionalRouteId()
-    {
-        return $this->conditionalRouteId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\ConditionalRoute\ConditionalRoute $conditionalRoute
-     *
-     * @return DdiDtoAbstract
-     */
-    public function setConditionalRoute(\Ivoz\Provider\Domain\Model\ConditionalRoute\ConditionalRoute $conditionalRoute)
+    public function setConditionalRoute(\Ivoz\Provider\Domain\Model\ConditionalRoute\ConditionalRouteDto $conditionalRoute = null)
     {
         $this->conditionalRoute = $conditionalRoute;
 
@@ -979,7 +666,7 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\ConditionalRoute\ConditionalRoute
+     * @return \Ivoz\Provider\Domain\Model\ConditionalRoute\ConditionalRouteDto
      */
     public function getConditionalRoute()
     {

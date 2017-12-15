@@ -210,8 +210,7 @@ abstract class ChangelogAbstract
             ->setData($this->getData())
             ->setCreatedOn($this->getCreatedOn())
             ->setMicrotime($this->getMicrotime())
-            ->setCommandId($this->getCommand() ? $this->getCommand()->getId() : null)
-            ->setCommand($this->getCommand());
+            ->setCommand($this->getCommand() ? $this->getCommand()->toDto() : null);
     }
 
     /**

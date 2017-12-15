@@ -170,10 +170,8 @@ abstract class ConditionalRoutesConditionsRelScheduleAbstract
     public function toDto()
     {
         return self::createDto()
-            ->setConditionId($this->getCondition() ? $this->getCondition()->getId() : null)
-            ->setCondition($this->getCondition())
-            ->setScheduleId($this->getSchedule() ? $this->getSchedule()->getId() : null)
-            ->setSchedule($this->getSchedule());
+            ->setCondition($this->getCondition() ? $this->getCondition()->toDto() : null)
+            ->setSchedule($this->getSchedule() ? $this->getSchedule()->toDto() : null);
     }
 
     /**

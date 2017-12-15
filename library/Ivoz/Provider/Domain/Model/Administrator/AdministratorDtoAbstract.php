@@ -47,41 +47,32 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $brandId;
-
-    /**
-     * @var mixed
-     */
-    private $companyId;
-
-    /**
-     * @var mixed
-     */
-    private $timezoneId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Brand\BrandDto | null
      */
     private $brand;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Company\CompanyDto | null
      */
     private $company;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Timezone\TimezoneDto | null
      */
     private $timezone;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -94,7 +85,26 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'username',
+            'pass',
+            'email',
+            'active',
+            'name',
+            'lastname',
+            'id',
+            'brand',
+            'company',
+            'timezone'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'username' => $this->getUsername(),
@@ -131,9 +141,9 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $username
      *
-     * @return AdministratorDtoAbstract
+     * @return static
      */
-    public function setUsername($username)
+    public function setUsername($username = null)
     {
         $this->username = $username;
 
@@ -151,9 +161,9 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $pass
      *
-     * @return AdministratorDtoAbstract
+     * @return static
      */
-    public function setPass($pass)
+    public function setPass($pass = null)
     {
         $this->pass = $pass;
 
@@ -171,9 +181,9 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $email
      *
-     * @return AdministratorDtoAbstract
+     * @return static
      */
-    public function setEmail($email)
+    public function setEmail($email = null)
     {
         $this->email = $email;
 
@@ -191,9 +201,9 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
     /**
      * @param boolean $active
      *
-     * @return AdministratorDtoAbstract
+     * @return static
      */
-    public function setActive($active)
+    public function setActive($active = null)
     {
         $this->active = $active;
 
@@ -211,7 +221,7 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $name
      *
-     * @return AdministratorDtoAbstract
+     * @return static
      */
     public function setName($name = null)
     {
@@ -231,7 +241,7 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $lastname
      *
-     * @return AdministratorDtoAbstract
+     * @return static
      */
     public function setLastname($lastname = null)
     {
@@ -251,9 +261,9 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return AdministratorDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -269,31 +279,11 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $brandId
+     * @param \Ivoz\Provider\Domain\Model\Brand\BrandDto $brand
      *
-     * @return AdministratorDtoAbstract
+     * @return static
      */
-    public function setBrandId($brandId)
-    {
-        $this->brandId = $brandId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Brand\Brand $brand
-     *
-     * @return AdministratorDtoAbstract
-     */
-    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\Brand $brand)
+    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\BrandDto $brand = null)
     {
         $this->brand = $brand;
 
@@ -301,7 +291,7 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Brand\Brand
+     * @return \Ivoz\Provider\Domain\Model\Brand\BrandDto
      */
     public function getBrand()
     {
@@ -309,31 +299,11 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $companyId
+     * @param \Ivoz\Provider\Domain\Model\Company\CompanyDto $company
      *
-     * @return AdministratorDtoAbstract
+     * @return static
      */
-    public function setCompanyId($companyId)
-    {
-        $this->companyId = $companyId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCompanyId()
-    {
-        return $this->companyId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Company\Company $company
-     *
-     * @return AdministratorDtoAbstract
-     */
-    public function setCompany(\Ivoz\Provider\Domain\Model\Company\Company $company)
+    public function setCompany(\Ivoz\Provider\Domain\Model\Company\CompanyDto $company = null)
     {
         $this->company = $company;
 
@@ -341,7 +311,7 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Company\Company
+     * @return \Ivoz\Provider\Domain\Model\Company\CompanyDto
      */
     public function getCompany()
     {
@@ -349,31 +319,11 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $timezoneId
+     * @param \Ivoz\Provider\Domain\Model\Timezone\TimezoneDto $timezone
      *
-     * @return AdministratorDtoAbstract
+     * @return static
      */
-    public function setTimezoneId($timezoneId)
-    {
-        $this->timezoneId = $timezoneId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getTimezoneId()
-    {
-        return $this->timezoneId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Timezone\Timezone $timezone
-     *
-     * @return AdministratorDtoAbstract
-     */
-    public function setTimezone(\Ivoz\Provider\Domain\Model\Timezone\Timezone $timezone)
+    public function setTimezone(\Ivoz\Provider\Domain\Model\Timezone\TimezoneDto $timezone = null)
     {
         $this->timezone = $timezone;
 
@@ -381,7 +331,7 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Timezone\Timezone
+     * @return \Ivoz\Provider\Domain\Model\Timezone\TimezoneDto
      */
     public function getTimezone()
     {

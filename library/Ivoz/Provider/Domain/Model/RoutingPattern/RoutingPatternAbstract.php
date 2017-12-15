@@ -215,8 +215,7 @@ abstract class RoutingPatternAbstract
             ->setNameEs($this->getName()->getEs())
             ->setDescriptionEn($this->getDescription()->getEn())
             ->setDescriptionEs($this->getDescription()->getEs())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setBrand($this->getBrand());
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null);
     }
 
     /**

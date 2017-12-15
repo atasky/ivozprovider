@@ -27,21 +27,22 @@ abstract class FriendsPatternDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $friendId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Friend\FriendDto | null
      */
     private $friend;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -54,7 +55,20 @@ abstract class FriendsPatternDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'name',
+            'regExp',
+            'id',
+            'friend'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'name' => $this->getName(),
@@ -83,9 +97,9 @@ abstract class FriendsPatternDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $name
      *
-     * @return FriendsPatternDtoAbstract
+     * @return static
      */
-    public function setName($name)
+    public function setName($name = null)
     {
         $this->name = $name;
 
@@ -103,9 +117,9 @@ abstract class FriendsPatternDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $regExp
      *
-     * @return FriendsPatternDtoAbstract
+     * @return static
      */
-    public function setRegExp($regExp)
+    public function setRegExp($regExp = null)
     {
         $this->regExp = $regExp;
 
@@ -123,9 +137,9 @@ abstract class FriendsPatternDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return FriendsPatternDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -141,31 +155,11 @@ abstract class FriendsPatternDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $friendId
+     * @param \Ivoz\Provider\Domain\Model\Friend\FriendDto $friend
      *
-     * @return FriendsPatternDtoAbstract
+     * @return static
      */
-    public function setFriendId($friendId)
-    {
-        $this->friendId = $friendId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getFriendId()
-    {
-        return $this->friendId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Friend\Friend $friend
-     *
-     * @return FriendsPatternDtoAbstract
-     */
-    public function setFriend(\Ivoz\Provider\Domain\Model\Friend\Friend $friend)
+    public function setFriend(\Ivoz\Provider\Domain\Model\Friend\FriendDto $friend = null)
     {
         $this->friend = $friend;
 
@@ -173,7 +167,7 @@ abstract class FriendsPatternDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Friend\Friend
+     * @return \Ivoz\Provider\Domain\Model\Friend\FriendDto
      */
     public function getFriend()
     {

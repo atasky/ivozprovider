@@ -22,31 +22,27 @@ abstract class CompanyServiceDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $companyId;
-
-    /**
-     * @var mixed
-     */
-    private $serviceId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Company\CompanyDto | null
      */
     private $company;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Service\ServiceDto | null
      */
     private $service;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -59,7 +55,20 @@ abstract class CompanyServiceDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'code',
+            'id',
+            'company',
+            'service'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'code' => $this->getCode(),
@@ -89,9 +98,9 @@ abstract class CompanyServiceDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $code
      *
-     * @return CompanyServiceDtoAbstract
+     * @return static
      */
-    public function setCode($code)
+    public function setCode($code = null)
     {
         $this->code = $code;
 
@@ -109,9 +118,9 @@ abstract class CompanyServiceDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return CompanyServiceDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -127,31 +136,11 @@ abstract class CompanyServiceDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $companyId
+     * @param \Ivoz\Provider\Domain\Model\Company\CompanyDto $company
      *
-     * @return CompanyServiceDtoAbstract
+     * @return static
      */
-    public function setCompanyId($companyId)
-    {
-        $this->companyId = $companyId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCompanyId()
-    {
-        return $this->companyId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Company\Company $company
-     *
-     * @return CompanyServiceDtoAbstract
-     */
-    public function setCompany(\Ivoz\Provider\Domain\Model\Company\Company $company)
+    public function setCompany(\Ivoz\Provider\Domain\Model\Company\CompanyDto $company = null)
     {
         $this->company = $company;
 
@@ -159,7 +148,7 @@ abstract class CompanyServiceDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Company\Company
+     * @return \Ivoz\Provider\Domain\Model\Company\CompanyDto
      */
     public function getCompany()
     {
@@ -167,31 +156,11 @@ abstract class CompanyServiceDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $serviceId
+     * @param \Ivoz\Provider\Domain\Model\Service\ServiceDto $service
      *
-     * @return CompanyServiceDtoAbstract
+     * @return static
      */
-    public function setServiceId($serviceId)
-    {
-        $this->serviceId = $serviceId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getServiceId()
-    {
-        return $this->serviceId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Service\Service $service
-     *
-     * @return CompanyServiceDtoAbstract
-     */
-    public function setService(\Ivoz\Provider\Domain\Model\Service\Service $service)
+    public function setService(\Ivoz\Provider\Domain\Model\Service\ServiceDto $service = null)
     {
         $this->service = $service;
 
@@ -199,7 +168,7 @@ abstract class CompanyServiceDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Service\Service
+     * @return \Ivoz\Provider\Domain\Model\Service\ServiceDto
      */
     public function getService()
     {

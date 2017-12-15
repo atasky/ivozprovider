@@ -186,10 +186,8 @@ abstract class HuntGroupsRelUserAbstract
         return self::createDto()
             ->setTimeoutTime($this->getTimeoutTime())
             ->setPriority($this->getPriority())
-            ->setHuntGroupId($this->getHuntGroup() ? $this->getHuntGroup()->getId() : null)
-            ->setHuntGroup($this->getHuntGroup())
-            ->setUserId($this->getUser() ? $this->getUser()->getId() : null)
-            ->setUser($this->getUser());
+            ->setHuntGroup($this->getHuntGroup() ? $this->getHuntGroup()->toDto() : null)
+            ->setUser($this->getUser() ? $this->getUser()->toDto() : null);
     }
 
     /**

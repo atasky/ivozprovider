@@ -20,12 +20,18 @@ class AbstractDTOGenerator extends ParentGenerator
      * @var string
      */
     protected static $constructorMethodTemplate =
-'/**
+'
+public function __constructor($id = null)
+{
+    $this->setId($id);
+}
+
+/**
  * @return array
  */
 public function normalize(string $context)
 {
-    return $this->__toArray();
+    return $this->toArray();
 }
 
 /**
@@ -38,7 +44,17 @@ public function denormalize(array $data, string $context)
 /**
  * @return array
  */
-protected function __toArray()
+public static function getPropertyMap()
+{
+    return [
+        <propertyMap>
+    ];
+}
+
+/**
+ * @return array
+ */
+public function toArray()
 {
     return [<toArray>];
 }
@@ -66,7 +82,7 @@ public function transformCollections(CollectionTransformerInterface $transformer
 '/**
  * @param <variableType> $<variableName>
  *
- * @return <entity>
+ * @return static
  */
 public function <methodName>(<methodTypeHint>$<variableName><variableDefault>)
 {
@@ -179,7 +195,11 @@ public function <methodName>()
         } else {
 
             $oneToMany = $fieldMapping['type'] === ClassMetadataInfo::ONE_TO_MANY;
-            $type = $oneToMany ? 'array|null' : 'mixed';
+            $type = '\\' . $fieldMapping['targetEntity'] . 'Dto';
+            if ($oneToMany) {
+                $type .= '[]';
+            }
+            $type .= ' | null';
             $lines[] = $this->spaces . ' * @var ' . $type;
         }
 
@@ -294,7 +314,7 @@ public function <methodName>()
                     ->getConstructorAssociationFields($attribute, $fieldName, $isOneToMany);
 
                 if (!is_null($associationToArray)) {
-                    $toArray[] = $associationToArray;
+                    $toArray[$fieldName] = $associationToArray;
                 }
 
                 $getters[$attribute] = $associationGetterAs;
@@ -354,7 +374,7 @@ public function <methodName>()
 
             } else {
 
-                $toArray[]  = '\''. $attribute .'\' => $this->get' . Inflector::classify($fieldName) . '()';
+                $toArray[$fieldName]  = '\''. $attribute .'\' => $this->get' . Inflector::classify($fieldName) . '()';
                 $getters[$attribute] = 'set' . Inflector::classify($fieldName)
                     . '($this->get' . Inflector::classify($fieldName) . '())';
 
@@ -661,12 +681,6 @@ public function <methodName>()
             $field = (object) $fieldMapping;
             $fieldName = $field->fieldName;
 
-            if (isset($field->targetEntity) && $field->type !== ClassMetadataInfo::ONE_TO_MANY) {
-                $lines[] = $this->generateFieldMappingPropertyDocBlock($fieldMapping, $metadata);
-                $lines[] = $this->spaces . $this->fieldVisibility . ' $' . $fieldName . 'Id'
-                    . (isset($fieldMapping['options']['default']) ? ' = ' . var_export($fieldMapping['options']['default'], true) : null) . ";\n";
-            }
-
             if (isset($field->targetEntity)) {
                 continue;
             }
@@ -727,14 +741,6 @@ public function <methodName>()
             if (isset($field->targetEntity)) {
 
                 if (in_array($fieldMapping['type'], [ClassMetadataInfo::MANY_TO_ONE, ClassMetadataInfo::ONE_TO_ONE])) {
-                    if ($code = $this->generateEntityStubMethod($metadata, 'set', $fieldMapping['fieldName'] . 'Id', 'integer')) {
-                        $methods[] = $code;
-                    }
-
-                    if ($code = $this->generateEntityStubMethod($metadata, 'get', $fieldMapping['fieldName'] . 'Id', 'integer')) {
-                        $methods[] = $code;
-                    }
-
                     if ($code = $this->generateEntityStubMethod($metadata, 'set', $fieldMapping['fieldName'], $fieldMapping['targetEntity'])) {
                         $methods[] = $code;
                     }
@@ -778,6 +784,43 @@ public function <methodName>()
 
         return implode("\n\n", $response);
     }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function generateEntityStubMethod(ClassMetadataInfo $metadata, $type, $fieldName, $typeHint = null,  $defaultValue = null)
+    {
+        $currentField = null;
+        $isNullable = true;
+
+        if (array_key_exists($fieldName, $metadata->fieldMappings)) {
+            $currentField = (object) $metadata->fieldMappings[$fieldName];
+        }
+
+        if (is_null($defaultValue) && $isNullable) {
+            $defaultValue = 'null';
+        }
+
+        if (strpos($typeHint, '\\')) {
+            $typeHint .= 'Dto';
+        }
+
+        if ($typeHint[0] === '\\') {
+            // typehints are always prefixed in parent::generateEntityStubMethod
+            $typeHint = substr($typeHint, 1) . 'Dto';
+        }
+
+
+
+        $isCollection = strpos($typeHint, 'Doctrine\\Common\\Collections\\Collection') !== false;
+        if ($isCollection) {
+            $typeHint = 'array';
+        }
+
+        return parent::generateEntityStubMethod($metadata, $type, $fieldName, $typeHint,  $defaultValue);
+    }
+
 
     /**
      * {@inheritDoc}

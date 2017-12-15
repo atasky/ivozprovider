@@ -253,12 +253,9 @@ abstract class TerminalAbstract
             ->setPassword($this->getPassword())
             ->setMac($this->getMac())
             ->setLastProvisionDate($this->getLastProvisionDate())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany())
-            ->setDomainId($this->getDomain() ? $this->getDomain()->getId() : null)
-            ->setDomain($this->getDomain())
-            ->setTerminalModelId($this->getTerminalModel() ? $this->getTerminalModel()->getId() : null)
-            ->setTerminalModel($this->getTerminalModel());
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null)
+            ->setDomain($this->getDomain() ? $this->getDomain()->toDto() : null)
+            ->setTerminalModel($this->getTerminalModel() ? $this->getTerminalModel()->toDto() : null);
     }
 
     /**

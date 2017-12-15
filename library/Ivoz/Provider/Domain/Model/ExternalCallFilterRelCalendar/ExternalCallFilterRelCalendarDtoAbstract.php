@@ -17,31 +17,27 @@ abstract class ExternalCallFilterRelCalendarDtoAbstract implements DataTransferO
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $filterId;
-
-    /**
-     * @var mixed
-     */
-    private $calendarId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilterDto | null
      */
     private $filter;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Calendar\CalendarDto | null
      */
     private $calendar;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -54,7 +50,19 @@ abstract class ExternalCallFilterRelCalendarDtoAbstract implements DataTransferO
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'id',
+            'filter',
+            'calendar'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'id' => $this->getId(),
@@ -83,9 +91,9 @@ abstract class ExternalCallFilterRelCalendarDtoAbstract implements DataTransferO
     /**
      * @param integer $id
      *
-     * @return ExternalCallFilterRelCalendarDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -101,31 +109,11 @@ abstract class ExternalCallFilterRelCalendarDtoAbstract implements DataTransferO
     }
 
     /**
-     * @param integer $filterId
+     * @param \Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilterDto $filter
      *
-     * @return ExternalCallFilterRelCalendarDtoAbstract
+     * @return static
      */
-    public function setFilterId($filterId)
-    {
-        $this->filterId = $filterId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getFilterId()
-    {
-        return $this->filterId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilter $filter
-     *
-     * @return ExternalCallFilterRelCalendarDtoAbstract
-     */
-    public function setFilter(\Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilter $filter)
+    public function setFilter(\Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilterDto $filter = null)
     {
         $this->filter = $filter;
 
@@ -133,7 +121,7 @@ abstract class ExternalCallFilterRelCalendarDtoAbstract implements DataTransferO
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilter
+     * @return \Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilterDto
      */
     public function getFilter()
     {
@@ -141,31 +129,11 @@ abstract class ExternalCallFilterRelCalendarDtoAbstract implements DataTransferO
     }
 
     /**
-     * @param integer $calendarId
+     * @param \Ivoz\Provider\Domain\Model\Calendar\CalendarDto $calendar
      *
-     * @return ExternalCallFilterRelCalendarDtoAbstract
+     * @return static
      */
-    public function setCalendarId($calendarId)
-    {
-        $this->calendarId = $calendarId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCalendarId()
-    {
-        return $this->calendarId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Calendar\Calendar $calendar
-     *
-     * @return ExternalCallFilterRelCalendarDtoAbstract
-     */
-    public function setCalendar(\Ivoz\Provider\Domain\Model\Calendar\Calendar $calendar)
+    public function setCalendar(\Ivoz\Provider\Domain\Model\Calendar\CalendarDto $calendar = null)
     {
         $this->calendar = $calendar;
 
@@ -173,7 +141,7 @@ abstract class ExternalCallFilterRelCalendarDtoAbstract implements DataTransferO
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Calendar\Calendar
+     * @return \Ivoz\Provider\Domain\Model\Calendar\CalendarDto
      */
     public function getCalendar()
     {

@@ -180,8 +180,7 @@ abstract class FriendsPatternAbstract
         return self::createDto()
             ->setName($this->getName())
             ->setRegExp($this->getRegExp())
-            ->setFriendId($this->getFriend() ? $this->getFriend()->getId() : null)
-            ->setFriend($this->getFriend());
+            ->setFriend($this->getFriend() ? $this->getFriend()->toDto() : null);
     }
 
     /**

@@ -27,31 +27,27 @@ abstract class HuntGroupsRelUserDtoAbstract implements DataTransferObjectInterfa
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $huntGroupId;
-
-    /**
-     * @var mixed
-     */
-    private $userId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\HuntGroup\HuntGroupDto | null
      */
     private $huntGroup;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\User\UserDto | null
      */
     private $user;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -64,7 +60,21 @@ abstract class HuntGroupsRelUserDtoAbstract implements DataTransferObjectInterfa
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'timeoutTime',
+            'priority',
+            'id',
+            'huntGroup',
+            'user'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'timeoutTime' => $this->getTimeoutTime(),
@@ -95,7 +105,7 @@ abstract class HuntGroupsRelUserDtoAbstract implements DataTransferObjectInterfa
     /**
      * @param integer $timeoutTime
      *
-     * @return HuntGroupsRelUserDtoAbstract
+     * @return static
      */
     public function setTimeoutTime($timeoutTime = null)
     {
@@ -115,7 +125,7 @@ abstract class HuntGroupsRelUserDtoAbstract implements DataTransferObjectInterfa
     /**
      * @param integer $priority
      *
-     * @return HuntGroupsRelUserDtoAbstract
+     * @return static
      */
     public function setPriority($priority = null)
     {
@@ -135,9 +145,9 @@ abstract class HuntGroupsRelUserDtoAbstract implements DataTransferObjectInterfa
     /**
      * @param integer $id
      *
-     * @return HuntGroupsRelUserDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -153,31 +163,11 @@ abstract class HuntGroupsRelUserDtoAbstract implements DataTransferObjectInterfa
     }
 
     /**
-     * @param integer $huntGroupId
+     * @param \Ivoz\Provider\Domain\Model\HuntGroup\HuntGroupDto $huntGroup
      *
-     * @return HuntGroupsRelUserDtoAbstract
+     * @return static
      */
-    public function setHuntGroupId($huntGroupId)
-    {
-        $this->huntGroupId = $huntGroupId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getHuntGroupId()
-    {
-        return $this->huntGroupId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\HuntGroup\HuntGroup $huntGroup
-     *
-     * @return HuntGroupsRelUserDtoAbstract
-     */
-    public function setHuntGroup(\Ivoz\Provider\Domain\Model\HuntGroup\HuntGroup $huntGroup)
+    public function setHuntGroup(\Ivoz\Provider\Domain\Model\HuntGroup\HuntGroupDto $huntGroup = null)
     {
         $this->huntGroup = $huntGroup;
 
@@ -185,7 +175,7 @@ abstract class HuntGroupsRelUserDtoAbstract implements DataTransferObjectInterfa
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\HuntGroup\HuntGroup
+     * @return \Ivoz\Provider\Domain\Model\HuntGroup\HuntGroupDto
      */
     public function getHuntGroup()
     {
@@ -193,31 +183,11 @@ abstract class HuntGroupsRelUserDtoAbstract implements DataTransferObjectInterfa
     }
 
     /**
-     * @param integer $userId
+     * @param \Ivoz\Provider\Domain\Model\User\UserDto $user
      *
-     * @return HuntGroupsRelUserDtoAbstract
+     * @return static
      */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\User\User $user
-     *
-     * @return HuntGroupsRelUserDtoAbstract
-     */
-    public function setUser(\Ivoz\Provider\Domain\Model\User\User $user)
+    public function setUser(\Ivoz\Provider\Domain\Model\User\UserDto $user = null)
     {
         $this->user = $user;
 
@@ -225,7 +195,7 @@ abstract class HuntGroupsRelUserDtoAbstract implements DataTransferObjectInterfa
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\User\User
+     * @return \Ivoz\Provider\Domain\Model\User\UserDto
      */
     public function getUser()
     {

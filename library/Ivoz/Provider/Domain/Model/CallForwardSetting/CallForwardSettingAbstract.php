@@ -234,14 +234,10 @@ abstract class CallForwardSettingAbstract
             ->setTargetType($this->getTargetType())
             ->setNumberValue($this->getNumberValue())
             ->setNoAnswerTimeout($this->getNoAnswerTimeout())
-            ->setUserId($this->getUser() ? $this->getUser()->getId() : null)
-            ->setUser($this->getUser())
-            ->setExtensionId($this->getExtension() ? $this->getExtension()->getId() : null)
-            ->setExtension($this->getExtension())
-            ->setVoiceMailUserId($this->getVoiceMailUser() ? $this->getVoiceMailUser()->getId() : null)
-            ->setVoiceMailUser($this->getVoiceMailUser())
-            ->setNumberCountryId($this->getNumberCountry() ? $this->getNumberCountry()->getId() : null)
-            ->setNumberCountry($this->getNumberCountry());
+            ->setUser($this->getUser() ? $this->getUser()->toDto() : null)
+            ->setExtension($this->getExtension() ? $this->getExtension()->toDto() : null)
+            ->setVoiceMailUser($this->getVoiceMailUser() ? $this->getVoiceMailUser()->toDto() : null)
+            ->setNumberCountry($this->getNumberCountry() ? $this->getNumberCountry()->toDto() : null);
     }
 
     /**

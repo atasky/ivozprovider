@@ -42,26 +42,27 @@ abstract class RoutingPatternDtoAbstract implements DataTransferObjectInterface
     private $descriptionEs;
 
     /**
-     * @var mixed
-     */
-    private $brandId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Brand\BrandDto | null
      */
     private $brand;
 
     /**
-     * @var array|null
+     * @var \Ivoz\Provider\Domain\Model\LcrRule\LcrRuleDto[] | null
      */
     private $lcrRules = null;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -74,7 +75,22 @@ abstract class RoutingPatternDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'regExp',
+            'id',
+            'name',
+            'description',
+            'brand',
+            'lcrRules'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'regExp' => $this->getRegExp(),
@@ -125,9 +141,9 @@ abstract class RoutingPatternDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $regExp
      *
-     * @return RoutingPatternDtoAbstract
+     * @return static
      */
-    public function setRegExp($regExp)
+    public function setRegExp($regExp = null)
     {
         $this->regExp = $regExp;
 
@@ -145,9 +161,9 @@ abstract class RoutingPatternDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return RoutingPatternDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -165,9 +181,9 @@ abstract class RoutingPatternDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $nameEn
      *
-     * @return RoutingPatternDtoAbstract
+     * @return static
      */
-    public function setNameEn($nameEn)
+    public function setNameEn($nameEn = null)
     {
         $this->nameEn = $nameEn;
 
@@ -185,9 +201,9 @@ abstract class RoutingPatternDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $nameEs
      *
-     * @return RoutingPatternDtoAbstract
+     * @return static
      */
-    public function setNameEs($nameEs)
+    public function setNameEs($nameEs = null)
     {
         $this->nameEs = $nameEs;
 
@@ -205,9 +221,9 @@ abstract class RoutingPatternDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $descriptionEn
      *
-     * @return RoutingPatternDtoAbstract
+     * @return static
      */
-    public function setDescriptionEn($descriptionEn)
+    public function setDescriptionEn($descriptionEn = null)
     {
         $this->descriptionEn = $descriptionEn;
 
@@ -225,9 +241,9 @@ abstract class RoutingPatternDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $descriptionEs
      *
-     * @return RoutingPatternDtoAbstract
+     * @return static
      */
-    public function setDescriptionEs($descriptionEs)
+    public function setDescriptionEs($descriptionEs = null)
     {
         $this->descriptionEs = $descriptionEs;
 
@@ -243,31 +259,11 @@ abstract class RoutingPatternDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $brandId
+     * @param \Ivoz\Provider\Domain\Model\Brand\BrandDto $brand
      *
-     * @return RoutingPatternDtoAbstract
+     * @return static
      */
-    public function setBrandId($brandId)
-    {
-        $this->brandId = $brandId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Brand\Brand $brand
-     *
-     * @return RoutingPatternDtoAbstract
-     */
-    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\Brand $brand)
+    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\BrandDto $brand = null)
     {
         $this->brand = $brand;
 
@@ -275,7 +271,7 @@ abstract class RoutingPatternDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Brand\Brand
+     * @return \Ivoz\Provider\Domain\Model\Brand\BrandDto
      */
     public function getBrand()
     {
@@ -285,9 +281,9 @@ abstract class RoutingPatternDtoAbstract implements DataTransferObjectInterface
     /**
      * @param array $lcrRules
      *
-     * @return RoutingPatternDtoAbstract
+     * @return static
      */
-    public function setLcrRules($lcrRules)
+    public function setLcrRules($lcrRules = null)
     {
         $this->lcrRules = $lcrRules;
 

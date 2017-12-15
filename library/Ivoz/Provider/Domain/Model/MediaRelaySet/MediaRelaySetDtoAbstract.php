@@ -26,12 +26,18 @@ abstract class MediaRelaySetDtoAbstract implements DataTransferObjectInterface
      */
     private $id;
 
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
+
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -44,7 +50,19 @@ abstract class MediaRelaySetDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'name',
+            'description',
+            'id'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'name' => $this->getName(),
@@ -72,9 +90,9 @@ abstract class MediaRelaySetDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $name
      *
-     * @return MediaRelaySetDtoAbstract
+     * @return static
      */
-    public function setName($name)
+    public function setName($name = null)
     {
         $this->name = $name;
 
@@ -92,7 +110,7 @@ abstract class MediaRelaySetDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $description
      *
-     * @return MediaRelaySetDtoAbstract
+     * @return static
      */
     public function setDescription($description = null)
     {
@@ -112,9 +130,9 @@ abstract class MediaRelaySetDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return MediaRelaySetDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 

@@ -224,18 +224,12 @@ abstract class IvrEntryAbstract
             ->setEntry($this->getEntry())
             ->setRouteType($this->getRouteType())
             ->setNumberValue($this->getNumberValue())
-            ->setIvrId($this->getIvr() ? $this->getIvr()->getId() : null)
-            ->setIvr($this->getIvr())
-            ->setWelcomeLocutionId($this->getWelcomeLocution() ? $this->getWelcomeLocution()->getId() : null)
-            ->setWelcomeLocution($this->getWelcomeLocution())
-            ->setExtensionId($this->getExtension() ? $this->getExtension()->getId() : null)
-            ->setExtension($this->getExtension())
-            ->setVoiceMailUserId($this->getVoiceMailUser() ? $this->getVoiceMailUser()->getId() : null)
-            ->setVoiceMailUser($this->getVoiceMailUser())
-            ->setConditionalRouteId($this->getConditionalRoute() ? $this->getConditionalRoute()->getId() : null)
-            ->setConditionalRoute($this->getConditionalRoute())
-            ->setNumberCountryId($this->getNumberCountry() ? $this->getNumberCountry()->getId() : null)
-            ->setNumberCountry($this->getNumberCountry());
+            ->setIvr($this->getIvr() ? $this->getIvr()->toDto() : null)
+            ->setWelcomeLocution($this->getWelcomeLocution() ? $this->getWelcomeLocution()->toDto() : null)
+            ->setExtension($this->getExtension() ? $this->getExtension()->toDto() : null)
+            ->setVoiceMailUser($this->getVoiceMailUser() ? $this->getVoiceMailUser()->toDto() : null)
+            ->setConditionalRoute($this->getConditionalRoute() ? $this->getConditionalRoute()->toDto() : null)
+            ->setNumberCountry($this->getNumberCountry() ? $this->getNumberCountry()->toDto() : null);
     }
 
     /**

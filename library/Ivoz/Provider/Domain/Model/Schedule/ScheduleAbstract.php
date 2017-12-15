@@ -245,8 +245,7 @@ abstract class ScheduleAbstract
             ->setFriday($this->getFriday())
             ->setSaturday($this->getSaturday())
             ->setSunday($this->getSunday())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany());
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null);
     }
 
     /**

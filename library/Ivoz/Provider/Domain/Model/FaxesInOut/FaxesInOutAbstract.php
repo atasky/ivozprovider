@@ -243,10 +243,8 @@ abstract class FaxesInOutAbstract
             ->setFileFileSize($this->getFile()->getFileSize())
             ->setFileMimeType($this->getFile()->getMimeType())
             ->setFileBaseName($this->getFile()->getBaseName())
-            ->setFaxId($this->getFax() ? $this->getFax()->getId() : null)
-            ->setFax($this->getFax())
-            ->setDstCountryId($this->getDstCountry() ? $this->getDstCountry()->getId() : null)
-            ->setDstCountry($this->getDstCountry());
+            ->setFax($this->getFax() ? $this->getFax()->toDto() : null)
+            ->setDstCountry($this->getDstCountry() ? $this->getDstCountry()->toDto() : null);
     }
 
     /**

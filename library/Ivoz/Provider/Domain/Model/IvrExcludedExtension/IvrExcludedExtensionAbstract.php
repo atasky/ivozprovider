@@ -170,10 +170,8 @@ abstract class IvrExcludedExtensionAbstract
     public function toDto()
     {
         return self::createDto()
-            ->setIvrId($this->getIvr() ? $this->getIvr()->getId() : null)
-            ->setIvr($this->getIvr())
-            ->setExtensionId($this->getExtension() ? $this->getExtension()->getId() : null)
-            ->setExtension($this->getExtension());
+            ->setIvr($this->getIvr() ? $this->getIvr()->toDto() : null)
+            ->setExtension($this->getExtension() ? $this->getExtension()->toDto() : null);
     }
 
     /**

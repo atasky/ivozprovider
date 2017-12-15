@@ -27,31 +27,32 @@ abstract class RoutingPatternGroupDtoAbstract implements DataTransferObjectInter
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $brandId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Brand\BrandDto | null
      */
     private $brand;
 
     /**
-     * @var array|null
+     * @var \Ivoz\Provider\Domain\Model\RoutingPatternGroupsRelPattern\RoutingPatternGroupsRelPatternDto[] | null
      */
     private $relPatterns = null;
 
     /**
-     * @var array|null
+     * @var \Ivoz\Provider\Domain\Model\OutgoingRouting\OutgoingRoutingDto[] | null
      */
     private $outgoingRoutings = null;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -64,7 +65,22 @@ abstract class RoutingPatternGroupDtoAbstract implements DataTransferObjectInter
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'name',
+            'description',
+            'id',
+            'brand',
+            'relPatterns',
+            'outgoingRoutings'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'name' => $this->getName(),
@@ -124,9 +140,9 @@ abstract class RoutingPatternGroupDtoAbstract implements DataTransferObjectInter
     /**
      * @param string $name
      *
-     * @return RoutingPatternGroupDtoAbstract
+     * @return static
      */
-    public function setName($name)
+    public function setName($name = null)
     {
         $this->name = $name;
 
@@ -144,7 +160,7 @@ abstract class RoutingPatternGroupDtoAbstract implements DataTransferObjectInter
     /**
      * @param string $description
      *
-     * @return RoutingPatternGroupDtoAbstract
+     * @return static
      */
     public function setDescription($description = null)
     {
@@ -164,9 +180,9 @@ abstract class RoutingPatternGroupDtoAbstract implements DataTransferObjectInter
     /**
      * @param integer $id
      *
-     * @return RoutingPatternGroupDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -182,31 +198,11 @@ abstract class RoutingPatternGroupDtoAbstract implements DataTransferObjectInter
     }
 
     /**
-     * @param integer $brandId
+     * @param \Ivoz\Provider\Domain\Model\Brand\BrandDto $brand
      *
-     * @return RoutingPatternGroupDtoAbstract
+     * @return static
      */
-    public function setBrandId($brandId)
-    {
-        $this->brandId = $brandId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Brand\Brand $brand
-     *
-     * @return RoutingPatternGroupDtoAbstract
-     */
-    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\Brand $brand)
+    public function setBrand(\Ivoz\Provider\Domain\Model\Brand\BrandDto $brand = null)
     {
         $this->brand = $brand;
 
@@ -214,7 +210,7 @@ abstract class RoutingPatternGroupDtoAbstract implements DataTransferObjectInter
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Brand\Brand
+     * @return \Ivoz\Provider\Domain\Model\Brand\BrandDto
      */
     public function getBrand()
     {
@@ -224,9 +220,9 @@ abstract class RoutingPatternGroupDtoAbstract implements DataTransferObjectInter
     /**
      * @param array $relPatterns
      *
-     * @return RoutingPatternGroupDtoAbstract
+     * @return static
      */
-    public function setRelPatterns($relPatterns)
+    public function setRelPatterns($relPatterns = null)
     {
         $this->relPatterns = $relPatterns;
 
@@ -244,9 +240,9 @@ abstract class RoutingPatternGroupDtoAbstract implements DataTransferObjectInter
     /**
      * @param array $outgoingRoutings
      *
-     * @return RoutingPatternGroupDtoAbstract
+     * @return static
      */
-    public function setOutgoingRoutings($outgoingRoutings)
+    public function setOutgoingRoutings($outgoingRoutings = null)
     {
         $this->outgoingRoutings = $outgoingRoutings;
 

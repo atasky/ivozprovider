@@ -27,31 +27,27 @@ abstract class HolidayDateDtoAbstract implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $calendarId;
-
-    /**
-     * @var mixed
-     */
-    private $locutionId;
-
-    /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Calendar\CalendarDto | null
      */
     private $calendar;
 
     /**
-     * @var mixed
+     * @var \Ivoz\Provider\Domain\Model\Locution\LocutionDto | null
      */
     private $locution;
+
+
+    public function __constructor($id = null)
+    {
+        $this->setId($id);
+    }
 
     /**
      * @return array
      */
     public function normalize(string $context)
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
 
     /**
@@ -64,7 +60,21 @@ abstract class HolidayDateDtoAbstract implements DataTransferObjectInterface
     /**
      * @return array
      */
-    protected function __toArray()
+    public static function getPropertyMap()
+    {
+        return [
+            'name',
+            'eventDate',
+            'id',
+            'calendar',
+            'locution'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return [
             'name' => $this->getName(),
@@ -95,9 +105,9 @@ abstract class HolidayDateDtoAbstract implements DataTransferObjectInterface
     /**
      * @param string $name
      *
-     * @return HolidayDateDtoAbstract
+     * @return static
      */
-    public function setName($name)
+    public function setName($name = null)
     {
         $this->name = $name;
 
@@ -115,9 +125,9 @@ abstract class HolidayDateDtoAbstract implements DataTransferObjectInterface
     /**
      * @param \DateTime $eventDate
      *
-     * @return HolidayDateDtoAbstract
+     * @return static
      */
-    public function setEventDate($eventDate)
+    public function setEventDate($eventDate = null)
     {
         $this->eventDate = $eventDate;
 
@@ -135,9 +145,9 @@ abstract class HolidayDateDtoAbstract implements DataTransferObjectInterface
     /**
      * @param integer $id
      *
-     * @return HolidayDateDtoAbstract
+     * @return static
      */
-    public function setId($id)
+    public function setId($id = null)
     {
         $this->id = $id;
 
@@ -153,31 +163,11 @@ abstract class HolidayDateDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $calendarId
+     * @param \Ivoz\Provider\Domain\Model\Calendar\CalendarDto $calendar
      *
-     * @return HolidayDateDtoAbstract
+     * @return static
      */
-    public function setCalendarId($calendarId)
-    {
-        $this->calendarId = $calendarId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCalendarId()
-    {
-        return $this->calendarId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Calendar\Calendar $calendar
-     *
-     * @return HolidayDateDtoAbstract
-     */
-    public function setCalendar(\Ivoz\Provider\Domain\Model\Calendar\Calendar $calendar)
+    public function setCalendar(\Ivoz\Provider\Domain\Model\Calendar\CalendarDto $calendar = null)
     {
         $this->calendar = $calendar;
 
@@ -185,7 +175,7 @@ abstract class HolidayDateDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Calendar\Calendar
+     * @return \Ivoz\Provider\Domain\Model\Calendar\CalendarDto
      */
     public function getCalendar()
     {
@@ -193,31 +183,11 @@ abstract class HolidayDateDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @param integer $locutionId
+     * @param \Ivoz\Provider\Domain\Model\Locution\LocutionDto $locution
      *
-     * @return HolidayDateDtoAbstract
+     * @return static
      */
-    public function setLocutionId($locutionId)
-    {
-        $this->locutionId = $locutionId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getLocutionId()
-    {
-        return $this->locutionId;
-    }
-
-    /**
-     * @param \Ivoz\Provider\Domain\Model\Locution\Locution $locution
-     *
-     * @return HolidayDateDtoAbstract
-     */
-    public function setLocution(\Ivoz\Provider\Domain\Model\Locution\Locution $locution)
+    public function setLocution(\Ivoz\Provider\Domain\Model\Locution\LocutionDto $locution = null)
     {
         $this->locution = $locution;
 
@@ -225,7 +195,7 @@ abstract class HolidayDateDtoAbstract implements DataTransferObjectInterface
     }
 
     /**
-     * @return \Ivoz\Provider\Domain\Model\Locution\Locution
+     * @return \Ivoz\Provider\Domain\Model\Locution\LocutionDto
      */
     public function getLocution()
     {

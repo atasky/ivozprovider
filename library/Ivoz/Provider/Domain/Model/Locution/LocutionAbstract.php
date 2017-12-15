@@ -230,8 +230,7 @@ abstract class LocutionAbstract
             ->setOriginalFileFileSize($this->getOriginalFile()->getFileSize())
             ->setOriginalFileMimeType($this->getOriginalFile()->getMimeType())
             ->setOriginalFileBaseName($this->getOriginalFile()->getBaseName())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setCompany($this->getCompany());
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null);
     }
 
     /**

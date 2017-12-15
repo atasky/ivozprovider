@@ -195,12 +195,9 @@ abstract class OutgoingDdiRulesPatternAbstract
         return self::createDto()
             ->setAction($this->getAction())
             ->setPriority($this->getPriority())
-            ->setOutgoingDdiRuleId($this->getOutgoingDdiRule() ? $this->getOutgoingDdiRule()->getId() : null)
-            ->setOutgoingDdiRule($this->getOutgoingDdiRule())
-            ->setMatchListId($this->getMatchList() ? $this->getMatchList()->getId() : null)
-            ->setMatchList($this->getMatchList())
-            ->setForcedDdiId($this->getForcedDdi() ? $this->getForcedDdi()->getId() : null)
-            ->setForcedDdi($this->getForcedDdi());
+            ->setOutgoingDdiRule($this->getOutgoingDdiRule() ? $this->getOutgoingDdiRule()->toDto() : null)
+            ->setMatchList($this->getMatchList() ? $this->getMatchList()->toDto() : null)
+            ->setForcedDdi($this->getForcedDdi() ? $this->getForcedDdi()->toDto() : null);
     }
 
     /**

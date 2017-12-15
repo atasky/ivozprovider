@@ -2,9 +2,31 @@ services:
   _defaults:
     autowire: true
     autoconfigure: true
-    public: false
+    public: true
 
-  Ivoz\Core\Application\Service\JsonLd\Serializer\Normalizer\EntityNormalizer:
+  ################################################
+  ## Override $propertyNameCollectionFactory
+  ################################################
+  Ivoz\Api\Swagger\Metadata\Property\Factory\PropertyNameCollectionFactory: ~
+
+  Ivoz\Api\Swagger\Serializer\DocumentationNormalizerDecorator:
+    decorates: 'api_platform.swagger.normalizer.documentation'
+    decoration_priority: 10
+    arguments:
+      $decoratedNormalizer: '@Ivoz\Api\Swagger\Serializer\DocumentationNormalizerDecorator.inner'
+      $propertyNameCollectionFactory: '@Ivoz\Api\Swagger\Metadata\Property\Factory\PropertyNameCollectionFactory'
+
+  Ivoz\Api\Operation\Factory\SubresourceOperationFactoryDecorator:
+    decorates: 'api_platform.subresource_operation_factory'
+    decoration_priority: 10
+    arguments:
+      $decoratedNormalizer: '@Ivoz\Api\Operation\Factory\SubresourceOperationFactoryDecorator.inner'
+      $propertyNameCollectionFactory: '@Ivoz\Api\Swagger\Metadata\Property\Factory\PropertyNameCollectionFactory'
+
+  ################################################
+  ## Services decorators
+  ################################################
+  Ivoz\Api\JsonLd\Serializer\Normalizer\EntityNormalizer:
     arguments:
       $resourceMetadataFactory: "@api_platform.metadata.resource.metadata_factory"
       $iriConverter: "@api_platform.iri_converter"
@@ -12,3 +34,15 @@ services:
       $contextBuilder: "@api_platform.jsonld.context_builder"
     tags:
       -  { name: serializer.normalizer, priority: 10 }
+
+  Ivoz\Api\Swagger\Metadata\Property\Factory\PropertyMetadataLinkFactory:
+    decorates: 'api_platform.metadata.property.metadata_factory'
+    decoration_priority: 1
+    arguments:
+      $decorated: '@Ivoz\Api\Swagger\Metadata\Property\Factory\PropertyMetadataLinkFactory.inner'
+
+  Ivoz\Api\Swagger\Metadata\Resource\ResourceMetadata\ResourceMetadataFactory:
+    decorates: "api_platform.metadata.resource.metadata_factory"
+    decoration_priority: 1
+    arguments:
+      $decorated: '@Ivoz\Api\Swagger\Metadata\Resource\ResourceMetadata\ResourceMetadataFactory.inner'
