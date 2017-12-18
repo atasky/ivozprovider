@@ -2,10 +2,6 @@
 
 namespace Ivoz\Provider\Domain\Model\Brand;
 
-use Ivoz\Core\Application\DataTransferObjectInterface;
-use Ivoz\Core\Application\ForeignKeyTransformerInterface;
-use Ivoz\Core\Application\CollectionTransformerInterface;
-
 class BrandDto extends BrandDtoAbstract
 {
     private $logoPath;
@@ -38,8 +34,23 @@ class BrandDto extends BrandDtoAbstract
     /**
      * @return array
      */
-    public static function getPropertyMap(string $context = 'Simple')
+    public static function getPropertyMap(string $context = self::CONTEXT_SIMPLE)
     {
+        if ($context === self::CONTEXT_SIMPLE) {
+            return [
+                'id',
+                'name',
+                'recordingsLimitMB',
+                'recordingsLimitEmail',
+                'logo',
+                'invoice',
+                'domain',
+                'services',
+                'urls',
+                'relFeatures'
+            ];
+        }
+
         return parent::getPropertyMap($context);
     }
 
@@ -50,7 +61,6 @@ class BrandDto extends BrandDtoAbstract
     {
         return parent::normalize($context);
     }
-
 }
 
 

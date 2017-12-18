@@ -2,14 +2,16 @@
 
 namespace Ivoz\Provider\Domain\Model\Company;
 
-use Ivoz\Core\Application\DataTransferObjectInterface;
-use Ivoz\Core\Application\ForeignKeyTransformerInterface;
-use Ivoz\Core\Application\CollectionTransformerInterface;
-
-
 class CompanyDto extends CompanyDtoAbstract
 {
 
+    /**
+     * @return array
+     */
+    public static function getPropertyMap(string $context = self::CONTEXT_SIMPLE)
+    {
+        return parent::getPropertyMap($context);
+    }
 }
 
 

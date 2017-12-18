@@ -8,6 +8,9 @@ use Ivoz\Core\Application\Helper\ArrayObjectHelper;
 
 class DocumentationNormalizerDecorator implements NormalizerInterface
 {
+    /**
+     * @var NormalizerInterface
+     */
     protected $decoratedNormalizer;
 
     public function __construct(
@@ -40,12 +43,6 @@ class DocumentationNormalizerDecorator implements NormalizerInterface
         $response = $this->decoratedNormalizer->normalize(...func_get_args());
         $response['definitions']  = $this->fixRelationReferences($response['definitions'] );
 
-//        echo "paths<br />";
-//        dump(ArrayObjectHelper::parseResurively($response['paths']));
-//        echo "definitions<br />";
-//        dump(ArrayObjectHelper::parseResurively($response['definitions']));
-//        die;
-
         return $response;
     }
 
@@ -60,9 +57,15 @@ class DocumentationNormalizerDecorator implements NormalizerInterface
 
     private function fixRelationReferences($definitions)
     {
-        foreach ($definitions as $key => $value) {
+        $definitionKeys = array_keys($definitions->getArrayCopy());
+        foreach ($definitionKeys as $key) {
 
             if (!$this->isEntity($key)) {
+
+                if ($this->hasContext($key)) {
+                    unset($definitions[$key]);
+                }
+
                 continue;
             }
 
@@ -92,6 +95,8 @@ class DocumentationNormalizerDecorator implements NormalizerInterface
 
             if ($this->isEntity($property['$ref'])) {
                 $property = $this->setContext($property, $context);
+            } else if ($context) {
+                $property = $this->setContext($property, $context);
             }
 
             return $property;
@@ -108,15 +113,24 @@ class DocumentationNormalizerDecorator implements NormalizerInterface
         return $property;
     }
 
+    private function hasContext($definitionName)
+    {
+        $segments = explode('-', $definitionName);
+
+        return count($segments) > 1;
+    }
+
     private function setContext($property, $context)
     {
         if ($context !== 'Detailed') {
             unset($property['$ref']);
-            $property['type'] = 'string';
+            $property['type'] = 'integer';
             return $property;
         }
 
         $refSegments = explode('-', $property['$ref']);
-        return $refSegments[0];
+        $property['$ref'] = $refSegments[0];
+
+        return $property;
     }
 }

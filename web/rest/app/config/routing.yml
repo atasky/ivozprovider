@@ -1,4 +1,7 @@
 api:
   resource: '.'
   type: 'api_platform'
-  prefix: '/v1'
+#  prefix: '/v1'
+
+api_doc:
+  path: /swagger.json

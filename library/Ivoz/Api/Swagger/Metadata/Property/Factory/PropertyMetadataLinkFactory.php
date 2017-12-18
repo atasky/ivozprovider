@@ -36,7 +36,7 @@ class PropertyMetadataLinkFactory implements PropertyMetadataFactoryInterface
         if ($isEntity || $isCollection) {
             $propertyMetadata = $propertyMetadata->withReadable(true);
             $propertyMetadata = $propertyMetadata->withReadableLink(true);
-            $propertyMetadata = $propertyMetadata->withWritable(false);
+            $propertyMetadata = $propertyMetadata->withWritable(true);
             $propertyMetadata = $propertyMetadata->withWritableLink(false);
         } else {
             $propertyMetadata = $propertyMetadata->withReadableLink(true);
