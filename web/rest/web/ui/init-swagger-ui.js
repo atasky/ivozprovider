@@ -17,7 +17,8 @@ window.onload = () => {
     filter: true,
     docExpansion: 'none',
     layout: 'StandaloneLayout',
-    defaultModelExpandDepth: 1
+    defaultModelExpandDepth: 1,
+    defaultModelRendering: 'model'
   });
 
   if (data.oauth.enabled) {

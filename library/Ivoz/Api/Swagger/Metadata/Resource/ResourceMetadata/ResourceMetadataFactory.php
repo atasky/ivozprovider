@@ -24,8 +24,6 @@ class ResourceMetadataFactory implements ResourceMetadataFactoryInterface
         $isEntity = in_array(EntityInterface::class, class_implements($resourceClass));
         if ($isEntity) {
 
-            $resourceMetadata = $resourceMetadata->withAttributes([]);
-
             $resourceMetadata = $resourceMetadata->withItemOperations([
                 'get' => [
                     'method' => 'GET',

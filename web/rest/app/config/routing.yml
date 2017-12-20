@@ -5,3 +5,7 @@ api:
 
 api_doc:
   path: /swagger.json
+
+api_login_check:
+  path: /login_check
+#  defaults: { _controller: ApiBundle:Authentication:loginCheck }

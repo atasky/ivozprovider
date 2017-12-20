@@ -1,12 +1,12 @@
 <?php
 
-namespace Ivoz\Api\Swagger\Serializer;
+namespace Ivoz\Api\Swagger\Serializer\DocumentationNormalizer;
 
 use ApiPlatform\Core\Metadata\Property\Factory\PropertyNameCollectionFactoryInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Ivoz\Core\Application\Helper\ArrayObjectHelper;
+use Ivoz\Core\Application\DataTransferObjectInterface;
 
-class DocumentationNormalizerDecorator implements NormalizerInterface
+class ReferenceFixerDecorator implements NormalizerInterface
 {
     /**
      * @var NormalizerInterface
@@ -41,7 +41,7 @@ class DocumentationNormalizerDecorator implements NormalizerInterface
     public function normalize($object, $format = null, array $context = [])
     {
         $response = $this->decoratedNormalizer->normalize(...func_get_args());
-        $response['definitions']  = $this->fixRelationReferences($response['definitions'] );
+        $response['definitions'] = $this->fixRelationReferences($response['definitions']);
 
         return $response;
     }
@@ -55,17 +55,22 @@ class DocumentationNormalizerDecorator implements NormalizerInterface
         return true;
     }
 
+    private function hasContext($definitionName)
+    {
+        $segments = explode('-', $definitionName);
+
+        return count($segments) > 1;
+    }
+
     private function fixRelationReferences($definitions)
     {
         $definitionKeys = array_keys($definitions->getArrayCopy());
         foreach ($definitionKeys as $key) {
 
             if (!$this->isEntity($key)) {
-
                 if ($this->hasContext($key)) {
                     unset($definitions[$key]);
                 }
-
                 continue;
             }
 
@@ -76,6 +81,9 @@ class DocumentationNormalizerDecorator implements NormalizerInterface
             $context = explode('-', $key);
             foreach ($definitions[$key]['properties'] as $propertyKey => $property) {
                 $definitions[$key]['properties'][$propertyKey] = $this->fixRelationProperty($property, $context[1] ?? '');
+                if (is_null($definitions[$key]['properties'][$propertyKey])) {
+                    unset($definitions[$key]['properties'][$propertyKey]);
+                }
             }
         }
 
@@ -92,37 +100,25 @@ class DocumentationNormalizerDecorator implements NormalizerInterface
         }
 
         if ($isReference) {
-
-            if ($this->isEntity($property['$ref'])) {
-                $property = $this->setContext($property, $context);
-            } else if ($context) {
-                $property = $this->setContext($property, $context);
-            }
-
-            return $property;
+            return $this->setContext($property, $context);
         }
 
         if (!array_key_exists('$ref', $property['items'])) {
-            return $property;
+            return null;
         }
 
-        if ($this->isEntity($property['items']['$ref'])) {
-            $property['items'] = $this->setContext($property['items'],  $context);
+        if ($context !== 'Detailed') {
+            return null;
         }
+
+        $property['items'] = $this->setContext($property['items'],  $context);
 
         return $property;
     }
 
-    private function hasContext($definitionName)
-    {
-        $segments = explode('-', $definitionName);
-
-        return count($segments) > 1;
-    }
-
     private function setContext($property, $context)
     {
-        if ($context !== 'Detailed') {
+        if ($this->isEntity($property['$ref']) && $context !== DataTransferObjectInterface::CONTEXT_DETAILED) {
             unset($property['$ref']);
             $property['type'] = 'integer';
             return $property;

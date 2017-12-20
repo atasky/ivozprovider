@@ -105,8 +105,8 @@ class EntityNormalizer implements NormalizerInterface, DenormalizerInterface
                 }
 
                 $embeddedContext = [
-                    'item_operation_name' => $context['item_operation_name'],
-                    'operation_type' => 'list',
+                    'item_operation_name' => 'get',
+                    'operation_type' => 'item',
                     'request_uri' => $context['request_uri']
                 ];
 

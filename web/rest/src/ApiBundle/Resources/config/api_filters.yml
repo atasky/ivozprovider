@@ -1,0 +1,5 @@
+services:
+  brand.search_filter:
+    parent: 'api_platform.doctrine.orm.search_filter'
+    arguments: [ { name: 'partial', invoice.nif: 'partial' } ]
+    tags: [ 'api_platform.filter' ]
