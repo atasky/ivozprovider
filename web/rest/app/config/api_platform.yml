@@ -1,2 +1,12 @@
 imports:
-  - { resource: "@ApiBundle/Resources/config/api_platform.yml" }
+  - { resource: "@ApiBundle/Resources/config/api_platform_base.yml" }
+
+api_platform:
+    # The title of the API.
+    title: ''
+
+    # The description of the API.
+    description: ''
+
+    # The version of the API.
+    version: '0.1.1'

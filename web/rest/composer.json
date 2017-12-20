@@ -47,7 +47,8 @@
         "psr-4": {
             "": "src/",
             "Ivoz\\": "../../library/Ivoz",
-            "CoreBundle\\": "../../library/CoreBundle"
+            "CoreBundle\\": "../../library/CoreBundle",
+            "ApiBundle\\": "../../library/ApiBundle"
         },
         "classmap": [
             "app/AppKernel.php",

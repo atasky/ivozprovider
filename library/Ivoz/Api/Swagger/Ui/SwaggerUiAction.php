@@ -15,8 +15,6 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * Displays the documentation in Swagger UI.
- *
- * @author Kévin Dunglas <dunglas@gmail.com>
  */
 final class SwaggerUiAction
 {

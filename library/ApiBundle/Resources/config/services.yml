@@ -5,7 +5,7 @@ services:
     public: false
 
   ################################################
-  ## Override $propertyNameCollectionFactory
+  ## DocumentationNormalizer
   ################################################
   Ivoz\Api\Swagger\Metadata\Property\Factory\PropertyNameCollectionFactory: ~
 
@@ -30,6 +30,10 @@ services:
       $decoratedNormalizer:
         '@Ivoz\Api\Swagger\Serializer\DocumentationNormalizer\AuthEndpointDecorator.inner'
 
+  ################################################
+  ## SubresourceOperationFactoryDecorator
+  ################################################
+
   Ivoz\Api\Operation\Factory\SubresourceOperationFactoryDecorator:
     decorates: 'api_platform.subresource_operation_factory'
     decoration_priority: 10
@@ -38,7 +42,7 @@ services:
       $propertyNameCollectionFactory: '@Ivoz\Api\Swagger\Metadata\Property\Factory\PropertyNameCollectionFactory'
 
   ################################################
-  ## Services decorators
+  ## EntityNormalizer
   ################################################
   Ivoz\Api\JsonLd\Serializer\Normalizer\EntityNormalizer:
     arguments:
@@ -49,18 +53,39 @@ services:
     tags:
       -  { name: serializer.normalizer, priority: 10 }
 
+  ################################################
+  ## PropertyMetadataLinkFactory
+  ################################################
   Ivoz\Api\Swagger\Metadata\Property\Factory\PropertyMetadataLinkFactory:
     decorates: 'api_platform.metadata.property.metadata_factory'
     decoration_priority: 1
     arguments:
       $decorated: '@Ivoz\Api\Swagger\Metadata\Property\Factory\PropertyMetadataLinkFactory.inner'
 
+  ################################################
+  ## ResourceMetadataFactory
+  ################################################
   Ivoz\Api\Swagger\Metadata\Resource\ResourceMetadata\ResourceMetadataFactory:
     decorates: "api_platform.metadata.resource.metadata_factory"
     decoration_priority: 1
     arguments:
       $decorated: '@Ivoz\Api\Swagger\Metadata\Resource\ResourceMetadata\ResourceMetadataFactory.inner'
 
+  ################################################
+  ## ExtractorResourceNameCollectionFactory
+  ################################################
+  Ivoz\Api\Swagger\Metadata\Resource\Factory\YmlExtractorResourceNameCollectionFactory:
+    decorates: "api_platform.metadata.resource.name_collection_factory"
+    decoration_priority: 0
+    arguments:
+      $sourceFileName: '%kernel.project_dir%/app/config/api_resources.yml'
+
+  ################################################
+  ## ExtractorResourceMetadataFactory
+  ################################################
+  Ivoz\Api\Swagger\Metadata\Resource\Factory\EmptyResourceMetadataFactory:
+    decorates: "api_platform.metadata.resource.metadata_factory"
+    decoration_priority: 29 #right before api_platform.metadata.resource.metadata_factory.php_doc
 
   ################################################
   ## UI
@@ -69,7 +94,7 @@ services:
     class: Ivoz\Api\Swagger\Ui\SwaggerUiAction
     public: true
     arguments:
-      - "@api_platform.metadata.resource.name_collection_factory"
+      - '@Ivoz\Api\Swagger\Metadata\Resource\Factory\YmlExtractorResourceNameCollectionFactory'
       - "@api_platform.metadata.resource.metadata_factory"
       - "@api_platform.serializer"
       - "@twig"
