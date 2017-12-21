@@ -257,6 +257,8 @@ abstract class BrandAbstract
             ->setLanguage($dto->getLanguage())
             ->setDefaultTimezone($dto->getDefaultTimezone());
 
+
+
         $this->sanitizeValues();
         return $this;
     }

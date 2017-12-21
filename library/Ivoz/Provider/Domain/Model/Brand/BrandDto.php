@@ -34,20 +34,13 @@ class BrandDto extends BrandDtoAbstract
     /**
      * @return array
      */
-    public static function getPropertyMap(string $context = self::CONTEXT_SIMPLE)
+    public static function getPropertyMap(string $context = self::CONTEXT_COLLECTION)
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return [
                 'id',
                 'name',
-                'recordingsLimitMB',
-                'recordingsLimitEmail',
-                'logo',
-                'invoice',
-                'domain',
-                'services',
-                'urls',
-                'relFeatures'
+                'companies'
             ];
         }
 
@@ -57,7 +50,7 @@ class BrandDto extends BrandDtoAbstract
     /**
      * @return array
      */
-    public function normalize(string $context)
+    public function normalize(string $context = self::CONTEXT_COLLECTION)
     {
         return parent::normalize($context);
     }

@@ -57,7 +57,16 @@ abstract class MatchListPatternDtoAbstract implements DataTransferObjectInterfac
      */
     public function normalize(string $context)
     {
-        return $this->toArray();
+        $response = $this->toArray();
+        $contextProperties = $this->getPropertyMap($context);
+
+        return array_filter(
+            $response,
+            function ($key) use ($contextProperties) {
+                return in_array($key, $contextProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -72,7 +81,7 @@ abstract class MatchListPatternDtoAbstract implements DataTransferObjectInterfac
      */
     public static function getPropertyMap(string $context = '')
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return ['id'];
         }
 
@@ -240,6 +249,32 @@ abstract class MatchListPatternDtoAbstract implements DataTransferObjectInterfac
         return $this->matchList;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setMatchListId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\MatchList\MatchListDto($id)
+                : null;
+
+            return $this->setMatchList($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getMatchListId()
+        {
+            if ($dto = $this->getMatchList()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\Country\CountryDto $numberCountry
      *
@@ -259,6 +294,32 @@ abstract class MatchListPatternDtoAbstract implements DataTransferObjectInterfac
     {
         return $this->numberCountry;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setNumberCountryId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Country\CountryDto($id)
+                : null;
+
+            return $this->setNumberCountry($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getNumberCountryId()
+        {
+            if ($dto = $this->getNumberCountry()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 }
 
 

@@ -206,7 +206,7 @@ abstract class RtpproxyAbstract
             ->setFlags($this->getFlags())
             ->setWeight($this->getWeight())
             ->setDescription($this->getDescription())
-            ->setMediaRelaySetId($this->getMediaRelaySet() ? $this->getMediaRelaySet()->getId() : null);
+            ->setMediaRelaySet($this->getMediaRelaySet() ? $this->getMediaRelaySet()->toDto() : null);
     }
 
     /**

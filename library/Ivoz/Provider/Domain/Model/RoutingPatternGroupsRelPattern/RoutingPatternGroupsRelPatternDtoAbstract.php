@@ -37,7 +37,16 @@ abstract class RoutingPatternGroupsRelPatternDtoAbstract implements DataTransfer
      */
     public function normalize(string $context)
     {
-        return $this->toArray();
+        $response = $this->toArray();
+        $contextProperties = $this->getPropertyMap($context);
+
+        return array_filter(
+            $response,
+            function ($key) use ($contextProperties) {
+                return in_array($key, $contextProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -52,7 +61,7 @@ abstract class RoutingPatternGroupsRelPatternDtoAbstract implements DataTransfer
      */
     public static function getPropertyMap(string $context = '')
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return ['id'];
         }
 
@@ -132,6 +141,32 @@ abstract class RoutingPatternGroupsRelPatternDtoAbstract implements DataTransfer
         return $this->routingPattern;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setRoutingPatternId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\RoutingPattern\RoutingPatternDto($id)
+                : null;
+
+            return $this->setRoutingPattern($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getRoutingPatternId()
+        {
+            if ($dto = $this->getRoutingPattern()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\RoutingPatternGroup\RoutingPatternGroupDto $routingPatternGroup
      *
@@ -151,6 +186,32 @@ abstract class RoutingPatternGroupsRelPatternDtoAbstract implements DataTransfer
     {
         return $this->routingPatternGroup;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setRoutingPatternGroupId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\RoutingPatternGroup\RoutingPatternGroupDto($id)
+                : null;
+
+            return $this->setRoutingPatternGroup($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getRoutingPatternGroupId()
+        {
+            if ($dto = $this->getRoutingPatternGroup()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 }
 
 

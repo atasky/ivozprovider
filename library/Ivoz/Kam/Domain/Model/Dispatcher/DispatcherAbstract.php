@@ -222,7 +222,7 @@ abstract class DispatcherAbstract
             ->setPriority($this->getPriority())
             ->setAttrs($this->getAttrs())
             ->setDescription($this->getDescription())
-            ->setApplicationServerId($this->getApplicationServer() ? $this->getApplicationServer()->getId() : null);
+            ->setApplicationServer($this->getApplicationServer() ? $this->getApplicationServer()->toDto() : null);
     }
 
     /**

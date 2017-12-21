@@ -72,7 +72,7 @@ abstract class QueueDtoAbstract implements DataTransferObjectInterface
     private $queue;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }
@@ -82,7 +82,16 @@ abstract class QueueDtoAbstract implements DataTransferObjectInterface
      */
     public function normalize(string $context)
     {
-        return $this->toArray();
+        $response = $this->toArray();
+        $contextProperties = $this->getPropertyMap($context);
+
+        return array_filter(
+            $response,
+            function ($key) use ($contextProperties) {
+                return in_array($key, $contextProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -97,7 +106,7 @@ abstract class QueueDtoAbstract implements DataTransferObjectInterface
      */
     public static function getPropertyMap(string $context = '')
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return ['id'];
         }
 
@@ -393,6 +402,32 @@ abstract class QueueDtoAbstract implements DataTransferObjectInterface
     {
         return $this->queue;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setQueueId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Queue\QueueDto($id)
+                : null;
+
+            return $this->setQueue($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getQueueId()
+        {
+            if ($dto = $this->getQueue()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 }
 
 

@@ -107,7 +107,7 @@ class ReferenceFixerDecorator implements NormalizerInterface
             return null;
         }
 
-        if ($context !== 'Detailed') {
+        if ($context !== DataTransferObjectInterface::CONTEXT_DETAILED) {
             return null;
         }
 

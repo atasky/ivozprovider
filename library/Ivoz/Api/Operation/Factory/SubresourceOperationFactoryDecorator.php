@@ -13,7 +13,6 @@ class SubresourceOperationFactoryDecorator  implements SubresourceOperationFacto
         SubresourceOperationFactoryInterface $decoratedNormalizer,
         PropertyNameCollectionFactoryInterface$propertyNameCollectionFactory
     ) {
-
         $reflection = new \ReflectionClass($decoratedNormalizer);
         $property = $reflection->getProperty('propertyNameCollectionFactory');
         $property->setAccessible(true);

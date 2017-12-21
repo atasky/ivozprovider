@@ -3,7 +3,6 @@
 namespace Ivoz\Api\JsonLd\Serializer\Normalizer;
 
 use ApiPlatform\Core\Api\IriConverterInterface;
-use ApiPlatform\Core\Api\OperationType;
 use ApiPlatform\Core\Api\ResourceClassResolverInterface;
 use ApiPlatform\Core\Exception\InvalidArgumentException;
 use ApiPlatform\Core\JsonLd\ContextBuilderInterface;
@@ -11,14 +10,12 @@ use ApiPlatform\Core\JsonLd\Serializer\JsonLdContextTrait;
 use ApiPlatform\Core\Metadata\Resource\Factory\ResourceMetadataFactoryInterface;
 use Ivoz\Core\Application\DataTransferObjectInterface;
 use Ivoz\Core\Domain\Model\EntityInterface;
-
-use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * Based on ApiPlatform\Core\JsonLd\Serializer\ItemNormalizer
  */
-class EntityNormalizer implements NormalizerInterface, DenormalizerInterface
+class EntityNormalizer implements NormalizerInterface
 {
     use JsonLdContextTrait;
 
@@ -113,7 +110,7 @@ class EntityNormalizer implements NormalizerInterface, DenormalizerInterface
                 try {
                     $rawData[$key] = $this->normalizeDto(
                         $value,
-                        'list',
+                        DataTransferObjectInterface::CONTEXT_COLLECTION,
                         $embeddedContext,
                         true
                     );
@@ -128,37 +125,5 @@ class EntityNormalizer implements NormalizerInterface, DenormalizerInterface
         $data['@type'] = $resourceMetadata->getIri() ?: $resourceMetadata->getShortName();
 
         return $data + $rawData;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function supportsDenormalization($data, $type, $format = null)
-    {
-        return self::FORMAT === $format && class_exists($type . 'DTO');
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @throws InvalidArgumentException
-     */
-    public function denormalize($data, $class, $format = null, array $context = [])
-    {
-        // Avoid issues with proxies if we populated the object
-        if (isset($data['@id']) && !isset($context[self::OBJECT_TO_POPULATE])) {
-            if (isset($context['api_allow_update']) && true !== $context['api_allow_update']) {
-                throw new InvalidArgumentException('Update is not allowed for this operation.');
-            }
-
-            $context[self::OBJECT_TO_POPULATE] = $this->iriConverter->getItemFromIri($data['@id'], $context + ['fetch_data' => true]);
-        }
-
-        return $this->denormalizeEntity($data, $class, $format, $context);
-    }
-
-    private function denormalizeEntity($data, $class, $format, $context)
-    {
-        throw new \Exception('To be implemented ');
     }
 }

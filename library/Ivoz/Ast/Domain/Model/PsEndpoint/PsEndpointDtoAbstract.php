@@ -112,7 +112,7 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     private $retailAccount;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }
@@ -122,7 +122,16 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
      */
     public function normalize(string $context)
     {
-        return $this->toArray();
+        $response = $this->toArray();
+        $contextProperties = $this->getPropertyMap($context);
+
+        return array_filter(
+            $response,
+            function ($key) use ($contextProperties) {
+                return in_array($key, $contextProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -137,7 +146,7 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
      */
     public static function getPropertyMap(string $context = '')
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return ['id'];
         }
 
@@ -572,6 +581,32 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
         return $this->terminal;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setTerminalId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Terminal\TerminalDto($id)
+                : null;
+
+            return $this->setTerminal($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getTerminalId()
+        {
+            if ($dto = $this->getTerminal()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\Friend\FriendDto $friend
      *
@@ -592,6 +627,32 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
         return $this->friend;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setFriendId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Friend\FriendDto($id)
+                : null;
+
+            return $this->setFriend($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getFriendId()
+        {
+            if ($dto = $this->getFriend()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\RetailAccount\RetailAccountDto $retailAccount
      *
@@ -611,6 +672,32 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     {
         return $this->retailAccount;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setRetailAccountId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\RetailAccount\RetailAccountDto($id)
+                : null;
+
+            return $this->setRetailAccount($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getRetailAccountId()
+        {
+            if ($dto = $this->getRetailAccount()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 }
 
 

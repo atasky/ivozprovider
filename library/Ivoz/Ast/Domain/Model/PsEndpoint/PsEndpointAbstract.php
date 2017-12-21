@@ -325,9 +325,9 @@ abstract class PsEndpointAbstract
             ->setOneHundredRel($this->getOneHundredRel())
             ->setOutboundProxy($this->getOutboundProxy())
             ->setTrustIdInbound($this->getTrustIdInbound())
-            ->setTerminalId($this->getTerminal() ? $this->getTerminal()->getId() : null)
-            ->setFriendId($this->getFriend() ? $this->getFriend()->getId() : null)
-            ->setRetailAccountId($this->getRetailAccount() ? $this->getRetailAccount()->getId() : null);
+            ->setTerminal($this->getTerminal() ? $this->getTerminal()->toDto() : null)
+            ->setFriend($this->getFriend() ? $this->getFriend()->toDto() : null)
+            ->setRetailAccount($this->getRetailAccount() ? $this->getRetailAccount()->toDto() : null);
     }
 
     /**

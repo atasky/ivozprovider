@@ -52,7 +52,16 @@ abstract class TimezoneDtoAbstract implements DataTransferObjectInterface
      */
     public function normalize(string $context)
     {
-        return $this->toArray();
+        $response = $this->toArray();
+        $contextProperties = $this->getPropertyMap($context);
+
+        return array_filter(
+            $response,
+            function ($key) use ($contextProperties) {
+                return in_array($key, $contextProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -67,7 +76,7 @@ abstract class TimezoneDtoAbstract implements DataTransferObjectInterface
      */
     public static function getPropertyMap(string $context = '')
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return ['id'];
         }
 
@@ -232,6 +241,32 @@ abstract class TimezoneDtoAbstract implements DataTransferObjectInterface
     {
         return $this->country;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setCountryId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Country\CountryDto($id)
+                : null;
+
+            return $this->setCountry($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getCountryId()
+        {
+            if ($dto = $this->getCountry()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 }
 
 

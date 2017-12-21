@@ -430,7 +430,7 @@ abstract class VoicemailAbstract
             ->setImapport($this->getImapport())
             ->setImapflags($this->getImapflags())
             ->setStamp($this->getStamp())
-            ->setUserId($this->getUser() ? $this->getUser()->getId() : null);
+            ->setUser($this->getUser() ? $this->getUser()->toDto() : null);
     }
 
     /**

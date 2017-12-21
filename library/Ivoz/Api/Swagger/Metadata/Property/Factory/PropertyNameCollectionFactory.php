@@ -6,7 +6,6 @@ use ApiPlatform\Core\Metadata\Property\Factory\PropertyNameCollectionFactoryInte
 use ApiPlatform\Core\Metadata\Property\PropertyNameCollection;
 use Symfony\Component\Serializer\Normalizer\PropertyNormalizer;
 
-
 class PropertyNameCollectionFactory implements PropertyNameCollectionFactoryInterface
 {
     /**

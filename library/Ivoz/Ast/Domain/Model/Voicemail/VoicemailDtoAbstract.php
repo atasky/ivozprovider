@@ -187,7 +187,7 @@ abstract class VoicemailDtoAbstract implements DataTransferObjectInterface
     private $user;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }
@@ -197,7 +197,16 @@ abstract class VoicemailDtoAbstract implements DataTransferObjectInterface
      */
     public function normalize(string $context)
     {
-        return $this->toArray();
+        $response = $this->toArray();
+        $contextProperties = $this->getPropertyMap($context);
+
+        return array_filter(
+            $response,
+            function ($key) use ($contextProperties) {
+                return in_array($key, $contextProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -212,7 +221,7 @@ abstract class VoicemailDtoAbstract implements DataTransferObjectInterface
      */
     public static function getPropertyMap(string $context = '')
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return ['id'];
         }
 
@@ -1014,6 +1023,32 @@ abstract class VoicemailDtoAbstract implements DataTransferObjectInterface
     {
         return $this->user;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setUserId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\User\UserDto($id)
+                : null;
+
+            return $this->setUser($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getUserId()
+        {
+            if ($dto = $this->getUser()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 }
 
 

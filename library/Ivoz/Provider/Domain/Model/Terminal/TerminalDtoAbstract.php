@@ -92,7 +92,16 @@ abstract class TerminalDtoAbstract implements DataTransferObjectInterface
      */
     public function normalize(string $context)
     {
-        return $this->toArray();
+        $response = $this->toArray();
+        $contextProperties = $this->getPropertyMap($context);
+
+        return array_filter(
+            $response,
+            function ($key) use ($contextProperties) {
+                return in_array($key, $contextProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -107,7 +116,7 @@ abstract class TerminalDtoAbstract implements DataTransferObjectInterface
      */
     public static function getPropertyMap(string $context = '')
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return ['id'];
         }
 
@@ -399,6 +408,32 @@ abstract class TerminalDtoAbstract implements DataTransferObjectInterface
         return $this->company;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setCompanyId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Company\CompanyDto($id)
+                : null;
+
+            return $this->setCompany($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getCompanyId()
+        {
+            if ($dto = $this->getCompany()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\Domain\DomainDto $domain
      *
@@ -419,6 +454,32 @@ abstract class TerminalDtoAbstract implements DataTransferObjectInterface
         return $this->domain;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setDomainId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Domain\DomainDto($id)
+                : null;
+
+            return $this->setDomain($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getDomainId()
+        {
+            if ($dto = $this->getDomain()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\TerminalModel\TerminalModelDto $terminalModel
      *
@@ -438,6 +499,32 @@ abstract class TerminalDtoAbstract implements DataTransferObjectInterface
     {
         return $this->terminalModel;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setTerminalModelId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\TerminalModel\TerminalModelDto($id)
+                : null;
+
+            return $this->setTerminalModel($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getTerminalModelId()
+        {
+            if ($dto = $this->getTerminalModel()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 
     /**
      * @param array $astPsEndpoints

@@ -247,7 +247,7 @@ abstract class QueueAbstract
             ->setMaxlen($this->getMaxlen())
             ->setStrategy($this->getStrategy())
             ->setWeight($this->getWeight())
-            ->setQueueId($this->getQueue() ? $this->getQueue()->getId() : null);
+            ->setQueue($this->getQueue() ? $this->getQueue()->toDto() : null);
     }
 
     /**

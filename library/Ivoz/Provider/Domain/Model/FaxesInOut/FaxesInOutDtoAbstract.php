@@ -82,7 +82,16 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
      */
     public function normalize(string $context)
     {
-        return $this->toArray();
+        $response = $this->toArray();
+        $contextProperties = $this->getPropertyMap($context);
+
+        return array_filter(
+            $response,
+            function ($key) use ($contextProperties) {
+                return in_array($key, $contextProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -97,7 +106,7 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
      */
     public static function getPropertyMap(string $context = '')
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return ['id'];
         }
 
@@ -375,6 +384,32 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
         return $this->fax;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setFaxId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Fax\FaxDto($id)
+                : null;
+
+            return $this->setFax($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getFaxId()
+        {
+            if ($dto = $this->getFax()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\Country\CountryDto $dstCountry
      *
@@ -394,6 +429,32 @@ abstract class FaxesInOutDtoAbstract implements DataTransferObjectInterface
     {
         return $this->dstCountry;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setDstCountryId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Country\CountryDto($id)
+                : null;
+
+            return $this->setDstCountry($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getDstCountryId()
+        {
+            if ($dto = $this->getDstCountry()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 }
 
 

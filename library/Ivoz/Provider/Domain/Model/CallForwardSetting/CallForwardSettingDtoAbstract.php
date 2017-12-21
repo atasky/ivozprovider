@@ -62,7 +62,7 @@ abstract class CallForwardSettingDtoAbstract implements DataTransferObjectInterf
     private $numberCountry;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }
@@ -72,7 +72,16 @@ abstract class CallForwardSettingDtoAbstract implements DataTransferObjectInterf
      */
     public function normalize(string $context)
     {
-        return $this->toArray();
+        $response = $this->toArray();
+        $contextProperties = $this->getPropertyMap($context);
+
+        return array_filter(
+            $response,
+            function ($key) use ($contextProperties) {
+                return in_array($key, $contextProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -87,7 +96,7 @@ abstract class CallForwardSettingDtoAbstract implements DataTransferObjectInterf
      */
     public static function getPropertyMap(string $context = '')
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return ['id'];
         }
 
@@ -283,6 +292,32 @@ abstract class CallForwardSettingDtoAbstract implements DataTransferObjectInterf
         return $this->user;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setUserId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\User\UserDto($id)
+                : null;
+
+            return $this->setUser($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getUserId()
+        {
+            if ($dto = $this->getUser()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\Extension\ExtensionDto $extension
      *
@@ -302,6 +337,32 @@ abstract class CallForwardSettingDtoAbstract implements DataTransferObjectInterf
     {
         return $this->extension;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setExtensionId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Extension\ExtensionDto($id)
+                : null;
+
+            return $this->setExtension($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getExtensionId()
+        {
+            if ($dto = $this->getExtension()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 
     /**
      * @param \Ivoz\Provider\Domain\Model\User\UserDto $voiceMailUser
@@ -323,6 +384,32 @@ abstract class CallForwardSettingDtoAbstract implements DataTransferObjectInterf
         return $this->voiceMailUser;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setVoiceMailUserId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\User\UserDto($id)
+                : null;
+
+            return $this->setVoiceMailUser($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getVoiceMailUserId()
+        {
+            if ($dto = $this->getVoiceMailUser()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\Country\CountryDto $numberCountry
      *
@@ -342,6 +429,32 @@ abstract class CallForwardSettingDtoAbstract implements DataTransferObjectInterf
     {
         return $this->numberCountry;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setNumberCountryId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Country\CountryDto($id)
+                : null;
+
+            return $this->setNumberCountry($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getNumberCountryId()
+        {
+            if ($dto = $this->getNumberCountry()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 }
 
 

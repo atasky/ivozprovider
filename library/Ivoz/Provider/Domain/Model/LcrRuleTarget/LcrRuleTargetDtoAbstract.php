@@ -47,7 +47,7 @@ abstract class LcrRuleTargetDtoAbstract implements DataTransferObjectInterface
     private $outgoingRouting;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }
@@ -57,7 +57,16 @@ abstract class LcrRuleTargetDtoAbstract implements DataTransferObjectInterface
      */
     public function normalize(string $context)
     {
-        return $this->toArray();
+        $response = $this->toArray();
+        $contextProperties = $this->getPropertyMap($context);
+
+        return array_filter(
+            $response,
+            function ($key) use ($contextProperties) {
+                return in_array($key, $contextProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -72,7 +81,7 @@ abstract class LcrRuleTargetDtoAbstract implements DataTransferObjectInterface
      */
     public static function getPropertyMap(string $context = '')
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return ['id'];
         }
 
@@ -221,6 +230,32 @@ abstract class LcrRuleTargetDtoAbstract implements DataTransferObjectInterface
         return $this->rule;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setRuleId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\LcrRule\LcrRuleDto($id)
+                : null;
+
+            return $this->setRule($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getRuleId()
+        {
+            if ($dto = $this->getRule()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\LcrGateway\LcrGatewayDto $gw
      *
@@ -241,6 +276,32 @@ abstract class LcrRuleTargetDtoAbstract implements DataTransferObjectInterface
         return $this->gw;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setGwId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\LcrGateway\LcrGatewayDto($id)
+                : null;
+
+            return $this->setGw($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getGwId()
+        {
+            if ($dto = $this->getGw()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\OutgoingRouting\OutgoingRoutingDto $outgoingRouting
      *
@@ -260,6 +321,32 @@ abstract class LcrRuleTargetDtoAbstract implements DataTransferObjectInterface
     {
         return $this->outgoingRouting;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setOutgoingRoutingId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\OutgoingRouting\OutgoingRoutingDto($id)
+                : null;
+
+            return $this->setOutgoingRouting($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getOutgoingRoutingId()
+        {
+            if ($dto = $this->getOutgoingRouting()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 }
 
 

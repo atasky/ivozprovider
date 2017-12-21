@@ -77,7 +77,16 @@ abstract class MusicOnHoldDtoAbstract implements DataTransferObjectInterface
      */
     public function normalize(string $context)
     {
-        return $this->toArray();
+        $response = $this->toArray();
+        $contextProperties = $this->getPropertyMap($context);
+
+        return array_filter(
+            $response,
+            function ($key) use ($contextProperties) {
+                return in_array($key, $contextProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -92,7 +101,7 @@ abstract class MusicOnHoldDtoAbstract implements DataTransferObjectInterface
      */
     public static function getPropertyMap(string $context = '')
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return ['id'];
         }
 
@@ -348,6 +357,32 @@ abstract class MusicOnHoldDtoAbstract implements DataTransferObjectInterface
         return $this->brand;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setBrandId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Brand\BrandDto($id)
+                : null;
+
+            return $this->setBrand($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getBrandId()
+        {
+            if ($dto = $this->getBrand()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\Company\CompanyDto $company
      *
@@ -367,6 +402,32 @@ abstract class MusicOnHoldDtoAbstract implements DataTransferObjectInterface
     {
         return $this->company;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setCompanyId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Company\CompanyDto($id)
+                : null;
+
+            return $this->setCompany($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getCompanyId()
+        {
+            if ($dto = $this->getCompany()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 }
 
 

@@ -215,7 +215,7 @@ abstract class UsersAddressAbstract
             ->setPort($this->getPort())
             ->setTag($this->getTag())
             ->setDescription($this->getDescription())
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null);
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null);
     }
 
     /**

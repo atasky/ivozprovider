@@ -21,7 +21,7 @@ class AbstractDTOGenerator extends ParentGenerator
      */
     protected static $constructorMethodTemplate =
 '
-public function __constructor($id = null)
+public function __construct($id = null)
 {
     $this->setId($id);
 }
@@ -31,7 +31,16 @@ public function __constructor($id = null)
  */
 public function normalize(string $context)
 {
-    return $this->toArray();
+    $response = $this->toArray();
+    $contextProperties = $this->getPropertyMap($context);
+
+    return array_filter(
+        $response,
+        function ($key) use ($contextProperties) {
+            return in_array($key, $contextProperties);
+        },
+        ARRAY_FILTER_USE_KEY
+    );
 }
 
 /**
@@ -46,7 +55,7 @@ public function denormalize(array $data, string $context)
  */
 public static function getPropertyMap(string $context = \'\')
 {
-    if ($context === self::CONTEXT_SIMPLE) {
+    if ($context === self::CONTEXT_COLLECTION) {
         return [\'id\'];
     }
 
@@ -98,6 +107,24 @@ public function <methodName>(<methodTypeHint>$<variableName><variableDefault>)
     /**
      * @var string
      */
+    protected static $setIdMethodTemplate =
+'/**
+ * @param integer $id
+ *
+ * @return static
+ */
+public function <methodName>Id($id)
+{
+    $value = $id
+        ? new \\<typeHint>($id)
+        : null;
+
+    return $this-><methodName>($value);
+}';
+
+    /**
+     * @var string
+     */
     protected static $getMethodTemplate =
 '/**
  * @return <variableType>
@@ -105,6 +132,22 @@ public function <methodName>(<methodTypeHint>$<variableName><variableDefault>)
 public function <methodName>()
 {
 <spaces>return $this-><fieldName>;
+}';
+
+    /**
+     * @var string
+     */
+    protected static $getIdMethodTemplate =
+'/**
+ * @return integer | null
+ */
+public function <methodName>Id()
+{
+    if ($dto = $this-><methodName>()) {
+        return $dto->getId();
+    }
+
+    return null;
 }';
 
     protected function transformMetadata(ClassMetadataInfo $metadata)
@@ -449,7 +492,6 @@ public function <methodName>()
     protected function embeddedToArray($voName, array $fieldMappings)
     {
         $arguments = [];
-        $class = [];
 
         foreach ($fieldMappings as $fieldMapping) {
 
@@ -752,6 +794,10 @@ public function <methodName>()
                     if ($code = $this->generateEntityStubMethod($metadata, 'get', $fieldMapping['fieldName'], $fieldMapping['targetEntity'])) {
                         $methods[] = $code;
                     }
+
+                    $methods[] = $this->generateIdStubMethod('set', $fieldMapping['fieldName'], $fieldMapping['targetEntity'] . 'Dto');
+                    $methods[] = $this->generateIdStubMethod('get', $fieldMapping['fieldName'], $fieldMapping['targetEntity'] . 'Dto');
+
                 } else {
                     if ($code = $this->generateEntityStubMethod($metadata, 'set', $fieldMapping['fieldName'], \Doctrine\DBAL\Types\Type::SIMPLE_ARRAY)) {
                         $methods[] = $code;
@@ -789,18 +835,12 @@ public function <methodName>()
         return implode("\n\n", $response);
     }
 
-
     /**
      * {@inheritDoc}
      */
     protected function generateEntityStubMethod(ClassMetadataInfo $metadata, $type, $fieldName, $typeHint = null,  $defaultValue = null)
     {
-        $currentField = null;
         $isNullable = true;
-
-        if (array_key_exists($fieldName, $metadata->fieldMappings)) {
-            $currentField = (object) $metadata->fieldMappings[$fieldName];
-        }
 
         if (is_null($defaultValue) && $isNullable) {
             $defaultValue = 'null';
@@ -815,8 +855,6 @@ public function <methodName>()
             $typeHint = substr($typeHint, 1) . 'Dto';
         }
 
-
-
         $isCollection = strpos($typeHint, 'Doctrine\\Common\\Collections\\Collection') !== false;
         if ($isCollection) {
             $typeHint = 'array';
@@ -825,6 +863,31 @@ public function <methodName>()
         return parent::generateEntityStubMethod($metadata, $type, $fieldName, $typeHint,  $defaultValue);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    protected function generateIdStubMethod(string $type, string $attributeName, string $typeHint = null)
+    {
+        $replacements = [
+            '<methodName>' => $type . ucfirst($attributeName),
+            '<typeHint>' => $typeHint
+        ];
+
+        $template = $type == 'set'
+            ? self::$setIdMethodTemplate
+            : self::$getIdMethodTemplate;
+
+        $response = str_replace(
+            array_keys($replacements),
+            array_values($replacements),
+            $template
+        );
+
+        return $this->prefixCodeWithSpaces(
+            $response,
+            2
+        );
+    }
 
     /**
      * {@inheritDoc}

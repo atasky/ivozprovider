@@ -35,6 +35,31 @@ class Administrator extends AdministratorAbstract implements AdministratorInterf
         return $this->id;
     }
 
+    public function isSuperAdmin()
+    {
+        $nullBrand = is_null($this->getBrand());
+        $nullCompany = is_null($this->getCompany());
+
+        return $nullBrand && $nullCompany;
+    }
+
+    public function isBrandAdmin()
+    {
+        if ($this->isSuperAdmin()) {
+            return true;
+        }
+
+        return !is_null($this->getBrand());
+    }
+
+    public function isCompanyAdmin()
+    {
+        if ($this->isBrandAdmin()) {
+            return true;
+        }
+
+        return !is_null($this->getCompany());
+    }
 
     public function serialize()
     {

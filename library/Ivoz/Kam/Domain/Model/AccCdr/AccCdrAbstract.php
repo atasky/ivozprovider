@@ -430,11 +430,11 @@ abstract class AccCdrAbstract
             ->setPricingPlanDetails($this->getPricingPlanDetails())
             ->setDirection($this->getDirection())
             ->setReMeteringDate($this->getReMeteringDate())
-            ->setPricingPlanId($this->getPricingPlan() ? $this->getPricingPlan()->getId() : null)
-            ->setTargetPatternId($this->getTargetPattern() ? $this->getTargetPattern()->getId() : null)
-            ->setInvoiceId($this->getInvoice() ? $this->getInvoice()->getId() : null)
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null);
+            ->setPricingPlan($this->getPricingPlan() ? $this->getPricingPlan()->toDto() : null)
+            ->setTargetPattern($this->getTargetPattern() ? $this->getTargetPattern()->toDto() : null)
+            ->setInvoice($this->getInvoice() ? $this->getInvoice()->toDto() : null)
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null)
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null);
     }
 
     /**

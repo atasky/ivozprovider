@@ -308,8 +308,8 @@ abstract class TrunksUacregAbstract
             ->setFlags($this->getFlags())
             ->setRegDelay($this->getRegDelay())
             ->setMultiddi($this->getMultiddi())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setPeeringContractId($this->getPeeringContract() ? $this->getPeeringContract()->getId() : null);
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null)
+            ->setPeeringContract($this->getPeeringContract() ? $this->getPeeringContract()->toDto() : null);
     }
 
     /**

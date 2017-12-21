@@ -11,6 +11,10 @@ interface AdministratorInterface extends LoggableEntityInterface
      */
     public function getChangeSet();
 
+    public function serialize();
+
+    public function unserialize($serialized);
+
     /**
      * @return AdministratorDto
      */
@@ -177,6 +181,46 @@ interface AdministratorInterface extends LoggableEntityInterface
      * @return \Ivoz\Provider\Domain\Model\Timezone\TimezoneInterface
      */
     public function getTimezone();
+
+    /**
+     * @see AdvancedUserInterface::getRoles()
+     */
+    public function getRoles();
+
+    /**
+     * @see AdvancedUserInterface::getPassword()
+     */
+    public function getPassword();
+
+    /**
+     * @see AdvancedUserInterface::isAccountNonExpired()
+     */
+    public function isAccountNonExpired();
+
+    /**
+     * @see AdvancedUserInterface::isAccountNonLocked()
+     */
+    public function isAccountNonLocked();
+
+    /**
+     * @see AdvancedUserInterface::isCredentialsNonExpired()
+     */
+    public function isCredentialsNonExpired();
+
+    /**
+     * @see AdvancedUserInterface::isEnabled()
+     */
+    public function isEnabled();
+
+    /**
+     * @see AdvancedUserInterface::getSalt()
+     */
+    public function getSalt();
+
+    /**
+     * @see AdvancedUserInterface::eraseCredentials()
+     */
+    public function eraseCredentials();
 
 }
 

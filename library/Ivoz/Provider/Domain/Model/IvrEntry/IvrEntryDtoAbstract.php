@@ -72,7 +72,16 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
      */
     public function normalize(string $context)
     {
-        return $this->toArray();
+        $response = $this->toArray();
+        $contextProperties = $this->getPropertyMap($context);
+
+        return array_filter(
+            $response,
+            function ($key) use ($contextProperties) {
+                return in_array($key, $contextProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -87,7 +96,7 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
      */
     public static function getPropertyMap(string $context = '')
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return ['id'];
         }
 
@@ -245,6 +254,32 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
         return $this->ivr;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setIvrId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Ivr\IvrDto($id)
+                : null;
+
+            return $this->setIvr($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getIvrId()
+        {
+            if ($dto = $this->getIvr()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\Locution\LocutionDto $welcomeLocution
      *
@@ -264,6 +299,32 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     {
         return $this->welcomeLocution;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setWelcomeLocutionId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Locution\LocutionDto($id)
+                : null;
+
+            return $this->setWelcomeLocution($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getWelcomeLocutionId()
+        {
+            if ($dto = $this->getWelcomeLocution()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 
     /**
      * @param \Ivoz\Provider\Domain\Model\Extension\ExtensionDto $extension
@@ -285,6 +346,32 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
         return $this->extension;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setExtensionId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Extension\ExtensionDto($id)
+                : null;
+
+            return $this->setExtension($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getExtensionId()
+        {
+            if ($dto = $this->getExtension()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\User\UserDto $voiceMailUser
      *
@@ -304,6 +391,32 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     {
         return $this->voiceMailUser;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setVoiceMailUserId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\User\UserDto($id)
+                : null;
+
+            return $this->setVoiceMailUser($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getVoiceMailUserId()
+        {
+            if ($dto = $this->getVoiceMailUser()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 
     /**
      * @param \Ivoz\Provider\Domain\Model\ConditionalRoute\ConditionalRouteDto $conditionalRoute
@@ -325,6 +438,32 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
         return $this->conditionalRoute;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setConditionalRouteId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\ConditionalRoute\ConditionalRouteDto($id)
+                : null;
+
+            return $this->setConditionalRoute($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getConditionalRouteId()
+        {
+            if ($dto = $this->getConditionalRoute()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\Country\CountryDto $numberCountry
      *
@@ -344,6 +483,32 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     {
         return $this->numberCountry;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setNumberCountryId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Country\CountryDto($id)
+                : null;
+
+            return $this->setNumberCountry($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getNumberCountryId()
+        {
+            if ($dto = $this->getNumberCountry()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 }
 
 

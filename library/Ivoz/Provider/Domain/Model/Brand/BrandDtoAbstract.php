@@ -157,7 +157,7 @@ abstract class BrandDtoAbstract implements DataTransferObjectInterface
     private $outgoingRoutings = null;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }
@@ -167,7 +167,16 @@ abstract class BrandDtoAbstract implements DataTransferObjectInterface
      */
     public function normalize(string $context)
     {
-        return $this->toArray();
+        $response = $this->toArray();
+        $contextProperties = $this->getPropertyMap($context);
+
+        return array_filter(
+            $response,
+            function ($key) use ($contextProperties) {
+                return in_array($key, $contextProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -182,7 +191,7 @@ abstract class BrandDtoAbstract implements DataTransferObjectInterface
      */
     public static function getPropertyMap(string $context = '')
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return ['id'];
         }
 
@@ -765,6 +774,32 @@ abstract class BrandDtoAbstract implements DataTransferObjectInterface
         return $this->domain;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setDomainId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Domain\DomainDto($id)
+                : null;
+
+            return $this->setDomain($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getDomainId()
+        {
+            if ($dto = $this->getDomain()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\Language\LanguageDto $language
      *
@@ -785,6 +820,32 @@ abstract class BrandDtoAbstract implements DataTransferObjectInterface
         return $this->language;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setLanguageId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Language\LanguageDto($id)
+                : null;
+
+            return $this->setLanguage($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getLanguageId()
+        {
+            if ($dto = $this->getLanguage()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\Timezone\TimezoneDto $defaultTimezone
      *
@@ -804,6 +865,32 @@ abstract class BrandDtoAbstract implements DataTransferObjectInterface
     {
         return $this->defaultTimezone;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setDefaultTimezoneId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Timezone\TimezoneDto($id)
+                : null;
+
+            return $this->setDefaultTimezone($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getDefaultTimezoneId()
+        {
+            if ($dto = $this->getDefaultTimezone()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 
     /**
      * @param array $companies

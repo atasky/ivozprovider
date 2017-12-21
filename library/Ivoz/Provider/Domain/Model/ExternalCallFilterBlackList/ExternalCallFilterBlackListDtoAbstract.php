@@ -37,7 +37,16 @@ abstract class ExternalCallFilterBlackListDtoAbstract implements DataTransferObj
      */
     public function normalize(string $context)
     {
-        return $this->toArray();
+        $response = $this->toArray();
+        $contextProperties = $this->getPropertyMap($context);
+
+        return array_filter(
+            $response,
+            function ($key) use ($contextProperties) {
+                return in_array($key, $contextProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -52,7 +61,7 @@ abstract class ExternalCallFilterBlackListDtoAbstract implements DataTransferObj
      */
     public static function getPropertyMap(string $context = '')
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return ['id'];
         }
 
@@ -132,6 +141,32 @@ abstract class ExternalCallFilterBlackListDtoAbstract implements DataTransferObj
         return $this->filter;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setFilterId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilterDto($id)
+                : null;
+
+            return $this->setFilter($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getFilterId()
+        {
+            if ($dto = $this->getFilter()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\MatchList\MatchListDto $matchlist
      *
@@ -151,6 +186,32 @@ abstract class ExternalCallFilterBlackListDtoAbstract implements DataTransferObj
     {
         return $this->matchlist;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setMatchlistId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\MatchList\MatchListDto($id)
+                : null;
+
+            return $this->setMatchlist($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getMatchlistId()
+        {
+            if ($dto = $this->getMatchlist()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 }
 
 

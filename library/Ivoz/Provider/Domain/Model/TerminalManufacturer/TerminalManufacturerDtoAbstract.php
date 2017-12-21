@@ -32,7 +32,7 @@ abstract class TerminalManufacturerDtoAbstract implements DataTransferObjectInte
     private $id;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }
@@ -42,7 +42,16 @@ abstract class TerminalManufacturerDtoAbstract implements DataTransferObjectInte
      */
     public function normalize(string $context)
     {
-        return $this->toArray();
+        $response = $this->toArray();
+        $contextProperties = $this->getPropertyMap($context);
+
+        return array_filter(
+            $response,
+            function ($key) use ($contextProperties) {
+                return in_array($key, $contextProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -57,7 +66,7 @@ abstract class TerminalManufacturerDtoAbstract implements DataTransferObjectInte
      */
     public static function getPropertyMap(string $context = '')
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return ['id'];
         }
 

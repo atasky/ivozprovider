@@ -52,7 +52,7 @@ abstract class PeeringContractDtoAbstract implements DataTransferObjectInterface
     private $peerServers = null;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }
@@ -62,7 +62,16 @@ abstract class PeeringContractDtoAbstract implements DataTransferObjectInterface
      */
     public function normalize(string $context)
     {
-        return $this->toArray();
+        $response = $this->toArray();
+        $contextProperties = $this->getPropertyMap($context);
+
+        return array_filter(
+            $response,
+            function ($key) use ($contextProperties) {
+                return in_array($key, $contextProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -77,7 +86,7 @@ abstract class PeeringContractDtoAbstract implements DataTransferObjectInterface
      */
     public static function getPropertyMap(string $context = '')
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return ['id'];
         }
 
@@ -256,6 +265,32 @@ abstract class PeeringContractDtoAbstract implements DataTransferObjectInterface
         return $this->brand;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setBrandId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Brand\BrandDto($id)
+                : null;
+
+            return $this->setBrand($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getBrandId()
+        {
+            if ($dto = $this->getBrand()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\TransformationRuleSet\TransformationRuleSetDto $transformationRuleSet
      *
@@ -275,6 +310,32 @@ abstract class PeeringContractDtoAbstract implements DataTransferObjectInterface
     {
         return $this->transformationRuleSet;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setTransformationRuleSetId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\TransformationRuleSet\TransformationRuleSetDto($id)
+                : null;
+
+            return $this->setTransformationRuleSet($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getTransformationRuleSetId()
+        {
+            if ($dto = $this->getTransformationRuleSet()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 
     /**
      * @param array $outgoingRoutings

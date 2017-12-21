@@ -37,7 +37,16 @@ abstract class IvrExcludedExtensionDtoAbstract implements DataTransferObjectInte
      */
     public function normalize(string $context)
     {
-        return $this->toArray();
+        $response = $this->toArray();
+        $contextProperties = $this->getPropertyMap($context);
+
+        return array_filter(
+            $response,
+            function ($key) use ($contextProperties) {
+                return in_array($key, $contextProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -52,7 +61,7 @@ abstract class IvrExcludedExtensionDtoAbstract implements DataTransferObjectInte
      */
     public static function getPropertyMap(string $context = '')
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return ['id'];
         }
 
@@ -132,6 +141,32 @@ abstract class IvrExcludedExtensionDtoAbstract implements DataTransferObjectInte
         return $this->ivr;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setIvrId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Ivr\IvrDto($id)
+                : null;
+
+            return $this->setIvr($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getIvrId()
+        {
+            if ($dto = $this->getIvr()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\Extension\ExtensionDto $extension
      *
@@ -151,6 +186,32 @@ abstract class IvrExcludedExtensionDtoAbstract implements DataTransferObjectInte
     {
         return $this->extension;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setExtensionId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Extension\ExtensionDto($id)
+                : null;
+
+            return $this->setExtension($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getExtensionId()
+        {
+            if ($dto = $this->getExtension()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 }
 
 

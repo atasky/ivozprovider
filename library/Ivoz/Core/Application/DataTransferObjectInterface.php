@@ -4,8 +4,9 @@ namespace Ivoz\Core\Application;
 
 interface DataTransferObjectInterface
 {
-    const CONTEXT_SIMPLE = 'Simple';
-    const CONTEXT_DETAILED = 'Detailed';
+    const CONTEXT_COLLECTION = 'collection';
+    const CONTEXT_SIMPLE = '';
+    const CONTEXT_DETAILED = 'detailed';
 
     /**
      * @return array

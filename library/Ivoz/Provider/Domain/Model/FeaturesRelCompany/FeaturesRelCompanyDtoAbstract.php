@@ -37,7 +37,16 @@ abstract class FeaturesRelCompanyDtoAbstract implements DataTransferObjectInterf
      */
     public function normalize(string $context)
     {
-        return $this->toArray();
+        $response = $this->toArray();
+        $contextProperties = $this->getPropertyMap($context);
+
+        return array_filter(
+            $response,
+            function ($key) use ($contextProperties) {
+                return in_array($key, $contextProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -52,7 +61,7 @@ abstract class FeaturesRelCompanyDtoAbstract implements DataTransferObjectInterf
      */
     public static function getPropertyMap(string $context = '')
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return ['id'];
         }
 
@@ -132,6 +141,32 @@ abstract class FeaturesRelCompanyDtoAbstract implements DataTransferObjectInterf
         return $this->company;
     }
 
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setCompanyId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Company\CompanyDto($id)
+                : null;
+
+            return $this->setCompany($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getCompanyId()
+        {
+            if ($dto = $this->getCompany()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
+
     /**
      * @param \Ivoz\Provider\Domain\Model\Feature\FeatureDto $feature
      *
@@ -151,6 +186,32 @@ abstract class FeaturesRelCompanyDtoAbstract implements DataTransferObjectInterf
     {
         return $this->feature;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setFeatureId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\Feature\FeatureDto($id)
+                : null;
+
+            return $this->setFeature($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getFeatureId()
+        {
+            if ($dto = $this->getFeature()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 }
 
 

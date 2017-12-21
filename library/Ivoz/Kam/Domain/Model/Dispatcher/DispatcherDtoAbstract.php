@@ -52,7 +52,7 @@ abstract class DispatcherDtoAbstract implements DataTransferObjectInterface
     private $applicationServer;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }
@@ -62,7 +62,16 @@ abstract class DispatcherDtoAbstract implements DataTransferObjectInterface
      */
     public function normalize(string $context)
     {
-        return $this->toArray();
+        $response = $this->toArray();
+        $contextProperties = $this->getPropertyMap($context);
+
+        return array_filter(
+            $response,
+            function ($key) use ($contextProperties) {
+                return in_array($key, $contextProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 
     /**
@@ -77,7 +86,7 @@ abstract class DispatcherDtoAbstract implements DataTransferObjectInterface
      */
     public static function getPropertyMap(string $context = '')
     {
-        if ($context === self::CONTEXT_SIMPLE) {
+        if ($context === self::CONTEXT_COLLECTION) {
             return ['id'];
         }
 
@@ -285,6 +294,32 @@ abstract class DispatcherDtoAbstract implements DataTransferObjectInterface
     {
         return $this->applicationServer;
     }
+
+        /**
+         * @param integer $id
+         *
+         * @return static
+         */
+        public function setApplicationServerId($id)
+        {
+            $value = $id
+                ? new \Ivoz\Provider\Domain\Model\ApplicationServer\ApplicationServerDto($id)
+                : null;
+
+            return $this->setApplicationServer($value);
+        }
+
+        /**
+         * @return integer | null
+         */
+        public function getApplicationServerId()
+        {
+            if ($dto = $this->getApplicationServer()) {
+                return $dto->getId();
+            }
+
+            return null;
+        }
 }
 
 
