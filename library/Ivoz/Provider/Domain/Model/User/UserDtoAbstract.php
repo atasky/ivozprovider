@@ -162,7 +162,7 @@ abstract class UserDtoAbstract implements DataTransferObjectInterface
     private $callForwardSettings = null;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }

@@ -37,7 +37,7 @@ abstract class FixedCostsRelInvoiceDtoAbstract implements DataTransferObjectInte
     private $invoice;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }

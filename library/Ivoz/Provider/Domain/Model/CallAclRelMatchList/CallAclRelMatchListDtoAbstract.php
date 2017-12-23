@@ -37,7 +37,7 @@ abstract class CallAclRelMatchListDtoAbstract implements DataTransferObjectInter
     private $matchList;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }

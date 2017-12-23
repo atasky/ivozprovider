@@ -19,16 +19,6 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     /**
      * @var \DateTime
      */
-    private $startTimeUtc = '2000-01-01 00:00:00';
-
-    /**
-     * @var \DateTime
-     */
-    private $endTimeUtc = 'CURRENT_TIMESTAMP';
-
-    /**
-     * @var \DateTime
-     */
     private $startTime = '2000-01-01 00:00:00';
 
     /**
@@ -222,8 +212,6 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
 
         return [
             'proxy',
-            'startTimeUtc',
-            'endTimeUtc',
             'startTime',
             'endTime',
             'duration',
@@ -265,8 +253,6 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     {
         return [
             'proxy' => $this->getProxy(),
-            'startTimeUtc' => $this->getStartTimeUtc(),
-            'endTimeUtc' => $this->getEndTimeUtc(),
             'startTime' => $this->getStartTime(),
             'endTime' => $this->getEndTime(),
             'duration' => $this->getDuration(),
@@ -339,46 +325,6 @@ abstract class AccCdrDtoAbstract implements DataTransferObjectInterface
     public function getProxy()
     {
         return $this->proxy;
-    }
-
-    /**
-     * @param \DateTime $startTimeUtc
-     *
-     * @return static
-     */
-    public function setStartTimeUtc($startTimeUtc = null)
-    {
-        $this->startTimeUtc = $startTimeUtc;
-
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getStartTimeUtc()
-    {
-        return $this->startTimeUtc;
-    }
-
-    /**
-     * @param \DateTime $endTimeUtc
-     *
-     * @return static
-     */
-    public function setEndTimeUtc($endTimeUtc = null)
-    {
-        $this->endTimeUtc = $endTimeUtc;
-
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getEndTimeUtc()
-    {
-        return $this->endTimeUtc;
     }
 
     /**

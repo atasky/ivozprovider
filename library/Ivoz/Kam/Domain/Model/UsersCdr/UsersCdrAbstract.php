@@ -12,13 +12,13 @@ use Ivoz\Core\Application\DataTransferObjectInterface;
 abstract class UsersCdrAbstract
 {
     /**
-     * @column start_time
+     * column: start_time
      * @var \DateTime
      */
     protected $startTime;
 
     /**
-     * @column end_time
+     * column: end_time
      * @var \DateTime
      */
     protected $endTime;
@@ -108,13 +108,11 @@ abstract class UsersCdrAbstract
     /**
      * Constructor
      */
-    public function __construct($startTime, $endTime, $duration)
+    protected function __construct($startTime, $endTime, $duration)
     {
         $this->setStartTime($startTime);
         $this->setEndTime($endTime);
         $this->setDuration($duration);
-
-        $this->initChangelog();
     }
 
     /**
@@ -184,11 +182,19 @@ abstract class UsersCdrAbstract
     }
 
     /**
-     * @return UsersCdrDTO
+     * @return void
+     * @throws \Exception
      */
-    public static function createDTO()
+    protected function sanitizeValues()
     {
-        return new UsersCdrDTO();
+    }
+
+    /**
+     * @return UsersCdrDto
+     */
+    public static function createDto()
+    {
+        return new UsersCdrDto();
     }
 
     /**
@@ -196,19 +202,19 @@ abstract class UsersCdrAbstract
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public static function fromDTO(DataTransferObjectInterface $dto)
+    public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersCdrDTO
+         * @var $dto UsersCdrDto
          */
-        Assertion::isInstanceOf($dto, UsersCdrDTO::class);
+        Assertion::isInstanceOf($dto, UsersCdrDto::class);
 
         $self = new static(
             $dto->getStartTime(),
             $dto->getEndTime(),
             $dto->getDuration());
 
-        return $self
+        $self
             ->setDirection($dto->getDirection())
             ->setCaller($dto->getCaller())
             ->setCallee($dto->getCallee())
@@ -224,18 +230,23 @@ abstract class UsersCdrAbstract
             ->setFriend($dto->getFriend())
             ->setRetailAccount($dto->getRetailAccount())
         ;
+
+        $self->sanitizeValues();
+        $self->initChangelog();
+
+        return $self;
     }
 
     /**
      * @param DataTransferObjectInterface $dto
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto)
+    public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto UsersCdrDTO
+         * @var $dto UsersCdrDto
          */
-        Assertion::isInstanceOf($dto, UsersCdrDTO::class);
+        Assertion::isInstanceOf($dto, UsersCdrDto::class);
 
         $this
             ->setStartTime($dto->getStartTime())
@@ -257,15 +268,17 @@ abstract class UsersCdrAbstract
             ->setRetailAccount($dto->getRetailAccount());
 
 
+
+        $this->sanitizeValues();
         return $this;
     }
 
     /**
-     * @return UsersCdrDTO
+     * @return UsersCdrDto
      */
-    public function toDTO()
+    public function toDto()
     {
-        return self::createDTO()
+        return self::createDto()
             ->setStartTime($this->getStartTime())
             ->setEndTime($this->getEndTime())
             ->setDuration($this->getDuration())
@@ -278,11 +291,11 @@ abstract class UsersCdrAbstract
             ->setCallid($this->getCallid())
             ->setCallidHash($this->getCallidHash())
             ->setXcallid($this->getXcallid())
-            ->setBrandId($this->getBrand() ? $this->getBrand()->getId() : null)
-            ->setCompanyId($this->getCompany() ? $this->getCompany()->getId() : null)
-            ->setUserId($this->getUser() ? $this->getUser()->getId() : null)
-            ->setFriendId($this->getFriend() ? $this->getFriend()->getId() : null)
-            ->setRetailAccountId($this->getRetailAccount() ? $this->getRetailAccount()->getId() : null);
+            ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null)
+            ->setCompany($this->getCompany() ? $this->getCompany()->toDto() : null)
+            ->setUser($this->getUser() ? $this->getUser()->toDto() : null)
+            ->setFriend($this->getFriend() ? $this->getFriend()->toDto() : null)
+            ->setRetailAccount($this->getRetailAccount() ? $this->getRetailAccount()->toDto() : null);
     }
 
     /**

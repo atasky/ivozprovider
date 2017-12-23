@@ -1,14 +1,14 @@
 <?php
 
-namespace Ivoz\Provider\Domain\Model\ParsedCdr;
+namespace Ivoz\Kam\Domain\Model\UsersCdr;
 
 use Ivoz\Core\Application\DataTransferObjectInterface;
 
 /**
- * ParsedCdrTrait
+ * UsersCdrTrait
  * @codeCoverageIgnore
  */
-trait ParsedCdrTrait
+trait UsersCdrTrait
 {
     /**
      * @var integer
@@ -26,11 +26,11 @@ trait ParsedCdrTrait
     }
 
     /**
-     * @return ParsedCdrDto
+     * @return UsersCdrDto
      */
     public static function createDto()
     {
-        return new ParsedCdrDto();
+        return new UsersCdrDto();
     }
 
     /**
@@ -41,7 +41,7 @@ trait ParsedCdrTrait
     public static function fromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ParsedCdrDto
+         * @var $dto UsersCdrDto
          */
         $self = parent::fromDto($dto);
 
@@ -60,7 +60,7 @@ trait ParsedCdrTrait
     public function updateFromDto(DataTransferObjectInterface $dto)
     {
         /**
-         * @var $dto ParsedCdrDto
+         * @var $dto UsersCdrDto
          */
         parent::updateFromDto($dto);
 
@@ -68,7 +68,7 @@ trait ParsedCdrTrait
     }
 
     /**
-     * @return ParsedCdrDto
+     * @return UsersCdrDto
      */
     public function toDto()
     {

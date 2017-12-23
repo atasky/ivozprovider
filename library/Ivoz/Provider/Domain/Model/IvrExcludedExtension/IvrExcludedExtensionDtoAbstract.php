@@ -27,7 +27,7 @@ abstract class IvrExcludedExtensionDtoAbstract implements DataTransferObjectInte
     private $extension;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }

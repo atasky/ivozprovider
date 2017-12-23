@@ -37,7 +37,7 @@ abstract class HolidayDateDtoAbstract implements DataTransferObjectInterface
     private $locution;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }

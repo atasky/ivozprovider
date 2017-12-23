@@ -32,7 +32,7 @@ abstract class FriendsPatternDtoAbstract implements DataTransferObjectInterface
     private $friend;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }

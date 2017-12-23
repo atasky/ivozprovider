@@ -27,7 +27,7 @@ abstract class FeaturesRelBrandDtoAbstract implements DataTransferObjectInterfac
     private $feature;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }

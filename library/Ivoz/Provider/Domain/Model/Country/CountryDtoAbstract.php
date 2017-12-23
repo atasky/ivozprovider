@@ -47,7 +47,7 @@ abstract class CountryDtoAbstract implements DataTransferObjectInterface
     private $zoneEs = '';
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }

@@ -11,6 +11,12 @@ interface AdministratorInterface extends LoggableEntityInterface
      */
     public function getChangeSet();
 
+    public function isSuperAdmin();
+
+    public function isBrandAdmin();
+
+    public function isCompanyAdmin();
+
     public function serialize();
 
     public function unserialize($serialized);

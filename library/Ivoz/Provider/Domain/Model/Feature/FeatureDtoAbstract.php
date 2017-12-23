@@ -32,7 +32,7 @@ abstract class FeatureDtoAbstract implements DataTransferObjectInterface
     private $nameEs = '';
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }

@@ -37,7 +37,7 @@ abstract class CallAclDtoAbstract implements DataTransferObjectInterface
     private $relMatchLists = null;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }

@@ -47,7 +47,7 @@ abstract class TransformationRuleDtoAbstract implements DataTransferObjectInterf
     private $transformationRuleSet;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }

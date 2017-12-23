@@ -202,7 +202,7 @@ abstract class CompanyDtoAbstract implements DataTransferObjectInterface
     private $domains = null;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }

@@ -127,7 +127,7 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     private $ddis = null;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }

@@ -37,7 +37,7 @@ abstract class FixedCostDtoAbstract implements DataTransferObjectInterface
     private $brand;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }

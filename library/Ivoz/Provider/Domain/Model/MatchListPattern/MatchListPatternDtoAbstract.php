@@ -47,7 +47,7 @@ abstract class MatchListPatternDtoAbstract implements DataTransferObjectInterfac
     private $numberCountry;
 
 
-    public function __constructor($id = null)
+    public function __construct($id = null)
     {
         $this->setId($id);
     }
