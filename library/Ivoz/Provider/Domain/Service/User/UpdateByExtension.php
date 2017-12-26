@@ -51,7 +51,7 @@ class UpdateByExtension implements ExtensionLifecycleEventHandlerInterface
         $originalValue = $entity->getInitialValue('userId');
 
         // If this extension was pointing to a user and number has changed
-        if (+ && ($originalValue != $currentValue)) {
+        if ($originalValue && ($originalValue != $currentValue)) {
             /**
              * @var User $prevUser
              */
