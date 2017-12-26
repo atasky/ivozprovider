@@ -250,13 +250,13 @@ abstract class MatchListPatternDtoAbstract implements DataTransferObjectInterfac
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setMatchListId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\MatchList\MatchListDto($id)
                 : null;
 
@@ -296,13 +296,13 @@ abstract class MatchListPatternDtoAbstract implements DataTransferObjectInterfac
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setNumberCountryId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Country\CountryDto($id)
                 : null;
 

@@ -595,13 +595,13 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setBrandId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Brand\BrandDto($id)
                 : null;
 
@@ -641,13 +641,13 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setDomainId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Domain\DomainDto($id)
                 : null;
 
@@ -687,13 +687,13 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setCompanyId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Company\CompanyDto($id)
                 : null;
 
@@ -733,13 +733,13 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setTransformationRuleSetId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\TransformationRuleSet\TransformationRuleSetDto($id)
                 : null;
 
@@ -779,13 +779,13 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setOutgoingDdiId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Ddi\DdiDto($id)
                 : null;
 
@@ -825,13 +825,13 @@ abstract class RetailAccountDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setLanguageId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Language\LanguageDto($id)
                 : null;
 

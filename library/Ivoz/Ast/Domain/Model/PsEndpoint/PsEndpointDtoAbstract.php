@@ -582,13 +582,13 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setTerminalId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Terminal\TerminalDto($id)
                 : null;
 
@@ -628,13 +628,13 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setFriendId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Friend\FriendDto($id)
                 : null;
 
@@ -674,13 +674,13 @@ abstract class PsEndpointDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setRetailAccountId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\RetailAccount\RetailAccountDto($id)
                 : null;
 

@@ -314,13 +314,13 @@ abstract class ConditionalRouteDtoAbstract implements DataTransferObjectInterfac
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setCompanyId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Company\CompanyDto($id)
                 : null;
 
@@ -360,13 +360,13 @@ abstract class ConditionalRouteDtoAbstract implements DataTransferObjectInterfac
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setIvrId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Ivr\IvrDto($id)
                 : null;
 
@@ -406,13 +406,13 @@ abstract class ConditionalRouteDtoAbstract implements DataTransferObjectInterfac
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setHuntGroupId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\HuntGroup\HuntGroupDto($id)
                 : null;
 
@@ -452,13 +452,13 @@ abstract class ConditionalRouteDtoAbstract implements DataTransferObjectInterfac
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setVoicemailUserId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\User\UserDto($id)
                 : null;
 
@@ -498,13 +498,13 @@ abstract class ConditionalRouteDtoAbstract implements DataTransferObjectInterfac
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setUserId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\User\UserDto($id)
                 : null;
 
@@ -544,13 +544,13 @@ abstract class ConditionalRouteDtoAbstract implements DataTransferObjectInterfac
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setQueueId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Queue\QueueDto($id)
                 : null;
 
@@ -590,13 +590,13 @@ abstract class ConditionalRouteDtoAbstract implements DataTransferObjectInterfac
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setLocutionId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Locution\LocutionDto($id)
                 : null;
 
@@ -636,13 +636,13 @@ abstract class ConditionalRouteDtoAbstract implements DataTransferObjectInterfac
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setConferenceRoomId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\ConferenceRoom\ConferenceRoomDto($id)
                 : null;
 
@@ -682,13 +682,13 @@ abstract class ConditionalRouteDtoAbstract implements DataTransferObjectInterfac
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setExtensionId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Extension\ExtensionDto($id)
                 : null;
 
@@ -728,13 +728,13 @@ abstract class ConditionalRouteDtoAbstract implements DataTransferObjectInterfac
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setNumberCountryId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Country\CountryDto($id)
                 : null;
 

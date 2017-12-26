@@ -231,13 +231,13 @@ abstract class PricingPlansRelCompanyDtoAbstract implements DataTransferObjectIn
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setPricingPlanId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\PricingPlan\PricingPlanDto($id)
                 : null;
 
@@ -277,13 +277,13 @@ abstract class PricingPlansRelCompanyDtoAbstract implements DataTransferObjectIn
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setCompanyId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Company\CompanyDto($id)
                 : null;
 
@@ -323,13 +323,13 @@ abstract class PricingPlansRelCompanyDtoAbstract implements DataTransferObjectIn
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setBrandId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Brand\BrandDto($id)
                 : null;
 

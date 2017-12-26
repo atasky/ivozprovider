@@ -231,13 +231,13 @@ abstract class LcrRuleTargetDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setRuleId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\LcrRule\LcrRuleDto($id)
                 : null;
 
@@ -277,13 +277,13 @@ abstract class LcrRuleTargetDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setGwId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\LcrGateway\LcrGatewayDto($id)
                 : null;
 
@@ -323,13 +323,13 @@ abstract class LcrRuleTargetDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setOutgoingRoutingId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\OutgoingRouting\OutgoingRoutingDto($id)
                 : null;
 

@@ -269,13 +269,13 @@ abstract class ChangelogDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setCommandId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Commandlog\CommandlogDto($id)
                 : null;
 

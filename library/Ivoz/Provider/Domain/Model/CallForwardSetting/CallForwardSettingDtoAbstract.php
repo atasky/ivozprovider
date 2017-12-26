@@ -293,13 +293,13 @@ abstract class CallForwardSettingDtoAbstract implements DataTransferObjectInterf
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setUserId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\User\UserDto($id)
                 : null;
 
@@ -339,13 +339,13 @@ abstract class CallForwardSettingDtoAbstract implements DataTransferObjectInterf
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setExtensionId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Extension\ExtensionDto($id)
                 : null;
 
@@ -385,13 +385,13 @@ abstract class CallForwardSettingDtoAbstract implements DataTransferObjectInterf
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setVoiceMailUserId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\User\UserDto($id)
                 : null;
 
@@ -431,13 +431,13 @@ abstract class CallForwardSettingDtoAbstract implements DataTransferObjectInterf
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setNumberCountryId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Country\CountryDto($id)
                 : null;
 

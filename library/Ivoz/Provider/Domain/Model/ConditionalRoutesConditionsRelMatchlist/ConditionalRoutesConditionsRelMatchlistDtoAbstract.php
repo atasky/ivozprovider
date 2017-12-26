@@ -142,13 +142,13 @@ abstract class ConditionalRoutesConditionsRelMatchlistDtoAbstract implements Dat
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setConditionId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\ConditionalRoutesCondition\ConditionalRoutesConditionDto($id)
                 : null;
 
@@ -188,13 +188,13 @@ abstract class ConditionalRoutesConditionsRelMatchlistDtoAbstract implements Dat
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setMatchlistId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\MatchList\MatchListDto($id)
                 : null;
 

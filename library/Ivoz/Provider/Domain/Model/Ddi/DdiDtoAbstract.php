@@ -427,13 +427,13 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setCompanyId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Company\CompanyDto($id)
                 : null;
 
@@ -473,13 +473,13 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setBrandId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Brand\BrandDto($id)
                 : null;
 
@@ -519,13 +519,13 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setConferenceRoomId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\ConferenceRoom\ConferenceRoomDto($id)
                 : null;
 
@@ -565,13 +565,13 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setLanguageId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Language\LanguageDto($id)
                 : null;
 
@@ -611,13 +611,13 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setQueueId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Queue\QueueDto($id)
                 : null;
 
@@ -657,13 +657,13 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setExternalCallFilterId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilterDto($id)
                 : null;
 
@@ -703,13 +703,13 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setUserId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\User\UserDto($id)
                 : null;
 
@@ -749,13 +749,13 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setIvrId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Ivr\IvrDto($id)
                 : null;
 
@@ -795,13 +795,13 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setHuntGroupId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\HuntGroup\HuntGroupDto($id)
                 : null;
 
@@ -841,13 +841,13 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setFaxId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Fax\FaxDto($id)
                 : null;
 
@@ -887,13 +887,13 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setPeeringContractId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\PeeringContract\PeeringContractDto($id)
                 : null;
 
@@ -933,13 +933,13 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setCountryId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Country\CountryDto($id)
                 : null;
 
@@ -979,13 +979,13 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setRetailAccountId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\RetailAccount\RetailAccountDto($id)
                 : null;
 
@@ -1025,13 +1025,13 @@ abstract class DdiDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setConditionalRouteId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\ConditionalRoute\ConditionalRouteDto($id)
                 : null;
 

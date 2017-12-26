@@ -109,13 +109,13 @@ public function <methodName>(<methodTypeHint>$<variableName><variableDefault>)
      */
     protected static $setIdMethodTemplate =
 '/**
- * @param integer $id
+ * @param integer $id | null
  *
  * @return static
  */
 public function <methodName>Id($id)
 {
-    $value = $id
+    $value = !is_null($id)
         ? new \\<typeHint>($id)
         : null;
 

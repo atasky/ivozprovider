@@ -204,13 +204,13 @@ abstract class OutgoingDdiRulesPatternDtoAbstract implements DataTransferObjectI
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setOutgoingDdiRuleId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\OutgoingDdiRule\OutgoingDdiRuleDto($id)
                 : null;
 
@@ -250,13 +250,13 @@ abstract class OutgoingDdiRulesPatternDtoAbstract implements DataTransferObjectI
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setMatchListId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\MatchList\MatchListDto($id)
                 : null;
 
@@ -296,13 +296,13 @@ abstract class OutgoingDdiRulesPatternDtoAbstract implements DataTransferObjectI
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setForcedDdiId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Ddi\DdiDto($id)
                 : null;
 

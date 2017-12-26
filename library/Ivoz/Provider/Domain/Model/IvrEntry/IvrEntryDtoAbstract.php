@@ -255,13 +255,13 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setIvrId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Ivr\IvrDto($id)
                 : null;
 
@@ -301,13 +301,13 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setWelcomeLocutionId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Locution\LocutionDto($id)
                 : null;
 
@@ -347,13 +347,13 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setExtensionId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Extension\ExtensionDto($id)
                 : null;
 
@@ -393,13 +393,13 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setVoiceMailUserId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\User\UserDto($id)
                 : null;
 
@@ -439,13 +439,13 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setConditionalRouteId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\ConditionalRoute\ConditionalRouteDto($id)
                 : null;
 
@@ -485,13 +485,13 @@ abstract class IvrEntryDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setNumberCountryId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Country\CountryDto($id)
                 : null;
 

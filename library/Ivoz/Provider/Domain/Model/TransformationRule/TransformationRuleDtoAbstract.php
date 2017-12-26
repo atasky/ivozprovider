@@ -269,13 +269,13 @@ abstract class TransformationRuleDtoAbstract implements DataTransferObjectInterf
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setTransformationRuleSetId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\TransformationRuleSet\TransformationRuleSetDto($id)
                 : null;
 

@@ -142,13 +142,13 @@ abstract class IvrExcludedExtensionDtoAbstract implements DataTransferObjectInte
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setIvrId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Ivr\IvrDto($id)
                 : null;
 
@@ -188,13 +188,13 @@ abstract class IvrExcludedExtensionDtoAbstract implements DataTransferObjectInte
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setExtensionId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Extension\ExtensionDto($id)
                 : null;
 

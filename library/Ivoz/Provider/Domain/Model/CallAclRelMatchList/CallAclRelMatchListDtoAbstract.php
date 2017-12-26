@@ -196,13 +196,13 @@ abstract class CallAclRelMatchListDtoAbstract implements DataTransferObjectInter
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setCallAclId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\CallAcl\CallAclDto($id)
                 : null;
 
@@ -242,13 +242,13 @@ abstract class CallAclRelMatchListDtoAbstract implements DataTransferObjectInter
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setMatchListId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\MatchList\MatchListDto($id)
                 : null;
 

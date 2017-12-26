@@ -142,13 +142,13 @@ abstract class ExternalCallFilterRelScheduleDtoAbstract implements DataTransferO
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setFilterId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\ExternalCallFilter\ExternalCallFilterDto($id)
                 : null;
 
@@ -188,13 +188,13 @@ abstract class ExternalCallFilterRelScheduleDtoAbstract implements DataTransferO
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setScheduleId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Schedule\ScheduleDto($id)
                 : null;
 

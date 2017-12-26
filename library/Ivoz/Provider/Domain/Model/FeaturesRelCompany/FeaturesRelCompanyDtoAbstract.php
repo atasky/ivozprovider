@@ -142,13 +142,13 @@ abstract class FeaturesRelCompanyDtoAbstract implements DataTransferObjectInterf
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setCompanyId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Company\CompanyDto($id)
                 : null;
 
@@ -188,13 +188,13 @@ abstract class FeaturesRelCompanyDtoAbstract implements DataTransferObjectInterf
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setFeatureId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\Feature\FeatureDto($id)
                 : null;
 

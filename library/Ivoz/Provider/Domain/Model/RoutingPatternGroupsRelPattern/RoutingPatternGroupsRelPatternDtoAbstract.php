@@ -142,13 +142,13 @@ abstract class RoutingPatternGroupsRelPatternDtoAbstract implements DataTransfer
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setRoutingPatternId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\RoutingPattern\RoutingPatternDto($id)
                 : null;
 
@@ -188,13 +188,13 @@ abstract class RoutingPatternGroupsRelPatternDtoAbstract implements DataTransfer
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setRoutingPatternGroupId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\RoutingPatternGroup\RoutingPatternGroupDto($id)
                 : null;
 

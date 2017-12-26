@@ -2,12 +2,9 @@
 
 namespace spec\Ivoz\Provider\Domain\Service\Company;
 
-use Ivoz\Core\Application\Service\UpdateEntityFromDto;
-use Ivoz\Provider\Domain\Model\Brand\BrandInterface;
+use Ivoz\Core\Application\Service\UpdateEntityFromDTO;
 use Ivoz\Provider\Domain\Model\Company\Company;
 use Ivoz\Provider\Domain\Model\Company\CompanyDto;
-use Ivoz\Provider\Domain\Model\Language\LanguageInterface;
-use Ivoz\Provider\Domain\Model\Timezone\TimezoneInterface;
 use Ivoz\Provider\Domain\Service\Company\SanitizeEmptyValues;
 use PhpSpec\Exception\Example\FailureException;
 use PhpSpec\ObjectBehavior;
@@ -15,7 +12,7 @@ use PhpSpec\ObjectBehavior;
 class SanitizeEmptyValuesSpec extends ObjectBehavior
 {
     /**
-     * @var UpdateEntityFromDto
+     * @var UpdateEntityFromDTO
      */
     protected $entityUpdater;
     /**
@@ -25,7 +22,7 @@ class SanitizeEmptyValuesSpec extends ObjectBehavior
     protected $entity;
 
     function let(
-        UpdateEntityFromDto $entityUpdater,
+        UpdateEntityFromDTO $entityUpdater,
         Company $entity
     ) {
         $this->entityUpdater = $entityUpdater;

@@ -485,13 +485,13 @@ abstract class LcrGatewayDtoAbstract implements DataTransferObjectInterface
     }
 
         /**
-         * @param integer $id
+         * @param integer $id | null
          *
          * @return static
          */
         public function setPeerServerId($id)
         {
-            $value = $id
+            $value = !is_null($id)
                 ? new \Ivoz\Provider\Domain\Model\PeerServer\PeerServerDto($id)
                 : null;
 
