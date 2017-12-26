@@ -10,7 +10,6 @@ use Ivoz\Provider\Domain\Model\LcrRule\LcrRule;
 use Ivoz\Provider\Domain\Model\LcrRule\LcrRuleDto;
 use Ivoz\Provider\Domain\Model\LcrRule\LcrRuleInterface;
 use Ivoz\Provider\Domain\Model\OutgoingRouting\OutgoingRoutingInterface;
-use Ivoz\Provider\Domain\Model\RoutingPattern\RoutingPattern;
 use Ivoz\Provider\Domain\Model\RoutingPattern\Name;
 use Ivoz\Provider\Domain\Model\RoutingPattern\Description;
 use Ivoz\Provider\Domain\Model\RoutingPattern\RoutingPatternInterface;
