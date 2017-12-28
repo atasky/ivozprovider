@@ -296,7 +296,7 @@ class DataGateway
             );
     }
 
-    private  function triggerEvent(string $class, string $method, array $arguments)
+    private function triggerEvent(string $class, string $method, array $arguments)
     {
         foreach ($arguments as $key => $value) {
 
