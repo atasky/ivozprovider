@@ -68,7 +68,7 @@ api_platform:
         order: 'ASC'
 
         # The name of the query parameter to order results.
-        order_parameter_name: 'order'
+        order_parameter_name: '_order'
 
         pagination:
             # To enable or disable pagination for all resource collections by default.

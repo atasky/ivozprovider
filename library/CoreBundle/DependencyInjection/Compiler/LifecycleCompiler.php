@@ -8,7 +8,6 @@ use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 use Ivoz\Core\Domain\Service\LifecycleEventListener;
 use Ivoz\Core\Domain\Service\PersistErrorHandlerServiceCollection;
-use Ramsey\Uuid\Uuid;
 
 class LifecycleCompiler implements CompilerPassInterface
 {

@@ -8,7 +8,7 @@ use ApiPlatform\Core\Metadata\Resource\ResourceMetadata;
 use Ivoz\Core\Application\DataTransferObjectInterface;
 use Ivoz\Core\Domain\Model\EntityInterface;
 
-class ResourceMetadataFactory implements ResourceMetadataFactoryInterface
+class OperationMetadataFactory implements ResourceMetadataFactoryInterface
 {
     private $decorated;
 

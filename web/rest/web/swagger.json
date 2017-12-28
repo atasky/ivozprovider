@@ -3,9 +3,247 @@
     "basePath": "\/",
     "info": {
         "title": "",
-        "version": "0.1.0"
+        "version": "0.1.1"
     },
     "paths": {
+        "\/brand_urls": {
+            "get": {
+                "tags": [
+                    "BrandUrl"
+                ],
+                "operationId": "getBrandUrlCollection",
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Retrieves the collection of BrandUrl resources.",
+                "responses": {
+                    "200": {
+                        "description": "BrandUrl collection response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/BrandUrl-collection"
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "url",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "klearTheme",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "urlType",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "userTheme",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[url]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[klearTheme]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[urlType]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[name]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[userTheme]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "description": "The collection page number"
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "BrandUrl"
+                ],
+                "operationId": "postBrandUrlCollection",
+                "consumes": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Creates a BrandUrl resource.",
+                "parameters": [
+                    {
+                        "name": "brandUrl",
+                        "in": "body",
+                        "description": "The new BrandUrl resource",
+                        "schema": {
+                            "$ref": "#\/definitions\/BrandUrl"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "BrandUrl resource created",
+                        "schema": {
+                            "$ref": "#\/definitions\/BrandUrl"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            }
+        },
+        "\/brand_urls\/{id}": {
+            "get": {
+                "tags": [
+                    "BrandUrl"
+                ],
+                "operationId": "getBrandUrlItem",
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Retrieves a BrandUrl resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "BrandUrl resource response",
+                        "schema": {
+                            "$ref": "#\/definitions\/BrandUrl-detailed"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "BrandUrl"
+                ],
+                "operationId": "putBrandUrlItem",
+                "consumes": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Replaces the BrandUrl resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "brandUrl",
+                        "in": "body",
+                        "description": "The updated BrandUrl resource",
+                        "schema": {
+                            "$ref": "#\/definitions\/BrandUrl"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "BrandUrl resource updated",
+                        "schema": {
+                            "$ref": "#\/definitions\/BrandUrl"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "BrandUrl"
+                ],
+                "operationId": "deleteBrandUrlItem",
+                "summary": "Removes the BrandUrl resource.",
+                "responses": {
+                    "204": {
+                        "description": "BrandUrl resource deleted"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    }
+                ]
+            }
+        },
         "\/brands": {
             "get": {
                 "tags": [
@@ -24,21 +262,38 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#\/definitions\/Brand-Simple"
+                                "$ref": "#\/definitions\/Brand-collection"
                             }
                         }
                     }
                 },
                 "parameters": [
                     {
-                        "name": "page",
+                        "name": "name",
                         "in": "query",
                         "required": false,
-                        "type": "integer",
-                        "description": "The collection page number"
+                        "type": "string"
                     },
                     {
-                        "name": "name",
+                        "name": "domainUsers",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "fromName",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "fromAddress",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "recordingsLimitEmail",
                         "in": "query",
                         "required": false,
                         "type": "string"
@@ -50,76 +305,77 @@
                         "type": "integer"
                     },
                     {
-                        "name": "recordingsLimitEmail",
+                        "name": "recordingsLimitMB[between]",
                         "in": "query",
                         "required": false,
                         "type": "string"
                     },
                     {
-                        "name": "logo.fileSize",
-                        "in": "query",
-                        "required": false,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "logo.mimeType",
+                        "name": "recordingsLimitMB[gt]",
                         "in": "query",
                         "required": false,
                         "type": "string"
                     },
                     {
-                        "name": "logo.baseName",
+                        "name": "recordingsLimitMB[gte]",
                         "in": "query",
                         "required": false,
                         "type": "string"
                     },
                     {
-                        "name": "invoice.nif",
+                        "name": "recordingsLimitMB[lt]",
                         "in": "query",
                         "required": false,
                         "type": "string"
                     },
                     {
-                        "name": "invoice.postalAddress",
+                        "name": "recordingsLimitMB[lte]",
                         "in": "query",
                         "required": false,
                         "type": "string"
                     },
                     {
-                        "name": "invoice.postalCode",
+                        "name": "_order[name]",
                         "in": "query",
                         "required": false,
                         "type": "string"
                     },
                     {
-                        "name": "invoice.town",
+                        "name": "_order[domainUsers]",
                         "in": "query",
                         "required": false,
                         "type": "string"
                     },
                     {
-                        "name": "invoice.province",
+                        "name": "_order[fromName]",
                         "in": "query",
                         "required": false,
                         "type": "string"
                     },
                     {
-                        "name": "invoice.country",
+                        "name": "_order[fromAddress]",
                         "in": "query",
                         "required": false,
                         "type": "string"
                     },
                     {
-                        "name": "invoice.registryData",
+                        "name": "_order[recordingsLimitMB]",
                         "in": "query",
                         "required": false,
                         "type": "string"
                     },
                     {
-                        "name": "domain",
+                        "name": "_order[recordingsLimitEmail]",
                         "in": "query",
                         "required": false,
-                        "type": "integer"
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "description": "The collection page number"
                     }
                 ]
             },
@@ -189,7 +445,7 @@
                     "200": {
                         "description": "Brand resource response",
                         "schema": {
-                            "$ref": "#\/definitions\/Brand-Detailed"
+                            "$ref": "#\/definitions\/Brand-detailed"
                         }
                     },
                     "404": {
@@ -286,12 +542,306 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#\/definitions\/Company-Simple"
+                                "$ref": "#\/definitions\/Company-collection"
                             }
                         }
                     }
                 },
                 "parameters": [
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "domainUsers",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "nif",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "distributeMethod",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "postalAddress",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "postalCode",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "town",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "province",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "countryName",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "onDemandRecordCode",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "externallyextraopts",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "recordingsLimitEmail",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ipfilter",
+                        "in": "query",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "externalMaxCalls",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "onDemandRecord",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "recordingsLimitMB",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "externalMaxCalls[between]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "externalMaxCalls[gt]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "externalMaxCalls[gte]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "externalMaxCalls[lt]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "externalMaxCalls[lte]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "onDemandRecord[between]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "onDemandRecord[gt]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "onDemandRecord[gte]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "onDemandRecord[lt]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "onDemandRecord[lte]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "recordingsLimitMB[between]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "recordingsLimitMB[gt]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "recordingsLimitMB[gte]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "recordingsLimitMB[lt]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "recordingsLimitMB[lte]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[type]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[name]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[domainUsers]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[nif]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[distributeMethod]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[externalMaxCalls]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[postalAddress]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[postalCode]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[town]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[province]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[countryName]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[ipfilter]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[onDemandRecord]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[onDemandRecordCode]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[externallyextraopts]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[recordingsLimitMB]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[recordingsLimitEmail]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
                     {
                         "name": "page",
                         "in": "query",
@@ -367,7 +917,7 @@
                     "200": {
                         "description": "Company resource response",
                         "schema": {
-                            "$ref": "#\/definitions\/Company-Detailed"
+                            "$ref": "#\/definitions\/Company-detailed"
                         }
                     },
                     "404": {
@@ -446,30 +996,54 @@
                 ]
             }
         },
-        "\/domains": {
+        "\/countries": {
             "get": {
                 "tags": [
-                    "Domain"
+                    "Country"
                 ],
-                "operationId": "getDomainCollection",
+                "operationId": "getCountryCollection",
                 "produces": [
                     "application\/ld+json",
                     "application\/json",
                     "text\/html"
                 ],
-                "summary": "Retrieves the collection of Domain resources.",
+                "summary": "Retrieves the collection of Country resources.",
                 "responses": {
                     "200": {
-                        "description": "Domain collection response",
+                        "description": "Country collection response",
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#\/definitions\/Domain-Simple"
+                                "$ref": "#\/definitions\/Country-collection"
                             }
                         }
                     }
                 },
                 "parameters": [
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "countryCode",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[code]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[countryCode]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
                     {
                         "name": "page",
                         "in": "query",
@@ -481,9 +1055,9 @@
             },
             "post": {
                 "tags": [
-                    "Domain"
+                    "Country"
                 ],
-                "operationId": "postDomainCollection",
+                "operationId": "postCountryCollection",
                 "consumes": [
                     "application\/ld+json",
                     "application\/json",
@@ -494,22 +1068,22 @@
                     "application\/json",
                     "text\/html"
                 ],
-                "summary": "Creates a Domain resource.",
+                "summary": "Creates a Country resource.",
                 "parameters": [
                     {
-                        "name": "domain",
+                        "name": "country",
                         "in": "body",
-                        "description": "The new Domain resource",
+                        "description": "The new Country resource",
                         "schema": {
-                            "$ref": "#\/definitions\/Domain"
+                            "$ref": "#\/definitions\/Country"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "Domain resource created",
+                        "description": "Country resource created",
                         "schema": {
-                            "$ref": "#\/definitions\/Domain"
+                            "$ref": "#\/definitions\/Country"
                         }
                     },
                     "400": {
@@ -521,18 +1095,18 @@
                 }
             }
         },
-        "\/domains\/{id}": {
+        "\/countries\/{id}": {
             "get": {
                 "tags": [
-                    "Domain"
+                    "Country"
                 ],
-                "operationId": "getDomainItem",
+                "operationId": "getCountryItem",
                 "produces": [
                     "application\/ld+json",
                     "application\/json",
                     "text\/html"
                 ],
-                "summary": "Retrieves a Domain resource.",
+                "summary": "Retrieves a Country resource.",
                 "parameters": [
                     {
                         "name": "id",
@@ -543,9 +1117,9 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Domain resource response",
+                        "description": "Country resource response",
                         "schema": {
-                            "$ref": "#\/definitions\/Domain-Detailed"
+                            "$ref": "#\/definitions\/Country-detailed"
                         }
                     },
                     "404": {
@@ -555,9 +1129,9 @@
             },
             "put": {
                 "tags": [
-                    "Domain"
+                    "Country"
                 ],
-                "operationId": "putDomainItem",
+                "operationId": "putCountryItem",
                 "consumes": [
                     "application\/ld+json",
                     "application\/json",
@@ -568,7 +1142,7 @@
                     "application\/json",
                     "text\/html"
                 ],
-                "summary": "Replaces the Domain resource.",
+                "summary": "Replaces the Country resource.",
                 "parameters": [
                     {
                         "name": "id",
@@ -577,19 +1151,19 @@
                         "required": true
                     },
                     {
-                        "name": "domain",
+                        "name": "country",
                         "in": "body",
-                        "description": "The updated Domain resource",
+                        "description": "The updated Country resource",
                         "schema": {
-                            "$ref": "#\/definitions\/Domain"
+                            "$ref": "#\/definitions\/Country"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Domain resource updated",
+                        "description": "Country resource updated",
                         "schema": {
-                            "$ref": "#\/definitions\/Domain"
+                            "$ref": "#\/definitions\/Country"
                         }
                     },
                     "400": {
@@ -602,13 +1176,1097 @@
             },
             "delete": {
                 "tags": [
-                    "Domain"
+                    "Country"
                 ],
-                "operationId": "deleteDomainItem",
-                "summary": "Removes the Domain resource.",
+                "operationId": "deleteCountryItem",
+                "summary": "Removes the Country resource.",
                 "responses": {
                     "204": {
-                        "description": "Domain resource deleted"
+                        "description": "Country resource deleted"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "\/faxes_in_outs": {
+            "get": {
+                "tags": [
+                    "FaxesInOut"
+                ],
+                "operationId": "getFaxesInOutCollection",
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Retrieves the collection of FaxesInOut resources.",
+                "responses": {
+                    "200": {
+                        "description": "FaxesInOut collection response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/FaxesInOut-collection"
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "src",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "dst",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pages",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "calldate[before]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "calldate[strictly_before]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "calldate[after]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "calldate[strictly_after]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[calldate]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[src]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[dst]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[type]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[pages]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[status]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "description": "The collection page number"
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "FaxesInOut"
+                ],
+                "operationId": "postFaxesInOutCollection",
+                "consumes": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Creates a FaxesInOut resource.",
+                "parameters": [
+                    {
+                        "name": "faxesInOut",
+                        "in": "body",
+                        "description": "The new FaxesInOut resource",
+                        "schema": {
+                            "$ref": "#\/definitions\/FaxesInOut"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "FaxesInOut resource created",
+                        "schema": {
+                            "$ref": "#\/definitions\/FaxesInOut"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            }
+        },
+        "\/faxes_in_outs\/{id}": {
+            "get": {
+                "tags": [
+                    "FaxesInOut"
+                ],
+                "operationId": "getFaxesInOutItem",
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Retrieves a FaxesInOut resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "FaxesInOut resource response",
+                        "schema": {
+                            "$ref": "#\/definitions\/FaxesInOut-detailed"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "FaxesInOut"
+                ],
+                "operationId": "putFaxesInOutItem",
+                "consumes": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Replaces the FaxesInOut resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "faxesInOut",
+                        "in": "body",
+                        "description": "The updated FaxesInOut resource",
+                        "schema": {
+                            "$ref": "#\/definitions\/FaxesInOut"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "FaxesInOut resource updated",
+                        "schema": {
+                            "$ref": "#\/definitions\/FaxesInOut"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "FaxesInOut"
+                ],
+                "operationId": "deleteFaxesInOutItem",
+                "summary": "Removes the FaxesInOut resource.",
+                "responses": {
+                    "204": {
+                        "description": "FaxesInOut resource deleted"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "\/invoice_templates": {
+            "get": {
+                "tags": [
+                    "InvoiceTemplate"
+                ],
+                "operationId": "getInvoiceTemplateCollection",
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Retrieves the collection of InvoiceTemplate resources.",
+                "responses": {
+                    "200": {
+                        "description": "InvoiceTemplate collection response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/InvoiceTemplate-collection"
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "template",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "templateHeader",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "templateFooter",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[name]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[description]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[template]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[templateHeader]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[templateFooter]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "description": "The collection page number"
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "InvoiceTemplate"
+                ],
+                "operationId": "postInvoiceTemplateCollection",
+                "consumes": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Creates a InvoiceTemplate resource.",
+                "parameters": [
+                    {
+                        "name": "invoiceTemplate",
+                        "in": "body",
+                        "description": "The new InvoiceTemplate resource",
+                        "schema": {
+                            "$ref": "#\/definitions\/InvoiceTemplate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "InvoiceTemplate resource created",
+                        "schema": {
+                            "$ref": "#\/definitions\/InvoiceTemplate"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            }
+        },
+        "\/invoice_templates\/{id}": {
+            "get": {
+                "tags": [
+                    "InvoiceTemplate"
+                ],
+                "operationId": "getInvoiceTemplateItem",
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Retrieves a InvoiceTemplate resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "InvoiceTemplate resource response",
+                        "schema": {
+                            "$ref": "#\/definitions\/InvoiceTemplate-detailed"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "InvoiceTemplate"
+                ],
+                "operationId": "putInvoiceTemplateItem",
+                "consumes": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Replaces the InvoiceTemplate resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "invoiceTemplate",
+                        "in": "body",
+                        "description": "The updated InvoiceTemplate resource",
+                        "schema": {
+                            "$ref": "#\/definitions\/InvoiceTemplate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "InvoiceTemplate resource updated",
+                        "schema": {
+                            "$ref": "#\/definitions\/InvoiceTemplate"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "InvoiceTemplate"
+                ],
+                "operationId": "deleteInvoiceTemplateItem",
+                "summary": "Removes the InvoiceTemplate resource.",
+                "responses": {
+                    "204": {
+                        "description": "InvoiceTemplate resource deleted"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "\/invoices": {
+            "get": {
+                "tags": [
+                    "Invoice"
+                ],
+                "operationId": "getInvoiceCollection",
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Retrieves the collection of Invoice resources.",
+                "responses": {
+                    "200": {
+                        "description": "Invoice collection response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/Invoice-collection"
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "number",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "inDate[before]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "inDate[strictly_before]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "inDate[after]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "inDate[strictly_after]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "outDate[before]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "outDate[strictly_before]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "outDate[after]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "outDate[strictly_after]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "total",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "taxRate",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "totalWithTax",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "total[between]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "total[gt]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "total[gte]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "total[lt]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "total[lte]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "taxRate[between]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "taxRate[gt]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "taxRate[gte]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "taxRate[lt]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "taxRate[lte]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "totalWithTax[between]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "totalWithTax[gt]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "totalWithTax[gte]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "totalWithTax[lt]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "totalWithTax[lte]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[number]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[inDate]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[outDate]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[total]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[taxRate]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[totalWithTax]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[status]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "description": "The collection page number"
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Invoice"
+                ],
+                "operationId": "postInvoiceCollection",
+                "consumes": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Creates a Invoice resource.",
+                "parameters": [
+                    {
+                        "name": "invoice",
+                        "in": "body",
+                        "description": "The new Invoice resource",
+                        "schema": {
+                            "$ref": "#\/definitions\/Invoice"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Invoice resource created",
+                        "schema": {
+                            "$ref": "#\/definitions\/Invoice"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            }
+        },
+        "\/invoices\/{id}": {
+            "get": {
+                "tags": [
+                    "Invoice"
+                ],
+                "operationId": "getInvoiceItem",
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Retrieves a Invoice resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Invoice resource response",
+                        "schema": {
+                            "$ref": "#\/definitions\/Invoice-detailed"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Invoice"
+                ],
+                "operationId": "putInvoiceItem",
+                "consumes": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Replaces the Invoice resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "invoice",
+                        "in": "body",
+                        "description": "The updated Invoice resource",
+                        "schema": {
+                            "$ref": "#\/definitions\/Invoice"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Invoice resource updated",
+                        "schema": {
+                            "$ref": "#\/definitions\/Invoice"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Invoice"
+                ],
+                "operationId": "deleteInvoiceItem",
+                "summary": "Removes the Invoice resource.",
+                "responses": {
+                    "204": {
+                        "description": "Invoice resource deleted"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "\/languages": {
+            "get": {
+                "tags": [
+                    "Language"
+                ],
+                "operationId": "getLanguageCollection",
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Retrieves the collection of Language resources.",
+                "responses": {
+                    "200": {
+                        "description": "Language collection response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/Language-collection"
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "iden",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_order[iden]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "description": "The collection page number"
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Language"
+                ],
+                "operationId": "postLanguageCollection",
+                "consumes": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Creates a Language resource.",
+                "parameters": [
+                    {
+                        "name": "language",
+                        "in": "body",
+                        "description": "The new Language resource",
+                        "schema": {
+                            "$ref": "#\/definitions\/Language"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Language resource created",
+                        "schema": {
+                            "$ref": "#\/definitions\/Language"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            }
+        },
+        "\/languages\/{id}": {
+            "get": {
+                "tags": [
+                    "Language"
+                ],
+                "operationId": "getLanguageItem",
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Retrieves a Language resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Language resource response",
+                        "schema": {
+                            "$ref": "#\/definitions\/Language-detailed"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Language"
+                ],
+                "operationId": "putLanguageItem",
+                "consumes": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "produces": [
+                    "application\/ld+json",
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Replaces the Language resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "language",
+                        "in": "body",
+                        "description": "The updated Language resource",
+                        "schema": {
+                            "$ref": "#\/definitions\/Language"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Language resource updated",
+                        "schema": {
+                            "$ref": "#\/definitions\/Language"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Language"
+                ],
+                "operationId": "deleteLanguageItem",
+                "summary": "Removes the Language resource.",
+                "responses": {
+                    "204": {
+                        "description": "Language resource deleted"
                     },
                     "404": {
                         "description": "Resource not found"
@@ -713,17 +2371,30 @@
                     "$ref": "#\/definitions\/Brand_Invoice"
                 },
                 "domain": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "language": {
-                    "type": "string"
+                    "type": "integer"
                 },
                 "defaultTimezone": {
                     "type": "string"
                 }
             }
         },
-        "Brand-Detailed": {
+        "Brand-collection": {
+            "type": "object",
+            "description": "Brand",
+            "properties": {
+                "id": {
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "Brand-detailed": {
             "type": "object",
             "description": "Brand",
             "properties": {
@@ -757,10 +2428,10 @@
                     "$ref": "#\/definitions\/Brand_Invoice"
                 },
                 "domain": {
-                    "$ref": "#\/definitions\/Domain"
+                    "type": "string"
                 },
                 "language": {
-                    "type": "string"
+                    "$ref": "#\/definitions\/Language"
                 },
                 "defaultTimezone": {
                     "type": "string"
@@ -771,39 +2442,85 @@
                         "$ref": "#\/definitions\/Company"
                     }
                 },
-                "domains": {
+                "urls": {
                     "type": "array",
                     "items": {
-                        "$ref": "#\/definitions\/Domain"
+                        "$ref": "#\/definitions\/BrandUrl"
                     }
                 }
             }
         },
-        "Brand-Simple": {
+        "BrandUrl": {
             "type": "object",
-            "description": "Brand",
+            "description": "BrandUrl",
             "properties": {
-                "id": {
-                    "readOnly": true,
-                    "type": "integer"
+                "url": {
+                    "type": "string"
+                },
+                "klearTheme": {
+                    "type": "string"
+                },
+                "urlType": {
+                    "description": "comment: enum:god|brand|admin|user",
+                    "type": "string"
                 },
                 "name": {
                     "type": "string"
                 },
-                "recordingsLimitMB": {
-                    "type": "integer"
-                },
-                "recordingsLimitEmail": {
+                "userTheme": {
                     "type": "string"
                 },
-                "logo": {
-                    "$ref": "#\/definitions\/Brand_Logo"
-                },
-                "invoice": {
-                    "$ref": "#\/definitions\/Brand_Invoice"
-                },
-                "domain": {
+                "id": {
+                    "readOnly": true,
                     "type": "integer"
+                },
+                "logo": {
+                    "type": "string"
+                },
+                "brand": {
+                    "type": "integer"
+                }
+            }
+        },
+        "BrandUrl-collection": {
+            "type": "object",
+            "description": "BrandUrl",
+            "properties": {
+                "id": {
+                    "readOnly": true,
+                    "type": "integer"
+                }
+            }
+        },
+        "BrandUrl-detailed": {
+            "type": "object",
+            "description": "BrandUrl",
+            "properties": {
+                "url": {
+                    "type": "string"
+                },
+                "klearTheme": {
+                    "type": "string"
+                },
+                "urlType": {
+                    "description": "comment: enum:god|brand|admin|user",
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "userTheme": {
+                    "type": "string"
+                },
+                "id": {
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "logo": {
+                    "type": "string"
+                },
+                "brand": {
+                    "$ref": "#\/definitions\/Brand"
                 }
             }
         },
@@ -916,7 +2633,7 @@
                     "type": "integer"
                 },
                 "language": {
-                    "type": "string"
+                    "type": "integer"
                 },
                 "mediaRelaySets": {
                     "type": "string"
@@ -928,13 +2645,13 @@
                     "type": "integer"
                 },
                 "domain": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "applicationServer": {
                     "type": "string"
                 },
                 "country": {
-                    "type": "string"
+                    "type": "integer"
                 },
                 "transformationRuleSet": {
                     "type": "string"
@@ -947,7 +2664,17 @@
                 }
             }
         },
-        "Company-Detailed": {
+        "Company-collection": {
+            "type": "object",
+            "description": "Company",
+            "properties": {
+                "id": {
+                    "readOnly": true,
+                    "type": "integer"
+                }
+            }
+        },
+        "Company-detailed": {
             "type": "object",
             "description": "Company",
             "properties": {
@@ -1011,7 +2738,7 @@
                     "type": "integer"
                 },
                 "language": {
-                    "type": "string"
+                    "$ref": "#\/definitions\/Language"
                 },
                 "mediaRelaySets": {
                     "type": "string"
@@ -1023,13 +2750,13 @@
                     "$ref": "#\/definitions\/Brand"
                 },
                 "domain": {
-                    "$ref": "#\/definitions\/Domain"
+                    "type": "string"
                 },
                 "applicationServer": {
                     "type": "string"
                 },
                 "country": {
-                    "type": "string"
+                    "$ref": "#\/definitions\/Country"
                 },
                 "transformationRuleSet": {
                     "type": "string"
@@ -1039,18 +2766,34 @@
                 },
                 "outgoingDdiRule": {
                     "type": "string"
-                },
-                "domains": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#\/definitions\/Domain"
-                    }
                 }
             }
         },
-        "Company-Simple": {
+        "Country": {
             "type": "object",
-            "description": "Company",
+            "description": "Country",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "countryCode": {
+                    "type": "string"
+                },
+                "id": {
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "zone": {
+                    "type": "string"
+                }
+            }
+        },
+        "Country-collection": {
+            "type": "object",
+            "description": "Country",
             "properties": {
                 "id": {
                     "readOnly": true,
@@ -1058,51 +2801,337 @@
                 }
             }
         },
-        "Domain": {
+        "Country-detailed": {
             "type": "object",
-            "description": "Domain",
+            "description": "Country",
             "properties": {
-                "domain": {
+                "code": {
                     "type": "string"
                 },
-                "pointsTo": {
+                "countryCode": {
+                    "type": "string"
+                },
+                "id": {
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "zone": {
+                    "type": "string"
+                }
+            }
+        },
+        "FaxesInOut": {
+            "type": "object",
+            "description": "FaxesInOut",
+            "properties": {
+                "calldate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "src": {
+                    "type": "string"
+                },
+                "dst": {
+                    "type": "string"
+                },
+                "type": {
+                    "description": "comment: enum:In|Out",
+                    "type": "string"
+                },
+                "pages": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "id": {
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "file": {
+                    "type": "string"
+                },
+                "fax": {
+                    "type": "string"
+                },
+                "dstCountry": {
+                    "type": "integer"
+                }
+            }
+        },
+        "FaxesInOut-collection": {
+            "type": "object",
+            "description": "FaxesInOut",
+            "properties": {
+                "id": {
+                    "readOnly": true,
+                    "type": "integer"
+                }
+            }
+        },
+        "FaxesInOut-detailed": {
+            "type": "object",
+            "description": "FaxesInOut",
+            "properties": {
+                "calldate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "src": {
+                    "type": "string"
+                },
+                "dst": {
+                    "type": "string"
+                },
+                "type": {
+                    "description": "comment: enum:In|Out",
+                    "type": "string"
+                },
+                "pages": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "id": {
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "file": {
+                    "type": "string"
+                },
+                "fax": {
+                    "type": "string"
+                },
+                "dstCountry": {
+                    "$ref": "#\/definitions\/Country"
+                }
+            }
+        },
+        "Invoice": {
+            "type": "object",
+            "description": "Invoice",
+            "properties": {
+                "number": {
+                    "type": "string"
+                },
+                "inDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "outDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "total": {
+                    "type": "string"
+                },
+                "taxRate": {
+                    "type": "string"
+                },
+                "totalWithTax": {
+                    "type": "string"
+                },
+                "status": {
+                    "description": "comment: enum:waiting|processing|created|error",
+                    "type": "string"
+                },
+                "id": {
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "pdf": {
+                    "type": "string"
+                },
+                "invoiceTemplate": {
+                    "type": "integer"
+                },
+                "brand": {
+                    "type": "integer"
+                },
+                "company": {
+                    "type": "integer"
+                }
+            }
+        },
+        "Invoice-collection": {
+            "type": "object",
+            "description": "Invoice",
+            "properties": {
+                "id": {
+                    "readOnly": true,
+                    "type": "integer"
+                }
+            }
+        },
+        "Invoice-detailed": {
+            "type": "object",
+            "description": "Invoice",
+            "properties": {
+                "number": {
+                    "type": "string"
+                },
+                "inDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "outDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "total": {
+                    "type": "string"
+                },
+                "taxRate": {
+                    "type": "string"
+                },
+                "totalWithTax": {
+                    "type": "string"
+                },
+                "status": {
+                    "description": "comment: enum:waiting|processing|created|error",
+                    "type": "string"
+                },
+                "id": {
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "pdf": {
+                    "type": "string"
+                },
+                "invoiceTemplate": {
+                    "$ref": "#\/definitions\/InvoiceTemplate"
+                },
+                "brand": {
+                    "$ref": "#\/definitions\/Brand"
+                },
+                "company": {
+                    "$ref": "#\/definitions\/Company"
+                }
+            }
+        },
+        "InvoiceTemplate": {
+            "type": "object",
+            "description": "InvoiceTemplate",
+            "properties": {
+                "name": {
                     "type": "string"
                 },
                 "description": {
                     "type": "string"
                 },
+                "template": {
+                    "type": "string"
+                },
+                "templateHeader": {
+                    "type": "string"
+                },
+                "templateFooter": {
+                    "type": "string"
+                },
+                "id": {
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "brand": {
+                    "type": "integer"
+                }
+            }
+        },
+        "InvoiceTemplate-collection": {
+            "type": "object",
+            "description": "InvoiceTemplate",
+            "properties": {
                 "id": {
                     "readOnly": true,
                     "type": "integer"
                 }
             }
         },
-        "Domain-Detailed": {
+        "InvoiceTemplate-detailed": {
             "type": "object",
-            "description": "Domain",
+            "description": "InvoiceTemplate",
             "properties": {
-                "domain": {
-                    "type": "string"
-                },
-                "pointsTo": {
+                "name": {
                     "type": "string"
                 },
                 "description": {
                     "type": "string"
                 },
+                "template": {
+                    "type": "string"
+                },
+                "templateHeader": {
+                    "type": "string"
+                },
+                "templateFooter": {
+                    "type": "string"
+                },
+                "id": {
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "brand": {
+                    "$ref": "#\/definitions\/Brand"
+                }
+            }
+        },
+        "Language": {
+            "type": "object",
+            "description": "Language",
+            "properties": {
+                "iden": {
+                    "type": "string"
+                },
+                "id": {
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "name": {
+                    "$ref": "#\/definitions\/Language_Name"
+                }
+            }
+        },
+        "Language-collection": {
+            "type": "object",
+            "description": "Language",
+            "properties": {
                 "id": {
                     "readOnly": true,
                     "type": "integer"
                 }
             }
         },
-        "Domain-Simple": {
+        "Language-detailed": {
             "type": "object",
-            "description": "Domain",
+            "description": "Language",
             "properties": {
+                "iden": {
+                    "type": "string"
+                },
                 "id": {
                     "readOnly": true,
                     "type": "integer"
+                },
+                "name": {
+                    "$ref": "#\/definitions\/Language_Name"
+                }
+            }
+        },
+        "Language_Name": {
+            "type": "object",
+            "description": "Name",
+            "properties": {
+                "en": {
+                    "description": "column: name_en",
+                    "type": "string"
+                },
+                "es": {
+                    "description": "column: name_es",
+                    "type": "string"
                 }
             }
         }
