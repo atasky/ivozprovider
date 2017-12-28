@@ -2,16 +2,16 @@ imports:
   - { resource: "@ApiBundle/Resources/config/api_platform_base.yml" }
 
 api_platform:
-    # The title of the API.
-    title: ''
+  # The title of the API.
+  title: ''
 
-    # The description of the API.
-    description: ''
+  # The description of the API.
+  description: ''
 
-    # The version of the API.
-    version: '0.1.1'
+  # The version of the API.
+  version: '0.1.1'
 
-    mapping:
-        # The list of paths with files or directories where the bundle will look for additional resource files.
-        paths:
-          - '%kernel.root_dir%/config/api/'
+  mapping:
+    # The list of paths with files or directories where the bundle will look for additional resource files.
+    paths:
+      - '%kernel.root_dir%/config/api/'

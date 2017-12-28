@@ -39,8 +39,7 @@ class BrandDto extends BrandDtoAbstract
         if ($context === self::CONTEXT_COLLECTION) {
             return [
                 'id',
-                'name',
-                'companies'
+                'name'
             ];
         }
 

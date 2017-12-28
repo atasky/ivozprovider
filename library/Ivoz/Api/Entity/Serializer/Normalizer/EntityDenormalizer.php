@@ -1,6 +1,6 @@
 <?php
 
-namespace Ivoz\Api\JsonLd\Serializer\Normalizer;
+namespace Ivoz\Api\Entity\Serializer\Normalizer;
 
 use ApiPlatform\Core\Exception\InvalidArgumentException;
 use Ivoz\Core\Application\DataTransferObjectInterface;
@@ -16,8 +16,6 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
  */
 class EntityDenormalizer implements DenormalizerInterface
 {
-    const FORMAT = 'jsonld';
-
     /**
      * @var CreateEntityFromDTO
      */
@@ -53,7 +51,7 @@ class EntityDenormalizer implements DenormalizerInterface
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return self::FORMAT === $format && class_exists($type . 'Dto');
+        return class_exists($type . 'Dto');
     }
 
     /**

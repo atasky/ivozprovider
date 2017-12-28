@@ -1,10 +1,12 @@
 api:
   resource: '.'
   type: 'api_platform'
-#  prefix: '/v1'
+
+api_base_path:
+  path: '/'
 
 api_doc:
-  path: /swagger.json
+  path: api/swagger.json
 
 api_login_check:
   path: /login_check

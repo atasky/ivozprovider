@@ -10,6 +10,13 @@ services:
   ################################################
   ## Normalizers
   ################################################
+  Ivoz\Api\Json\Serializer\Normalizer\EntityNormalizer:
+    arguments:
+      $resourceClassResolver: "@api_platform.resource_class_resolver"
+      $contextBuilder: "@api_platform.jsonld.context_builder"
+    tags:
+      -  { name: serializer.normalizer, priority: 10 }
+
   Ivoz\Api\JsonLd\Serializer\Normalizer\EntityNormalizer:
     arguments:
       $resourceMetadataFactory: "@api_platform.metadata.resource.metadata_factory"
@@ -22,7 +29,7 @@ services:
   ################################################
   ## Denormalizers
   ################################################
-  Ivoz\Api\JsonLd\Serializer\Normalizer\EntityDenormalizer:
+  Ivoz\Api\Entity\Serializer\Normalizer\EntityDenormalizer:
     arguments:
       $createEntityFromDTO:
         '@Ivoz\Core\Application\Service\CreateEntityFromDTO'
@@ -107,6 +114,16 @@ services:
     arguments:
       $decoratedNormalizer:
         '@Ivoz\Api\Swagger\Serializer\DocumentationNormalizer\AuthEndpointDecorator.inner'
+
+
+  Ivoz\Api\Swagger\Serializer\DocumentationNormalizer\BasePathDecorator:
+    decorates: 'api_platform.swagger.normalizer.documentation'
+    decoration_priority: 7
+    arguments:
+      $decoratedNormalizer:
+        '@Ivoz\Api\Swagger\Serializer\DocumentationNormalizer\BasePathDecorator.inner'
+      $router:
+        '@router'
 
   ################################################
   ## ItemDataProviders

@@ -1,6 +1,6 @@
 {
     "swagger": "2.0",
-    "basePath": "\/",
+    "basePath": "\/api\/index.php\/",
     "info": {
         "title": "",
         "version": "0.1.1"

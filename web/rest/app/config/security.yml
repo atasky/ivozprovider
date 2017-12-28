@@ -21,7 +21,7 @@ security:
       security: false
 
     api_docs:
-      pattern: ^/index.html.*$
+      pattern: ^/index.[^.{3,6}]/?.*$
       security: false
 
     login:
@@ -44,6 +44,7 @@ security:
       guard:
         authenticators:
           - lexik_jwt_authentication.jwt_token_authenticator
+
 
     main:
       anonymous: ~
