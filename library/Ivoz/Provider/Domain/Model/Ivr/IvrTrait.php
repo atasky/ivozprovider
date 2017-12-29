@@ -174,7 +174,7 @@ trait IvrTrait
     /**
      * Get entries
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\IvrEntry\IvrEntryInterface[]
      */
     public function getEntries(Criteria $criteria = null)
     {
@@ -246,7 +246,7 @@ trait IvrTrait
     /**
      * Get excludedExtensions
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\IvrExcludedExtension\IvrExcludedExtensionInterface[]
      */
     public function getExcludedExtensions(Criteria $criteria = null)
     {

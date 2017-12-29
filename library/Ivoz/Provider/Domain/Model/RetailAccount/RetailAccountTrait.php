@@ -174,7 +174,7 @@ trait RetailAccountTrait
     /**
      * Get psEndpoints
      *
-     * @return array
+     * @return \Ivoz\Ast\Domain\Model\PsEndpoint\PsEndpointInterface[]
      */
     public function getPsEndpoints(Criteria $criteria = null)
     {
@@ -246,7 +246,7 @@ trait RetailAccountTrait
     /**
      * Get ddis
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\Ddi\DdiInterface[]
      */
     public function getDdis(Criteria $criteria = null)
     {

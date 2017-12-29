@@ -161,7 +161,7 @@ trait ExtensionTrait
     /**
      * Get users
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\User\UserInterface[]
      */
     public function getUsers(Criteria $criteria = null)
     {

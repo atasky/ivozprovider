@@ -14,29 +14,6 @@ interface CalendarInterface extends LoggableEntityInterface
     public function getChangeSet();
 
     /**
-     * @return CalendarDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return CalendarDto
-     */
-    public function toDto();
-
-    /**
      * Set name
      *
      * @param string $name
@@ -95,7 +72,7 @@ interface CalendarInterface extends LoggableEntityInterface
     /**
      * Get holidayDates
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\HolidayDate\HolidayDateInterface[]
      */
     public function getHolidayDates(\Doctrine\Common\Collections\Criteria $criteria = null);
 

@@ -73,29 +73,6 @@ interface RetailAccountInterface extends LoggableEntityInterface
     public function getDdi($ddieE164);
 
     /**
-     * @return RetailAccountDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return RetailAccountDto
-     */
-    public function toDto();
-
-    /**
      * Get name
      *
      * @return string
@@ -399,7 +376,7 @@ interface RetailAccountInterface extends LoggableEntityInterface
     /**
      * Get psEndpoints
      *
-     * @return array
+     * @return \Ivoz\Ast\Domain\Model\PsEndpoint\PsEndpointInterface[]
      */
     public function getPsEndpoints(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -430,7 +407,7 @@ interface RetailAccountInterface extends LoggableEntityInterface
     /**
      * Get ddis
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\Ddi\DdiInterface[]
      */
     public function getDdis(\Doctrine\Common\Collections\Criteria $criteria = null);
 

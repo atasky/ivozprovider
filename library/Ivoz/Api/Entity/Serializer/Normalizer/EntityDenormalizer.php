@@ -80,7 +80,7 @@ class EntityDenormalizer implements DenormalizerInterface
     {
         $dtoClass = $class. 'Dto';
         $dto = $entity
-            ? $this->dtoAssembler->toDTO($entity)
+            ? $this->dtoAssembler->toDto($entity)
             : new $dtoClass;
 
         $baseData = $dto->normalize('');

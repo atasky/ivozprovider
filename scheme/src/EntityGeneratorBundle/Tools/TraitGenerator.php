@@ -238,7 +238,11 @@ protected function __toArray()
                     $methods[] = $code;
                 }
                 if ($code = $this->generateEntityStubMethod($metadata, 'get', $associationMapping['fieldName'], 'Doctrine\Common\Collections\Collection')) {
-                    $methods[] = $code;
+                    $methods[] = str_replace(
+                        '@return array',
+                        '@return \\' . $associationMapping['targetEntity'] . '[]',
+                        $code
+                    );
                 }
             }
         }

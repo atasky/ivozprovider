@@ -265,7 +265,7 @@ trait BrandTrait
     /**
      * Get companies
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\Company\CompanyInterface[]
      */
     public function getCompanies(Criteria $criteria = null)
     {
@@ -337,7 +337,7 @@ trait BrandTrait
     /**
      * Get services
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\BrandService\BrandServiceInterface[]
      */
     public function getServices(Criteria $criteria = null)
     {
@@ -409,7 +409,7 @@ trait BrandTrait
     /**
      * Get urls
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\BrandUrl\BrandUrlInterface[]
      */
     public function getUrls(Criteria $criteria = null)
     {
@@ -481,7 +481,7 @@ trait BrandTrait
     /**
      * Get relFeatures
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\FeaturesRelBrand\FeaturesRelBrandInterface[]
      */
     public function getRelFeatures(Criteria $criteria = null)
     {
@@ -553,7 +553,7 @@ trait BrandTrait
     /**
      * Get domains
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\Domain\DomainInterface[]
      */
     public function getDomains(Criteria $criteria = null)
     {
@@ -625,7 +625,7 @@ trait BrandTrait
     /**
      * Get retailAccounts
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\RetailAccount\RetailAccountInterface[]
      */
     public function getRetailAccounts(Criteria $criteria = null)
     {
@@ -697,7 +697,7 @@ trait BrandTrait
     /**
      * Get musicsOnHold
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\MusicOnHold\MusicOnHoldInterface[]
      */
     public function getMusicsOnHold(Criteria $criteria = null)
     {
@@ -769,7 +769,7 @@ trait BrandTrait
     /**
      * Get matchLists
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\MatchList\MatchListInterface[]
      */
     public function getMatchLists(Criteria $criteria = null)
     {
@@ -841,7 +841,7 @@ trait BrandTrait
     /**
      * Get outgoingRoutings
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\OutgoingRouting\OutgoingRoutingInterface[]
      */
     public function getOutgoingRoutings(Criteria $criteria = null)
     {

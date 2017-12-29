@@ -13,29 +13,6 @@ interface FeaturesRelBrandInterface extends LoggableEntityInterface
     public function getChangeSet();
 
     /**
-     * @return FeaturesRelBrandDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return FeaturesRelBrandDto
-     */
-    public function toDto();
-
-    /**
      * Set brand
      *
      * @param \Ivoz\Provider\Domain\Model\Brand\BrandInterface $brand

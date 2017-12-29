@@ -37,29 +37,6 @@ interface IvrInterface extends LoggableEntityInterface
     public function getErrorTarget();
 
     /**
-     * @return IvrDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return IvrDto
-     */
-    public function toDto();
-
-    /**
      * Set name
      *
      * @param string $name
@@ -390,7 +367,7 @@ interface IvrInterface extends LoggableEntityInterface
     /**
      * Get entries
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\IvrEntry\IvrEntryInterface[]
      */
     public function getEntries(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -421,7 +398,7 @@ interface IvrInterface extends LoggableEntityInterface
     /**
      * Get excludedExtensions
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\IvrExcludedExtension\IvrExcludedExtensionInterface[]
      */
     public function getExcludedExtensions(\Doctrine\Common\Collections\Criteria $criteria = null);
 

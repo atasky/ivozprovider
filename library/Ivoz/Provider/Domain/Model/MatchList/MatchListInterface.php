@@ -22,29 +22,6 @@ interface MatchListInterface extends LoggableEntityInterface
     public function numberMatches($number);
 
     /**
-     * @return MatchListDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return MatchListDto
-     */
-    public function toDto();
-
-    /**
      * Set name
      *
      * @param string $name
@@ -119,7 +96,7 @@ interface MatchListInterface extends LoggableEntityInterface
     /**
      * Get patterns
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\MatchListPattern\MatchListPatternInterface[]
      */
     public function getPatterns(\Doctrine\Common\Collections\Criteria $criteria = null);
 

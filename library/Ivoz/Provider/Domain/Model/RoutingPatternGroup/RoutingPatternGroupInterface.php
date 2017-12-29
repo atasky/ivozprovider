@@ -19,29 +19,6 @@ interface RoutingPatternGroupInterface extends LoggableEntityInterface
     public function getRoutingPatterns();
 
     /**
-     * @return RoutingPatternGroupDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return RoutingPatternGroupDto
-     */
-    public function toDto();
-
-    /**
      * Set name
      *
      * @param string $name
@@ -116,7 +93,7 @@ interface RoutingPatternGroupInterface extends LoggableEntityInterface
     /**
      * Get relPatterns
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\RoutingPatternGroupsRelPattern\RoutingPatternGroupsRelPatternInterface[]
      */
     public function getRelPatterns(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -147,7 +124,7 @@ interface RoutingPatternGroupInterface extends LoggableEntityInterface
     /**
      * Get outgoingRoutings
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\OutgoingRouting\OutgoingRoutingInterface[]
      */
     public function getOutgoingRoutings(\Doctrine\Common\Collections\Criteria $criteria = null);
 

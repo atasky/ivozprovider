@@ -161,7 +161,7 @@ trait CallAclTrait
     /**
      * Get relMatchLists
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\CallAclRelMatchList\CallAclRelMatchListInterface[]
      */
     public function getRelMatchLists(Criteria $criteria = null)
     {

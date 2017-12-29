@@ -161,7 +161,7 @@ trait TransformationRuleSetTrait
     /**
      * Get rules
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\TransformationRule\TransformationRuleInterface[]
      */
     public function getRules(Criteria $criteria = null)
     {

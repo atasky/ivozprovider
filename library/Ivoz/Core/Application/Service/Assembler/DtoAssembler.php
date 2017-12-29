@@ -25,13 +25,13 @@ class DtoAssembler
         $this->customAssemblers = [];
     }
 
-    public function toDTO(EntityInterface $targetEntity)
+    public function toDto(EntityInterface $targetEntity)
     {
         $assembler = $this->getAssembler($targetEntity);
 
         return $assembler
-            ? $assembler->toDTO($targetEntity)
-            : $targetEntity->toDTO();
+            ? $assembler->toDto($targetEntity)
+            : $targetEntity->toDto();
     }
 
     private function getAssembler(EntityInterface $entity)

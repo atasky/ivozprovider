@@ -52,29 +52,6 @@ interface ExternalCallFilterInterface extends LoggableEntityInterface
     public function getOutOfScheduleNumberValueE164();
 
     /**
-     * @return ExternalCallFilterDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return ExternalCallFilterDto
-     */
-    public function toDto();
-
-    /**
      * Set name
      *
      * @param string $name
@@ -341,7 +318,7 @@ interface ExternalCallFilterInterface extends LoggableEntityInterface
     /**
      * Get calendars
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\ExternalCallFilterRelCalendar\ExternalCallFilterRelCalendarInterface[]
      */
     public function getCalendars(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -372,7 +349,7 @@ interface ExternalCallFilterInterface extends LoggableEntityInterface
     /**
      * Get blackLists
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\ExternalCallFilterBlackList\ExternalCallFilterBlackListInterface[]
      */
     public function getBlackLists(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -403,7 +380,7 @@ interface ExternalCallFilterInterface extends LoggableEntityInterface
     /**
      * Get whiteLists
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\ExternalCallFilterWhiteList\ExternalCallFilterWhiteListInterface[]
      */
     public function getWhiteLists(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -434,7 +411,7 @@ interface ExternalCallFilterInterface extends LoggableEntityInterface
     /**
      * Get schedules
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\ExternalCallFilterRelSchedule\ExternalCallFilterRelScheduleInterface[]
      */
     public function getSchedules(\Doctrine\Common\Collections\Criteria $criteria = null);
 

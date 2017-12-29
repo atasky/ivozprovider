@@ -187,7 +187,7 @@ trait UserTrait
     /**
      * Get pickUpRelUsers
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\PickUpRelUser\PickUpRelUserInterface[]
      */
     public function getPickUpRelUsers(Criteria $criteria = null)
     {
@@ -259,7 +259,7 @@ trait UserTrait
     /**
      * Get queueMembers
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\QueueMember\QueueMemberInterface[]
      */
     public function getQueueMembers(Criteria $criteria = null)
     {
@@ -331,7 +331,7 @@ trait UserTrait
     /**
      * Get callForwardSettings
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\CallForwardSetting\CallForwardSettingInterface[]
      */
     public function getCallForwardSettings(Criteria $criteria = null)
     {

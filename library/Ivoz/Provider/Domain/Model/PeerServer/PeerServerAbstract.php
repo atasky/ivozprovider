@@ -4,6 +4,7 @@ namespace Ivoz\Provider\Domain\Model\PeerServer;
 
 use Assert\Assertion;
 use Ivoz\Core\Application\DataTransferObjectInterface;
+use Ivoz\Core\Domain\Model\ChangelogTrait;
 
 /**
  * PeerServerAbstract
@@ -120,11 +121,7 @@ abstract class PeerServerAbstract
     protected $brand;
 
 
-    /**
-     * Changelog tracking purpose
-     * @var array
-     */
-    protected $_initialValues = [];
+    use ChangelogTrait;
 
     /**
      * Constructor
@@ -132,72 +129,6 @@ abstract class PeerServerAbstract
     protected function __construct($authNeeded)
     {
         $this->setAuthNeeded($authNeeded);
-    }
-
-    /**
-     * @param string $fieldName
-     * @return mixed
-     * @throws \Exception
-     */
-    public function initChangelog()
-    {
-        $values = $this->__toArray();
-        if (!$this->getId()) {
-            // Empty values for entities with no Id
-            foreach ($values as $key => $val) {
-                $values[$key] = null;
-            }
-        }
-
-        $this->_initialValues = $values;
-    }
-
-    /**
-     * @param string $fieldName
-     * @return mixed
-     * @throws \Exception
-     */
-    public function hasChanged($dbFieldName)
-    {
-        if (!array_key_exists($dbFieldName, $this->_initialValues)) {
-            throw new \Exception($dbFieldName . ' field was not found');
-        }
-        $currentValues = $this->__toArray();
-
-        return $currentValues[$dbFieldName] != $this->_initialValues[$dbFieldName];
-    }
-
-    public function getInitialValue($dbFieldName)
-    {
-        if (!array_key_exists($dbFieldName, $this->_initialValues)) {
-            throw new \Exception($dbFieldName . ' field was not found');
-        }
-
-        return $this->_initialValues[$dbFieldName];
-    }
-
-    /**
-     * @return array
-     */
-    protected function getChangeSet()
-    {
-        $changes = [];
-        $currentValues = $this->__toArray();
-        foreach ($currentValues as $key => $value) {
-
-            if ($this->_initialValues[$key] == $currentValues[$key]) {
-                continue;
-            }
-
-            $value = $currentValues[$key];
-            if ($value instanceof \DateTime) {
-                $value = $value->format('Y-m-d H:i:s');
-            }
-
-            $changes[$key] = $value;
-        }
-
-        return $changes;
     }
 
     /**
@@ -248,7 +179,6 @@ abstract class PeerServerAbstract
             ->setOutboundProxy($dto->getOutboundProxy())
             ->setFromUser($dto->getFromUser())
             ->setFromDomain($dto->getFromDomain())
-            ->setLcrGateway($dto->getLcrGateway())
             ->setPeeringContract($dto->getPeeringContract())
             ->setBrand($dto->getBrand())
         ;
@@ -288,7 +218,6 @@ abstract class PeerServerAbstract
             ->setOutboundProxy($dto->getOutboundProxy())
             ->setFromUser($dto->getFromUser())
             ->setFromDomain($dto->getFromDomain())
-            ->setLcrGateway($dto->getLcrGateway())
             ->setPeeringContract($dto->getPeeringContract())
             ->setBrand($dto->getBrand());
 
@@ -321,7 +250,6 @@ abstract class PeerServerAbstract
             ->setOutboundProxy($this->getOutboundProxy())
             ->setFromUser($this->getFromUser())
             ->setFromDomain($this->getFromDomain())
-            ->setLcrGateway($this->getLcrGateway() ? $this->getLcrGateway()->toDto() : null)
             ->setPeeringContract($this->getPeeringContract() ? $this->getPeeringContract()->toDto() : null)
             ->setBrand($this->getBrand() ? $this->getBrand()->toDto() : null);
     }
@@ -349,7 +277,6 @@ abstract class PeerServerAbstract
             'outbound_proxy' => self::getOutboundProxy(),
             'from_user' => self::getFromUser(),
             'from_domain' => self::getFromDomain(),
-            'lcrGatewayId' => self::getLcrGateway() ? self::getLcrGateway()->getId() : null,
             'peeringContractId' => self::getPeeringContract() ? self::getPeeringContract()->getId() : null,
             'brandId' => self::getBrand() ? self::getBrand()->getId() : null
         ];

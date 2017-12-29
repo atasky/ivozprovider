@@ -3,7 +3,7 @@
 namespace Ivoz\Provider\Domain\Service\User;
 
 use Ivoz\Core\Domain\Service\EntityPersisterInterface;
-use Ivoz\Provider\Domain\Model\User\UserDTO;
+use Ivoz\Provider\Domain\Model\User\UserDto;
 use Ivoz\Provider\Domain\Model\User\UserInterface;
 use Ivoz\Provider\Domain\Model\User\UserRepository;
 
@@ -48,7 +48,7 @@ class UnsetBossAssistant implements UserLifecycleEventHandlerInterface
                 /**
                  * @var UserDTO $bossDto
                  */
-                $bossDto = $boss->toDTO();
+                $bossDto = $boss->toDto();
                 $bossDto->setBossAssistantId(null);
 
                 $this->entityPersister->persistDto($bossDto, $boss);

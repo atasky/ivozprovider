@@ -174,7 +174,7 @@ trait RoutingPatternGroupTrait
     /**
      * Get relPatterns
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\RoutingPatternGroupsRelPattern\RoutingPatternGroupsRelPatternInterface[]
      */
     public function getRelPatterns(Criteria $criteria = null)
     {
@@ -246,7 +246,7 @@ trait RoutingPatternGroupTrait
     /**
      * Get outgoingRoutings
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\OutgoingRouting\OutgoingRoutingInterface[]
      */
     public function getOutgoingRoutings(Criteria $criteria = null)
     {

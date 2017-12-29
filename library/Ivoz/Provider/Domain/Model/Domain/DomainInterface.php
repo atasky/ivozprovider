@@ -14,29 +14,6 @@ interface DomainInterface extends LoggableEntityInterface
     public function getChangeSet();
 
     /**
-     * @return DomainDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return DomainDto
-     */
-    public function toDto();
-
-    /**
      * Set domain
      *
      * @param string $domain
@@ -111,7 +88,7 @@ interface DomainInterface extends LoggableEntityInterface
     /**
      * Get friends
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\Friend\FriendInterface[]
      */
     public function getFriends(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -142,7 +119,7 @@ interface DomainInterface extends LoggableEntityInterface
     /**
      * Get retailAccounts
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\RetailAccount\RetailAccountInterface[]
      */
     public function getRetailAccounts(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -173,7 +150,7 @@ interface DomainInterface extends LoggableEntityInterface
     /**
      * Get terminals
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\Terminal\TerminalInterface[]
      */
     public function getTerminals(\Doctrine\Common\Collections\Criteria $criteria = null);
 

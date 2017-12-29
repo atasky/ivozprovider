@@ -47,29 +47,6 @@ interface TerminalInterface extends LoggableEntityInterface
     public function setMac($mac = null);
 
     /**
-     * @return TerminalDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return TerminalDto
-     */
-    public function toDto();
-
-    /**
      * Get name
      *
      * @return string
@@ -245,7 +222,7 @@ interface TerminalInterface extends LoggableEntityInterface
     /**
      * Get astPsEndpoints
      *
-     * @return array
+     * @return \Ivoz\Ast\Domain\Model\PsEndpoint\PsEndpointInterface[]
      */
     public function getAstPsEndpoints(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -276,7 +253,7 @@ interface TerminalInterface extends LoggableEntityInterface
     /**
      * Get users
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\User\UserInterface[]
      */
     public function getUsers(\Doctrine\Common\Collections\Criteria $criteria = null);
 

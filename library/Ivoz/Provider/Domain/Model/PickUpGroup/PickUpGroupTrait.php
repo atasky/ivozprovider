@@ -161,7 +161,7 @@ trait PickUpGroupTrait
     /**
      * Get relUsers
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\PickUpRelUser\PickUpRelUserInterface[]
      */
     public function getRelUsers(Criteria $criteria = null)
     {

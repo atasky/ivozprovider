@@ -19,29 +19,6 @@ interface OutgoingDdiRulesPatternInterface extends LoggableEntityInterface
     public function getForcedDdi();
 
     /**
-     * @return OutgoingDdiRulesPatternDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return OutgoingDdiRulesPatternDto
-     */
-    public function toDto();
-
-    /**
      * Set action
      *
      * @param string $action

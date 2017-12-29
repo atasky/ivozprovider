@@ -7,29 +7,6 @@ use Ivoz\Core\Domain\Model\EntityInterface;
 interface UsersCdrInterface extends EntityInterface
 {
     /**
-     * @return UsersCdrDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return UsersCdrDto
-     */
-    public function toDto();
-
-    /**
      * Set startTime
      *
      * @param \DateTime $startTime

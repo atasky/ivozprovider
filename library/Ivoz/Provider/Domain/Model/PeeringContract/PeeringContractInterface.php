@@ -14,29 +14,6 @@ interface PeeringContractInterface extends LoggableEntityInterface
     public function getChangeSet();
 
     /**
-     * @return PeeringContractDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return PeeringContractDto
-     */
-    public function toDto();
-
-    /**
      * Set description
      *
      * @param string $description
@@ -143,7 +120,7 @@ interface PeeringContractInterface extends LoggableEntityInterface
     /**
      * Get outgoingRoutings
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\OutgoingRouting\OutgoingRoutingInterface[]
      */
     public function getOutgoingRoutings(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -174,7 +151,7 @@ interface PeeringContractInterface extends LoggableEntityInterface
     /**
      * Get peerServers
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\PeerServer\PeerServerInterface[]
      */
     public function getPeerServers(\Doctrine\Common\Collections\Criteria $criteria = null);
 

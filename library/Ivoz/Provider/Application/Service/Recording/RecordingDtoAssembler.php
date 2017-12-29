@@ -5,7 +5,7 @@ namespace Ivoz\Provider\Application\Service\Recording;
 use Ivoz\Core\Application\Service\StoragePathResolverCollection;
 use Ivoz\Core\Domain\Model\EntityInterface;
 use Ivoz\Core\Application\Service\Assembler\CustomDtoAssemblerInterface;
-use Ivoz\Provider\Domain\Model\Recording\RecordingDTO;
+use Ivoz\Provider\Domain\Model\Recording\RecordingDto;
 use Ivoz\Provider\Domain\Model\Recording\RecordingInterface;
 use Assert\Assertion;
 
@@ -26,12 +26,12 @@ class RecordingDtoAssembler implements CustomDtoAssemblerInterface
      * @param RecordingInterface $entity
      * @return RecordingDTO
      */
-    public function toDTO(EntityInterface $entity)
+    public function toDto(EntityInterface $entity)
     {
         Assertion::isInstanceOf($entity, RecordingInterface::class);
 
         /** @var RecordingDTO $dto */
-        $dto = $entity->toDTO();
+        $dto = $entity->toDto();
         $id = $entity->getId();
 
         if (!$id) {

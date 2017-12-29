@@ -200,7 +200,7 @@ trait ExternalCallFilterTrait
     /**
      * Get calendars
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\ExternalCallFilterRelCalendar\ExternalCallFilterRelCalendarInterface[]
      */
     public function getCalendars(Criteria $criteria = null)
     {
@@ -272,7 +272,7 @@ trait ExternalCallFilterTrait
     /**
      * Get blackLists
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\ExternalCallFilterBlackList\ExternalCallFilterBlackListInterface[]
      */
     public function getBlackLists(Criteria $criteria = null)
     {
@@ -344,7 +344,7 @@ trait ExternalCallFilterTrait
     /**
      * Get whiteLists
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\ExternalCallFilterWhiteList\ExternalCallFilterWhiteListInterface[]
      */
     public function getWhiteLists(Criteria $criteria = null)
     {
@@ -416,7 +416,7 @@ trait ExternalCallFilterTrait
     /**
      * Get schedules
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\ExternalCallFilterRelSchedule\ExternalCallFilterRelScheduleInterface[]
      */
     public function getSchedules(Criteria $criteria = null)
     {

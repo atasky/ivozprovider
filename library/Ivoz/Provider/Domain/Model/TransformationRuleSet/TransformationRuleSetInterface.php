@@ -24,29 +24,6 @@ interface TransformationRuleSetInterface extends LoggableEntityInterface
     public function setTrunkPrefix($trunkPrefix = null);
 
     /**
-     * @return TransformationRuleSetDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return TransformationRuleSetDto
-     */
-    public function toDto();
-
-    /**
      * Set description
      *
      * @param string $description
@@ -199,7 +176,7 @@ interface TransformationRuleSetInterface extends LoggableEntityInterface
     /**
      * Get rules
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\TransformationRule\TransformationRuleInterface[]
      */
     public function getRules(\Doctrine\Common\Collections\Criteria $criteria = null);
 

@@ -21,29 +21,6 @@ interface ConditionalRoutesConditionInterface extends LoggableEntityInterface
     public function getNumberValueE164();
 
     /**
-     * @return ConditionalRoutesConditionDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return ConditionalRoutesConditionDto
-     */
-    public function toDto();
-
-    /**
      * Set priority
      *
      * @param integer $priority
@@ -294,7 +271,7 @@ interface ConditionalRoutesConditionInterface extends LoggableEntityInterface
     /**
      * Get matchlists
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\ConditionalRoutesConditionsRelMatchlist\ConditionalRoutesConditionsRelMatchlistInterface[]
      */
     public function getMatchlists(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -325,7 +302,7 @@ interface ConditionalRoutesConditionInterface extends LoggableEntityInterface
     /**
      * Get schedules
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\ConditionalRoutesConditionsRelSchedule\ConditionalRoutesConditionsRelScheduleInterface[]
      */
     public function getSchedules(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -356,7 +333,7 @@ interface ConditionalRoutesConditionInterface extends LoggableEntityInterface
     /**
      * Get calendars
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\ConditionalRoutesConditionsRelCalendar\ConditionalRoutesConditionsRelCalendarInterface[]
      */
     public function getCalendars(\Doctrine\Common\Collections\Criteria $criteria = null);
 

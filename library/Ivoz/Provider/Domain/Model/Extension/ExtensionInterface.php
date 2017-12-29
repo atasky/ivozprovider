@@ -40,29 +40,6 @@ interface ExtensionInterface extends LoggableEntityInterface
     public function getNumberValueE164();
 
     /**
-     * @return ExtensionDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return ExtensionDto
-     */
-    public function toDto();
-
-    /**
      * Get number
      *
      * @return string
@@ -263,7 +240,7 @@ interface ExtensionInterface extends LoggableEntityInterface
     /**
      * Get users
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\User\UserInterface[]
      */
     public function getUsers(\Doctrine\Common\Collections\Criteria $criteria = null);
 

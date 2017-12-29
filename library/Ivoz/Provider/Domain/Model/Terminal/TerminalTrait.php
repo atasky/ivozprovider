@@ -174,7 +174,7 @@ trait TerminalTrait
     /**
      * Get astPsEndpoints
      *
-     * @return array
+     * @return \Ivoz\Ast\Domain\Model\PsEndpoint\PsEndpointInterface[]
      */
     public function getAstPsEndpoints(Criteria $criteria = null)
     {
@@ -246,7 +246,7 @@ trait TerminalTrait
     /**
      * Get users
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\User\UserInterface[]
      */
     public function getUsers(Criteria $criteria = null)
     {

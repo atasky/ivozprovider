@@ -17,29 +17,6 @@ interface UsersAddressInterface extends LoggableEntityInterface
     public function setMask($mask = null);
 
     /**
-     * @return UsersAddressDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return UsersAddressDto
-     */
-    public function toDto();
-
-    /**
      * Set sourceAddress
      *
      * @param string $sourceAddress

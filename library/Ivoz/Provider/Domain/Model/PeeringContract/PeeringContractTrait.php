@@ -174,7 +174,7 @@ trait PeeringContractTrait
     /**
      * Get outgoingRoutings
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\OutgoingRouting\OutgoingRoutingInterface[]
      */
     public function getOutgoingRoutings(Criteria $criteria = null)
     {
@@ -246,7 +246,7 @@ trait PeeringContractTrait
     /**
      * Get peerServers
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\PeerServer\PeerServerInterface[]
      */
     public function getPeerServers(Criteria $criteria = null)
     {

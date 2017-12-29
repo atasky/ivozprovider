@@ -278,7 +278,7 @@ trait CompanyTrait
     /**
      * Get extensions
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\Extension\ExtensionInterface[]
      */
     public function getExtensions(Criteria $criteria = null)
     {
@@ -350,7 +350,7 @@ trait CompanyTrait
     /**
      * Get ddis
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\Ddi\DdiInterface[]
      */
     public function getDdis(Criteria $criteria = null)
     {
@@ -422,7 +422,7 @@ trait CompanyTrait
     /**
      * Get friends
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\Friend\FriendInterface[]
      */
     public function getFriends(Criteria $criteria = null)
     {
@@ -494,7 +494,7 @@ trait CompanyTrait
     /**
      * Get companyServices
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\CompanyService\CompanyServiceInterface[]
      */
     public function getCompanyServices(Criteria $criteria = null)
     {
@@ -566,7 +566,7 @@ trait CompanyTrait
     /**
      * Get terminals
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\Terminal\TerminalInterface[]
      */
     public function getTerminals(Criteria $criteria = null)
     {
@@ -638,7 +638,7 @@ trait CompanyTrait
     /**
      * Get relPricingPlans
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\PricingPlansRelCompany\PricingPlansRelCompanyInterface[]
      */
     public function getRelPricingPlans(Criteria $criteria = null)
     {
@@ -710,7 +710,7 @@ trait CompanyTrait
     /**
      * Get musicsOnHold
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\MusicOnHold\MusicOnHoldInterface[]
      */
     public function getMusicsOnHold(Criteria $criteria = null)
     {
@@ -782,7 +782,7 @@ trait CompanyTrait
     /**
      * Get recordings
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\Recording\RecordingInterface[]
      */
     public function getRecordings(Criteria $criteria = null)
     {
@@ -854,7 +854,7 @@ trait CompanyTrait
     /**
      * Get relFeatures
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\FeaturesRelCompany\FeaturesRelCompanyInterface[]
      */
     public function getRelFeatures(Criteria $criteria = null)
     {
@@ -926,7 +926,7 @@ trait CompanyTrait
     /**
      * Get domains
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\Domain\DomainInterface[]
      */
     public function getDomains(Criteria $criteria = null)
     {

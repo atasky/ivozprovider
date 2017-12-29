@@ -48,7 +48,7 @@ class UpdateEntityFromDTO
         $dto->transformForeignKeys($this->fkTransformer);
         $dto->transformCollections($this->collectionTransformer);
 
-        $this->entityAssembler->updateFromDTO(
+        $this->entityAssembler->updateFromDto(
             $dto,
             $entity
         );

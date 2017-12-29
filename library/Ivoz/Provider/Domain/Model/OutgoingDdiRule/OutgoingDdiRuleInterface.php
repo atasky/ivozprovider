@@ -26,29 +26,6 @@ interface OutgoingDdiRuleInterface extends LoggableEntityInterface
     public function getOutgoingDdi($originalDdi, $e164destination);
 
     /**
-     * @return OutgoingDdiRuleDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return OutgoingDdiRuleDto
-     */
-    public function toDto();
-
-    /**
      * Set name
      *
      * @param string $name
@@ -132,7 +109,7 @@ interface OutgoingDdiRuleInterface extends LoggableEntityInterface
     /**
      * Get patterns
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\OutgoingDdiRulesPattern\OutgoingDdiRulesPatternInterface[]
      */
     public function getPatterns(\Doctrine\Common\Collections\Criteria $criteria = null);
 

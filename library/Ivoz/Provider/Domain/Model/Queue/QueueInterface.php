@@ -38,29 +38,6 @@ interface QueueInterface extends LoggableEntityInterface
     public function setMaxlen($maxlen = null);
 
     /**
-     * @return QueueDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return QueueDto
-     */
-    public function toDto();
-
-    /**
      * Get name
      *
      * @return string

@@ -161,7 +161,7 @@ trait MatchListTrait
     /**
      * Get patterns
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\MatchListPattern\MatchListPatternInterface[]
      */
     public function getPatterns(Criteria $criteria = null)
     {

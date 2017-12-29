@@ -38,7 +38,7 @@ class CreateByOutgoingRoutingAndRoutingPattern
         OutgoingRoutingInterface $entity,
         RoutingPatternInterface $pattern = null
     ) {
-        $lcrRuleDto = LcrRule::createDTO();
+        $lcrRuleDto = LcrRule::createDto();
         $condition = 'fax';
         if (is_null($pattern)) {
             // Fax route

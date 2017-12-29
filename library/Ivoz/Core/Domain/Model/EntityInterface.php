@@ -33,21 +33,21 @@ interface EntityInterface
      * Factory method
      * @param DataTransferObjectInterface $dto
      */
-    public static function fromDTO(DataTransferObjectInterface $dto);
+    public static function fromDto(DataTransferObjectInterface $dto);
 
     /**
      * @return self
      */
-    public function updateFromDTO(DataTransferObjectInterface $dto);
+    public function updateFromDto(DataTransferObjectInterface $dto);
 
     /**
      * DTO casting
      * @return DataTransferObjectInterface
      */
-    public function toDTO();
+    public function toDto();
 
     /**
      * @return DataTransferObjectInterface
      */
-    public static function createDTO();
+    public static function createDto();
 }

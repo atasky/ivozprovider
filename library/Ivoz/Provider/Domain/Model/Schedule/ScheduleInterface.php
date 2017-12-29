@@ -17,29 +17,6 @@ interface ScheduleInterface extends LoggableEntityInterface
     public function isOnSchedule(\DateTime $time);
 
     /**
-     * @return ScheduleDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return ScheduleDto
-     */
-    public function toDto();
-
-    /**
      * Set name
      *
      * @param string $name

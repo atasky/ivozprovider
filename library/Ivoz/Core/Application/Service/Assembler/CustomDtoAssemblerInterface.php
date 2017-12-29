@@ -6,5 +6,5 @@ use Ivoz\Core\Domain\Model\EntityInterface;
 
 interface CustomDtoAssemblerInterface
 {
-    public function toDTO(EntityInterface $entity);
+    public function toDto(EntityInterface $entity);
 }

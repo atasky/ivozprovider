@@ -13,29 +13,6 @@ interface ChangelogInterface extends EntityInterface
     public static function fromEvent(\Ivoz\Core\Domain\Event\EntityEventInterface $event);
 
     /**
-     * @return ChangelogDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return ChangelogDto
-     */
-    public function toDto();
-
-    /**
      * Set entity
      *
      * @param string $entity

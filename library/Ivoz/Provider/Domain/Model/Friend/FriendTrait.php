@@ -174,7 +174,7 @@ trait FriendTrait
     /**
      * Get psEndpoints
      *
-     * @return array
+     * @return \Ivoz\Ast\Domain\Model\PsEndpoint\PsEndpointInterface[]
      */
     public function getPsEndpoints(Criteria $criteria = null)
     {
@@ -246,7 +246,7 @@ trait FriendTrait
     /**
      * Get patterns
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\FriendsPattern\FriendsPatternInterface[]
      */
     public function getPatterns(Criteria $criteria = null)
     {

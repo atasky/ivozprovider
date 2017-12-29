@@ -13,27 +13,9 @@ interface InvoiceTemplateInterface extends LoggableEntityInterface
     public function getChangeSet();
 
     /**
-     * @return InvoiceTemplateDto
+     * @inheritdoc
      */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return InvoiceTemplateDto
-     */
-    public function toDto();
+    public function setTemplate($template);
 
     /**
      * Set name
@@ -66,15 +48,6 @@ interface InvoiceTemplateInterface extends LoggableEntityInterface
      * @return string
      */
     public function getDescription();
-
-    /**
-     * Set template
-     *
-     * @param string $template
-     *
-     * @return self
-     */
-    public function setTemplate($template);
 
     /**
      * Get template

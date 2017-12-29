@@ -161,7 +161,7 @@ trait OutgoingDdiRuleTrait
     /**
      * Get patterns
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\OutgoingDdiRulesPattern\OutgoingDdiRulesPatternInterface[]
      */
     public function getPatterns(Criteria $criteria = null)
     {

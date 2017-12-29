@@ -13,29 +13,6 @@ interface PickUpRelUserInterface extends LoggableEntityInterface
     public function getChangeSet();
 
     /**
-     * @return PickUpRelUserDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return PickUpRelUserDto
-     */
-    public function toDto();
-
-    /**
      * Set pickUpGroup
      *
      * @param \Ivoz\Provider\Domain\Model\PickUpGroup\PickUpGroupInterface $pickUpGroup

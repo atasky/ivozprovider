@@ -187,7 +187,7 @@ trait ConditionalRoutesConditionTrait
     /**
      * Get matchlists
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\ConditionalRoutesConditionsRelMatchlist\ConditionalRoutesConditionsRelMatchlistInterface[]
      */
     public function getMatchlists(Criteria $criteria = null)
     {
@@ -259,7 +259,7 @@ trait ConditionalRoutesConditionTrait
     /**
      * Get schedules
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\ConditionalRoutesConditionsRelSchedule\ConditionalRoutesConditionsRelScheduleInterface[]
      */
     public function getSchedules(Criteria $criteria = null)
     {
@@ -331,7 +331,7 @@ trait ConditionalRoutesConditionTrait
     /**
      * Get calendars
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\ConditionalRoutesConditionsRelCalendar\ConditionalRoutesConditionsRelCalendarInterface[]
      */
     public function getCalendars(Criteria $criteria = null)
     {

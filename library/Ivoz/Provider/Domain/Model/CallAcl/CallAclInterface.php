@@ -20,29 +20,6 @@ interface CallAclInterface extends LoggableEntityInterface
     public function dstIsCallable($dst);
 
     /**
-     * @return CallAclDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return CallAclDto
-     */
-    public function toDto();
-
-    /**
      * Set name
      *
      * @param string $name
@@ -117,7 +94,7 @@ interface CallAclInterface extends LoggableEntityInterface
     /**
      * Get relMatchLists
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\CallAclRelMatchList\CallAclRelMatchListInterface[]
      */
     public function getRelMatchLists(\Doctrine\Common\Collections\Criteria $criteria = null);
 

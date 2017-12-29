@@ -20,29 +20,6 @@ interface HuntGroupInterface extends LoggableEntityInterface
     public function getHuntGroupUsersArray();
 
     /**
-     * @return HuntGroupDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return HuntGroupDto
-     */
-    public function toDto();
-
-    /**
      * Set name
      *
      * @param string $name
@@ -245,7 +222,7 @@ interface HuntGroupInterface extends LoggableEntityInterface
     /**
      * Get huntGroupsRelUsers
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\HuntGroupsRelUser\HuntGroupsRelUserInterface[]
      */
     public function getHuntGroupsRelUsers(\Doctrine\Common\Collections\Criteria $criteria = null);
 

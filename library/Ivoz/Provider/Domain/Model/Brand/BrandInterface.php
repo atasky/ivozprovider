@@ -54,29 +54,6 @@ interface BrandInterface extends LoggableEntityInterface
     public function hasFeature($featureId);
 
     /**
-     * @return BrandDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return BrandDto
-     */
-    public function toDto();
-
-    /**
      * Set name
      *
      * @param string $name
@@ -270,7 +247,7 @@ interface BrandInterface extends LoggableEntityInterface
     /**
      * Get companies
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\Company\CompanyInterface[]
      */
     public function getCompanies(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -301,7 +278,7 @@ interface BrandInterface extends LoggableEntityInterface
     /**
      * Get services
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\BrandService\BrandServiceInterface[]
      */
     public function getServices(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -332,7 +309,7 @@ interface BrandInterface extends LoggableEntityInterface
     /**
      * Get urls
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\BrandUrl\BrandUrlInterface[]
      */
     public function getUrls(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -363,7 +340,7 @@ interface BrandInterface extends LoggableEntityInterface
     /**
      * Get relFeatures
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\FeaturesRelBrand\FeaturesRelBrandInterface[]
      */
     public function getRelFeatures(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -394,7 +371,7 @@ interface BrandInterface extends LoggableEntityInterface
     /**
      * Get domains
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\Domain\DomainInterface[]
      */
     public function getDomains(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -425,7 +402,7 @@ interface BrandInterface extends LoggableEntityInterface
     /**
      * Get retailAccounts
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\RetailAccount\RetailAccountInterface[]
      */
     public function getRetailAccounts(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -456,7 +433,7 @@ interface BrandInterface extends LoggableEntityInterface
     /**
      * Get musicsOnHold
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\MusicOnHold\MusicOnHoldInterface[]
      */
     public function getMusicsOnHold(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -487,7 +464,7 @@ interface BrandInterface extends LoggableEntityInterface
     /**
      * Get matchLists
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\MatchList\MatchListInterface[]
      */
     public function getMatchLists(\Doctrine\Common\Collections\Criteria $criteria = null);
 
@@ -518,7 +495,7 @@ interface BrandInterface extends LoggableEntityInterface
     /**
      * Get outgoingRoutings
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\OutgoingRouting\OutgoingRoutingInterface[]
      */
     public function getOutgoingRoutings(\Doctrine\Common\Collections\Criteria $criteria = null);
 

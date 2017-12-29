@@ -14,29 +14,6 @@ interface OutgoingRoutingInterface extends LoggableEntityInterface
     public function getChangeSet();
 
     /**
-     * @return OutgoingRoutingDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return OutgoingRoutingDto
-     */
-    public function toDto();
-
-    /**
      * Set type
      *
      * @param string $type
@@ -191,7 +168,7 @@ interface OutgoingRoutingInterface extends LoggableEntityInterface
     /**
      * Get lcrRules
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\LcrRule\LcrRuleInterface[]
      */
     public function getLcrRules(\Doctrine\Common\Collections\Criteria $criteria = null);
 

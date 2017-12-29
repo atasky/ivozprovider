@@ -13,29 +13,6 @@ interface UsersLocationAttrInterface extends LoggableEntityInterface
     public function getChangeSet();
 
     /**
-     * @return UsersLocationAttrDto
-     */
-    public static function createDto();
-
-    /**
-     * Factory method
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public static function fromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @param DataTransferObjectInterface $dto
-     * @return self
-     */
-    public function updateFromDto(\Ivoz\Core\Application\DataTransferObjectInterface $dto);
-
-    /**
-     * @return UsersLocationAttrDto
-     */
-    public function toDto();
-
-    /**
      * Set ruid
      *
      * @param string $ruid

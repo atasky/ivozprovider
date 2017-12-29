@@ -161,7 +161,7 @@ trait RoutingPatternTrait
     /**
      * Get lcrRules
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\LcrRule\LcrRuleInterface[]
      */
     public function getLcrRules(Criteria $criteria = null)
     {

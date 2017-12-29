@@ -161,7 +161,7 @@ trait HuntGroupTrait
     /**
      * Get huntGroupsRelUsers
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\HuntGroupsRelUser\HuntGroupsRelUserInterface[]
      */
     public function getHuntGroupsRelUsers(Criteria $criteria = null)
     {

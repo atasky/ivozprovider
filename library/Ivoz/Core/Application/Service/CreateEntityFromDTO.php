@@ -53,7 +53,7 @@ class CreateEntityFromDTO
         $dto->transformForeignKeys($this->fkTransformer);
         $dto->transformCollections($this->collectionTransformer);
 
-        return $this->entityAssembler->createFromDTO(
+        return $this->entityAssembler->createFromDto(
             $dto,
             $entityName
         );

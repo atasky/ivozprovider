@@ -48,9 +48,22 @@ trait DomainTrait
     /**
      * @return DomainDto
      */
-    public static function createDto()
+    public static function createDto($id = null)
     {
-        return new DomainDto();
+        return new DomainDto($id);
+    }
+
+    public static function entityToDto(DomainInterface $domain = null)
+    {
+        if (!$domain) {
+            return null;
+        }
+
+        if ($domain->isInitialized()) {
+            return $domain->toDto();
+        }
+
+        return self::createDto($domain->getId());
     }
 
     /**
@@ -187,7 +200,7 @@ trait DomainTrait
     /**
      * Get friends
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\Friend\FriendInterface[]
      */
     public function getFriends(Criteria $criteria = null)
     {
@@ -259,7 +272,7 @@ trait DomainTrait
     /**
      * Get retailAccounts
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\RetailAccount\RetailAccountInterface[]
      */
     public function getRetailAccounts(Criteria $criteria = null)
     {
@@ -331,7 +344,7 @@ trait DomainTrait
     /**
      * Get terminals
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\Terminal\TerminalInterface[]
      */
     public function getTerminals(Criteria $criteria = null)
     {

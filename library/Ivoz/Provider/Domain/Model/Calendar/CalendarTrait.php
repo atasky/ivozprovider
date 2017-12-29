@@ -161,7 +161,7 @@ trait CalendarTrait
     /**
      * Get holidayDates
      *
-     * @return array
+     * @return \Ivoz\Provider\Domain\Model\HolidayDate\HolidayDateInterface[]
      */
     public function getHolidayDates(Criteria $criteria = null)
     {

@@ -5,7 +5,7 @@ namespace Ivoz\Provider\Application\Service\Invoice;
 use Ivoz\Core\Application\Service\StoragePathResolverCollection;
 use Ivoz\Core\Domain\Model\EntityInterface;
 use Ivoz\Core\Application\Service\Assembler\CustomDtoAssemblerInterface;
-use Ivoz\Provider\Domain\Model\Invoice\InvoiceDTO;
+use Ivoz\Provider\Domain\Model\Invoice\InvoiceDto;
 use Ivoz\Provider\Domain\Model\Invoice\InvoiceInterface;
 use Assert\Assertion;
 
@@ -26,12 +26,12 @@ class InvoiceDtoAssembler implements CustomDtoAssemblerInterface
      * @param InvoiceInterface $entity
      * @return InvoiceDTO
      */
-    public function toDTO(EntityInterface $entity)
+    public function toDto(EntityInterface $entity)
     {
         Assertion::isInstanceOf($entity, InvoiceInterface::class);
 
         /** @var InvoiceDTO $dto */
-        $dto = $entity->toDTO();
+        $dto = $entity->toDto();
         $id = $entity->getId();
 
         if (!$id) {

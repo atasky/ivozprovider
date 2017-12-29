@@ -3,7 +3,7 @@
 namespace Ivoz\Provider\Domain\Service\TransformationRule;
 
 use Ivoz\Core\Domain\Service\EntityPersisterInterface;
-use Ivoz\Provider\Domain\Model\TransformationRule\TransformationRuleDTO;
+use Ivoz\Provider\Domain\Model\TransformationRule\TransformationRuleDto;
 use Ivoz\Provider\Domain\Model\TransformationRuleSet\TransformationRuleSetInterface;
 
 /**
@@ -34,7 +34,7 @@ class GenerateOutRules
         $nationalSubscriberLen = $nationalLen - strlen($areaCode);
 
         if (!empty($areaCode)) {
-            $ruleDTO = new TransformationRuleDTO();
+            $ruleDTO = new TransformationRuleDto();
             $ruleDTO
                 ->setTransformationRuleSetId($entity->getId())
                 ->setType($type)
@@ -47,7 +47,7 @@ class GenerateOutRules
         }
 
         if (!empty($trunkPrefix)) {
-            $ruleDTO = new TransformationRuleDTO();
+            $ruleDTO = new TransformationRuleDto();
             $ruleDTO
                 ->setTransformationRuleSetId($entity->getId())
                 ->setType($type)
@@ -59,7 +59,7 @@ class GenerateOutRules
             $this->entityPersister->persistDto($ruleDTO);
         }
 
-        $ruleDTO = new TransformationRuleDTO();
+        $ruleDTO = new TransformationRuleDto();
         $ruleDTO
             ->setTransformationRuleSetId($entity->getId())
             ->setType($type)
@@ -70,7 +70,7 @@ class GenerateOutRules
 
         $this->entityPersister->persistDto($ruleDTO);
 
-        $ruleDTO = new TransformationRuleDTO();
+        $ruleDTO = new TransformationRuleDto();
         $ruleDTO
             ->setTransformationRuleSetId($entity->getId())
             ->setType($type)
