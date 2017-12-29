@@ -33,7 +33,6 @@ final class WriteListener
             return;
         }
 
-//        $request->attributes->set('_api_resource_class', null);
         $controllerResult = $event->getControllerResult();
 
         switch ($request->getMethod()) {

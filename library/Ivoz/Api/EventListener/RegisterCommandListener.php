@@ -60,13 +60,15 @@ final class RegisterCommandListener
     {
         if (array_key_exists('_api_collection_operation_name', $routeParams)) {
             $action = $routeParams['_api_collection_operation_name'];
-        } else {
+        } else if(array_key_exists('_api_collection_operation_name', $routeParams)) {
             $action = $routeParams['_api_item_operation_name'];
+        } else {
+            return;
         }
 
         $event = new CommandWasExecuted(
             $this->requestId,
-            'API:' . $method,
+            'API',
             $action,
             [
                 'params' => $routeParams,
